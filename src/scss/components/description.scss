@@ -1,0 +1,76 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.bloc-description{
+	display: flex;
+	justify-content: space-between;
+	// padding: 120px 96px 80px 96px;
+	box-sizing: border-box;
+
+	@include xl {
+		flex-direction: column;
+	}
+
+	h2{
+		@include chillax-display-m;
+		color: $primary-blue-700;
+
+		@include xl {
+			@include chillax-heading-xl;
+			margin-bottom: 16px;
+		}
+	}
+
+	.bloc-description__content{
+		display: flex;
+		flex-direction: column;
+
+		p{
+			@include montserrat-citation-xl;
+			width: 747px;
+			color: $dark-700;
+
+			@include xl {
+				@include montserrat-citation-m;
+				width: 100%;
+			}
+
+			@include xl-paysage {
+				width: 592px;
+			}
+		}
+
+		p:nth-child(1){
+			margin-bottom: 24px;
+
+			@include xl {
+				margin-bottom: 0px;
+			}
+		}
+	}
+}
+
+.project{
+	.bloc-description{
+		p{
+			@include montserrat-paragraph-xl-m;
+		}
+	}
+}
+
+.a-propos{
+	.bloc-description{
+		p{
+			@include montserrat-paragraph-xl-m;
+		}
+	}
+}
+
+.resources{
+	.bloc-description{
+		p{
+			@include montserrat-paragraph-xl-m;
+		}
+	}
+}

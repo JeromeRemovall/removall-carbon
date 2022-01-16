@@ -1,0 +1,397 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+main.home{
+
+	width: 100vw;
+
+	.slider-home{
+		display: flex;
+		justify-content: center;
+		position: relative;
+
+		@include xl {
+			width: 100%;
+		}
+	}
+
+	.bloc-1{
+		padding: 120px 0px 80px 0px;
+		margin: 0 auto;
+		width: 1234px;
+		box-sizing: border-box;
+
+		@include xl {
+			width: 100%;
+			padding: 30px 24px 0px 24px;
+		}
+
+		@include xl-paysage {
+			width: 100%;
+			padding: 120px 48px 80px 48px;
+		}
+	}
+
+	.bloc-2{
+		display: flex;
+		align-items: center;
+		padding: 80px 0px 0px 0px;
+		box-sizing: border-box;
+
+		@include xl {
+			flex-direction: column;
+		}
+
+		.bloc-2__image{
+			width: 45%;
+			height: auto;
+			overflow: hidden;
+
+			@include xl {
+				width: 100%;
+				height: 426px;
+			}
+
+			img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+		
+
+		.bloc-2__content{
+			width: 55%;
+			margin-left: 139px;
+			box-sizing: border-box;
+
+			@include xl {
+				padding: 40px 24px 0px 24px;
+				margin: 0;
+				width: 100%;
+			}
+
+			@include xl-paysage{
+				margin-left: 70px;
+			}
+
+			h2{
+				@include chillax-display-m;
+				color: $primary-blue-700;
+
+				@include xl {
+					@include chillax-heading-xl;
+				}
+			}
+
+			p{
+				@include montserrat-paragraph-xl-m;
+				width: 90%;
+				margin-top: 32px;
+				color: $dark-500;
+
+				@include xl {
+					@include montserrat-paragraph-l-m;
+					width: 100%;
+				}
+
+				@include xl-paysage{
+					width: 548px;
+				}
+	
+			}
+		}
+	}
+
+	.bloc-3{
+		display: flex;
+		flex-direction: column;
+		padding: 144px 0px 120px 0px;
+		box-sizing: border-box;
+		align-items: center;
+
+		.card-list{
+			background-color: $primary-blue-500;
+
+			&:nth-child(2n){
+				background-color: $primary-blue-100;
+
+				.card-list__content{
+
+					h3{
+						color: $primary-blue-700;
+					}
+
+					p{
+						color: $dark-500;
+					}
+				}
+			}
+		}
+
+		@include xl {
+			padding: 104px 24px 0px 24px;
+		}
+
+		@include xl-paysage{
+			padding: 120px 48px 80px 48px;
+		}
+
+		h2{
+			@include chillax-display-m;
+			color: $primary-blue-700;
+			text-align: center;
+			margin-bottom: 56px;
+
+			@include xl {
+				@include chillax-heading-xl;
+			}
+		}
+
+		a{
+			margin: 0 auto;
+			margin-top: 56px;
+
+			@include xl {
+				margin-top: 6px;
+				margin-left: 0px;
+			}
+		}
+	}
+
+	.bloc-4{
+		background-color: $primary-blue-700;
+		padding: 120px 96px 144px 96px;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+
+		@include xl-paysage {
+			padding: 120px 48px 80px 48px;
+		}
+
+		@include xl {
+			margin-top: 80px;
+			padding: 80px 24px 48px 24px;
+		}
+
+		.bloc-4__content{
+			width: 1235px;
+			margin: 0 auto;
+
+			@include xl {
+				width: 100%;
+				flex-direction: column;
+			}
+
+			@include xl-paysage {
+				width: 100%;
+			}
+	
+
+			h2{
+				color: $light-100;
+				@include chillax-display-m;
+
+				@include xl {
+					@include chillax-heading-xl;
+					margin-bottom: 16px;
+				}
+			}
+	
+			p{
+				width: 747px;
+				color: $primary-blue-100;
+				@include montserrat-citation-xl;
+
+				@include xl {
+					@include montserrat-citation-m;
+					width: 100%;
+				}
+			}
+		}
+
+		.bloc-4__cards{
+			display: flex;
+			width: 1235px;
+			margin: 0 auto;
+			margin-top: 80px;
+			justify-content: space-between;
+
+			@include xl {
+				width: 100%;
+				flex-direction: column;
+				order: 3;
+				margin-top: 64px;
+			}
+
+			@include xl-paysage {
+				width: 100%;
+			}
+		}
+
+		a{
+			margin: 0 auto;
+			margin-top: 88px;
+
+			@include xl {
+				order: 2;
+				margin-top: 32px;
+				margin-left: 0px;
+			}
+		}
+	}
+
+	.bloc-5{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 120px 0px 104px 0px;
+		box-sizing: border-box;
+
+		@include xl {
+			padding: 80px 24px 80px 24px;
+		}
+
+
+		@include xl-paysage {
+			padding: 120px 48px 104px 48px;
+		}
+
+		h2{
+			@include chillax-display-m;
+			color: $primary-blue-700;
+			text-align: center;
+
+			@include xl {
+				@include chillax-heading-xl;
+			}
+		}
+
+		p{
+			margin-top: 32px;
+			text-align: center;
+			color: $dark-700;
+			@include montserrat-citation-xl;
+			width: 1240px;
+
+			@include xl {
+				margin-top: 16px;
+				width: 100%;
+				@include montserrat-paragraph-xl-m;
+			}
+
+			@include xl-paysage {
+				width: 100%;
+			}
+		}
+
+		a{
+			margin: 0 auto;
+			margin-top: 48px;
+
+			@include xl {
+				margin-top: 32px;
+			}
+		}
+	}
+
+	.bloc-6{
+		padding: 120px 0px 144px 0px;
+		margin: 0 auto;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		width: 1248px;
+
+		@include xl-paysage {
+			padding: 120px 58px 144px 58px;
+			box-sizing: border-box;
+			width: 100%;
+		}
+		
+		@include xl {
+			width: 100%;
+			flex-direction: column;
+			padding: 0px 24px 80px 24px;
+			box-sizing: border-box;
+		}
+
+		h2{
+			@include chillax-display-m;
+			color: $primary-blue-700;
+			width: 393px;
+
+			@include xl {
+				width: 100%;
+				text-align: center;
+				@include chillax-heading-xl;
+			}
+		}
+
+		.bloc-6__content{
+			display: flex;
+			flex-direction: column;
+
+			.legend{
+				color: $primary-blue-700;
+
+				@include xl {
+					margin-top: 48px;
+				}
+			}
+
+			.bloc-6__content__logo{
+				display: flex;
+				flex-direction: column;
+				margin-top: 24px;
+
+				.bloc-6__content__logo--ligne{
+					display: flex;
+					margin-bottom: 56px;
+					display: grid;
+					grid-template-columns: repeat(3, 1fr);
+					column-gap: 80px;
+					row-gap: 32px;
+					justify-content: center;
+					align-items: center;
+
+					.bloc-6__content__logo--ligne__image{
+						width: 200px;
+						height: 96px;
+
+						img{
+							object-fit: cover;
+							width: 100%;
+							height: 100%;
+						}
+					}
+
+					@include xl-paysage{
+						grid-template-columns: repeat(2, 1fr);
+					}
+
+					@include xl {
+						grid-template-columns: repeat(2, 1fr);
+						grid-gap: 0px;
+
+						img{
+							width: 80%;
+							height: 100%;
+							object-fit: cover;
+						}
+					}
+
+					@include sm{
+						img{
+							width: 90%;
+							height: 100%;
+							object-fit: cover;
+						}
+					}
+				}
+			}
+		}
+	}
+} 

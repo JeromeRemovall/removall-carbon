@@ -1,0 +1,86 @@
+
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins/shadows";
+@import "../mixins//breakpoints";
+
+.card-list-full{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+
+	@include xl {
+		flex-direction: column-reverse;
+		height: auto;
+		margin-bottom: 80px;
+		box-sizing: border-box;
+	}
+
+	@include xl-paysage{
+		margin-top: 32px;
+	}
+
+	.card-list-full__content{
+		display: flex;
+		flex-direction: column;
+		align-items: left;
+    	justify-content: center;
+		width: 608px;
+
+		@include xl {
+			width: 100%;
+		}
+
+		@include xl-paysage{
+			width: 500px;
+		}
+
+
+		h3{
+			color: $primary-blue-700;
+			@include chillax-heading-xl;
+
+			@include xl {
+				margin-top: 40px;
+				@include chillax-heading-l;
+			}
+		}
+
+
+		p{
+			@include montserrat-paragraph-m-m;
+			color: $dark-500;
+			margin-top: 24px;
+			margin-bottom: 10px;
+
+			@include xl {
+				@include montserrat-paragraph-l-m;
+			}
+		}
+
+		li{
+			@include montserrat-paragraph-m-m;
+			color: $dark-500;
+			margin: 0;
+		}
+	}
+
+	.card-list-full__image{
+		width: 424px;
+		height: 540px;
+		overflow: hidden;
+
+		@include xl {
+			width: 100%;
+			height: 372px;
+		}
+
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+}

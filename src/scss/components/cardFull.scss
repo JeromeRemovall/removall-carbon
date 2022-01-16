@@ -1,0 +1,67 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins/shadows";
+@import "../mixins//breakpoints";
+
+.card-full{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: auto;
+
+	@include xl {
+		width: 100%;
+	}
+
+	.card-full__image{
+		width: 100%;
+		overflow: hidden;
+
+		@include xl {
+			height: 248px;
+		}
+
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.card-full__content{
+		margin-top: 24px;
+		h3{
+			@include montserrat-heading-m;
+			margin-bottom: 16px;
+			color: $primary-blue-700;
+
+			@include xl {
+				text-align: left;
+				@include montserrat-heading-s;
+			}
+
+			@include xl-paysage{
+				text-align: left;
+			}
+			
+		}
+		
+		.legend{
+			margin-bottom: 24px !important;
+		}
+
+		p{
+			@include montserrat-paragraph-l-m;
+			color: $dark-500;
+
+			@include xl {
+				text-align: left;
+				@include montserrat-paragraph-m-m;
+			}
+
+			@include xl-paysage{
+				text-align: left;
+			}
+		}
+	}
+}

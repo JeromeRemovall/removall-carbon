@@ -1,0 +1,192 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+
+
+main.project{
+	width: 100vw;
+
+	.bloc-description{
+		h2{
+			width: 324px;
+		}
+
+		p{
+			@include xl-paysage {
+				width: 90%;
+				margin-left: 80px;
+			}
+		}
+	}
+
+	.bloc-1{
+		padding: 80px 0px 0px 0px;
+		width: 1248px;
+		box-sizing: border-box;
+		margin: 0  auto;
+
+		@include xl {
+			padding: 40px 24px 0px 24px;
+			width: 100%;
+		}
+
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			width: 100%;
+		}
+
+		.bloc-1__content{
+			display: flex;
+			margin-top: 80px;
+			width: 100%;
+
+			.my-masonry-grid {
+				display: flex;
+				width: 100%;
+				
+				@include lg{
+					display: none;
+				}
+
+				.my-masonry-grid_column:nth-child(1) {
+
+					.card-full{
+						
+						margin: 96px 0px;
+						.card-full__image{
+							height: 408px;
+						}
+
+						&:nth-child(odd){
+							margin-top: 0px;
+							
+							.card-full__image{
+								height: 552px;
+
+							}
+						}
+					}
+				}
+
+				.my-masonry-grid_column:nth-child(2) {
+					margin-left: 32px;
+
+					.card-full{
+						margin-top: 0px;
+			
+						.card-full__image{
+							height: 552px;
+						}
+
+						&:nth-child(odd){
+							margin: 96px 0px;
+							
+							.card-full__image{
+								height: 408px;
+							}
+						}
+					}
+
+				}
+			}
+
+			.my-masonry-grid-mobile{
+				display: none;
+
+				@include lg{
+					display: flex;
+
+					.card-full{
+						margin-bottom: 47px;
+					}
+				}
+			}
+		}
+	}
+
+	.bloc-2{
+		padding: 80px 0px 0px 0px;
+		width: 1248px;
+		box-sizing: border-box;
+		margin: 0  auto;
+
+		@include xl {
+			padding: 40px 24px 0px 24px;
+			width: 100%;
+		}
+
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			width: 100%;
+		}
+
+		.bloc-2__content{
+			display: flex;
+			margin-top: 80px;
+			width: 100%;
+
+			.my-masonry-grid {
+				display: flex;
+				width: 100%;
+
+				@include lg{
+					display: none;
+				}
+
+				.my-masonry-grid_column:nth-child(1) {
+
+					.card-full{
+						
+						margin: 96px 0px;
+						.card-full__image{
+							height: 408px;
+						}
+
+						&:nth-child(odd){
+							margin-top: 0px;
+							
+							.card-full__image{
+								height: 552px;
+
+							}
+						}
+					}
+				}
+
+				.my-masonry-grid_column:nth-child(2) {
+					margin-left: 32px;
+
+					.card-full{
+						margin-top: 0px;
+			
+						.card-full__image{
+							height: 552px;
+						}
+
+						&:nth-child(odd){
+							margin: 96px 0px;
+							
+							.card-full__image{
+								height: 408px;
+							}
+						}
+					}
+
+				}
+			}
+
+			.my-masonry-grid-mobile{
+				display: none;
+
+				@include lg{
+					display: flex;
+
+					.card-full{
+						margin-bottom: 47px;
+					}
+				}
+			}
+		}
+	}
+}

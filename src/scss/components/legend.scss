@@ -1,0 +1,19 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.legend{
+	@include chillax-label-l;
+	border-left: 4px solid $primary-blue-500;
+	padding-left: 12px;
+	margin-bottom: 24px;
+	text-transform: uppercase;
+}
+
+.resources{
+	.legend{
+		@include montserrat-label-s-m;
+		color: $primary-blue-700;
+		text-transform: lowercase;
+	}
+}

@@ -1,0 +1,133 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.profil-card{
+	display: flex;
+	flex-direction: column;
+	width: 288px;
+	height: auto;
+
+	@include xl {
+		width: 100%;
+	}
+
+	@include xl-paysage {
+		width: 100%;
+	}
+
+	.profil-card__image{
+		width: 100%;
+		height: 424px;
+		overflow: hidden;
+
+		@include xl {
+			width: 100%;
+			height: 500px;
+		}
+
+		@include lg {
+			width: 100%;
+		}
+
+		img{
+			object-position: top;
+			object-fit: cover;
+			width: 100%;
+			height: 100% !important;
+		}
+	}
+
+	h3{
+		@include montserrat-heading-m;
+		color: $light-100;
+		margin-top: 24px;
+	}
+
+	p{
+		@include montserrat-label-m-m;
+   		text-align: left !important;
+		margin-top: 12px !important;
+	}
+
+	.profil-card__sociaux{
+		display: flex;
+		margin-top: 24px;
+
+		a{
+			cursor: pointer;
+
+			.profil-card__sociaux__image{
+				width: 24px;
+				height: 24px;
+				margin-right: 20px;
+
+				img{
+					margin-right: 16px;
+					object-fit: cover;
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+	}
+}
+
+.a-propos{
+	.bloc-8{
+		.profil-card{
+			.profil-card__image{
+				height: 348px;
+
+				@include lg {
+					height: 188px !important;
+				}
+
+				@include xl{
+					height: 348px;
+				}
+		
+				img{
+					width: 100%;
+					height: 100%;
+					object-position: top;
+					object-fit: cover;
+				}
+			}
+
+			h3{
+				color: $primary-blue-700;
+			}
+	
+			p{
+				color: $dark-500;
+			}
+		}
+	}
+}
+
+.a-propos{
+	.bloc-7{
+
+		.bloc-7__content{
+			width: 650px !important;
+
+			@include xl{
+				width: 100% !important;
+			}
+			
+			.profil-card{
+				width: 269px;
+	
+				.profil-card__image{
+					height: 300px;
+				}
+	
+				@include xl {
+					width: 100%;
+					margin-bottom: 48px;
+				}
+			}
+		}
+	}
+}

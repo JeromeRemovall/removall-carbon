@@ -1,0 +1,41 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.navbar-small{
+	display: flex;
+	align-items: center;
+	width: 674px;
+	height: 56px;
+	background-color: $primary-blue-100;
+	border-radius: 50px;
+
+	@include xl {
+		display: none;
+	}
+
+	ul{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		padding: 8px 16px;
+		box-sizing: border-box;
+
+		a{
+			@include montserrat-label-m-s;
+			color: $primary-blue-500;
+			cursor: pointer;
+			transition: all 0.5s ease-in-out 0s;
+			padding: 12px;
+			border-radius: 24px;
+
+			&.active{
+				color: $light-100;
+				padding: 12px;
+				background-color: $primary-blue-500;
+				border-radius: 24px;
+			}
+		}
+	}
+}

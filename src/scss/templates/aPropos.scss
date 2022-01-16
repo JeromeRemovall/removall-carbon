@@ -1,0 +1,493 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+main.a-propos{
+
+	width: 100vw;
+	
+	.bloc-1{
+		padding: 80px 0px 0px 0px;
+		box-sizing: border-box;
+		margin-bottom: 80px;
+		width: 1248px;
+		margin: 0 auto;
+
+		@include xl {
+			padding: 48px 24px 0px 24px;
+			width: 100%;
+		}
+
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			width: 100%;
+		}
+	}
+
+	.bloc-2{
+		display: flex;
+		padding: 80px 0px 0px 0px;
+		box-sizing: border-box;
+		width: 1248px;
+		margin: 0 auto;
+	
+		@include xl {
+			flex-direction: column;
+			padding: 44px 24px 0px 24px;
+			width: 100%;
+		}
+
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			justify-content: space-between;
+			width: 100%;
+		}
+
+		.bloc-2__image{
+			width: 608px;
+			height: 664px;
+			overflow: hidden;
+
+			@include xl {
+				width: 100%;
+				height: 410px;
+			}
+
+			@include xl-paysage {
+				width: 50%;
+				height: auto;
+			}
+			
+
+			img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	
+		.bloc-2__content{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: left;
+			padding-left: 139px;
+
+			@include xl {
+				padding: 40px 0px;
+				margin: 0px;
+			}
+
+			@include xl-paysage {
+				padding-left: 0px;
+				width: 40%;
+			}
+	
+			h2{
+				@include chillax-heading-m;
+				margin-bottom: 16px;
+				color: $primary-blue-700;
+				width: 500px;
+
+				@include xl {
+					width: 100%;
+					@include chillax-heading-s;
+				}
+
+				@include xl-paysage {
+					width: 100%;
+				}
+			}
+	
+			p{
+				@include montserrat-paragraph-l-m;
+				width: 500px;
+				color: $dark-500;
+				margin-bottom: 40px;
+
+				@include xl {
+					width: 100%;
+					@include montserrat-paragraph-m-m;
+				}
+
+				@include xl-paysage {
+					width: 100%;
+				}
+			}
+		}
+	}
+	
+	.bloc-3{
+		display: flex;
+		margin-top: 176px;
+		width: 100%;
+
+		@include xl {
+			flex-direction: column;
+			margin-top: 0px;
+		}
+	
+		.bloc-3__image{
+			width: 45%;
+			height: 916px;
+			overflow: hidden;
+
+			.bloc-3__background-mobile{
+				display: none;
+			}
+
+			@include xl {
+				display: flex;
+				width: 100%;
+				height: 464px;
+
+				.bloc-3__background-mobile{
+					display: block;
+					width: 10%;
+					height: 418px;
+					background-color: $primary-blue-100;
+				}
+			}
+	
+			img{
+				width: 100%;
+				object-fit: cover;
+				height: 100%;
+			}
+		}
+	
+		.bloc-3__content{
+			width: 55%;
+			display: flex;
+			flex-direction: column;
+			align-items: left;
+			justify-content: center;
+			padding: 80px 96px 80px 107px;
+			box-sizing: border-box;
+			height: 844px;
+			background-color: $primary-blue-100;
+
+			@include xl {
+				padding: 48px 24px;
+				width: 100%;
+				height: auto;
+				background-color: transparent;
+			}
+
+			@include xl-paysage {
+				height: auto;
+				padding: 32px 48px 80px 48px;
+			}
+	
+			h2{
+				@include chillax-display-m;
+				margin-bottom: 32px;
+				color: $primary-blue-700;
+
+				@include xl {
+					@include chillax-heading-xl;
+				}
+			}
+	
+			p{
+				// width: 600px;
+				@include montserrat-paragraph-l-m;
+				margin-bottom: 24px;
+
+				@include xl {
+					@include montserrat-paragraph-l-m;
+				}
+			}
+		}
+	}
+	
+	.bloc-4{
+		display: flex;
+		flex-direction: column;
+		padding: 116px 0px 0px 0px;
+		margin-bottom: 144px;
+		width: 1248px;
+		margin: 0 auto;
+		box-sizing: border-box;
+
+		@include xl {
+			padding: 0px 24px;
+			margin-bottom: 0px;
+			width: 100%;
+		}
+
+		@include xl-paysage {
+			padding: 116px 48px 0px 48px;
+			width: 100%;
+		}
+	
+		.bloc-4__content{
+			margin-top: 80px;
+
+			@include xl {
+				padding: 0px;
+				margin-bottom: 96px
+			}
+
+			@include xl-paysage {
+				width: 100%;
+			}
+
+			.card-list{
+				background-color: $primary-blue-100;
+
+				.card-list__content{
+	
+					h3{
+						color: $primary-blue-700;
+					}
+
+					p{
+						color: $dark-500;
+					}
+				}
+
+				&:nth-child(2n){
+					background-color: $primary-blue-500;
+
+					.card-list__content{
+	
+						h3{
+							color: $light-100;
+						}
+	
+						p{
+							color: $light-100;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	.bloc-5{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		text-align: center;
+		padding: 122px 0px 0px 0px;
+		margin-bottom: 144px;
+		width: 1248px;
+		margin: 0 auto;
+		box-sizing: border-box;
+
+		@include xl {
+			padding: 0 24px;
+			width: 100%;
+		}
+
+		@include xl-paysage {
+			padding: 122px 0px 0px 0px;
+			width: 100%;
+		}
+
+		h2{
+			@include chillax-display-m;
+			margin-bottom: 24px;
+			color: $primary-blue-700;
+
+			@include xl {
+				@include chillax-heading-xl;
+			}
+		}
+
+		p{
+			@include montserrat-paragraph-xl-m;
+			width: 822px;
+			color: $dark-500;
+
+			@include xl {
+				width: 100%;
+				@include montserrat-paragraph-l-m;
+			}
+		}
+
+		.bloc-5__content{
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			column-gap: 32px;
+			margin-top: 80px;
+			box-sizing: border-box;
+
+			@include xl {
+				width: 100%;
+				margin: 0 auto;
+				flex-direction: column;
+				grid-template-columns: repeat(1, 1fr);
+				margin-top: 48px;
+			}
+
+			@include xl-paysage {
+				width: 90%;
+				grid-template-columns: repeat(1, 1fr);
+				// column-gap: 0px;
+				margin: 0  auto;
+				margin-top: 80px;
+				column-gap: 32px;
+			}
+		}
+	}
+
+	.bloc-6{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		padding: 144px 0px 0px 0px;
+		width: 1248px;
+		margin: 0  auto;
+		box-sizing: border-box;
+
+		@include xl {
+			width: 100%;
+			padding: 96px 24px 0px 24px;
+		}
+
+		@include xl-paysage {
+			width: 100%;
+			padding: 144px 48px 0px 48px;
+		}
+
+		h2{
+			@include chillax-display-m;
+			color: $primary-blue-700;
+			margin-bottom: 80px;
+
+			@include xl {
+				margin-bottom: 40px;
+			}
+		}
+
+		.bloc-6__content{
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			column-gap: 32px;
+			row-gap: 88px;
+
+			@include xl {
+				flex-direction: column;
+				grid-template-columns: repeat(1, 1fr);
+			}
+
+			img{
+				@include xl {
+					margin-bottom: 24px;
+				}
+			}
+
+			h3{
+				@include montserrat-heading-s;
+				color: $primary-blue-700;
+				margin-bottom: 16px;
+
+				@include xl {
+					margin-bottom: 12px;
+				}
+			}
+
+			p{
+				@include montserrat-paragraph-l-m;
+
+				@include xl {
+					@include montserrat-paragraph-m-m;
+				}
+			}
+		}
+	}
+
+	.bloc-7{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 107px 277px;
+		margin-top: 120px;
+		background-color: $primary-blue-700;
+		box-sizing: border-box;
+
+		@include xl {
+			flex-direction: column;
+			padding: 80px 24px 32px 24px;
+		}
+
+		h2{
+			@include chillax-display-m;
+			color: $light-100;
+
+			@include xl {
+				@include chillax-heading-xl;
+			}
+		}
+
+		p{
+			margin-top: 32px;
+			@include montserrat-paragraph-l-m;
+			text-align: center;
+			color: $light-100;
+			width: 700px;
+
+			@include xl {
+				width: 100%;
+			}
+		}
+
+		.bloc-7__content{
+			display: flex;
+			justify-content: space-between;
+			margin-top: 64px;
+			width: 888px;
+
+			@include xl {
+				flex-direction: column;
+				width: 100%;
+			}
+		}
+	}
+
+	.bloc-8{
+
+		background-color: $primary-blue-100;
+
+		.bloc-8_container{
+	
+			padding: 116px 0px 146px 0px;
+			box-sizing: border-box;
+			width: 1248px;
+			margin: 0 auto;
+	
+			@include xl {
+				width: 100%;
+				padding: 80px 24px;
+			}
+	
+			@include xl-paysage {
+				width: 100%;
+				padding: 116px 48px 146px 48px;
+			}
+			
+	
+			.bloc-8__content{
+				margin-top: 80px;
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				grid-gap: 32px;
+	
+				@include xl {
+					grid-template-columns: repeat(2, 1fr);
+				}
+
+				@include xl-paysage {
+					grid-template-columns: repeat(3, 1fr);
+				}
+			}
+		}
+	}
+}
+

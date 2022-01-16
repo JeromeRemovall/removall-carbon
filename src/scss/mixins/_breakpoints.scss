@@ -1,0 +1,45 @@
+$tablet-large: 1280px;
+$tablet : 834px;
+$mobile-xl : 425px;
+$mobile-m : 375px;
+$mobile-s: 320px;
+
+//Small devices
+@mixin sm {
+	@media (max-width: 320px) {
+		@content;
+	}
+ }
+ 
+ // Medium devices
+@mixin md {
+	@media (max-width: 321px) {
+		@content;
+	}
+}
+ 
+ // Large devices
+@mixin lg {
+	@media (max-width: 414px) {
+		@content;
+	}
+}
+ 
+ // Extra large devices
+@mixin xl {
+	@media (max-width: 834px) {
+		@content;
+	}
+}
+
+@mixin xl-paysage {
+	@media (max-width: 1280px) and (min-width: 835px) {
+		@content;
+	}
+}
+
+@mixin xxl {
+	@media (max-width: 1280px) {
+		@content;
+	}
+}

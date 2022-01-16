@@ -1,0 +1,82 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+main.services{
+	width: 100vw;
+
+	.navbar-container{
+		width: 1248px;
+		height: auto;
+		margin: 0 auto;
+
+		nav{
+			margin-top: 80px;
+	
+			@include xl{
+				display: none;
+			}
+		}
+
+		@include xl-paysage{
+			width: 100%;
+			padding: 0 48px 0px 48px;
+			box-sizing: border-box;
+		}
+	}
+	
+	.services-container{
+		position: relative;
+		height: 540px;
+		overflow: hidden;
+		margin-bottom: 100px;
+		margin-top: 16px;
+
+		@include xl-paysage{
+			width: 100%;
+			padding: 0 48px 0px 48px;
+			box-sizing: border-box;
+			margin-top: 32px;
+		}
+		
+		.services-container__sections{
+			height: 540px;
+			width: 1248px;
+			margin: 0 auto;
+
+			&.animation{
+				animation: nnn 1s ease-out 0s 1 normal forwards;
+			}
+
+			@keyframes nnn {
+				0% {opacity: 0;}
+				100% {opacity: 1;}
+			}
+	
+
+			@include xl-paysage{
+				width: 100%;
+			}
+		}
+
+		@include xl{
+			display: none;
+		}
+	}
+	
+
+	.bloc-content__responsive{
+		display: none;
+		@include xl{
+			display: block;
+			margin-top: 32px;
+			padding: 0px 24px;
+			box-sizing: border-box;
+
+			.bloc-content__responsive{
+				display: flex;
+				flex-direction: column;
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins/shadows";
+@import "../mixins//breakpoints";
+
+main.loader{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 100;
+	background-color: $primary-blue-700;
+	overflow: hidden;
+
+	img{
+		width: 565px;
+		height: auto;
+	}
+
+	@include xl{
+		img{
+			width: 267px;
+			height: auto;
+		}
+	}
+}

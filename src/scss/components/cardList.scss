@@ -1,0 +1,94 @@
+
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins/shadows";
+@import "../mixins//breakpoints";
+
+.card-list{
+	display: flex;
+	width: 1248px;
+	height: 312px;
+	border-radius: 8px;
+	@include shadow-1;
+	overflow: hidden;
+	margin-bottom: 24px;
+
+	@include xl {
+		flex-direction: column;
+		height: 432px;
+		margin-bottom: 32px;
+		width: 100%;
+	}
+	
+	@include xl-paysage {
+		width: 100%;
+	}
+
+	.card-list__image{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 427px;
+		overflow: hidden;
+
+		@include xl {
+			width: 100%;
+			height: 240px;
+		}
+
+		@include lg {
+			width: 100%;
+			height: 180px;
+		}
+
+		@include xl-paysage {
+			width: 40%;
+		}
+
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: bottom;
+		}
+	}
+
+	.card-list__content{
+		width: 70%;
+		display: flex;
+		flex-direction: column;
+		align-items: left;
+    	justify-content: center;
+		padding: 0px 56px;
+		box-sizing: border-box;
+
+		@include xl {
+			padding: 32px 16px;
+			width: 100%;
+		}
+
+		@include xl-paysage {
+			width: 60%;
+		}
+
+		h3{
+			color: $light-100;
+			@include montserrat-heading-m;
+
+			@include xl {
+				@include montserrat-heading-s;
+			}
+		}
+
+
+		p{
+			@include montserrat-paragraph-l-m;
+			color: $light-80;
+			margin-top: 24px;
+
+			@include xl {
+				@include montserrat-paragraph-m-m;
+			}
+		}
+	}
+}

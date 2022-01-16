@@ -1,0 +1,40 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.button-primary{
+	display: flex;
+    background-color: transparent;
+    border: none;
+	align-items: center;
+	margin-top: 32px;
+	@include montserrat-label-xl-s;
+	color: $primary-blue-500;
+
+	a{
+		color: $primary-blue-500;
+	}
+
+	hr{
+		margin: 0;
+    	border: 1px solid $primary-blue-500;
+    	width: 56px;
+		margin-right: 16px;
+	}
+
+	@include xl{
+		display: none;
+	}
+}
+
+.button-primary.mobile{
+	display: none;
+
+	@include xl{
+		display: flex;
+	}
+}
+
+button{
+	cursor: pointer;
+}

@@ -1,0 +1,55 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.card-list-icon{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+
+	@include xl {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	@include xl-paysage {
+		width: 100%;
+	}
+
+	.card-list-icon__image{
+		width: 75px;
+		height: 75px;
+		margin-bottom: 24px;
+
+		img{
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.card-list-icon__content{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		margin-left: 32px;
+
+		@include xl {
+			margin: 0px;
+			align-items: center;
+		}
+
+		@include xl-paysage {
+			margin-top: 20px;
+		}
+		
+		p{
+
+			@include xl {
+				width: 100%;
+				text-align: center;
+			}
+		}
+	}
+}
