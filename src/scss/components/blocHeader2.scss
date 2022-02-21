@@ -1,0 +1,33 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.bloc-header--bis{
+	display: flex;
+	width: 100vw;
+	height: 388px;
+	box-sizing: border-box;
+	position: relative;
+	background-color: $primary-blue-100;
+	padding: 184px 96px 0 96px;
+	justify-content: space-between;
+
+	.bloc-header_title{
+
+		h2{
+			color: $primary-blue-700;
+			@include chillax-display-m;
+			margin-bottom: 32px;
+		}
+
+		p{
+			@include montserrat-label-xl-s;
+			color: $primary-blue-500;
+		}
+	}
+
+	.bloc-header_button{
+		// background-color: blueviolet;
+	}
+
+}

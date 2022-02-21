@@ -1,0 +1,16 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.tag{
+	width: fit-content;
+	padding: 10px 16px;
+	box-sizing: border-box;
+	background-color: $primary-blue-100;
+	border-radius: 8px;
+
+	p{
+		@include montserrat-label-m-s;
+		color: $primary-blue-500;
+	}
+}

@@ -41,10 +41,13 @@
     "react-markdown": "^7.1.0",
     "react-masonry-css": "^1.0.16",
     "react-moment": "^1.1.1",
+    "react-player": "^2.9.0",
+    "react-responsive-carousel": "^3.2.22",
     "react-scroll": "^1.8.4",
     "sass": "^1.42.1",
     "scroll": "^3.0.1",
     "smooth": "^0.1.1-alpha.61",
+    "swiper": "^8.0.6",
     "webpack-filter-warnings-plugin": "^1.2.1"
   }
 }

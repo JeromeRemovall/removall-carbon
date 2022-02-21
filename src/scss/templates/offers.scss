@@ -1,0 +1,63 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+main.offers{
+
+	padding: 72px 96px 104px 96px;
+
+	.offers__content{
+	
+		div{
+			@include montserrat-paragraph-l-m;
+	
+			h3{
+				color: $primary-blue-700;
+				@include chillax-heading-xl;
+				margin-bottom: 24px;
+		
+				li::marker {
+					color: $primary-blue-500;
+				}
+			}
+	
+			h4{
+				color: $primary-blue-500;
+				@include montserrat-paragraph-l-m;
+				margin-top: 20px;
+			}
+		}
+	
+	}
+	
+	.offers__content-form{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		h2{
+			text-align: center;
+			@include chillax-display-m;
+			color: $primary-blue-700;
+			margin-bottom: 56px;
+			margin-top: 120px;
+		}
+	
+		form{
+			display: flex;
+			justify-content: space-between;
+			width: 822px;
+			flex-wrap: wrap;
+
+			.group-input{
+
+				input{
+					width: 395px;
+					height: 56px;
+					border-radius: 4px;
+					margin-bottom: 24px;
+				}
+			}
+		}
+	}
+}

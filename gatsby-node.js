@@ -1,4 +1,5 @@
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
+// const { default: Recruitment } = require("./src/templates/test");
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
@@ -459,6 +460,50 @@ exports.createPages = async ({ graphql, actions }) =>  {
                 }
               }
             }
+
+            recruitment : allWpPage(filter: {category: {name: {eq: "recrutement"}}}){
+              nodes{
+                recruitment {
+                  titreOngletDeLaPage
+                  titre
+                  fieldGroupName
+                  bloc4Titre
+                  bloc3Titre
+                  bloc2Video{
+                    title
+                    mediaItemUrl
+                  }
+                  bloc1Titre
+                  bloc1Texte
+                  imageDeFond {
+                    sourceUrl
+                    altText
+                  }
+                  miniatureVideo {
+                    sourceUrl
+                  }
+                }
+                slug
+                language {
+                  slug
+                }
+              }
+            }
+
+            offers : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offres"}}}}}) {
+              nodes {
+                offres {
+                  bouton
+                  categorie
+                  lieu
+                  sousTitre
+                  texte
+                  titre
+                  typeDeContrat
+                }
+                id
+              }
+            }
         }
     `);
 
@@ -476,6 +521,8 @@ exports.createPages = async ({ graphql, actions }) =>  {
     const resourceTemplate = require.resolve("./src/templates/resources.js");
     const conditionsOfUseTemplate = require.resolve("./src/templates/conditionsOfUse.js");
     const legalNoticeTemplate = require.resolve("./src/templates/legalNotice.js");
+    const recruitmentTemplate = require.resolve("./src/templates/recruitment.js");
+    const offersTemplate = require.resolve("./src/templates/offers.js");
 
     result.data.home.nodes.forEach(node => {
         createPage({
@@ -565,6 +612,26 @@ exports.createPages = async ({ graphql, actions }) =>  {
             dataLegalNotice: node,
           }
       })
+    })
+
+    result.data.recruitment.nodes.forEach(node => {
+      createPage({
+          path: `/${node.language.slug}/${node.slug}/`,
+          component: recruitmentTemplate,
+          context: {
+            dataRecruitment: node,
+          }
+      })
+
+      // result.data.offers.nodes.forEach(n => {
+      //   createPage({
+      //     path: `${node.language.slug}/${node.slug}/${n.id}`,
+      //     component: offersTemplate,
+      //     context: {
+      //       dataOffers: n,
+      //     }
+      //   })
+      // })
     })
 }
 

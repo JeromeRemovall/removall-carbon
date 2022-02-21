@@ -1,0 +1,117 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+main.recruitment{
+	width: 100vw;
+	margin-bottom: 104px;
+
+	.bloc-1{
+		padding: 80px 0px 0px 0px;
+		box-sizing: border-box;
+		margin-bottom: 80px;
+		width: 1248px;
+		margin: 0 auto;
+
+		@include xl {
+			padding: 48px 24px 0px 24px;
+			width: 100%;
+		}
+
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			width: 100%;
+		}
+	}
+
+	.bloc-2{
+		padding: 80px 0px 0px 0px;
+		display: flex;
+		margin: 0 auto;
+		flex-direction: column;
+		box-sizing: border-box;
+		width: 1248px;
+	}
+
+	.bloc-3{
+		padding: 80px 0px 0px 0px;
+		display: flex;
+		margin: 0 auto;
+		flex-direction: column;
+		box-sizing: border-box;
+		width: 1248px;
+
+		.bloc-3__header{
+			display: flex;
+			justify-content: space-between;
+
+			h2{
+				@include chillax-display-m;
+				color: $primary-blue-700;
+				margin-bottom: 48px;
+			}
+
+			.bloc-3__header-filter{
+				display: flex;
+
+				select{
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					width: 288px;
+					height: 44px;
+					margin-left: 32px;
+					border: 1px solid #C0C0C0;
+					border-radius: 4px;
+					padding: 12px 18px 12px 16px;
+					box-sizing: border-box;
+					cursor: pointer;
+					@include montserrat-label-l-m;
+					position: relative;
+					background-repeat: no-repeat;
+
+					&::after{
+						content: "";
+						width: 20px;
+						height: 20px;
+						border: 1px solid #000;
+					}
+				}
+			}
+		}
+
+		.bloc-3__grid{
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-column-gap: 33px;
+			grid-row-gap: 32px;
+		}
+
+	}
+
+	.bloc-4{
+		padding: 80px 0px 104px 0px;
+		display: flex;
+		// margin: 0 auto;
+		flex-direction: column;
+		box-sizing: border-box;
+		width: 100%;
+		align-items: center;
+		// background-color: cadetblue;
+
+		h2{
+			@include chillax-display-m;
+			color: $primary-blue-700;
+			margin-bottom: 48px;
+		}
+
+		.bloc-4__carousel{
+			// height: 614px;
+			width: 1248px;
+			position: relative;
+			overflow-x: visible;
+			// background-color: chartreuse;
+		}
+	}
+
+}

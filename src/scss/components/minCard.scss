@@ -1,0 +1,42 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.min-card{
+	width: 394px;
+	height: 280px;
+	border-radius: 12px;
+	padding: 32px;
+	box-sizing: border-box;
+	box-shadow: 0px 4px 16px 0px #0000001A;
+	position: relative;
+	cursor: pointer;
+
+	h3{
+		@include montserrat-heading-m;
+		color: $primary-blue-700;
+		margin-top: 24px;
+	}
+
+	.min-card__footer{
+		display: flex;
+		position: absolute;
+		bottom: 32px;
+
+		.min-card__footer-item{
+			display: flex;
+			align-items: center;
+			margin-right: 50px;
+
+			p{
+				margin-left: 12px;
+				@include montserrat-paragraph-l-m;
+				color: #000;
+			}
+
+			svg{
+				stroke: $primary-blue-500;
+			}
+		}
+	}
+}

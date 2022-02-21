@@ -1,0 +1,58 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.swiper{
+	overflow: initial;
+	height: 100%;
+
+	.swiper-slide{
+		background-color: chocolate;
+		width: 395px !important;
+		height: 550px;
+	
+		img{
+			width: 100%;
+			height: auto;
+		}
+
+		&.hidden{
+			visibility: hidden;
+		}
+	}
+
+	.swiper-button-next{
+		// right: 97px;
+
+		&::after{
+			display: none;
+		}
+
+		svg{
+			stroke: $primary-blue-500;
+		}
+	}
+
+	.swiper-button-prev{
+		// left: 1152px;
+
+		&::after{
+			display: none;
+		}
+
+		svg{
+			stroke: $primary-blue-500;
+		}
+	}
+	
+	.swiper-button-next,
+	.swiper-button-prev{
+		top: 595px;
+		bottom: 0px;
+		width: 40px;
+		height: 40px;
+		background-color: $primary-blue-100;
+		border-radius: 100%;
+	}
+}
+
