@@ -9,10 +9,17 @@ import "../scss/components/minCard.scss"
 import { Link } from "gatsby"
 
 function minCard({link, title, tag, place, time}){
+
 	return(
 		<Link to={link}>
 			<div className="min-card"> 
-				<Tag label={tag} />
+				<div className="min-card_tag">
+					{tag.map((item)=> {
+						return(
+							<Tag label={item} />
+						)
+					})}
+				</div>
 				<h3>{title}</h3>
 				<div className="min-card__footer">
 					<div className="min-card__footer-item">

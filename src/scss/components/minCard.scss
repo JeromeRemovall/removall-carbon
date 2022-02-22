@@ -12,6 +12,11 @@
 	position: relative;
 	cursor: pointer;
 
+	.min-card_tag{
+		display: flex;
+		flex-wrap: wrap;
+	}
+
 	h3{
 		@include montserrat-heading-m;
 		color: $primary-blue-700;

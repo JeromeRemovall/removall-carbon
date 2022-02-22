@@ -490,7 +490,7 @@ exports.createPages = async ({ graphql, actions }) =>  {
               }
             }
 
-            offers : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offres"}}}}}) {
+            offers : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {regex: "/(offres|offers)/"}}}}}) {
               nodes {
                 offres {
                   bouton
@@ -623,15 +623,15 @@ exports.createPages = async ({ graphql, actions }) =>  {
           }
       })
 
-      // result.data.offers.nodes.forEach(n => {
-      //   createPage({
-      //     path: `${node.language.slug}/${node.slug}/${n.id}`,
-      //     component: offersTemplate,
-      //     context: {
-      //       dataOffers: n,
-      //     }
-      //   })
-      // })
+      result.data.offers.nodes.forEach(n => {
+        createPage({
+          path: `${node.language.slug}/${node.slug}/${n.id}`,
+          component: offersTemplate,
+          context: {
+            dataOffers: n,
+          }
+        })
+      })
     })
 }
 

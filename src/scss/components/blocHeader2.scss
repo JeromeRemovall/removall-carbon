@@ -2,32 +2,32 @@
 @import "../mixins/text-style";
 @import "../mixins//breakpoints";
 
-.bloc-header--bis{
-	display: flex;
+
+.bloc-header__bis{
+	background-color: $primary-blue-100;
 	width: 100vw;
 	height: 388px;
-	box-sizing: border-box;
-	position: relative;
-	background-color: $primary-blue-100;
-	padding: 184px 96px 0 96px;
-	justify-content: space-between;
 
-	.bloc-header_title{
+	.bloc-header__container{
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 184px 0px 0px 0px;
+		width: 1245px;
+		// background-color: red;
 
-		h2{
-			color: $primary-blue-700;
-			@include chillax-display-m;
-			margin-bottom: 32px;
-		}
+		.bloc-header__title{
+			h2{
+				color: $primary-blue-700;
+				@include chillax-display-m;
+				margin-bottom: 32px;
+			}
 
-		p{
-			@include montserrat-label-xl-s;
-			color: $primary-blue-500;
+			p{
+				@include montserrat-label-xl-s;
+				color: $primary-blue-500;
+			}
 		}
 	}
-
-	.bloc-header_button{
-		// background-color: blueviolet;
-	}
-
 }

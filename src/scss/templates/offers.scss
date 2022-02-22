@@ -7,27 +7,33 @@ main.offers{
 	padding: 72px 96px 104px 96px;
 
 	.offers__content{
+
+		width: 1245px;
+		margin: 0 auto;
+
+		h2{
+			color: $primary-blue-700;
+			@include chillax-heading-xl;
+			margin-bottom: 24px;
 	
-		div{
-			@include montserrat-paragraph-l-m;
-	
-			h3{
-				color: $primary-blue-700;
-				@include chillax-heading-xl;
-				margin-bottom: 24px;
-		
-				li::marker {
-					color: $primary-blue-500;
-				}
-			}
-	
-			h4{
+			li::marker {
 				color: $primary-blue-500;
-				@include montserrat-paragraph-l-m;
-				margin-top: 20px;
 			}
 		}
-	
+
+		h3{
+			color: $primary-blue-500;
+			@include montserrat-paragraph-l-m;
+			// margin-top: 20px;
+			margin-bottom: 12px;
+		}
+
+		p{
+			@include montserrat-paragraph-l-m;
+			margin-bottom: 12px;
+			color: #575757;
+		}
+
 	}
 	
 	.offers__content-form{

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import BlocHeader from "../components/blocHeader"
 import Layout from "../components/layout"
 import Description from "../components/description"
@@ -24,7 +24,21 @@ const query = graphql `
 				}
 			}
 		}
-		offers : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offres"}}}}}) {
+		offersFr : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offres"}}}}}) {
+			nodes {
+				offres {
+					bouton
+					categorie
+					lieu
+					sousTitre
+					texte
+					titre
+					typeDeContrat
+				}
+				id
+			}
+		}
+		offersEn : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offers"}}}}}) {
 			nodes {
 				offres {
 					bouton
@@ -44,11 +58,15 @@ const query = graphql `
 function Recruitment({ pageContext }){
 
 	const data = useStaticQuery(query);
-	const dataO = data.offers.nodes
-	console.log(dataO)
+	const [dataO, setDataO] = useState("");
 
 	const { dataRecruitment } = pageContext;
 	const dataR = dataRecruitment.recruitment;
+
+	const [metaLang, setMetaLang] = useState("");
+
+	const [arrayfilters, setArrayFilters] = useState([]);
+	const [selected,setSelected] = useState("Équipe");
 
 	const imgs = [
 		"https://picsum.photos/500/300?random=1",
@@ -59,6 +77,33 @@ function Recruitment({ pageContext }){
 		"https://picsum.photos/500/300?random=6"
 	]
 
+	useEffect(() => {
+		function getLanguage(){
+			if(window.location.href.match("/fr$") || window.location.href.match("/fr/")){
+				setDataO(data.offersFr.nodes);
+				setMetaLang("fr");
+			}else if(window.location.href.match("/en$") || window.location.href.match("/en/")){
+				setDataO(data.offersEn.nodes);
+				setMetaLang("en");
+			}
+		}
+		getLanguage();
+	}, [dataO])
+
+	function setFilters(){
+		if(dataO){
+			dataO.map((items)=> {
+				items.offres.categorie.map((item)=> {
+					if(arrayfilters.indexOf(item) === -1){
+						arrayfilters.push(item)
+					}
+				})
+				
+			})
+		}
+	}
+	setFilters()
+
 	return(
 		<Layout>
 			<Helmet>
@@ -66,21 +111,26 @@ function Recruitment({ pageContext }){
 				<html lang="" />
 				<title>{dataR.titreOngletDeLaPage}</title>
 			</Helmet>
+			{dataO ?
 			<main className="recruitment">
 				<BlocHeader title={dataR.titre} img={dataR.imageDeFond.sourceUrl} alt={dataR.imageDeFond.altText}/>
 				<section className="bloc-1">
 					<Description title={dataR.bloc1Titre} text={dataR.bloc1Texte} />
 				</section>
 				<section className="bloc-2">
-					<Video src={dataR.bloc2Video.mediaItemUrl} />
+					<Video src={dataR.bloc2Video.mediaItemUrl} thumbnail={dataR.miniatureVideo.sourceUrl}/>
 				</section>
 				<section className="bloc-3">
 					<div className="bloc-3__header">
 						<h2>{dataR.bloc3Titre}</h2>
 						<div className="bloc-3__header-filter">
-							<select name="team" id="team">
-								<option value="">Équipes</option>
-								<option value="">Tech & Data</option>
+							<select name="team" id="team" value={selected} onChange={(e)=> setSelected(e.target.value)}>
+								<option value="Équipe">Équipe</option>
+								{arrayfilters.map((item)=> {
+									return(
+										<option value={item}>{item}</option>
+									)
+								})}
 							</select>
 							<select name="localisation" id="localisation">
 								<option value="">Localisation</option>
@@ -90,7 +140,11 @@ function Recruitment({ pageContext }){
 					<div className="bloc-3__grid">
 						{dataO.map((item)=> {
 							return(
-								<MinCard title={item.offres.titre} tag={item.offres.tag} place={item.offres.lieu} time={item.offres.typeDeContrat}/>
+								<>
+									{selected === "Équipe" || item.offres.categorie.indexOf(selected) !== -1 ? 
+										<MinCard link={item.id} title={item.offres.titre} tag={item.offres.categorie} place={item.offres.lieu} time={item.offres.typeDeContrat}/>
+									: null}
+								</>
 							)
 						})}
 					</div>
@@ -102,6 +156,7 @@ function Recruitment({ pageContext }){
 					</div>
 				</section>
 			</main>
+			:null}
 		</Layout>
 	)
 }
