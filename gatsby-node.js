@@ -469,6 +469,10 @@ exports.createPages = async ({ graphql, actions }) =>  {
                   fieldGroupName
                   bloc4Titre
                   bloc3Titre
+                  bloc3BoutonFermer
+                  bloc3BoutonFermerMobile
+                  bloc3BoutonOuvrir
+                  bloc3BoutonOuvrirMobile
                   bloc2Video{
                     title
                     mediaItemUrl
@@ -482,6 +486,8 @@ exports.createPages = async ({ graphql, actions }) =>  {
                   miniatureVideo {
                     sourceUrl
                   }
+                  nomDuPremierFiltre
+                  nomDuDeuxiemeFiltre
                 }
                 slug
                 language {

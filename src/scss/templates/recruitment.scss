@@ -55,9 +55,13 @@ main.recruitment{
 				display: flex;
 
 				select{
+					position: relative;
+					background-repeat: no-repeat;
 					-webkit-appearance: none;
 					-moz-appearance: none;
 					appearance: none;
+					background-image: url(../../images/arow.svg);
+					background-position: 260px;
 					width: 288px;
 					height: 44px;
 					margin-left: 32px;
@@ -67,15 +71,6 @@ main.recruitment{
 					box-sizing: border-box;
 					cursor: pointer;
 					@include montserrat-label-l-m;
-					position: relative;
-					background-repeat: no-repeat;
-
-					&::after{
-						content: "";
-						width: 20px;
-						height: 20px;
-						border: 1px solid #000;
-					}
 				}
 			}
 		}
@@ -85,6 +80,18 @@ main.recruitment{
 			grid-template-columns: repeat(3, 1fr);
 			grid-column-gap: 33px;
 			grid-row-gap: 32px;
+			height: 610px;
+			overflow-y: hidden;
+
+			&.open{
+				height: auto;
+				overflow-y: visible;
+			}
+		}
+
+		button{
+			margin: 0 auto;
+			margin-top: 72px;
 		}
 
 	}

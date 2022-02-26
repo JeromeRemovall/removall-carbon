@@ -15,55 +15,53 @@ import 'swiper/css/scrollbar';
 
 import "../scss/components/swiper.scss"
 
-function SwiperSlider({slides, alt}) {
+function SwiperSlider({slides}) {
 
 	const navigationPrevRef = useRef(null)
   	const navigationNextRef = useRef(null)
-
-	// function addClassHidden() {
-	// 	setTimeout(function(){
-	// 		if(document.querySelector(".swiper-slide.swiper-slide-prev") && !document.querySelector(".swiper-slide.swiper-slide-prev.hidden")){
-	// 			console.log("aaaaa")
-	// 			document.querySelector(".swiper-slide.swiper-slide-prev").classList.add("hidden");
-	// 			document.querySelector(".swiper-slide").classList.add("hidden");
-	// 		}else{
-	// 			console.log("eee")
-	// 		}
-	//    }, 1);
-	// }
 
 	return (
 		<Swiper
 			spaceBetween={32}
 			slidesPerView={3}
 			navigation={{
-				prevEl: navigationPrevRef.current,
-				nextEl: navigationNextRef.current,
+				prevEl: navigationPrevRef?.current,
+				nextEl: navigationNextRef?.current,
 			}}
 			modules={[Navigation]}
 		>
-			{/* <SwiperSlide>
-				{({ isActive }) => (
-					addClassHidden()
-				)}
-			</SwiperSlide> */}
 			{slides.length !== 1 ? 
 				<>
-					{slides.map((slide, index) => {
+					{slides.map((slide) => {
 						return(
+							<>
 							<SwiperSlide>
-								<img src={slide} alt=""/>
+								<img src={slide.image.sourceUrl} alt={slide.image.altText} />
 							</SwiperSlide>
+							<SwiperSlide>
+								<img src={slide.image.sourceUrl} alt={slide.image.altText} />
+							</SwiperSlide>
+							<SwiperSlide>
+								<img src={slide.image.sourceUrl} alt={slide.image.altText} />
+							</SwiperSlide>
+							<SwiperSlide>
+								<img src={slide.image.sourceUrl} alt={slide.image.altText} />
+							</SwiperSlide>
+							</>
 						)	
 					})}
 				</>
 			:null}
-			<div className="swiper-button-prev" ref={navigationPrevRef}>
-				<ArrowLeft />
-			</div>
-			<div className="swiper-button-next" ref={navigationNextRef}>
-				<ArrowRight />
-			</div>
+			{slides.length > 1 && navigationPrevRef && navigationNextRef ? 
+				<>
+					<div className="swiper-button-prev" ref={navigationPrevRef}>
+						<ArrowLeft />
+					</div>
+					<div className="swiper-button-next" ref={navigationNextRef}>
+						<ArrowRight />
+					</div>
+				</>
+			:null}
 		</Swiper>
 	);
 };
