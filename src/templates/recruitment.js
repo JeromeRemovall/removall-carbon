@@ -11,7 +11,7 @@ import "../scss/templates/recruitment.scss" ;
 
 import SwiperSlider from "../components/swiper"
 
-import { Clock } from 'react-feather';
+import { Sliders } from 'react-feather';
 import { graphql, useStaticQuery } from "gatsby";
 
 import Button from "../components/buttonAction";
@@ -196,6 +196,15 @@ function Recruitment({ pageContext }){
 									)
 								})}
 							</select>
+							<button className="bloc-3__header-filter--mobile">
+								<Sliders />
+							</button>
+							<div className="bloc-3__filter_panel">
+								<h3>Filtres</h3>
+								<div className="bloc-3__filter_panel--option">
+									<p></p>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className={open ? "bloc-3__grid open" : "bloc-3__grid"}>

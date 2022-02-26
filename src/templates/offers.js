@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 
 import BlocHeader from "../components/blocHeader2";
 import "../scss/templates/offers.scss"
-import { graphql, useStaticQuery } from "gatsby";
 
 import { Helmet } from "react-helmet"
 
@@ -33,12 +32,12 @@ function Offers({pageContext}){
 				<title></title>
 				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
-			<BlocHeader title={dataO.titre} subtitle={dataO.sousTitre} label={dataO.bouton}/>
+			<BlocHeader title={dataO.titre} subtitle={dataO.sousTitre} label={dataO.bouton} labelMobile={dataO.boutonMobile} to={dataO.boutonLien} />
 			<main className="offers">
 				<section className="offers__content">
 					<div dangerouslySetInnerHTML={{ __html: dataO.texte}}></div>
 				</section>
-				<section className="offers__content-form">
+				<section className="offers__content-form" id={metaLang === "fr" ? "formulaire" : "form"}>
 					<h2>Soumettre votre candidature :</h2>
 					<form className="form" method="post" action="#" onSubmit="#">
 						<div className="group-input">

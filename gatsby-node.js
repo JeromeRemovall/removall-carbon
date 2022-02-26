@@ -506,6 +506,8 @@ exports.createPages = async ({ graphql, actions }) =>  {
                   texte
                   titre
                   typeDeContrat
+                  boutonMobile
+                  boutonLien
                 }
                 id
               }

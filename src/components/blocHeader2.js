@@ -1,10 +1,10 @@
 import React from "react"
 import "../scss/components/blocHeader.scss"
 
-import Button from "../components/buttonAction"
+import ButtonLink from "../components/buttonLink"
 import "../scss/components/blocHeader2.scss"
 
-function blocHeader2({ title, label, subtitle }){
+function blocHeader2({ title, label, subtitle, labelMobile, to }){
 	return(
 		<header className="bloc-header__bis">
 			<div className="bloc-header__container">
@@ -13,7 +13,7 @@ function blocHeader2({ title, label, subtitle }){
 					<p>{subtitle}</p>
 				</div>
 				<div className="bloc-header_container_button">
-					<Button label={label} />
+					<ButtonLink label={label} labelMobile={labelMobile} to={to} />
 				</div>
 			</div>
 		</header>

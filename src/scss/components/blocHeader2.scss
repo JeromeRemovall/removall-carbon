@@ -15,18 +15,38 @@
 		justify-content: space-between;
 		padding: 184px 0px 0px 0px;
 		width: 1245px;
+		box-sizing: border-box;
 		// background-color: red;
+
+		@include xl {
+			width: 100%;
+			flex-direction: column;
+			text-align: center;
+		}
+
+		@include xl-paysage {
+			padding: 184px 48px 0px 48px;
+			width: 100%;
+		}
 
 		.bloc-header__title{
 			h2{
 				color: $primary-blue-700;
 				@include chillax-display-m;
 				margin-bottom: 32px;
+
+				@include xl{
+					@include chillax-heading-xl;
+				}
 			}
 
 			p{
 				@include montserrat-label-xl-s;
 				color: $primary-blue-500;
+
+				@include xl{
+					@include montserrat-label-m-s;
+				}
 			}
 		}
 	}

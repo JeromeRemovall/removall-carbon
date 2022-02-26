@@ -12,6 +12,15 @@
 	position: relative;
 	cursor: pointer;
 
+	@include xl {
+		width: 100%;
+		padding: 24px;
+	}
+
+	@include xl-paysage {
+		width: 100%;
+	}
+
 	.min-card_tag{
 		display: flex;
 		flex-wrap: wrap;

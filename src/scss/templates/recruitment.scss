@@ -5,6 +5,7 @@
 main.recruitment{
 	width: 100vw;
 	margin-bottom: 104px;
+	position: relative;
 
 	.bloc-1{
 		padding: 80px 0px 0px 0px;
@@ -31,6 +32,16 @@ main.recruitment{
 		flex-direction: column;
 		box-sizing: border-box;
 		width: 1248px;
+
+		@include xl {
+			width: 100%;
+			padding: 48px 24px 0px 24px;
+		}
+
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			width: 100%;
+		}
 	}
 
 	.bloc-3{
@@ -41,6 +52,16 @@ main.recruitment{
 		box-sizing: border-box;
 		width: 1248px;
 
+		@include xl {
+			width: 100%;
+			padding: 48px 24px 0px 24px;
+		}
+
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			width: 100%;
+		}
+
 		.bloc-3__header{
 			display: flex;
 			justify-content: space-between;
@@ -49,6 +70,10 @@ main.recruitment{
 				@include chillax-display-m;
 				color: $primary-blue-700;
 				margin-bottom: 48px;
+
+				@include xl {
+					@include chillax-heading-xl;
+				}
 			}
 
 			.bloc-3__header-filter{
@@ -71,6 +96,55 @@ main.recruitment{
 					box-sizing: border-box;
 					cursor: pointer;
 					@include montserrat-label-l-m;
+
+					@include xl {
+						display: none;
+					}
+				}
+
+				.bloc-3__header-filter--mobile{
+					display: none;
+
+					@include xl {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: 32px;
+						height: 32px;
+						border-radius: 100%;
+						background-color: $primary-blue-500;
+						border: none;
+						margin: 0;
+
+						svg{
+							stroke: #fff;
+						}
+					}
+				}
+
+				.bloc-3__filter_panel{
+					display: none;
+
+					@include xl {
+
+						h3{
+							margin-top: 132px;
+							padding-left: 21px;
+						}
+
+						&.open{
+							display: flex;
+							width: 100vw;
+							height: 100%;
+							position: fixed;
+							top: 0;
+							left: 0;
+							background-color: red;
+							z-index: 2;
+
+						}
+					}
+
 				}
 			}
 		}
@@ -82,6 +156,15 @@ main.recruitment{
 			grid-row-gap: 32px;
 			height: 610px;
 			overflow-y: hidden;
+
+			@include xl {
+				height: 920px;
+				grid-template-columns: repeat(1, 1fr);
+			}
+
+			@include xl-paysage {
+				height: 950px;
+			}
 
 			&.open{
 				height: auto;
@@ -106,10 +189,24 @@ main.recruitment{
 		align-items: center;
 		// background-color: cadetblue;
 
+		@include xl {
+			width: 100%;
+			padding: 48px 24px 0px 24px;
+		}
+
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			width: 100%;
+		}
+
 		h2{
 			@include chillax-display-m;
 			color: $primary-blue-700;
 			margin-bottom: 48px;
+
+			@include xl {
+				@include chillax-heading-xl;
+			}
 		}
 
 		.bloc-4__carousel{
@@ -118,6 +215,14 @@ main.recruitment{
 			position: relative;
 			overflow-x: visible;
 			// background-color: chartreuse;
+
+			@include xl {
+				width: 100%;
+			}
+
+			@include xl-paysage {
+				width: 100%;
+			}
 		}
 	}
 
