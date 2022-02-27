@@ -1,14 +1,16 @@
 import React from "react"
 import "../scss/components/profilCard.scss"
 
-function ProfilCard({ img, title, text, icon1, link1, icon2, link2, alt, altIcon1, altIcon2}){
+function ProfilCard({ img, title, text, icon1, link1, icon2, link2, alt, altIcon1, altIcon2, onClick}){
 	return(
 		<div className="profil-card">
-			<div className="profil-card__image">
-				<img src={img} alt={alt} />
+			<div className="profil-card__content" onClick={onClick}>
+				<div className="profil-card__image">
+					<img src={img} alt={alt} />
+				</div>
+				<h3>{title}</h3>
+				<p>{text}</p>
 			</div>
-			<h3>{title}</h3>
-			<p>{text}</p>
 			<div className="profil-card__sociaux">
 				{link1 !== " " ?
 				<a href={link1}>

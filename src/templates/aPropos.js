@@ -9,6 +9,7 @@ import CardNumber from "../components/cardNumber"
 import CardListIcon from "../components/cardListIcon"
 import CardProfil from "../components/profilCard"
 import Layout from "../components/layout"
+import PopInProfil from "../components/popInProfil"
 
 import Loader from "../components/loader"
 
@@ -38,6 +39,7 @@ const query = graphql`
 						altText
 					}
 					lien2
+					description
                 }
             }
 		}
@@ -63,6 +65,7 @@ const query = graphql`
 						altText
 					}
 					lien2
+					description
                 }
             }
 		}
@@ -77,10 +80,21 @@ function APropos({ pageContext }){
 	const [dataE, setDataE] = useState("");
 	const [language, setLanguage] = useState("");
 
+	const [openPopIn, setOpenPopIn] = useState(false);
+
 	const [metaLang, setMetaLang] = useState("");
 	const [metaDescription, setMetaDescription] = useState("");
 
+	const [dataPopIn, setDataPopIn] = useState({});
+
 	useEffect(() => {
+
+		if(openPopIn){
+			document.querySelector('body').classList.add("stop-scroll");
+		}else{
+			document.querySelector('body').classList.remove("stop-scroll");
+		}
+
 		function getLanguage(){
 			if(window.location.href.match("/fr$") || window.location.href.match("/fr/")){
 				setDataE(equipe.fr.nodes);
@@ -103,7 +117,62 @@ function APropos({ pageContext }){
 			}
 		}
 		scrollTo()   
-	}, [dataE, equipe.en.nodes, equipe.fr.nodes])
+	}, [dataE, equipe.en.nodes, equipe.fr.nodes, dataPopIn, openPopIn])
+
+	function addDataPopIn(i){
+		if(dataA && dataE){
+			if(i === 1){
+				setDataPopIn({
+					name: dataA.bloc7Item1Titre,
+					job: dataA.bloc7Item1Texte,
+					img: dataA.bloc7Item1Image.sourceUrl,
+					icon1: dataA.bloc7Item1Icon1.sourceUrl,
+					link1: dataA.bloc7Item1Lien1,
+					icon2: dataA.bloc7Item1Icon2.sourceUrl,
+					link2: dataA.bloc7Item1Lien2,
+					alt: dataA.bloc7Item1Image.altText,
+					altIcon1: dataA.bloc7Item1Icon1.altText,
+					altIcon2: dataA.bloc7Item1Icon2.altText,
+					description: dataA.bloc7Item1Description,
+				})
+			}else if(i === 2){
+				setDataPopIn({
+					name: dataA.bloc7Item2Titre,
+					job: dataA.bloc7Item2Texte,
+					img: dataA.bloc7Item2Image.sourceUrl,
+					icon1: dataA.bloc7Item2Icon1.sourceUrl,
+					link1: dataA.bloc7Item2Lien1,
+					icon2: dataA.bloc7Item2Icon2.sourceUrl,
+					link2: dataA.bloc7Item2Lien2,
+					alt: dataA.bloc7Item1Image.altText,
+					altIcon1: dataA.bloc7Item2Icon1.altText,
+					altIcon2: dataA.bloc7Item2Icon2.altText,
+					description: dataA.bloc7Item2Description,
+				})
+			}else{
+				setDataPopIn({
+					name: i.prenomNom,
+					job: i.poste,
+					img: i.image.sourceUrl,
+					icon1: i.logo1.sourceUrl,
+					link1: i.lien1,
+					icon2: i.logo2.sourceUrl,
+					link2: i.lien2,
+					alt: i.image.altText,
+					altIcon1: i.logo1.altText,
+					altIcon2: i.logo2.altText,
+					description: i.description,
+				})
+			}
+			setOpenPopIn(true)
+		}
+	}
+
+	function clickOverlay(e) {
+		if(e.target.className === "pop-in__profil__overlay"){
+			setOpenPopIn(false)
+		}
+	}
 
 	return(
 		<Layout>
@@ -115,6 +184,7 @@ function APropos({ pageContext }){
 			</Helmet>
 			{dataA && dataE ?
 			<main className="a-propos">
+				{openPopIn ? <PopInProfil onOverlay={(e)=> clickOverlay(e)} onClose={()=> setOpenPopIn(false)} text={dataPopIn.description} name={dataPopIn.name} job={dataPopIn.job} img={dataPopIn.img} icon1={dataPopIn.icon1} icon2={dataPopIn.icon2} link1={dataPopIn.link1} link2={dataPopIn.link2} alt={dataPopIn.alt} altIcon1={dataPopIn.altIcon1} altIcon2={dataPopIn.altIcon2} /> : null }
 				<BlocHeader title={dataA.titre} text={dataA.description} img={dataA.imageDeFond.sourceUrl} alt={dataA.imageDeFond.altText}/>
 				<section className="bloc-1" id={language === "fr" ? "a-propos" : "about"}>
 					<Description title={dataA.bloc1Titre} text={dataA.bloc1Texte}/>
@@ -171,8 +241,8 @@ function APropos({ pageContext }){
 					<h2>{dataA.bloc7Titre}</h2>
 					<div dangerouslySetInnerHTML={{ __html: dataA.bloc7Texte}}></div>
 					<div className="bloc-7__content">
-						<CardProfil img={dataA.bloc7Item1Image.sourceUrl} title={dataA.bloc7Item1Titre} text={dataA.bloc7Item1Texte} icon1={dataA.bloc7Item1Icon1.sourceUrl} icon2={dataA.bloc7Item1Icon2.sourceUrl} alt={dataA.bloc7Item1Image.altText} altIcon1={dataA.bloc7Item1Icon1.altText} altIcon2={dataA.bloc7Item1Icon2.altText} link1={dataA.bloc7Item1Lien1} link2={dataA.bloc7Item1Lien2}/>
-						<CardProfil img={dataA.bloc7Item2Image.sourceUrl} title={dataA.bloc7Item2Titre} text={dataA.bloc7Item2Texte} icon1={dataA.bloc7Item2Icon1.sourceUrl} icon2={dataA.bloc7Item2Icon2.sourceUrl} alt={dataA.bloc7Item2Image.altText} altIcon1={dataA.bloc7Item2Icon1.altText} altIcon2={dataA.bloc7Item2Icon2.altText} link1={dataA.bloc7Item2Lien1} link2={dataA.bloc7Item2Lien2}/>
+						<CardProfil onClick={()=> addDataPopIn(1)} img={dataA.bloc7Item1Image.sourceUrl} title={dataA.bloc7Item1Titre} text={dataA.bloc7Item1Texte} icon1={dataA.bloc7Item1Icon1.sourceUrl} icon2={dataA.bloc7Item1Icon2.sourceUrl} alt={dataA.bloc7Item1Image.altText} altIcon1={dataA.bloc7Item1Icon1.altText} altIcon2={dataA.bloc7Item1Icon2.altText} link1={dataA.bloc7Item1Lien1} link2={dataA.bloc7Item1Lien2}/>
+						<CardProfil onClick={()=> addDataPopIn(2)} img={dataA.bloc7Item2Image.sourceUrl} title={dataA.bloc7Item2Titre} text={dataA.bloc7Item2Texte} icon1={dataA.bloc7Item2Icon1.sourceUrl} icon2={dataA.bloc7Item2Icon2.sourceUrl} alt={dataA.bloc7Item2Image.altText} altIcon1={dataA.bloc7Item2Icon1.altText} altIcon2={dataA.bloc7Item2Icon2.altText} link1={dataA.bloc7Item2Lien1} link2={dataA.bloc7Item2Lien2}/>
 					</div>
 				</section>
 				{dataE.length > 0 ?
@@ -183,7 +253,7 @@ function APropos({ pageContext }){
 								{dataE.map((item)=> {
 									return(
 										<>
-											<CardProfil img={item.equipe.image.sourceUrl} title={item.equipe.prenomNom} text={item.equipe.poste} icon1={item.equipe.logo1.sourceUrl} icon2={item.equipe.logo2.sourceUrl} key={item} alt={item.equipe.image.altText} altIcon1={item.equipe.logo1.altText} altIcon2={item.equipe.logo2.altText} link1={item.equipe.lien1} link2={item.equipe.lien2} />
+											<CardProfil onClick={()=> addDataPopIn(item.equipe)} img={item.equipe.image.sourceUrl} title={item.equipe.prenomNom} text={item.equipe.poste} icon1={item.equipe.logo1.sourceUrl} icon2={item.equipe.logo2.sourceUrl} key={item} alt={item.equipe.image.altText} altIcon1={item.equipe.logo1.altText} altIcon2={item.equipe.logo2.altText} link1={item.equipe.lien1} link2={item.equipe.lien2} />
 										</>
 									)
 								})}

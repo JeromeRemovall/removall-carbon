@@ -1,0 +1,149 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.pop-in__profil__overlay{
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(36, 48, 79, 0.4);
+	z-index: 3;
+	position: fixed;
+	overflow: hidden;
+
+	@include lg {
+		align-items: flex-end;
+	}
+
+	.pop-in__profil{
+		width: 822px;
+		height: auto;
+		background-color: $light-100;
+		border-radius: 8px;
+		position: relative;
+
+		@include xl {
+			width: 90%;
+		}
+
+		@include lg {
+			width: 100%;
+			height: 98vh !important;
+		}
+
+		.pop-in__profil__close{
+			top: 24px;
+			right: 24px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			background-color: $primary-blue-100;
+			border-radius: 100%;
+			cursor: pointer;
+
+			svg{
+				stroke: $primary-blue-500;
+			}
+
+			@include lg {
+				top: 12px;
+				right: 12px;
+			}
+		}
+
+		.pop-in__header{
+			display: flex;
+
+			.pop-in__photo{
+				width: 181px;
+				height: 181px;
+				margin-right: 40px;
+
+				@include lg {
+					width: 140px;
+					height: 170px;
+					margin-right: 16px;
+				}
+
+				img{
+					width: 100%;
+					object-fit: cover;
+					height: 100%;
+					border-top-left-radius: 8px;
+				}
+				
+			}
+
+			.pop-in__photo__content{
+				margin-top: 40px;
+
+				@include lg {
+					margin-top: 63px;
+				}
+
+				h3{
+					@include montserrat-heading-s;
+					color: $primary-blue-700;
+				}
+
+				p{
+					@include montserrat-label-l-m;
+					margin-top: 8px;
+					color: $dark-500;
+
+					@include lg {
+						@include montserrat-label-xs-m;
+					}
+				}
+
+				.pop-in__photo__link{
+					margin-top: 24px;
+
+					img{
+						margin-right: 16px;
+						cursor: pointer;
+						width: 24px;
+						height: 24px;
+					}
+				}
+			}
+		}
+
+		.pop-in__description{
+			width: 726px;
+			margin: 0 auto;
+			margin-top: 48px;
+			line-height: 20px !important;
+			@include montserrat-label-m-m;
+			color: $dark-500;
+			padding-bottom: 50px;
+
+			@include xl {
+				width: 80%;
+			}
+
+			@include lg {
+				width: 90%;
+				@include montserrat-paragraph-m-m;
+			}
+
+			div{
+
+				@include lg {
+					overflow-y: scroll;
+    				max-height: 60vh;
+				}
+
+				p{
+					margin-bottom: 24px;
+				}
+			}
+		}
+	}
+}

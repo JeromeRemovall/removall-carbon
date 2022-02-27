@@ -264,7 +264,7 @@ const Navbar = () => {
 				setNavStyle("navbar-transparent");
 			}
 	
-			if(window.location.href.match("ressources") || window.location.href.match("resources") || window.location.href.match(/[a-zA-Z0-9]*$/) ){
+			if(window.location.href.match("ressources") || window.location.href.match("resources") || window.location.href.match(/(recrutement|recruitment)\/[a-zA-Z]+/) ){
 				setNavStyle("navbar-transparent-blue");
 			}
 		}

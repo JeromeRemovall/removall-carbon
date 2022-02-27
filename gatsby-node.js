@@ -367,6 +367,8 @@ exports.createPages = async ({ graphql, actions }) =>  {
                         bloc7Item2Lien2
                         bloc8Titre
                         bloc8Texte
+                        bloc7Item1Description
+                        bloc7Item2Description
                     }
                     slug
                     language {
