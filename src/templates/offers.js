@@ -7,6 +7,8 @@ import "../scss/templates/offers.scss"
 import { Helmet } from "react-helmet"
 import { Paperclip } from 'react-feather';
 
+import Loader from "../components/loader"
+
 function Offers({pageContext}){
 
 	const { dataOffers } = pageContext;
@@ -134,6 +136,7 @@ function Offers({pageContext}){
 				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			<BlocHeader title={dataO.titre} subtitle={dataO.sousTitre} label={dataO.bouton} labelMobile={dataO.boutonMobile} to={dataO.boutonLien} />
+			{dataForm && dataO ? 
 			<main className="offers">
 				<section className="offers__content">
 					<div dangerouslySetInnerHTML={{ __html: dataO.texte}}></div>
@@ -190,6 +193,7 @@ function Offers({pageContext}){
 					</form>
 				</section>
 			</main>
+			: <Loader /> }
 		</Layout>
 	)
 }

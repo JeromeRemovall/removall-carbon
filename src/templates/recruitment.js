@@ -16,6 +16,8 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import Button from "../components/buttonAction";
 
+import Loader from "../components/loader"
+
 const query = graphql `
 	query{
 		recruitment : allWpPage(filter: {category: {name: {eq: "recrutement"}}}){
@@ -96,20 +98,13 @@ function Recruitment({ pageContext }){
 
 	const [arrayfilters1, setArrayFilters1] = useState([]);
 	const [arrayfilters2, setArrayFilters2] = useState([]);
+	const [arrayfilters3, setArrayFilters3] = useState([]);
 
 	const [selectedTeam,setSelectedTeam] = useState(dataR.nomDuPremierFiltre);
-	const [selectedLocation,setSelectedLocation] = useState(dataR.nomDuDeuxiemeFiltre);
+	const [selectedTypeOfContract, setSelectedTypeOfContract] = useState(dataR.nomDuDeuxiemeFiltre);
+	const [selectedLocation, setSelectedLocation] = useState(dataR.nomDuTroisiemeFiltre);
 
 	const [open, setOpen] = useState(false);
-
-	const imgs = [
-		"https://picsum.photos/500/300?random=1",
-		"https://picsum.photos/500/300?random=2",
-		"https://picsum.photos/500/300?random=3",
-		"https://picsum.photos/500/300?random=4",
-		"https://picsum.photos/500/300?random=5",
-		"https://picsum.photos/500/300?random=6"
-	]
 
 	const slides = []
 	if(dataSlider){
@@ -139,6 +134,7 @@ function Recruitment({ pageContext }){
 
 	function setFilters(){
 		if(dataO){
+
 			dataO.map((items)=> {
 				items.offres.categorie.map((item)=> {
 					if(arrayfilters1.indexOf(item) === -1){
@@ -148,8 +144,14 @@ function Recruitment({ pageContext }){
 			})
 
 			dataO.map((items)=> {
-				if(arrayfilters2.indexOf(items.offres.lieu) === -1){
-					arrayfilters2.push(items.offres.lieu)
+				if(arrayfilters2.indexOf(items.offres.typeDeContrat) === -1){
+					arrayfilters2.push(items.offres.typeDeContrat)
+				}
+			})
+
+			dataO.map((items)=> {
+				if(arrayfilters3.indexOf(items.offres.lieu) === -1){
+					arrayfilters3.push(items.offres.lieu)
 				}
 			})
 		}
@@ -159,6 +161,10 @@ function Recruitment({ pageContext }){
 	function openOffers(){
 		setOpen(!open);
 	}
+
+	console.log(selectedTeam)
+	console.log(selectedLocation)
+	console.log(selectedTypeOfContract)
 
 	return(
 		<Layout>
@@ -188,9 +194,17 @@ function Recruitment({ pageContext }){
 									)
 								})}
 							</select>
-							<select name="localisation" id="localisation" value={selectedLocation} onChange={(e)=> setSelectedLocation(e.target.value)}>
+							<select name="typeOfContract" id="typeOfContract" value={selectedTypeOfContract} onChange={(e)=> setSelectedTypeOfContract(e.target.value)}>
 								<option value={dataR.nomDuDeuxiemeFiltre}>{dataR.nomDuDeuxiemeFiltre}</option>
 								{arrayfilters2.map((item)=> {
+									return(
+										<option value={item}>{item}</option>
+									)
+								})}
+							</select>
+							<select name="location" id="location" value={selectedLocation} onChange={(e)=> setSelectedLocation(e.target.value)}>
+								<option value={dataR.nomDuTroisiemeFiltre}>{dataR.nomDuTroisiemeFiltre}</option>
+								{arrayfilters3.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
 									)
@@ -211,15 +225,26 @@ function Recruitment({ pageContext }){
 						{dataO.map((item)=> {
 							return(
 								<>
-									{(selectedTeam === dataR.nomDuPremierFiltre && selectedLocation === dataR.nomDuDeuxiemeFiltre) || (item.offres.categorie.indexOf(selectedTeam) !== -1 && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedTeam === dataR.nomDuPremierFiltre && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedLocation === dataR.nomDuDeuxiemeFiltre && item.offres.categorie.indexOf(selectedTeam) !== -1)? 
+									
+									{
+										(selectedTeam === dataR.nomDuPremierFiltre && selectedTypeOfContract === dataR.nomDuDeuxiemeFiltre && selectedLocation === dataR.nomDuTroisiemeFiltre) || 
+										(item.offres.categorie.indexOf(selectedTeam) !== -1 && item.offres.lieu.indexOf(selectedLocation) !== -1 && item.offres.typeDeContrat.indexOf(selectedTypeOfContract) !== -1) ||
+										(item.offres.categorie.indexOf(selectedTeam) !== -1 && selectedTypeOfContract === dataR.nomDuDeuxiemeFiltre && selectedLocation === dataR.nomDuTroisiemeFiltre) ||
+										(selectedTeam === dataR.nomDuPremierFiltre && item.offres.typeDeContrat.indexOf(selectedTypeOfContract) !== -1 && item.offres.lieu.indexOf(selectedLocation)) ||
+										(selectedTeam === dataR.nomDuPremierFiltre && selectedTypeOfContract === dataR.nomDuDeuxiemeFiltre && item.offres.lieu.indexOf(selectedLocation) !== -1) || 
+										(item.offres.categorie.indexOf(selectedTeam) !== -1 && item.offres.typeDeContrat.indexOf(selectedTypeOfContract) !== -1 && item.offres.lieu.indexOf(selectedLocation)) ||
+										(item.offres.categorie.indexOf(selectedTeam) !== -1 && selectedTypeOfContract === dataR.nomDuDeuxiemeFiltre && item.offres.lieu.indexOf(selectedLocation) !== -1) ||
+										(selectedTeam === dataR.nomDuPremierFiltre && item.offres.typeDeContrat.indexOf(selectedTypeOfContract) !== -1 && item.offres.lieu.indexOf(selectedLocation) !== -1) ?
+
 										<MinCard link={item.id} title={item.offres.titre} tag={item.offres.categorie} place={item.offres.lieu} time={item.offres.typeDeContrat}/>
+										
 									: null}
 								</>
 							)
 						})}
 					</div>
-					{dataO.length > 1 && open === false ? <Button label={dataR.bloc3BoutonOuvrir} labelMobile={dataR.bloc3BoutonOuvrirMobile} onClick={openOffers} /> : null}
-					{dataO.length > 1 && open === true ? <Button label={dataR.bloc3BoutonFermer} labelMobile={dataR.bloc3BoutonFermerMobile} onClick={openOffers} /> : null}
+					{dataO.length > 6 && open === false ? <Button label={dataR.bloc3BoutonOuvrir} labelMobile={dataR.bloc3BoutonOuvrirMobile} onClick={openOffers} /> : null}
+					{dataO.length > 6 && open === true ? <Button label={dataR.bloc3BoutonFermer} labelMobile={dataR.bloc3BoutonFermerMobile} onClick={openOffers} /> : null}
 				</section>
 				<section className="bloc-4">
 					<div className="bloc-4__carousel">
@@ -228,7 +253,7 @@ function Recruitment({ pageContext }){
 					</div>
 				</section>
 			</main>
-			:null}
+			: <Loader /> }
 		</Layout>
 	)
 }

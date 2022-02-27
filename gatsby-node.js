@@ -490,6 +490,7 @@ exports.createPages = async ({ graphql, actions }) =>  {
                   }
                   nomDuPremierFiltre
                   nomDuDeuxiemeFiltre
+                  nomDuTroisiemeFiltre
                 }
                 slug
                 language {
