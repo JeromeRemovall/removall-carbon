@@ -214,15 +214,6 @@ function Recruitment({ pageContext }){
 									{(selectedTeam === dataR.nomDuPremierFiltre && selectedLocation === dataR.nomDuDeuxiemeFiltre) || (item.offres.categorie.indexOf(selectedTeam) !== -1 && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedTeam === dataR.nomDuPremierFiltre && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedLocation === dataR.nomDuDeuxiemeFiltre && item.offres.categorie.indexOf(selectedTeam) !== -1)? 
 										<MinCard link={item.id} title={item.offres.titre} tag={item.offres.categorie} place={item.offres.lieu} time={item.offres.typeDeContrat}/>
 									: null}
-									{(selectedTeam === dataR.nomDuPremierFiltre && selectedLocation === dataR.nomDuDeuxiemeFiltre) || (item.offres.categorie.indexOf(selectedTeam) !== -1 && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedTeam === dataR.nomDuPremierFiltre && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedLocation === dataR.nomDuDeuxiemeFiltre && item.offres.categorie.indexOf(selectedTeam) !== -1)? 
-										<MinCard link={item.id} title={item.offres.titre} tag={item.offres.categorie} place={item.offres.lieu} time={item.offres.typeDeContrat}/>
-									: null}
-									{(selectedTeam === dataR.nomDuPremierFiltre && selectedLocation === dataR.nomDuDeuxiemeFiltre) || (item.offres.categorie.indexOf(selectedTeam) !== -1 && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedTeam === dataR.nomDuPremierFiltre && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedLocation === dataR.nomDuDeuxiemeFiltre && item.offres.categorie.indexOf(selectedTeam) !== -1)? 
-										<MinCard link={item.id} title={item.offres.titre} tag={item.offres.categorie} place={item.offres.lieu} time={item.offres.typeDeContrat}/>
-									: null}
-									{(selectedTeam === dataR.nomDuPremierFiltre && selectedLocation === dataR.nomDuDeuxiemeFiltre) || (item.offres.categorie.indexOf(selectedTeam) !== -1 && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedTeam === dataR.nomDuPremierFiltre && item.offres.lieu.indexOf(selectedLocation) !== -1) || (selectedLocation === dataR.nomDuDeuxiemeFiltre && item.offres.categorie.indexOf(selectedTeam) !== -1)? 
-										<MinCard link={item.id} title={item.offres.titre} tag={item.offres.categorie} place={item.offres.lieu} time={item.offres.typeDeContrat}/>
-									: null}
 								</>
 							)
 						})}

@@ -22,6 +22,7 @@
 			width: 100%;
 			flex-direction: column;
 			text-align: center;
+			padding: 140px 0px 0px 0px;
 		}
 
 		@include xl-paysage {
@@ -46,7 +47,14 @@
 
 				@include xl{
 					@include montserrat-label-m-s;
+					width: 327px;
 				}
+			}
+		}
+
+		.button-primary{
+			@include xl{
+				margin-top: 72px;
 			}
 		}
 	}

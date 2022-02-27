@@ -8,12 +8,12 @@ main.offers{
 	box-sizing: border-box;
 
 	@include xl {
-		padding: 48px 24px 0px 24px;
+		padding: 0px 24px 0px 24px;
 		width: 100%;
 	}
 
 	@include xl-paysage {
-		padding: 80px 48px 0px 48px;
+		padding: 0px 48px 0px 48px;
 		width: 100%;
 	}
 
@@ -78,6 +78,11 @@ main.offers{
 			color: $primary-blue-700;
 			margin-bottom: 56px;
 			margin-top: 120px;
+
+			@include xl {
+				@include chillax-heading-xl;
+				margin-top: 72px;
+			}
 		}
 	
 		form{
@@ -86,13 +91,132 @@ main.offers{
 			width: 822px;
 			flex-wrap: wrap;
 
+			@include xl {
+				width: 100%;
+			}
+
 			.group-input{
+
+				display: flex;
+				flex-direction: column;
+				position: relative;
+
+				@include xl {
+					width: 100%;
+				}
 
 				input{
 					width: 395px;
 					height: 56px;
 					border-radius: 4px;
-					margin-bottom: 24px;
+					margin-top: 24px;
+					border: 1px solid #C0C0C0;
+					padding: 18px 20px;
+					box-sizing: border-box;
+					@include montserrat-label-l-m;
+
+					&::placeholder{
+						color: $dark-500;
+					}
+
+					@include xl {
+						width: 100%;
+					}
+				
+				}
+
+				input[type="file"]{
+					display: none;
+				}
+
+				label{
+					width: 395px;
+					height: 56px;
+					border-radius: 4px;
+					border: 1px solid #C0C0C0;
+					@include montserrat-label-l-m;
+					padding: 16px 20px 16px 20px;
+					box-sizing: border-box;
+					cursor: pointer;
+					color: $dark-500;
+					margin-top: 24px;
+					overflow: hidden;
+
+					@include xl {
+						width: 100%;
+					}
+				}
+
+				svg{
+					position: absolute;
+					right: 21px;
+					top: 38px;
+					stroke-width: 1.5;
+				}
+			}
+
+			.form-message__validate{
+				margin: 0;
+				padding-left: 0;
+				color: $secondary-green-500;
+				@include montserrat-paragraph-m-m;
+				margin-top: 5px;
+				width: 100%;
+				text-align: center;
+				margin-top: 24px;
+
+				@include xl{
+					margin-bottom: 80px;
+					margin-top: 24px;
+				}
+
+				@include xl-paysage{
+					margin-bottom: 80px;
+					margin-top: 24px;
+				}
+
+			}
+
+			.form-message__error{
+				margin: 0;
+				padding-left: 0;
+				color: $red;
+				@include montserrat-paragraph-s-m;
+				margin-top: 5px;
+				width: 100%;
+			}
+
+			.group-button{
+				width: 100%;
+				margin-top: 44px;
+			}
+
+			button{
+				display: flex;
+				align-items: center;
+				margin-top: 40px;
+				background-color: transparent;
+				border: none;
+				@include montserrat-label-xl-s;
+				color: $primary-blue-500;
+				margin: 0 auto;
+
+				@include xl{
+					display: none;
+				}
+
+				&.button-mobile{
+					display: none;
+					@include xl{
+						display: flex;
+					}
+				}
+
+				hr{
+					margin: 0;
+					border: 1px solid $primary-blue-500;
+					width: 56px;
+					margin-right: 16px;
 				}
 			}
 		}

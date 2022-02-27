@@ -510,6 +510,18 @@ exports.createPages = async ({ graphql, actions }) =>  {
                   boutonLien
                 }
                 id
+                contactPageRecrutement {
+                  titreFormulaire
+                  adresseEmail
+                  ajouterUnCv
+                  ajouterUneLettreDeMotivation
+                  boutonEnvoyer
+                  boutonMobileEnvoyer
+                  linkedin
+                  nom
+                  prenom
+                  telephone
+                }
               }
             }
         }
