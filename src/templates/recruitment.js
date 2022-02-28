@@ -13,6 +13,8 @@ import SwiperSlider from "../components/swiper"
 
 import { Sliders } from 'react-feather';
 import { graphql, useStaticQuery } from "gatsby";
+import { ChevronDown } from 'react-feather';
+import { Check } from 'react-feather';
 
 import Button from "../components/buttonAction";
 
@@ -103,8 +105,15 @@ function Recruitment({ pageContext }){
 	const [selectedTeam,setSelectedTeam] = useState(dataR.nomDuPremierFiltre);
 	const [selectedTypeOfContract, setSelectedTypeOfContract] = useState(dataR.nomDuDeuxiemeFiltre);
 	const [selectedLocation, setSelectedLocation] = useState(dataR.nomDuTroisiemeFiltre);
+	const [selectedDefault, setSelectedDefault] = useState(true);
+
+	//Open filters
+	const [openFilters1, setOpenFilters1] = useState(false)
+	const [openFilters2, setOpenFilters2] = useState(false)
+	const [openFilters3, setOpenFilters3] = useState(false)
 
 	const [open, setOpen] = useState(false);
+	const [openPanelFilters, setOpenPanelFilters] = useState(false);
 
 	const slides = []
 	if(dataSlider){
@@ -115,9 +124,14 @@ function Recruitment({ pageContext }){
 		})
 	}
 
-	console.log(dataSlider)
-
 	useEffect(() => {
+
+		if(openPanelFilters){
+			document.querySelector('body').classList.add("stop-scroll");
+		}else{
+			document.querySelector('body').classList.remove("stop-scroll");
+		}
+
 		function getLanguage(){
 			if(window.location.href.match("/fr$") || window.location.href.match("/fr/")){
 				setDataO(data.offersFr.nodes);
@@ -130,7 +144,7 @@ function Recruitment({ pageContext }){
 			}
 		}
 		getLanguage();
-	}, [dataO, dataSlider])
+	}, [dataO, dataSlider, openPanelFilters])
 
 	function setFilters(){
 		if(dataO){
@@ -162,15 +176,22 @@ function Recruitment({ pageContext }){
 		setOpen(!open);
 	}
 
-	console.log(selectedTeam)
-	console.log(selectedLocation)
-	console.log(selectedTypeOfContract)
+	function defaultFilter(){
+		setSelectedTeam(dataR.nomDuPremierFiltre);
+		setSelectedTypeOfContract(dataR.nomDuDeuxiemeFiltre);
+		setSelectedLocation(dataR.nomDuTroisiemeFiltre)
+	}
+
+	console.log("default", selectedDefault)
+	console.log("Team", selectedTeam)
+	console.log("Location", selectedLocation)
+	console.log("Type of contract", selectedTypeOfContract)
 
 	return(
 		<Layout>
 			<Helmet>
 				<meta charSet="utf-8" />
-				<html lang="" />
+				<html lang={metaLang} />
 				<title>{dataR.titreOngletDeLaPage}</title>
 			</Helmet>
 			{dataO && dataR ?
@@ -210,15 +231,79 @@ function Recruitment({ pageContext }){
 									)
 								})}
 							</select>
-							<button className="bloc-3__header-filter--mobile">
+							<button className="bloc-3__header-filter--mobile" onClick={()=> setOpenPanelFilters(true)}>
 								<Sliders />
 							</button>
-							<div className="bloc-3__filter_panel">
-								<h3>Filtres</h3>
-								<div className="bloc-3__filter_panel--option">
-									<p></p>
+							{openPanelFilters ? 
+								<div className="bloc-3__filter_panel">
+									<h3>Filtres</h3>
+									<div className="bloc-3__filter_panel--option">
+										<ul>
+											<li className="select">
+												<div className="select-content" onClick={()=> defaultFilter()}>
+													<p>Par défaut</p>
+													<div className="selected">
+														{selectedTeam === dataR.nomDuPremierFiltre && selectedTypeOfContract === dataR.nomDuDeuxiemeFiltre && selectedLocation === dataR.nomDuTroisiemeFiltre ? <Check /> : null}
+													</div>
+												</div>
+											</li>
+											<li className={openFilters1 ? "select" : "select close"}>
+												<div className="select-content" onClick={()=> setOpenFilters1(!openFilters1)}>
+													<p>{dataR.nomDuPremierFiltre}</p>
+													<div className="chevron">
+														<ChevronDown />
+													</div>
+												</div>
+												{arrayfilters1.map((item)=> {
+													return(
+														<>
+															<ul className="select-content-option" onClick={()=> {setSelectedTeam(item)}}>
+																<li value={item}>{item}</li>
+																<div className="selected">{selectedTeam === item ? <Check /> : null}</div>
+															</ul>
+														</>
+													)
+												})}
+											</li>
+											<li className={openFilters2 ? "select" : "select close"}>
+												<div className="select-content" onClick={()=> setOpenFilters2(!openFilters2)}>
+													<p>{dataR.nomDuDeuxiemeFiltre}</p>
+													<div className="chevron">
+														<ChevronDown />
+													</div>
+												</div>
+												{arrayfilters2.map((item)=> {
+													return(
+														<ul className="select-content-option" onClick={()=> {setSelectedTypeOfContract(item)}}>
+															<li value={item}>{item}</li>
+															<div className="selected">{selectedTypeOfContract === item ? <Check /> : null}</div>
+														</ul>
+													)
+												})}
+												{/* <Check /> */}
+											</li>
+											<li className={openFilters3 ? "select" : "select close"}>
+												<div className="select-content" onClick={()=> setOpenFilters3(!openFilters3)}>
+													<p>{dataR.nomDuTroisiemeFiltre}</p>
+													<div className="chevron">
+														<ChevronDown />
+													</div>
+												</div>
+												{arrayfilters3.map((item)=> {
+													return(
+														<ul className="select-content-option" onClick={()=> {setSelectedLocation(item)}}>
+															<li value={item}>{item}</li>
+															<div className="selected">{selectedLocation === item ? <Check /> : null}</div>
+														</ul>
+													)
+												})}
+												{/* <Check /> */}
+											</li>
+										</ul>
+									</div>
+									<Button label="Enregistrer" labelMobile="Enregistrer" onClick={()=> setOpenPanelFilters(false)}/>
 								</div>
-							</div>
+							:null}
 						</div>
 					</div>
 					<div className={open ? "bloc-3__grid open" : "bloc-3__grid"}>

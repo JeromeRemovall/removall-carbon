@@ -34,6 +34,7 @@ main.offers{
 			color: $primary-blue-700;
 			@include chillax-heading-xl;
 			margin-bottom: 24px;
+			margin-top: 24px;
 	
 			li::marker {
 				color: $primary-blue-500;
