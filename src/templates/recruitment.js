@@ -30,7 +30,9 @@ const query = graphql `
 				}
 			}
 		}
-		offersFr : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offres"}}}}}) {
+		offersFr : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offres"}}}}}
+		sort: {fields: offres___typeDeContrat, order: ASC}
+		){
 			nodes {
 				offres {
 					bouton
@@ -44,7 +46,9 @@ const query = graphql `
 				id
 			}
 		}
-		offersEn : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offers"}}}}}) {
+		offersEn : allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "offers"}}}}}
+		sort: {fields: offres___typeDeContrat, order: ASC}
+		){
 			nodes {
 				offres {
 					bouton
@@ -182,10 +186,7 @@ function Recruitment({ pageContext }){
 		setSelectedLocation(dataR.nomDuTroisiemeFiltre)
 	}
 
-	console.log("default", selectedDefault)
-	console.log("Team", selectedTeam)
-	console.log("Location", selectedLocation)
-	console.log("Type of contract", selectedTypeOfContract)
+	console.log(slides.length > 0)
 
 	return(
 		<Layout>
@@ -200,15 +201,17 @@ function Recruitment({ pageContext }){
 				<section className="bloc-1">
 					<Description title={dataR.bloc1Titre} text={dataR.bloc1Texte} />
 				</section>
-				<section className="bloc-2">
-					<Video src={dataR.bloc2Video.mediaItemUrl} thumbnail={dataR.miniatureVideo.sourceUrl}/>
-				</section>
+				{dataR.bloc2Video !== null? 
+					<section className="bloc-2">
+						<Video src={dataR.bloc2Video.mediaItemUrl} thumbnail={dataR.miniatureVideo.sourceUrl}/>
+					</section>
+				:null}
 				<section className="bloc-3">
 					<div className="bloc-3__header">
 						<h2>{dataR.bloc3Titre}</h2>
 						<div className="bloc-3__header-filter">
 							<select name="team" id="team" value={selectedTeam} onChange={(e)=> setSelectedTeam(e.target.value)}>
-								<option value={dataR.nomDuPremierFiltre}>{dataR.nomDuPremierFiltre}</option>
+								<option value={dataR.nomDuPremierFiltre}></option>
 								{arrayfilters1.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
@@ -216,7 +219,7 @@ function Recruitment({ pageContext }){
 								})}
 							</select>
 							<select name="typeOfContract" id="typeOfContract" value={selectedTypeOfContract} onChange={(e)=> setSelectedTypeOfContract(e.target.value)}>
-								<option value={dataR.nomDuDeuxiemeFiltre}>{dataR.nomDuDeuxiemeFiltre}</option>
+								<option value={dataR.nomDuDeuxiemeFiltre}></option>
 								{arrayfilters2.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
@@ -224,7 +227,7 @@ function Recruitment({ pageContext }){
 								})}
 							</select>
 							<select name="location" id="location" value={selectedLocation} onChange={(e)=> setSelectedLocation(e.target.value)}>
-								<option value={dataR.nomDuTroisiemeFiltre}>{dataR.nomDuTroisiemeFiltre}</option>
+								<option value={dataR.nomDuTroisiemeFiltre}></option>
 								{arrayfilters3.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
@@ -331,12 +334,14 @@ function Recruitment({ pageContext }){
 					{dataO.length > 6 && open === false ? <Button label={dataR.bloc3BoutonOuvrir} labelMobile={dataR.bloc3BoutonOuvrirMobile} onClick={openOffers} /> : null}
 					{dataO.length > 6 && open === true ? <Button label={dataR.bloc3BoutonFermer} labelMobile={dataR.bloc3BoutonFermerMobile} onClick={openOffers} /> : null}
 				</section>
+				{slides.length > 0 ? 
 				<section className="bloc-4">
 					<div className="bloc-4__carousel">
 						<h2>{dataR.bloc4Titre}</h2>
 						<SwiperSlider slides={slides} />
 					</div>
 				</section>
+				:null}
 			</main>
 			: <Loader /> }
 		</Layout>

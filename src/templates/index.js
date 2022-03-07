@@ -118,6 +118,9 @@ function Home({ pageContext }){
 	const [dataSlider, setDataSlider] = useState("");
 	const [metaLang, setMetaLang] = useState("");
 	const [metaDescription, setMetaDescription] = useState("");
+	const logoCustomers = [];
+	const logoPartners = [];
+
 
 	const slides = []
 	if(dataSlider){
@@ -126,6 +129,28 @@ function Home({ pageContext }){
 				slides.push(slide.slider)
 			)
 		})
+	}
+
+	if(dataCustomers){
+		dataCustomers.map((item)=> {
+			if(item.logoClientOuPartenaires.visiblePageHome === true){
+				return(
+					logoCustomers.push(item.logoClientOuPartenaires.logo)
+				)
+			}
+		})
+		console.log(logoCustomers)
+	}
+
+	if(dataPartners){
+		dataPartners.map((item)=> {
+			if(item.logoClientOuPartenaires.visiblePageHome === true){
+				return(
+					logoPartners.push(item.logoClientOuPartenaires.logo)
+				)
+			}
+		})
+		console.log(logoPartners)
 	}
 
 	useEffect(() => {
@@ -145,7 +170,8 @@ function Home({ pageContext }){
 			}
 		}
 		getLanguage();
-	}, [data.blocClients.nodes, data.blocCustomers.nodes, data.blocPartenaires.nodes, data.blocPartners.nodes, data.sliderEn.nodes, data.sliderFr.nodes])
+
+	}, [data.blocClients.nodes, data.blocCustomers.nodes, data.blocPartenaires.nodes, data.blocPartners.nodes, data.sliderEn.nodes, data.sliderFr.nodes]) 
 	
 	return (
 		<Layout>
@@ -197,45 +223,34 @@ function Home({ pageContext }){
 						<div dangerouslySetInnerHTML={ { __html: dataH.bloc5Texte} }></div>
 						<ButtonLink label={dataH.bloc5Bouton} to={dataH.bloc5BoutonLien} labelMobile={dataH.bloc5BoutonMobile}/>
 					</section>
-					{dataCustomers.length > 0 || dataPartners.length > 0  ?
-					<>
+					{logoCustomers.length > 0 || logoPartners.length > 0? 
 						<section className="bloc-6">
-							<h2>{dataH.bloc6Titre}</h2>
+							<h2>{dataH.bloc6Titre}</h2> 
 							<div className="bloc-6__content">
-								<div className="bloc-6__content__logo">
-									{dataCustomers && dataCustomers.length > 0 ? 
+								<div className="bloc-6__content__logo"> 
+									{logoCustomers.length > 0 ? 
 										<>
 											<Legend text={dataH.bloc6item1SousTitre}/>
 											<div className="bloc-6__content__logo--ligne">
-												{dataCustomers.map((logo) => {
+												{logoCustomers.map((item)=> {
 													return(
-														<>
-														{logo.logoClientOuPartenaires.visiblePageHome === true ? 
-															<>
-															<div className='bloc-6__content__logo--ligne__image'>
-																<img src={logo.logoClientOuPartenaires.logo.sourceUrl} key={logo} alt={logo.logoClientOuPartenaires.logo.altText}/>
-															</div>
-															</>
-														: null}
-														</>
+														<div className='bloc-6__content__logo--ligne__image'>
+															<img src={item.sourceUrl} key={item} alt={item.altText}/>
+														</div>
 													)
 												})}
 											</div>
 										</>
 									:null}
-									{dataPartners && dataPartners.length > 0 ? 
+									{logoPartners.length > 0 ? 
 										<>
 											<Legend text={dataH.bloc6item2SousTitre}/>
 											<div className="bloc-6__content__logo--ligne">
-												{dataPartners.map((logo) => {
+												{logoPartners.map((item)=> {
 													return(
-														<>
-														{logo.logoClientOuPartenaires.visiblePageHome === true ?
-															<div className='bloc-6__content__logo--ligne__image'>
-																<img key={logo} src={logo.logoClientOuPartenaires.logo.sourceUrl} alt={logo.logoClientOuPartenaires.logo.altText}/>
-															</div>	
-														:null}
-														</>
+														<div className='bloc-6__content__logo--ligne__image'>
+															<img src={item.sourceUrl} key={item} alt={item.altText}/>
+														</div>
 													)
 												})}
 											</div>
@@ -244,7 +259,6 @@ function Home({ pageContext }){
 								</div>
 							</div>
 						</section>
-					</>
 					:null}
 				</main>
 			:

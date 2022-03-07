@@ -74,3 +74,11 @@
 		}
 	}
 }
+
+.recruitment{
+	.bloc-description{
+		p{
+			@include montserrat-paragraph-xl-m;
+		}
+	}
+}

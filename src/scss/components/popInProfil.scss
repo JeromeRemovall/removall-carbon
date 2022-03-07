@@ -62,8 +62,9 @@
 
 			.pop-in__photo{
 				width: 181px;
-				height: 181px;
-				margin-right: 40px;
+				height: 196px;
+				// background-color: aqua;
+				overflow: hidden;
 
 				@include lg {
 					width: 140px;
@@ -72,16 +73,19 @@
 				}
 
 				img{
-					width: 100%;
-					object-fit: cover;
+					// width: 100%;
+					object-fit: contain;
 					height: 100%;
 					border-top-left-radius: 8px;
+					margin: 0 auto;
+					// margin-right: 40px;
 				}
 				
 			}
 
 			.pop-in__photo__content{
 				margin-top: 40px;
+				margin-left: 40px;
 
 				@include lg {
 					margin-top: 63px;

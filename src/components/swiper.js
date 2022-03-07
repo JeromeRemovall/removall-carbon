@@ -14,6 +14,8 @@ import "../scss/components/swiper.scss"
 
 function SwiperSlider({slides}) {
 
+	console.log("slides", slides)
+
 	return (
 		<Swiper
 			modules={[Navigation]}
@@ -27,19 +29,16 @@ function SwiperSlider({slides}) {
 				}
 			}}
 		>
-			{slides.length !== 1 ? 
+
+		{slides.map((slide) => {
+			return(
 				<>
-					{slides.map((slide) => {
-						return(
-							<>
-							<SwiperSlide>
-								<img src={slide.image.sourceUrl} alt={slide.image.altText} />
-							</SwiperSlide>
-							</>
-						)	
-					})}
+				<SwiperSlide>
+					<img src={slide.image.sourceUrl} alt={slide.image.altText} />
+				</SwiperSlide>
 				</>
-			:null}
+			)	
+		})}
 		</Swiper>
 	);
 };

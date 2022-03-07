@@ -131,6 +131,10 @@ main.recruitment{
 					display: flex;
 					flex-direction: column;
 
+					@include xl {
+						overflow-y: scroll;
+					}
+
 					h3{
 						margin-top: 108px;
 						padding-left: 21px;
@@ -182,6 +186,9 @@ main.recruitment{
 								border-bottom: 1px solid #EDEDED;
 
 								.selected{
+									width: 24px;
+    								height: 24px;
+
 									svg{
 										stroke: $primary-blue-500;
 									}
@@ -202,6 +209,11 @@ main.recruitment{
 
 								svg{
 									stroke: $primary-blue-500;
+								}
+
+								.selected{
+									width: 24px;
+    								height: 24px;
 								}
 							}
 						}
@@ -243,6 +255,10 @@ main.recruitment{
 		button{
 			margin: 0 auto;
 			margin-top: 72px;
+
+			@include xl {
+				margin-bottom: 64px !important;
+			}
 		}
 
 	}
@@ -286,6 +302,8 @@ main.recruitment{
 
 			@include xl {
 				width: 100%;
+				overflow: hidden;
+				height: 433px
 			}
 
 			@include xl-paysage {

@@ -19,12 +19,13 @@ const query = graphql`
 	query{
 		fr : allWpPost(
 				filter: {categories: {nodes: {elemMatch: {name: {eq: "équipe"}}}}}
-				sort: {fields: date, order: ASC}
+				sort: {fields: equipe___nom, order: ASC}
 			){
 			nodes{
                 equipe {
 					poste
-					prenomNom
+					prenom
+					nom
 					image{
 						sourceUrl
 						altText
@@ -45,12 +46,13 @@ const query = graphql`
 		}
 		en : allWpPost(
 				filter: {categories: {nodes: {elemMatch: {name: {eq: "team"}}}}}
-				sort: {fields: date, order: ASC}
+				sort: {fields: equipe___nom, order: ASC}
 			){
 			nodes{
                 equipe {
 					poste
-					prenomNom
+					prenom
+					nom
 					image{
 						sourceUrl
 						altText
@@ -123,7 +125,7 @@ function APropos({ pageContext }){
 		if(dataA && dataE){
 			if(i === 1){
 				setDataPopIn({
-					name: dataA.bloc7Item1Titre,
+					firstname: dataA.bloc7Item1Titre,
 					job: dataA.bloc7Item1Texte,
 					img: dataA.bloc7Item1Image.sourceUrl,
 					icon1: dataA.bloc7Item1Icon1.sourceUrl,
@@ -137,7 +139,7 @@ function APropos({ pageContext }){
 				})
 			}else if(i === 2){
 				setDataPopIn({
-					name: dataA.bloc7Item2Titre,
+					firstname: dataA.bloc7Item2Titre,
 					job: dataA.bloc7Item2Texte,
 					img: dataA.bloc7Item2Image.sourceUrl,
 					icon1: dataA.bloc7Item2Icon1.sourceUrl,
@@ -151,7 +153,8 @@ function APropos({ pageContext }){
 				})
 			}else{
 				setDataPopIn({
-					name: i.prenomNom,
+					firstname: i.prenom,
+					lastname: i.nom,
 					job: i.poste,
 					img: i.image.sourceUrl,
 					icon1: i.logo1.sourceUrl,
@@ -184,7 +187,7 @@ function APropos({ pageContext }){
 			</Helmet>
 			{dataA && dataE ?
 			<main className="a-propos">
-				{openPopIn ? <PopInProfil onOverlay={(e)=> clickOverlay(e)} onClose={()=> setOpenPopIn(false)} text={dataPopIn.description} name={dataPopIn.name} job={dataPopIn.job} img={dataPopIn.img} icon1={dataPopIn.icon1} icon2={dataPopIn.icon2} link1={dataPopIn.link1} link2={dataPopIn.link2} alt={dataPopIn.alt} altIcon1={dataPopIn.altIcon1} altIcon2={dataPopIn.altIcon2} /> : null }
+				{openPopIn ? <PopInProfil onOverlay={(e)=> clickOverlay(e)} onClose={()=> setOpenPopIn(false)} text={dataPopIn.description} firstname={dataPopIn.firstname} lastname={dataPopIn.lastname} job={dataPopIn.job} img={dataPopIn.img} icon1={dataPopIn.icon1} icon2={dataPopIn.icon2} link1={dataPopIn.link1} link2={dataPopIn.link2} alt={dataPopIn.alt} altIcon1={dataPopIn.altIcon1} altIcon2={dataPopIn.altIcon2} /> : null }
 				<BlocHeader title={dataA.titre} text={dataA.description} img={dataA.imageDeFond.sourceUrl} alt={dataA.imageDeFond.altText}/>
 				<section className="bloc-1" id={language === "fr" ? "a-propos" : "about"}>
 					<Description title={dataA.bloc1Titre} text={dataA.bloc1Texte}/>
@@ -241,8 +244,8 @@ function APropos({ pageContext }){
 					<h2>{dataA.bloc7Titre}</h2>
 					<div dangerouslySetInnerHTML={{ __html: dataA.bloc7Texte}}></div>
 					<div className="bloc-7__content">
-						<CardProfil onClick={()=> addDataPopIn(1)} img={dataA.bloc7Item1Image.sourceUrl} title={dataA.bloc7Item1Titre} text={dataA.bloc7Item1Texte} icon1={dataA.bloc7Item1Icon1.sourceUrl} icon2={dataA.bloc7Item1Icon2.sourceUrl} alt={dataA.bloc7Item1Image.altText} altIcon1={dataA.bloc7Item1Icon1.altText} altIcon2={dataA.bloc7Item1Icon2.altText} link1={dataA.bloc7Item1Lien1} link2={dataA.bloc7Item1Lien2}/>
-						<CardProfil onClick={()=> addDataPopIn(2)} img={dataA.bloc7Item2Image.sourceUrl} title={dataA.bloc7Item2Titre} text={dataA.bloc7Item2Texte} icon1={dataA.bloc7Item2Icon1.sourceUrl} icon2={dataA.bloc7Item2Icon2.sourceUrl} alt={dataA.bloc7Item2Image.altText} altIcon1={dataA.bloc7Item2Icon1.altText} altIcon2={dataA.bloc7Item2Icon2.altText} link1={dataA.bloc7Item2Lien1} link2={dataA.bloc7Item2Lien2}/>
+						<CardProfil onClick={()=> addDataPopIn(1)} img={dataA.bloc7Item1Image.sourceUrl} firstname={dataA.bloc7Item1Titre} text={dataA.bloc7Item1Texte} icon1={dataA.bloc7Item1Icon1.sourceUrl} icon2={dataA.bloc7Item1Icon2.sourceUrl} alt={dataA.bloc7Item1Image.altText} altIcon1={dataA.bloc7Item1Icon1.altText} altIcon2={dataA.bloc7Item1Icon2.altText} link1={dataA.bloc7Item1Lien1} link2={dataA.bloc7Item1Lien2}/>
+						<CardProfil onClick={()=> addDataPopIn(2)} img={dataA.bloc7Item2Image.sourceUrl} firstname={dataA.bloc7Item2Titre} text={dataA.bloc7Item2Texte} icon1={dataA.bloc7Item2Icon1.sourceUrl} icon2={dataA.bloc7Item2Icon2.sourceUrl} alt={dataA.bloc7Item2Image.altText} altIcon1={dataA.bloc7Item2Icon1.altText} altIcon2={dataA.bloc7Item2Icon2.altText} link1={dataA.bloc7Item2Lien1} link2={dataA.bloc7Item2Lien2}/>
 					</div>
 				</section>
 				{dataE.length > 0 ?
@@ -253,7 +256,7 @@ function APropos({ pageContext }){
 								{dataE.map((item)=> {
 									return(
 										<>
-											<CardProfil onClick={()=> addDataPopIn(item.equipe)} img={item.equipe.image.sourceUrl} title={item.equipe.prenomNom} text={item.equipe.poste} icon1={item.equipe.logo1.sourceUrl} icon2={item.equipe.logo2.sourceUrl} key={item} alt={item.equipe.image.altText} altIcon1={item.equipe.logo1.altText} altIcon2={item.equipe.logo2.altText} link1={item.equipe.lien1} link2={item.equipe.lien2} />
+											<CardProfil onClick={()=> addDataPopIn(item.equipe)} img={item.equipe.image.sourceUrl} firstname={item.equipe.prenom} lastname={item.equipe.nom} text={item.equipe.poste} icon1={item.equipe.logo1.sourceUrl} icon2={item.equipe.logo2.sourceUrl} key={item} alt={item.equipe.image.altText} altIcon1={item.equipe.logo1.altText} altIcon2={item.equipe.logo2.altText} link1={item.equipe.lien1} link2={item.equipe.lien2} />
 										</>
 									)
 								})}

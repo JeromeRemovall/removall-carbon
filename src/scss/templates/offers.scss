@@ -102,6 +102,10 @@ main.offers{
 				flex-direction: column;
 				position: relative;
 
+				&.hide{
+					display: none;
+				}
+
 				@include xl {
 					width: 100%;
 				}
@@ -190,6 +194,14 @@ main.offers{
 			.group-button{
 				width: 100%;
 				margin-top: 44px;
+
+				.form-message__error{
+	
+					@include xl{
+						margin-bottom: 80px;
+						margin-top: 24px;
+					}
+				}
 			}
 
 			button{

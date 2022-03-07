@@ -200,27 +200,27 @@ function Contact({ pageContext }){
 								:null}
 								<div className="content-sociaux">
 									{dataC.lienTwitter ?
-										<a href={dataC.lienTwitter} className="content-sociaux__image">
+										<a href={dataC.lienTwitter} className="content-sociaux__image" target="_blank">
 											<img src={dataC.iconTwitter.sourceUrl} alt={dataC.iconTwitter.altText}/>
 										</a>
 									:null}
 									{dataC.lienFacebook ?
-										<a href={dataC.lienFacebook} className="content-sociaux__image">
+										<a href={dataC.lienFacebook} className="content-sociaux__image" target="_blank">
 											<img src={dataC.iconFacebook.sourceUrl} alt={dataC.iconFacebook.altText}/>
 										</a>
 									:null}
 									{dataC.lienInstagram ?
-										<a href={dataC.lienInstagram} className="content-sociaux__image">
+										<a href={dataC.lienInstagram} className="content-sociaux__image" target="_blank">
 											<img src={dataC.iconInstagram.sourceUrl} alt={dataC.iconInstagram.altText}/>
 										</a>
 									:null}
 									{dataC.lienLinkedin ?
-										<a href={dataC.lienLinkedin} className="content-sociaux__image">
+										<a href={dataC.lienLinkedin} className="content-sociaux__image" target="_blank">
 											<img src={dataC.iconLinkedin.sourceUrl} alt={dataC.iconLinkedin.altText} />
 										</a>
 									:null}
 									{dataC.lienYoutube ?
-										<a href={dataC.lienYoutube} className="content-sociaux__image">
+										<a href={dataC.lienYoutube} className="content-sociaux__image" target="_blank">
 											<img src={dataC.iconYoutube.sourceUrl} alt={dataC.iconYoutube.altText} />
 										</a>
 									:null}

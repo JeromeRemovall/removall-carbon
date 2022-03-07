@@ -21,6 +21,7 @@ const query = graphql`
 						sourceUrl
 						altText
 					}
+					lienVersSite
 				}
 			}
 		}
@@ -34,6 +35,7 @@ const query = graphql`
 						sourceUrl
 						altText
 					}
+					lienVersSite
 				}
 			}
 		}
@@ -47,6 +49,7 @@ const query = graphql`
 						sourceUrl
 						altText
 					}
+					lienVersSite
 				}
 			}
 		}
@@ -60,6 +63,7 @@ const query = graphql`
 						sourceUrl
 						altText
 					}
+					lienVersSite
 				}
 			}
 		}
@@ -116,9 +120,9 @@ function Ecosystem({ pageContext }){
 								<div className="bloc-logo">
 									{dataPartners.map((logo) => {
 										return(
-											<div className="bloc-logo__image">
+											<a href={logo.logoClientOuPartenaires.lienVersSite} target="_blank" className="bloc-logo__image">
 												<img key={logo} src={logo.logoClientOuPartenaires.logo.sourceUrl} alt={logo.logoClientOuPartenaires.logo.altText}/>
-											</div>
+											</a>
 										)
 									})}
 								</div>
@@ -131,9 +135,9 @@ function Ecosystem({ pageContext }){
 							<div className="bloc-logo">
 								{dataCustomers.map((logo) => {
 									return(
-										<div className="bloc-logo__image">
+										<a href={logo.logoClientOuPartenaires.lienVersSite} target="_blank" className="bloc-logo__image">
 											<img key={logo} src={logo.logoClientOuPartenaires.logo.sourceUrl} alt={logo.logoClientOuPartenaires.logo.altText}/>
-										</div>
+										</a>
 									)
 								})}
 							</div>

@@ -144,6 +144,9 @@ function Offers({pageContext}){
 				<section className="offers__content-form" id={metaLang === "fr" ? "formulaire" : "form"}>
 					<h2>{dataForm.titreFormulaire}</h2>
 					<form className="form" method="post" action={url} onSubmit={formSubmissionHandler} >
+						<div className="group-input hide">
+							<input type="text" id="job" name="job" value={dataO.titre} />
+						</div>
 						<div className="group-input">
 							<input type="text" id="surname" name="surname" placeholder={dataForm.nom} />
 							<p className="form-message__error">{messageSurname}</p>
