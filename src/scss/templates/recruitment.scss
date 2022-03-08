@@ -104,6 +104,10 @@ main.recruitment{
 					option{
 						background-color: #fff;
 						margin-top: 20px;
+
+						&.optionDefault:checked{
+							color: $dark-300;
+						}
 					}
 				}
 
@@ -236,6 +240,7 @@ main.recruitment{
 			max-height: 610px;
 			overflow-y: hidden;
 			padding: 10px;
+			overflow-x: hidden;
 
 			@include xl {
 				max-height: 920px;

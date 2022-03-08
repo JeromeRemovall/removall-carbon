@@ -145,7 +145,7 @@ function Offers({pageContext}){
 					<h2>{dataForm.titreFormulaire}</h2>
 					<form className="form" method="post" action={url} onSubmit={formSubmissionHandler} >
 						<div className="group-input hide">
-							<input type="text" id="job" name="job" value={dataO.titre} />
+							<input type="text" id="job" name="job" value={dataO.sousTitre} />
 						</div>
 						<div className="group-input">
 							<input type="text" id="surname" name="surname" placeholder={dataForm.nom} />
