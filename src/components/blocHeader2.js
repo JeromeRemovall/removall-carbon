@@ -1,10 +1,14 @@
 import React from "react"
 import "../scss/components/blocHeader.scss"
 
-import ButtonLink from "../components/buttonLink"
+import ButtonAnchor from "../components/buttonAnchor"
 import "../scss/components/blocHeader2.scss"
 
 function blocHeader2({ title, label, subtitle, labelMobile, to }){
+
+	// let anchor = document.querySelector("main.offers .button-primary");
+	// anchor.scrollIntoView();
+
 	return(
 		<header className="bloc-header__bis">
 			<div className="bloc-header__container">
@@ -13,7 +17,7 @@ function blocHeader2({ title, label, subtitle, labelMobile, to }){
 					<p>{subtitle}</p>
 				</div>
 				<div className="bloc-header_container_button">
-					<ButtonLink label={label} labelMobile={labelMobile} to={to} />
+					<ButtonAnchor label={label} labelMobile={labelMobile} to={to} />
 				</div>
 			</div>
 		</header>

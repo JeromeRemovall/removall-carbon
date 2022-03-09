@@ -135,13 +135,13 @@ function Offers({pageContext}){
 				<title></title>
 				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
-			<BlocHeader title={dataO.titre} subtitle={dataO.sousTitre} label={dataO.bouton} labelMobile={dataO.boutonMobile} to={dataO.boutonLien} />
+			<BlocHeader title={dataO.titre} subtitle={dataO.sousTitre} label={dataO.bouton} labelMobile={dataO.boutonMobile} to="form" />
 			{dataForm && dataO ? 
 			<main className="offers">
 				<section className="offers__content">
 					<div dangerouslySetInnerHTML={{ __html: dataO.texte}}></div>
 				</section>
-				<section className="offers__content-form" id={metaLang === "fr" ? "formulaire" : "form"}>
+				<section className="offers__content-form" id="form">
 					<h2>{dataForm.titreFormulaire}</h2>
 					<form className="form" method="post" action={url} onSubmit={formSubmissionHandler} >
 						<div className="group-input hide">
