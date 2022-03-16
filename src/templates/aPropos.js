@@ -177,6 +177,8 @@ function APropos({ pageContext }){
 		}
 	}
 
+	console.log(dataA.bloc8Visible);
+
 	return(
 		<Layout>
 			<Helmet>
@@ -248,7 +250,7 @@ function APropos({ pageContext }){
 						<CardProfil onClick={()=> addDataPopIn(2)} img={dataA.bloc7Item2Image.sourceUrl} firstname={dataA.bloc7Item2Titre} text={dataA.bloc7Item2Texte} icon1={dataA.bloc7Item2Icon1.sourceUrl} icon2={dataA.bloc7Item2Icon2.sourceUrl} alt={dataA.bloc7Item2Image.altText} altIcon1={dataA.bloc7Item2Icon1.altText} altIcon2={dataA.bloc7Item2Icon2.altText} link1={dataA.bloc7Item2Lien1} link2={dataA.bloc7Item2Lien2}/>
 					</div>
 				</section>
-				{dataE.length > 0 ?
+				{dataE.length > 0 && dataA.bloc8Visible === true ?
 					<section className="bloc-8">
 						<div className="bloc-8_container">
 							<Description title={dataA.bloc8Titre} text={dataA.bloc8Texte}/>

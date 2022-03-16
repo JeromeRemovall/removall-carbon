@@ -10,6 +10,7 @@
 	margin-top: 32px;
 	@include montserrat-label-xl-s;
 	color: $primary-blue-500;
+	cursor: pointer;
 
 	a{
 		color: $primary-blue-500;
