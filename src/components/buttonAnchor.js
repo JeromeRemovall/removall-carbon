@@ -1,9 +1,7 @@
 import React from "react"
 import "../scss/components/button.scss"
-// import { Link } from "gatsby"
 
-import * as Scroll from 'react-scroll';
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { Link } from 'react-scroll'
 
 function ButtonAnchor({label, to, labelMobile}) {
 	return(

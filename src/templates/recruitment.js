@@ -102,14 +102,13 @@ function Recruitment({ pageContext }){
 
 	const [metaLang, setMetaLang] = useState("");
 
-	const [arrayfilters1, setArrayFilters1] = useState([]);
-	const [arrayfilters2, setArrayFilters2] = useState([]);
-	const [arrayfilters3, setArrayFilters3] = useState([]);
+	const arrayfilters1 = [];
+	const arrayfilters2 = [];
+	const arrayfilters3 = [];
 
 	const [selectedTeam,setSelectedTeam] = useState(dataR.nomDuPremierFiltre);
 	const [selectedTypeOfContract, setSelectedTypeOfContract] = useState(dataR.nomDuDeuxiemeFiltre);
 	const [selectedLocation, setSelectedLocation] = useState(dataR.nomDuTroisiemeFiltre);
-	const [selectedDefault, setSelectedDefault] = useState(true);
 
 	//Open filters
 	const [openFilters1, setOpenFilters1] = useState(false)
@@ -148,7 +147,7 @@ function Recruitment({ pageContext }){
 			}
 		}
 		getLanguage();
-	}, [dataO, dataSlider, openPanelFilters])
+	}, [dataO, dataSlider, openPanelFilters, data.imagesSliderEn.nodes, data.imagesSliderFr.nodes, data.offersEn.nodes, data.offersFr.nodes])
 
 	function setFilters(){
 		if(dataO){
@@ -243,7 +242,7 @@ function Recruitment({ pageContext }){
 									<div className="bloc-3__filter_panel--option">
 										<ul>
 											<li className="select">
-												<div className="select-content" onClick={()=> defaultFilter()}>
+												<div className="select-content" onClick={()=> defaultFilter()} onKeyDown={()=> defaultFilter()} role="button" tabIndex={0}>
 													<p>Par défaut</p>
 													<div className="selected">
 														{selectedTeam === dataR.nomDuPremierFiltre && selectedTypeOfContract === dataR.nomDuDeuxiemeFiltre && selectedLocation === dataR.nomDuTroisiemeFiltre ? <Check /> : null}
@@ -251,7 +250,7 @@ function Recruitment({ pageContext }){
 												</div>
 											</li>
 											<li className={openFilters1 ? "select" : "select close"}>
-												<div className="select-content" onClick={()=> setOpenFilters1(!openFilters1)}>
+												<div className="select-content" onClick={()=> setOpenFilters1(!openFilters1)} onKeyDown={()=> setOpenFilters1(!openFilters1)} role="button" tabIndex={0}>
 													<p>{dataR.nomDuPremierFiltre}</p>
 													<div className="chevron">
 														<ChevronDown />
@@ -260,7 +259,7 @@ function Recruitment({ pageContext }){
 												{arrayfilters1.map((item)=> {
 													return(
 														<>
-															<ul className="select-content-option" onClick={()=> {setSelectedTeam(item)}}>
+															<ul className="select-content-option" onClick={()=> {setSelectedTeam(item)}} onKeyDown={()=> {setSelectedTeam(item)}} tabIndex={0}>
 																<li value={item}>{item}</li>
 																<div className="selected">{selectedTeam === item ? <Check /> : null}</div>
 															</ul>
@@ -269,7 +268,7 @@ function Recruitment({ pageContext }){
 												})}
 											</li>
 											<li className={openFilters2 ? "select" : "select close"}>
-												<div className="select-content" onClick={()=> setOpenFilters2(!openFilters2)}>
+												<div className="select-content" onClick={()=> setOpenFilters2(!openFilters2)} onKeyDown={()=> setOpenFilters2(!openFilters2)} role="button" tabIndex={0}>
 													<p>{dataR.nomDuDeuxiemeFiltre}</p>
 													<div className="chevron">
 														<ChevronDown />
@@ -277,7 +276,7 @@ function Recruitment({ pageContext }){
 												</div>
 												{arrayfilters2.map((item)=> {
 													return(
-														<ul className="select-content-option" onClick={()=> {setSelectedTypeOfContract(item)}}>
+														<ul className="select-content-option" onClick={()=> {setSelectedTypeOfContract(item)}} onKeyDown={()=> {setSelectedTypeOfContract(item)}} role="button" tabIndex={0}>
 															<li value={item}>{item}</li>
 															<div className="selected">{selectedTypeOfContract === item ? <Check /> : null}</div>
 														</ul>
@@ -286,7 +285,7 @@ function Recruitment({ pageContext }){
 												{/* <Check /> */}
 											</li>
 											<li className={openFilters3 ? "select" : "select close"}>
-												<div className="select-content" onClick={()=> setOpenFilters3(!openFilters3)}>
+												<div className="select-content" onClick={()=> setOpenFilters3(!openFilters3)} onKeyDown={()=> setOpenFilters3(!openFilters3)} role="button" tabIndex={0}>
 													<p>{dataR.nomDuTroisiemeFiltre}</p>
 													<div className="chevron">
 														<ChevronDown />
@@ -294,7 +293,7 @@ function Recruitment({ pageContext }){
 												</div>
 												{arrayfilters3.map((item)=> {
 													return(
-														<ul className="select-content-option" onClick={()=> {setSelectedLocation(item)}}>
+														<ul className="select-content-option" onClick={()=> {setSelectedLocation(item)}} onKeyDown={()=> {setSelectedLocation(item)}} role="button" tabIndex={0}>
 															<li value={item}>{item}</li>
 															<div className="selected">{selectedLocation === item ? <Check /> : null}</div>
 														</ul>
