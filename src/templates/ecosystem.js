@@ -78,7 +78,6 @@ function Ecosystem({ pageContext }){
 	const [dataCustomers, setDataCustomers] = useState("");
 	const [dataPartners, setDataPartners] = useState("");
 	const [metaLang, setMetaLang] = useState("");
-	const [metaDescription, setMetaDescription] = useState("");
 
 	useEffect(() => {
 		function getLanguage(){
@@ -86,12 +85,10 @@ function Ecosystem({ pageContext }){
 				setDataCustomers(data.blocClients.nodes);
 				setDataPartners(data.blocPartenaires.nodes);
 				setMetaLang("fr");
-				setMetaDescription("Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.");
 			}else if(window.location.href.match("/en$") || window.location.href.match("/en/")){
 				setDataCustomers(data.blocCustomers.nodes);
 				setDataPartners(data.blocPartners.nodes);
 				setMetaLang("en");
-				setMetaDescription("Removall is specialized in designing carbon funds and developing carbon sequestration projects.");
 			}
 		}
 		getLanguage();
@@ -103,7 +100,6 @@ function Ecosystem({ pageContext }){
 				<meta charSet="utf-8" />
 				<html lang={metaLang} />
 				<title>{dataE.titreOngletDeLaPage}</title>
-				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			{dataE ? 
 				<main className="ecosystem">
@@ -120,7 +116,7 @@ function Ecosystem({ pageContext }){
 								<div className="bloc-logo">
 									{dataPartners.map((logo) => {
 										return(
-											<a href={logo.logoClientOuPartenaires.lienVersSite} target="_blank" className="bloc-logo__image">
+											<a href={logo.logoClientOuPartenaires.lienVersSite} target="_blank" rel="noreferrer" className="bloc-logo__image">
 												<img key={logo} src={logo.logoClientOuPartenaires.logo.sourceUrl} alt={logo.logoClientOuPartenaires.logo.altText}/>
 											</a>
 										)
@@ -135,7 +131,7 @@ function Ecosystem({ pageContext }){
 							<div className="bloc-logo">
 								{dataCustomers.map((logo) => {
 									return(
-										<a href={logo.logoClientOuPartenaires.lienVersSite} target="_blank" className="bloc-logo__image">
+										<a href={logo.logoClientOuPartenaires.lienVersSite} target="_blank" rel="noreferrer" className="bloc-logo__image">
 											<img key={logo} src={logo.logoClientOuPartenaires.logo.sourceUrl} alt={logo.logoClientOuPartenaires.logo.altText}/>
 										</a>
 									)

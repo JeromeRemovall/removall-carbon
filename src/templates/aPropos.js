@@ -85,7 +85,6 @@ function APropos({ pageContext }){
 	const [openPopIn, setOpenPopIn] = useState(false);
 
 	const [metaLang, setMetaLang] = useState("");
-	const [metaDescription, setMetaDescription] = useState("");
 
 	const [dataPopIn, setDataPopIn] = useState({});
 
@@ -100,14 +99,12 @@ function APropos({ pageContext }){
 		function getLanguage(){
 			if(window.location.href.match("/fr$") || window.location.href.match("/fr/")){
 				setDataE(equipe.fr.nodes);
-				setLanguage("fr")
+				setLanguage("fr");
 				setMetaLang("fr");
-				setMetaDescription("Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.");
 			}else if(window.location.href.match("/en$") || window.location.href.match("/en/")){
 				setDataE(equipe.en.nodes);
-				setLanguage("en")
+				setLanguage("en");
 				setMetaLang("en");
-				setMetaDescription("Removall is specialized in designing carbon funds and developing carbon sequestration projects.");
 			}
 		}
 		getLanguage();
@@ -185,7 +182,6 @@ function APropos({ pageContext }){
 				<meta charSet="utf-8" />
 				<html lang={metaLang} />
 				<title>{dataA.titreOngletDeLaPage}</title>
-				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			{dataA && dataE ?
 			<main className="a-propos">

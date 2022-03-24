@@ -86,7 +86,6 @@ function Project({ pageContext }){
 	const [dataCP2, setDataCategory2]  = useState("");
 
 	const [metaLang, setMetaLang] = useState("");
-	const [metaDescription, setMetaDescription] = useState("");
 
 	useEffect(() => {
 		function getLanguage(){
@@ -94,12 +93,10 @@ function Project({ pageContext }){
 				setDataCategory1(projects.frCategory1.nodes);
 				setDataCategory2(projects.frCategory2.nodes);
 				setMetaLang("fr");
-				setMetaDescription("Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.");
 			}else if(window.location.href.match("/en$") || window.location.href.match("/en/")){
 				setDataCategory1(projects.enCategory1.nodes);
 				setDataCategory2(projects.enCategory2.nodes);
 				setMetaLang("en");
-				setMetaDescription("Removall is specialized in designing carbon funds and developing carbon sequestration projects.");
 			}
 		}
 		getLanguage();
@@ -111,7 +108,6 @@ function Project({ pageContext }){
 				<meta charSet="utf-8" />
 				<html lang={metaLang} />
 				<title>{dataP.titreOngletDeLaPage}</title>
-				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			{dataP ?
 				<main className="project">

@@ -8,7 +8,7 @@ function blocHeader({ title, text, img, alt }){
 			<img src={img} alt={alt} />
 			<div className="header">
 				<div className="header-content">
-					<h2>{title}</h2>
+					<h1>{title}</h1>
 					<div dangerouslySetInnerHTML={{ __html: text}}></div>
 				</div>
 			</div>

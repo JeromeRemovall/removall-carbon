@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React from "react"
 
 import { MapPin } from 'react-feather';
 import { Clock } from 'react-feather';
@@ -16,7 +16,7 @@ function minCard({link, title, tag, place, time}){
 				<div className="min-card_tag">
 					{tag.map((item)=> {
 						return(
-							<Tag label={item} />
+							<Tag label={item} key={item} />
 						)
 					})}
 				</div>

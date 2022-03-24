@@ -11,17 +11,14 @@ function ConditionsOfUse({ pageContext }){
 	const dataC = dataConditionsOfUse.conditionsMentions;
 
 	const [metaLang, setMetaLang] = useState("");
-	const [metaDescription, setMetaDescription] = useState("");
 
 	useEffect(() => {
 		function navBarTypeLanguage(){
 			if(window.location.href.match("/fr$") || window.location.href.match("/fr/") || window.localStorage.getItem("preferredLanguage") === "fr"){
 				setMetaLang("fr");
-				setMetaDescription("Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.");
 			}
 			if(window.location.href.match("/en$") || window.location.href.match("/en/") ||  window.localStorage.getItem("preferredLanguage") === "en"){
 				setMetaLang("en");
-				setMetaDescription("Removall is specialized in designing carbon funds and developing carbon sequestration projects.");
 			}
 		}
 		navBarTypeLanguage()
@@ -33,7 +30,6 @@ function ConditionsOfUse({ pageContext }){
 				<meta charSet="utf-8" />
 				<html lang={metaLang} />
 				<title>{dataC.titreOngletDeLaPage}</title>
-				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			{dataC ?
 				<main className="conditions-of-use">

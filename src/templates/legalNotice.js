@@ -11,18 +11,15 @@ function LegalNotice({ pageContext }){
 	const dataL = dataLegalNotice.conditionsMentions;
 
 	const [metaLang, setMetaLang] = useState("");
-	const [metaDescription, setMetaDescription] = useState("");
 
 
 	useEffect(() => {
 		function navBarTypeLanguage(){
 			if(window.location.href.match("/fr$") || window.location.href.match("/fr/") || window.localStorage.getItem("preferredLanguage") === "fr"){
 				setMetaLang("fr");
-				setMetaDescription("Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.");
 			}
 			if(window.location.href.match("/en$") || window.location.href.match("/en/") ||  window.localStorage.getItem("preferredLanguage") === "en"){
 				setMetaLang("en");
-				setMetaDescription("Removall is specialized in designing carbon funds and developing carbon sequestration projects.");
 			}
 		}
 		navBarTypeLanguage()
@@ -34,7 +31,6 @@ function LegalNotice({ pageContext }){
 				<meta charSet="utf-8" />
 				<html lang={metaLang} />
 				<title>{dataL.titreOngletDeLaPage}</title>
-				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			{dataL ?
 				<main className="legal-notice">

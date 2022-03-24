@@ -133,7 +133,6 @@ function Offers({pageContext}){
 				<meta charSet="utf-8" />
 				<html lang={metaLang} />
 				<title></title>
-				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			<BlocHeader title={dataO.titre} subtitle={dataO.sousTitre} label={dataO.bouton} labelMobile={dataO.boutonMobile} to="form" />
 			{dataForm && dataO ? 

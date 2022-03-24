@@ -26,19 +26,16 @@ function Contact({ pageContext }){
 	// const [textToCopy, setTextToCopy] = useState("");
 
 	const [metaLang, setMetaLang] = useState("");
-	const [metaDescription, setMetaDescription] = useState("");
 
 	useEffect(() => {
 		function navBarTypeLanguage(){
 			if(window.location.href.match("/fr$") || window.location.href.match("/fr/") || window.localStorage.getItem("preferredLanguage") === "fr"){
 				setUrl(`${process.env.GATSBY_CONTACT_FORM_FR}`);
 				setMetaLang("fr");
-				setMetaDescription("Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.");
 			}
 			if(window.location.href.match("/en$") || window.location.href.match("/en/") ||  window.localStorage.getItem("preferredLanguage") === "en"){
 				setUrl(`${process.env.GATSBY_CONTACT_FORM_EN}`);
 				setMetaLang("en");
-				setMetaDescription("Removall is specialized in designing carbon funds and developing carbon sequestration projects.");
 			}
 		}
 		navBarTypeLanguage()
@@ -121,7 +118,6 @@ function Contact({ pageContext }){
 				<meta charSet="utf-8" />
 				<html lang={metaLang} />
 				<title>{dataC.titreOngletDeLaPage}</title>
-				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			{dataC && dataForm ?
 				<main className="contact">
@@ -200,27 +196,27 @@ function Contact({ pageContext }){
 								:null}
 								<div className="content-sociaux">
 									{dataC.lienTwitter ?
-										<a href={dataC.lienTwitter} className="content-sociaux__image" target="_blank">
+										<a href={dataC.lienTwitter} className="content-sociaux__image" target="_blank" rel="noreferrer">
 											<img src={dataC.iconTwitter.sourceUrl} alt={dataC.iconTwitter.altText}/>
 										</a>
 									:null}
 									{dataC.lienFacebook ?
-										<a href={dataC.lienFacebook} className="content-sociaux__image" target="_blank">
+										<a href={dataC.lienFacebook} className="content-sociaux__image" target="_blank" rel="noreferrer">
 											<img src={dataC.iconFacebook.sourceUrl} alt={dataC.iconFacebook.altText}/>
 										</a>
 									:null}
 									{dataC.lienInstagram ?
-										<a href={dataC.lienInstagram} className="content-sociaux__image" target="_blank">
+										<a href={dataC.lienInstagram} className="content-sociaux__image" target="_blank" rel="noreferrer">
 											<img src={dataC.iconInstagram.sourceUrl} alt={dataC.iconInstagram.altText}/>
 										</a>
 									:null}
 									{dataC.lienLinkedin ?
-										<a href={dataC.lienLinkedin} className="content-sociaux__image" target="_blank">
+										<a href={dataC.lienLinkedin} className="content-sociaux__image" target="_blank" rel="noreferrer">
 											<img src={dataC.iconLinkedin.sourceUrl} alt={dataC.iconLinkedin.altText} />
 										</a>
 									:null}
 									{dataC.lienYoutube ?
-										<a href={dataC.lienYoutube} className="content-sociaux__image" target="_blank">
+										<a href={dataC.lienYoutube} className="content-sociaux__image" target="_blank" rel="noreferrer">
 											<img src={dataC.iconYoutube.sourceUrl} alt={dataC.iconYoutube.altText} />
 										</a>
 									:null}

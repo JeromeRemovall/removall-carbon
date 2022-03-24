@@ -346,7 +346,7 @@ const Footer = () => {
 			}
 		}
 		checkLocation()
-	}, [language, data.frResources.nodes, data.enResources.nodes, data.footerEn.nodes, data.footerFr.nodes, data.newsletterEn.nodes, data.newsletterFr.nodes, dataE, dataFooterN.blocVisiblePageAPropos, dataFooterN.blocVisiblePageAccueil, dataFooterN.blocVisiblePageContact, dataFooterN.blocVisiblePageNosProjets, dataFooterN.blocVisiblePageNosServices, dataFooterN.blocVisiblePageNotreEcosysteme, dataFooterN.blocVisiblePageRessourcesEtPublications, url])
+	}, [language, data.frResources.nodes, data.enResources.nodes, data.footerEn.nodes, data.footerFr.nodes, data.newsletterEn.nodes, data.newsletterFr.nodes, dataE, dataFooterN.blocVisiblePageAPropos, dataFooterN.blocVisiblePageAccueil, dataFooterN.blocVisiblePageContact, dataFooterN.blocVisiblePageNosProjets, dataFooterN.blocVisiblePageNosServices, dataFooterN.blocVisiblePageNotreEcosysteme, dataFooterN.blocVisiblePageRessourcesEtPublications, data.equipeEn.nodes, data.equipeFr.nodes, dataR.length, url])
 
 	const formSubmissionHandler = (event) => {
 		event.preventDefault();
@@ -451,27 +451,27 @@ const Footer = () => {
 								<h4>{dataF.titreReseauxSociaux}</h4>
 								<div className="footer-social__logo">
 									{dataF.lien1ReseauxSociaux !== null ? 
-										<a href={dataF.lien1ReseauxSociaux} target="_blank">
+										<a href={dataF.lien1ReseauxSociaux} target="_blank" rel="noreferrer">
 											<img src={dataF.logo1ReseauxSociaux.sourceUrl}  alt={dataF.logo1ReseauxSociaux.altText}  />
 										</a>
 									:null}
 									{dataF.lien2ReseauxSociaux !== null ? 
-										<a href={dataF.lien2ReseauxSociaux} target="_blank">
+										<a href={dataF.lien2ReseauxSociaux} target="_blank" rel="noreferrer">
 											<img src={dataF.logo2ReseauxSociaux.sourceUrl}  alt={dataF.logo2ReseauxSociaux.altText}  />
 										</a>
 									:null}
 									{dataF.lien3ReseauxSociaux !== null ? 
-										<a href={dataF.lien3ReseauxSociaux} target="_blank">
+										<a href={dataF.lien3ReseauxSociaux} target="_blank" rel="noreferrer">
 											<img src={dataF.logo3ReseauxSociaux.sourceUrl}  alt={dataF.logo3ReseauxSociaux.altText}  />
 										</a>
 									:null}
 									{dataF.lien4ReseauxSociaux !== null ? 
-										<a href={dataF.lien4ReseauxSociaux} target="_blank">
+										<a href={dataF.lien4ReseauxSociaux} target="_blank" rel="noreferrer">
 											<img src={dataF.logo4ReseauxSociaux.sourceUrl}  alt={dataF.logo4ReseauxSociaux.altText}  />
 										</a>
 									:null}
 									{dataF.lien5ReseauxSociaux !== null ? 
-										<a href={dataF.lien5ReseauxSociaux} target="_blank">
+										<a href={dataF.lien5ReseauxSociaux} target="_blank" rel="noreferrer">
 											<img src={dataF.logo5ReseauxSociaux.sourceUrl}  alt={dataF.logo5ReseauxSociaux.altText}  />
 										</a>
 									:null}

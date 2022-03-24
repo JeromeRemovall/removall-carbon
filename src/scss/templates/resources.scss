@@ -36,7 +36,7 @@ main.resources{
 				box-sizing: border-box
 			}
 
-			h2{
+			h1, h2{
 				@include chillax-display-m;
 				color: $primary-blue-700;
 				width: 342px;

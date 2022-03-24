@@ -161,7 +161,6 @@ function Resources({ pageContext }){
 	const [messageOrganization, setMessageOrganization] = useState("");
 
 	const [metaLang, setMetaLang] = useState("");
-	const [metaDescription, setMetaDescription] = useState("");
 
 	useEffect(() => {
 
@@ -178,14 +177,12 @@ function Resources({ pageContext }){
 				setDataEvents(data.frEvents.nodes);
 				setUrl(`${process.env.GATSBY_RESOURCES_FORM_FR}`)
 				setMetaLang("fr");
-				setMetaDescription("Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.");
 			}else if(window.location.href.match("/en$") || window.location.href.match("/en/")){
 				setDataNews(data.enNews.nodes);
 				setDataResources(data.enResources.nodes);
 				setDataEvents(data.enEvents.nodes);
 				setUrl(`${process.env.GATSBY_RESOURCES_FORM_EN}`)
 				setMetaLang("en");
-				setMetaDescription("Removall is specialized in designing carbon funds and developing carbon sequestration projects.");
 			}
 		}
 		getLanguage();
@@ -287,7 +284,6 @@ function Resources({ pageContext }){
 				<meta charSet="utf-8" />
 				<html lang={metaLang} />
 				<title>{dataR.titreOngletDeLaPage}</title>
-				{/* <meta name="description" content={metaDescription} /> */}
 			</Helmet>
 			{dataR ?
 				<>
@@ -319,7 +315,7 @@ function Resources({ pageContext }){
 				<main className="resources">
 					<section className="bloc-1">
 						<div className="bloc-1__container">
-							<h2>{dataR.bloc1Titre}</h2>
+							<h1>{dataR.bloc1Titre}</h1>
 							{/* {filePath ? <a href={filePath} download>download cat.png</a> :null} */}
 							<div className="bloc-1__content">
 								{dataNews.length > 0 ? 
