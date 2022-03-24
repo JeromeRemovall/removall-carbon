@@ -10,8 +10,8 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-sass`,
-    `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`,
+    //`gatsby-plugin-image`,
+    //`gatsby-plugin-sharp`,
     //`gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify`,
@@ -35,11 +35,11 @@ module.exports = {
         useLangKeyLayout: false,
       }
     },
-    {
+    /*{
       resolve: `gatsby-plugin-manifest`,
       options: {
         icon: "src/images/icon.png", 
       }
-    }
+    }*/
   ],
 };
