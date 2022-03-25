@@ -5,7 +5,7 @@ export default function HTML(props) {
   return (
     <html {...props.htmlAttributes}>
       <head>
-	  	<link id="favicon" rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	  	<link id="favicon" rel="icon" href="https://www.portailadminremovall2021.removall-carbon.com/wp-content/uploads/2022/03/favicon.png" type="image/x-icon"/>
 	  	<script
 			dangerouslySetInnerHTML={{
 				__html: `
