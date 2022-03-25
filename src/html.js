@@ -5,11 +5,12 @@ export default function HTML(props) {
   return (
     <html {...props.htmlAttributes}>
       <head>
+	  	<link id="favicon" rel="icon" href="/favicon.ico" type="image/x-icon"/>
 	  	<script
 			dangerouslySetInnerHTML={{
 				__html: `
 						window.axeptioSettings = {
-							clientId: "${process.env.AXEPTIO}",
+							clientId: "62364fe462f500a3bda378a7",
 						};
 						
 						(function(d, s) {
@@ -23,7 +24,7 @@ export default function HTML(props) {
 							(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 							m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 							})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-							ga('create', '${process.env.GA_TRACKING_ID}', 'auto');
+							ga('create', 'G-FTJ26XV0B7', 'auto');
 							ga('send', 'pageview');
 						}
 
