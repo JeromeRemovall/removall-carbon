@@ -23,6 +23,11 @@ module.exports = {
           graphql: {
             copyHtmlResponseOnError: true
           }
+        },
+        schema: {
+          perPage: 20,
+          requestConcurrency: 5,
+          previewRequestConcurrency: 2,
         }
       }
     },
