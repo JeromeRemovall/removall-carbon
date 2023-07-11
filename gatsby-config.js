@@ -21,7 +21,6 @@ module.exports = {
         url: process.env.URL_API,
         debug: {
           graphql: {
-            copyHtmlResponseOnError: true
           }
         },
         schema: {
