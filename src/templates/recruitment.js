@@ -210,7 +210,7 @@ function Recruitment({ pageContext }){
 						<h2>{dataR.bloc3Titre}</h2>
 						<div className="bloc-3__header-filter">
 							<select name="team" id="team" value={selectedTeam} onChange={(e)=> setSelectedTeam(e.target.value)}>
-								<option class="optionDefault" value={dataR.nomDuPremierFiltre} selected disabled>{dataR.nomDuPremierFiltre}</option>
+								<option class="optionDefault" value={dataR.nomDuPremierFiltre} selected>{dataR.nomDuPremierFiltre}</option>
 								{arrayfilters1.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
@@ -218,7 +218,7 @@ function Recruitment({ pageContext }){
 								})}
 							</select>
 							<select name="typeOfContract" id="typeOfContract" value={selectedTypeOfContract} onChange={(e)=> setSelectedTypeOfContract(e.target.value)}>
-								<option value={dataR.nomDuDeuxiemeFiltre} selected disabled>{dataR.nomDuDeuxiemeFiltre}</option>
+								<option value={dataR.nomDuDeuxiemeFiltre} selected>{dataR.nomDuDeuxiemeFiltre}</option>
 								{arrayfilters2.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
@@ -226,7 +226,7 @@ function Recruitment({ pageContext }){
 								})}
 							</select>
 							<select name="location" id="location" value={selectedLocation} onChange={(e)=> setSelectedLocation(e.target.value)}>
-								<option value={dataR.nomDuTroisiemeFiltre} selected disabled>{dataR.nomDuTroisiemeFiltre}</option>
+								<option value={dataR.nomDuTroisiemeFiltre} selected >{dataR.nomDuTroisiemeFiltre}</option>
 								{arrayfilters3.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
