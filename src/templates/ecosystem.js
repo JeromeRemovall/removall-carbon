@@ -13,7 +13,6 @@ const query = graphql`
 	query{
 		blocClients : allWpPost(
 				filter: {categories: {nodes: {elemMatch: {name: {eq: "clients"}}}}}
-				sort: {fields: date, order: ASC}
 			){
 			nodes {
 				logoClientOuPartenaires {
@@ -27,7 +26,6 @@ const query = graphql`
 		}
 		blocCustomers : allWpPost(
 				filter: {categories: {nodes: {elemMatch: {name: {eq: "customers"}}}}}
-				sort: {fields: date, order: ASC}
 			){
 			nodes {
 				logoClientOuPartenaires {
@@ -40,30 +38,36 @@ const query = graphql`
 			}
 		}
 		blocPartenaires : allWpPost(
-				filter: {categories: {nodes: {elemMatch: {name: {eq: "partenaires"}}}}}
-				sort: {fields: date, order: ASC}
-			){
-			nodes {
+			filter: {categories: {nodes: {elemMatch: {name: {eq: "partenaires"}}}}}
+			sort: {fields: title}
+		  ) {
+			edges {
+			  node {
 				logoClientOuPartenaires {
-					logo {
-						sourceUrl
-						altText
-					}
-					lienVersSite
+				  logo {
+					altText
+					sourceUrl
+				  }
+				  lienVersSite
 				}
+				title
+			  }
 			}
 		}
 		blocPartners : allWpPost(
 				filter: {categories: {nodes: {elemMatch: {name: {eq: "partners"}}}}}
-				sort: {fields: date, order: ASC}
-			){
-			nodes {
-				logoClientOuPartenaires {
-					logo {
-						sourceUrl
-						altText
+				sort: {fields: title}
+		) {
+			edges {
+				node {
+					logoClientOuPartenaires {
+						logo {
+							altText
+							sourceUrl
+						}
+						lienVersSite
 					}
-					lienVersSite
+					title
 				}
 			}
 		}
@@ -83,16 +87,17 @@ function Ecosystem({ pageContext }){
 		function getLanguage(){
 			if(window.location.href.match("/fr$") || window.location.href.match("/fr/")){
 				setDataCustomers(data.blocClients.nodes);
-				setDataPartners(data.blocPartenaires.nodes);
+				setDataPartners(data.blocPartenaires.edges);
 				setMetaLang("fr");
+				console.log(data.blocPartenaires.edges)
 			}else if(window.location.href.match("/en$") || window.location.href.match("/en/")){
 				setDataCustomers(data.blocCustomers.nodes);
-				setDataPartners(data.blocPartners.nodes);
+				setDataPartners(data.blocPartners.edges);
 				setMetaLang("en");
 			}
 		}
 		getLanguage();
-	}, [data.blocClients.nodes, data.blocCustomers.nodes, data.blocPartenaires.nodes, data.blocPartners.nodes])
+	}, [data.blocClients.nodes, data.blocCustomers.nodes, data.blocPartenaires.edges, data.blocPartners.edges])
 
 	return(
 		<Layout>
@@ -114,10 +119,10 @@ function Ecosystem({ pageContext }){
 							<h2>{dataE.bloc1Titre}</h2>
 							<div dangerouslySetInnerHTML={ { __html: dataE.bloc1Texte} }></div>
 								<div className="bloc-logo">
-									{dataPartners.map((logo) => {
+									{dataPartners.map((logo, index) => {
 										return(
-											<a href={logo.logoClientOuPartenaires.lienVersSite} target="_blank" rel="noreferrer" className="bloc-logo__image">
-												<img key={logo} src={logo.logoClientOuPartenaires.logo.sourceUrl} alt={logo.logoClientOuPartenaires.logo.altText}/>
+											<a key={`link-${index}`} href={logo.node.logoClientOuPartenaires.lienVersSite} target="_blank" rel="noreferrer" className="bloc-logo__image">
+												<img key={`logo-${index}`} src={logo.node.logoClientOuPartenaires.logo.sourceUrl} alt={logo.node.logoClientOuPartenaires.logo.altText}/>
 											</a>
 										)
 									})}
