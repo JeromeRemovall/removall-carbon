@@ -79,6 +79,7 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
         {props.postBodyComponents}
+		<script src='https://widgets.sociablekit.com/linkedin-page-posts/widget.js' async defer></script>
       </body>
     </html>
   )

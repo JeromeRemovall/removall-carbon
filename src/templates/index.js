@@ -14,6 +14,7 @@ import "../scss/templates/index.scss"
 
 import { graphql, useStaticQuery } from "gatsby";
 import { Helmet } from "react-helmet"
+import PopIn from '../components/popIn'
 
 const query = graphql`
 	query{
@@ -181,6 +182,7 @@ function Home({ pageContext }){
 				<title>{dataH.titreOngletDeLaPage}</title>
 				<meta name="description" content={metaDescription} />
 			</Helmet>
+			<PopIn/>
 			{dataH && data && dataSlider ?   
 				<main className="home">
 					<section className="slider-home">
@@ -260,6 +262,19 @@ function Home({ pageContext }){
 							</div>
 						</section>
 					:null}
+					{/* <aside className='linkedin_container'>
+						<div className='linkedin_posts'>
+							<div className='posts_header'>
+								<h3 className='title_mobile'>Nos dernières publications</h3>
+								<h3 className='title_desktop'>Nos dernières publications Linkedin</h3>
+								<div className='btn_close'></div>
+							</div>
+							<div>
+								<div class='sk-ww-linkedin-page-post' data-embed-id='224960'></div>
+							</div>
+						</div>
+						<p className='linkedin_tooltip'>Nos dernières<br/>publications</p>
+					</aside> */}
 				</main>
 			:
 			<Loader /> 

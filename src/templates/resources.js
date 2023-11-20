@@ -99,8 +99,7 @@ const query = graphql`
 		}
 		frEvents : allWpPost(
 			filter: {categories: {nodes: {elemMatch: {name: {eq: "évènements"}}}}}
-			sort: {fields: date, order: DESC}
-		){
+			){
 			nodes{
                 events{
                     jour
@@ -112,13 +111,13 @@ const query = graphql`
                         altText
                     }
                     texte
+					dateDeLevenement
                 }
             }
 		}
 		enEvents : allWpPost(
 			filter: {categories: {nodes: {elemMatch: {name: {eq: "events"}}}}}
-			sort: {fields: date, order: DESC}
-		){
+			){
 			nodes{
                 events{
                     jour
@@ -130,6 +129,7 @@ const query = graphql`
                         altText
                     }
                     texte
+					dateDeLevenement
                 }
             }
 		}
@@ -174,12 +174,20 @@ function Resources({ pageContext }){
 			if(window.location.href.match("/fr$") || window.location.href.match("/fr/")){
 				setDataNews(data.frNews.nodes);
 				setDataResources(data.frResources.nodes);
+
+				data.frEvents.nodes.sort(function(a,b){
+					return new Date(b.events.dateDeLevenement?.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")) - new Date(a.events.dateDeLevenement?.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+				});
 				setDataEvents(data.frEvents.nodes);
 				setUrl(`${process.env.GATSBY_RESOURCES_FORM_FR}`)
 				setMetaLang("fr");
 			}else if(window.location.href.match("/en$") || window.location.href.match("/en/")){
 				setDataNews(data.enNews.nodes);
 				setDataResources(data.enResources.nodes);
+				data.enEvents.nodes.sort(function(a,b){
+					return new Date(b.events.dateDeLevenement?.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")) - new Date(a.events.dateDeLevenement?.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+				});
+				console.log(data.enEvents.nodes)
 				setDataEvents(data.enEvents.nodes);
 				setUrl(`${process.env.GATSBY_RESOURCES_FORM_EN}`)
 				setMetaLang("en");
