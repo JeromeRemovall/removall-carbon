@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import "../scss/components/footer.scss";
 
 import Newsletter from "../components/newsletter";
+import PopIn from "./popIn";
 
 const query = graphql `
 	query{
@@ -397,6 +398,7 @@ const Footer = () => {
 
 	return(
 		<>
+		<PopIn/>
 		{data && logo ? 
 			<>
 			{visibleNewsletter ? 

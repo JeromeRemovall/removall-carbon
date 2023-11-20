@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import PopIn from "./components/popIn"
 
 export default function HTML(props) {
   return (
@@ -77,7 +78,7 @@ export default function HTML(props) {
           key={`body`}
           id="___gatsby"
           dangerouslySetInnerHTML={{ __html: props.body }}
-        />
+		  />
         {props.postBodyComponents}
 		<script src='https://widgets.sociablekit.com/linkedin-page-posts/widget.js' async defer></script>
       </body>

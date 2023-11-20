@@ -182,7 +182,6 @@ function Home({ pageContext }){
 				<title>{dataH.titreOngletDeLaPage}</title>
 				<meta name="description" content={metaDescription} />
 			</Helmet>
-			<PopIn/>
 			{dataH && data && dataSlider ?   
 				<main className="home">
 					<section className="slider-home">
