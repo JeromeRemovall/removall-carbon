@@ -89,7 +89,7 @@ const PopIn = () => {
 			setTimeout(function(){
 				document.body.classList.add("stop-scrolling")
 				setVisibleNewsletter(!newsLettersCookie)
-			}, 10000);
+			}, 5000);
 		}
 
 		function navBarTypeLanguage(){
