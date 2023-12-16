@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react"
 import { graphql, useStaticQuery } from "gatsby";
 import "../scss/templates/project.scss"
 import Masonry from 'react-masonry-css'
+import { geo } from "d3";
+import DataMap from  'datamaps'
 
 import BlocHeader from "../components/blocHeader"
 import Description from "../components/description"
@@ -10,6 +12,8 @@ import CardFull from "../components/cardFull"
 
 import Loader from "../components/loader"
 import { Helmet } from "react-helmet"
+import isMobile from "../utils/global";
+import Maps from "../utils/maps";
 
 const query = graphql`
 	query{
@@ -86,6 +90,87 @@ function Project({ pageContext }){
 	const [dataCP2, setDataCategory2]  = useState("");
 
 	const [metaLang, setMetaLang] = useState("");
+	let maps
+
+	const zoomIn = () => {
+		maps.zoomIn();
+	}
+
+	const zoomOut = () => {
+		maps.zoomOut();
+	}
+
+	useEffect(()=> {
+		maps = new Maps(document.querySelector('#map svg'))
+		maps.initControls()
+	})
+
+	let projectionMobile = function(element) {
+		var projection = geo.equirectangular()
+			.center([-18, -25])
+			.rotate([0, 0])
+			.scale(140)
+			.translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+		var path = geo.path()
+			.projection(projection);
+	
+		return {path: path, projection: projection};
+	}
+
+	
+
+	useEffect(() => {
+		if(!isMobile()) {
+			projectionMobile = null
+		}
+		
+		var map = new DataMap({
+			element: document.querySelector('#map'),
+			setProjection: projectionMobile ,
+			fills: {
+			   defaultFill: '#EBF2FF',
+			   project: '#B7CBFF'
+		    },
+			data: {
+				BRA: {
+					fillKey: 'project',
+					numberOfThings: 2002
+				},
+				AGO: {
+					fillKey: 'project',
+					place: 'Angola, Luanda',
+					projects: [
+						{
+							id: 'ago_prj_1',
+							name: 'Restauration mangrove'
+						},
+						{
+							id: 'ago_prj_2',
+							name: 'Restauration mangrove'
+						},
+						{
+							id: 'ago_prj_3',
+							name: 'Restauration mangrove'
+						}
+					]
+				}
+			},
+			responsive: true,
+			geographyConfig: {
+				borderWidth: 1,
+				highlightOnHover: true,
+        		highlightFillColor: '#5F89F4',
+				borderOpacity: 1,
+				borderColor: '#C6CFE7',
+				popupTemplate: (geo, data) => maps.templatePopIn(geo, data)
+			}
+	   }, []);
+
+	    window.addEventListener('resize', function() {
+        	map.resize();
+    	});
+	}, [])
+
 
 	useEffect(() => {
 		function getLanguage(){
@@ -100,6 +185,7 @@ function Project({ pageContext }){
 			}
 		}
 		getLanguage();
+
 	}, [dataCP1, dataCP2, projects.enCategory1.nodes, projects.enCategory2.nodes, projects.frCategory1.nodes, projects.frCategory2.nodes])
 
 	return(
@@ -112,6 +198,19 @@ function Project({ pageContext }){
 			{dataP ?
 				<main className="project">
 					<BlocHeader title={dataP.titre} img={dataP.image.sourceUrl} text={dataP.description} alt={dataP.image.altText}/>
+					<section className="map_project">
+						<div className="map_title">
+							<Description title={dataP.bloc1Titre} text={dataP.bloc1Texte}/>
+						</div>
+						<div className="map_container">
+							<div className="controls_container">
+								<button className="btn_map minus_btn" onClick={zoomIn}></button>
+								<div className="divider"></div>
+								<button className="btn_map plus_btn" onClick={zoomOut}></button>
+							</div>
+							<div id="map"></div>
+						</div>
+					</section>
 					<section className="bloc-1">
 						<Description title={dataP.bloc1Titre} text={dataP.bloc1Texte}/>
 						<div className="bloc-1__content">

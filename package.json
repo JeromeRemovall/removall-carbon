@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -17,6 +17,8 @@
   "dependencies": {
     "-": "0.0.1",
     "axios": "^0.24.0",
+    "d3": "^3.5.17",
+    "datamaps": "^0.5.9",
     "dotenv": "^10.0.0",
     "feather-icons": "^4.28.0",
     "gatsby": "4",

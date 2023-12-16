@@ -1,15 +1,25 @@
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 // const { default: Recruitment } = require("./src/templates/test");
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    plugins: [
-      new FilterWarningsPlugin({
-        exclude:
-          /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
-      }),
-    ],
-  });
+exports.onCreateWebpackConfig = ({  stage, loaders, actions }) => {
+  if (stage === "build-html" || stage === "develop-html") {
+    actions.setWebpackConfig({
+      plugins: [
+        new FilterWarningsPlugin({
+          exclude:
+            /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
+        }),
+      ],
+      module: {
+        rules: [
+          {
+            test: /datamaps/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    });
+  }
 };
 
 exports.createPages = async ({ graphql, actions }) =>  {
