@@ -99,7 +99,7 @@ function Recruitment({ pageContext }){
 
 	const { dataRecruitment } = pageContext;
 	const dataR = dataRecruitment.recruitment;
-
+	console.log('data', dataR)
 	const [metaLang, setMetaLang] = useState("");
 
 	const arrayfilters1 = [];
@@ -147,6 +147,7 @@ function Recruitment({ pageContext }){
 			}
 		}
 		getLanguage();
+
 	}, [dataO, dataSlider, openPanelFilters, data.imagesSliderEn.nodes, data.imagesSliderFr.nodes, data.offersEn.nodes, data.offersFr.nodes])
 
 	function setFilters(){
@@ -185,8 +186,6 @@ function Recruitment({ pageContext }){
 		setSelectedLocation(dataR.nomDuTroisiemeFiltre)
 	}
 
-	console.log(slides.length > 0)
-
 	return(
 		<Layout>
 			<Helmet>
@@ -197,9 +196,6 @@ function Recruitment({ pageContext }){
 			{dataO && dataR ?
 			<main className="recruitment">
 				<BlocHeader title={dataR.titre} img={dataR.imageDeFond.sourceUrl} alt={dataR.imageDeFond.altText}/>
-				<section className="bloc-1">
-					<Description title={dataR.bloc1Titre} text={dataR.bloc1Texte} />
-				</section>
 				{dataR.bloc2Video !== null? 
 					<section className="bloc-2">
 						<Video src={dataR.bloc2Video.mediaItemUrl} thumbnail={dataR.miniatureVideo.sourceUrl}/>
@@ -332,6 +328,29 @@ function Recruitment({ pageContext }){
 					</div>
 					{dataO.length > 6 && open === false ? <Button label={dataR.bloc3BoutonOuvrir} labelMobile={dataR.bloc3BoutonOuvrirMobile} onClick={openOffers} /> : null}
 					{dataO.length > 6 && open === true ? <Button label={dataR.bloc3BoutonFermer} labelMobile={dataR.bloc3BoutonFermerMobile} onClick={openOffers} /> : null}
+				</section>
+				<section className="bloc-1">
+					<Description title={dataR.rhSectionTitre} text={dataR.rhSectionDescription} />
+				</section>
+				<section className='rh_container'>
+					<div className='illustration'>
+							<img src={dataR.rhSectionVisuel.mediaItemUrl} alt=""/>
+					</div>
+					<div className='content'>
+						<div class="content_part_text" dangerouslySetInnerHTML={ { __html: dataR.rhSectionBlocTexte } }>
+						</div>
+						<div class="content_part_data">
+							<div>
+								<div className='data_content' dangerouslySetInnerHTML={ { __html: dataR.rhSectionData.data1 }}></div>
+								<div className='data_content' dangerouslySetInnerHTML={ { __html: dataR.rhSectionData.data2 }}></div>
+							</div>
+							<div className='data_content' dangerouslySetInnerHTML={ { __html: dataR.rhSectionData.data3 }}></div>
+							<div className='data_content' dangerouslySetInnerHTML={ { __html: dataR.rhSectionData.data4 }}></div>
+						</div>
+						<div class="content_part_file">
+							<a target='_blank' href={dataR.rhSectionFile.mediaItemUrl} >{dataR.rhSectionTexteCharteDeParite}</a>
+						</div>
+					</div>
 				</section>
 				{slides.length > 0 ? 
 				<section className="bloc-4">

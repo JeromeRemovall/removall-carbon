@@ -502,6 +502,23 @@ exports.createPages = async ({ graphql, actions }) =>  {
                   nomDuPremierFiltre
                   nomDuDeuxiemeFiltre
                   nomDuTroisiemeFiltre
+                  rhSectionDescription
+                  rhSectionTitre
+                  rhSectionBlocTexte
+                  rhSectionData {
+                    data1
+                    data2
+                    data3
+                    data4
+                  }
+                  rhSectionTexteCharteDeParite
+                  rhSectionFile {
+                    mediaItemUrl
+                  }
+                  rhSectionVisuel {
+                    title
+                    mediaItemUrl
+                  }
                 }
                 slug
                 language {
