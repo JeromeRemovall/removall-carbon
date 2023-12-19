@@ -2,9 +2,83 @@
 @import "../mixins/text-style";
 @import "../mixins//breakpoints";
 
-main.resources{
+@media (max-width: 834px){
+	.navbar-responsive {
+		display: none;
+	}
+}
 
+html {
+	scroll-behavior: smooth;
+}
+main.resources{
 	width: 100vw;
+	padding-top: 100px;
+	background-color: $primary-blue-100;
+	.navbar-container-secondary{
+		position: sticky;
+		top: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 1248px;
+		height: auto;
+		margin: 0 auto;
+		box-sizing: border-box;
+
+		@include xl {
+			width: 100%;
+			padding: 0px 24px;
+		}
+
+		.navbar-small{
+			
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: fit-content;
+			height: 56px;
+			background-color: $primary-blue-100;
+			border-radius: 50px;
+		
+			@include xl {
+				display: flex;
+			}
+		
+			ul{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: fit-content;
+				padding: 8px 8px;
+				box-sizing: border-box;
+		
+				a{
+					@include montserrat-label-m-s;
+					display: flex;
+					color: $primary-blue-500;
+					cursor: pointer;
+					transition: all 0.5s ease-in-out 0s;
+					padding: 12px;
+					border-radius: 24px;
+					text-align: center;
+		
+					&.active{
+						color: $light-100;
+						padding: 12px;
+						background-color: $primary-blue-500;
+						border-radius: 24px;
+					}
+				}
+			}
+		}
+
+		@include xl-paysage{
+			width: 100%;
+			padding: 0 48px 0px 48px;
+			box-sizing: border-box;
+		}
+	}
 
 	.bloc-1{
 		display: flex;
@@ -12,12 +86,12 @@ main.resources{
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		padding: 168px 0px 108px 0px;
+		padding: 18px 0px 108px 0px;
 		box-sizing: border-box;
 		background-color: $primary-blue-100;
 
 		@include xl{
-			padding: 168px 0px 80px 0px;
+			padding: 138px 0px 80px 0px;
 		}
 
 		.bloc-1__container{
@@ -114,6 +188,21 @@ main.resources{
 			}
 
 		}
+	}
+
+	.container_more {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		.btn_more {
+			@include montserrat-label-l-s;
+			padding: 12px 32px;
+			background: $primary-blue-500;
+			border-radius: 29px;
+			border: 0px;
+			color: $primary-blue-100;
+		}
+
 	}
 
 	.bloc-2{

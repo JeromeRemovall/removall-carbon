@@ -99,7 +99,6 @@ function Recruitment({ pageContext }){
 
 	const { dataRecruitment } = pageContext;
 	const dataR = dataRecruitment.recruitment;
-	console.log('data', dataR)
 	const [metaLang, setMetaLang] = useState("");
 
 	const arrayfilters1 = [];

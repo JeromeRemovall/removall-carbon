@@ -30,7 +30,6 @@
 		animation-name: slidedown;
 		animation-duration: 0.2s;
 		animation-timing-function: ease-in;
-
 		@keyframes slidedown {
 			from { top: -88px; }
 			to   { top: 0px; }
@@ -165,6 +164,7 @@
 		justify-content: space-between;
 		width: 100vw;
 		position: fixed;
+		top: -80px;
 		z-index: 3;
 		height: 80px;
 		background-color: transparent;
@@ -175,6 +175,7 @@
 			animation-name: slidedownMobile;
 			animation-duration: 0.2s;
 			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
 	
 			@keyframes slidedownMobile {
 				from { top: -80px; }

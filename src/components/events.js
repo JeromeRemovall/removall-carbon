@@ -2,7 +2,7 @@ import React   from "react"
 
 import "../scss/components/events.scss";
 
-function Events({ img, day, month, text, hours, adress, alt }){
+function Events({ img, day, month, text, hours, adress, alt, isSpeaker = false, lang }){
 	return(
 		<div className="events">
 			<div className="events-content">
@@ -12,7 +12,13 @@ function Events({ img, day, month, text, hours, adress, alt }){
 				</div>
 				<div className="events-content__infos">
 					<p>{hours}</p>
-					<p>{adress}</p>
+					<div>
+						<p>{adress}</p>
+						{isSpeaker ? (
+							<p className="speaker_item">Removall</p>
+						): <></>
+						}
+					</div>
 				</div>
 			</div>
 			<div className="events-content__image">

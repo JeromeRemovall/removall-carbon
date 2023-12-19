@@ -13,6 +13,8 @@ import Loader from "../components/loader"
 import Masonry from 'react-masonry-css'
 
 import { Helmet } from "react-helmet"
+import { Element} from 'react-scroll'
+import NavbarSmall from "../components/navbar-small";
 
 const query = graphql`
 	query{
@@ -112,6 +114,7 @@ const query = graphql`
                     }
                     texte
 					dateDeLevenement
+					speaker
                 }
             }
 		}
@@ -129,6 +132,7 @@ const query = graphql`
                         altText
                     }
                     texte
+					speaker
 					dateDeLevenement
                 }
             }
@@ -146,6 +150,9 @@ function Resources({ pageContext }){
 	const [dataResources, setDataResources] = useState("");
 	const [dataEvents, setDataEvents] = useState("");
 
+	console.log("article",data)
+	console.log(dataR)
+
 	//Form
 	const [popIn, setPopIn] = useState(false);
 	const [filePath, setFilePath] = useState("");
@@ -161,6 +168,12 @@ function Resources({ pageContext }){
 	const [messageOrganization, setMessageOrganization] = useState("");
 
 	const [metaLang, setMetaLang] = useState("");
+
+	const [news, setNews] = useState([])
+	const [newsIndex, setNewsIndex] = useState(0)
+
+	const [itemNavSelected, setItemNavSelected] = useState("bloc_1");
+
 
 	useEffect(() => {
 
@@ -194,18 +207,69 @@ function Resources({ pageContext }){
 			}
 		}
 		getLanguage();
+		addNews();
+		const blocOneDOM = document.querySelector("#bloc_1")
+		const blocTwoDOM = document.querySelector("#bloc_2")
+		const blocThreeDOM = document.querySelector("#bloc_3")
+
+		document.addEventListener("scroll", () => {
+			if(isInViewport(blocOneDOM)) {
+				selectItemNav("bloc_1")
+			}
+			if(blocTwoDOM !== null ) {
+				if(isInViewport(blocTwoDOM)){
+					selectItemNav("bloc_2")
+				}
+			} 
+			if(isInViewport(blocThreeDOM)) {
+				selectItemNav("bloc_3")
+			} 
+		})
 
 		if(popIn === false){
 			setMessage("");
 		}
 	}, [data.enEvents.nodes, data.enNews.nodes, data.enResources.nodes, data.frEvents.nodes, data.frNews.nodes, data.frResources.nodes, url, popIn])
 
-	console.log(popIn)
+	function isInViewport(element) {
+		const rect = element.getBoundingClientRect();
+		return (
+			(
+				rect.top <= 0 &&
+				rect.bottom >= 0 
+			) ||
+			(
+				rect.top >= 0 &&
+				rect.bottom <= 0 
+			)
+			
+		);
+	}
+
 
 	function downloadFile(path, title){
 		setPopIn(true);
 		setFilePath(path);
 		// setFileTitle(title);
+	}
+
+	function selectItemNav(newItem) {
+		if(newItem !== itemNavSelected) {
+			const oldDom = document.querySelector(`[data-item=${itemNavSelected}]`)
+			oldDom.classList.remove('active')
+			const newDOM = document.querySelector(`[data-item=${newItem}]`)
+			newDOM.classList.add('active')
+			setItemNavSelected(newItem)
+		}
+	}
+
+	function addNews() {
+		let newNews = news
+		for(let i = newsIndex; i < dataNews.length & i < newsIndex + 6; i++) {
+			newNews.push(dataNews[i])
+		}
+		setNewsIndex(newsIndex+6);
+		setNews([...newNews]);
 	}
 
 	function download(){
@@ -321,18 +385,29 @@ function Resources({ pageContext }){
 					/> 
 				: null}
 				<main className="resources">
-					<section className="bloc-1">
+					<div className="navbar-container-secondary">
+						<nav className="navbar-small">
+							<ul>
+								<li><a href="#bloc_1" onClick={() => selectItemNav("bloc_1")} data-item="bloc_1" className="active">{dataR.bloc1Titre}</a></li>
+								{dataResources.length > 0 ? (
+									<li><a href="#bloc_2" onClick={() => selectItemNav("bloc_2")} data-item="bloc_2" className="">{dataR.bloc2Titre}</a></li>
+								) : (<></>)}
+								<li><a href="#bloc_3" onClick={() => selectItemNav("bloc_3")} data-item="bloc_3" className="">{dataR.bloc3Titre}</a></li>
+							</ul>
+						</nav>
+					</div>
+					<section className="bloc-1" id="bloc_1">
 						<div className="bloc-1__container">
 							<h1>{dataR.bloc1Titre}</h1>
 							{/* {filePath ? <a href={filePath} download>download cat.png</a> :null} */}
 							<div className="bloc-1__content">
-								{dataNews.length > 0 ? 
+								{news.length > 0 ? 
 										<>
 										<Masonry
 											breakpointCols={2}
 											className="my-masonry-grid"
 											columnClassName="my-masonry-grid_column">
-											{dataNews.map((item)=> {
+											{news.map((item)=> {
 												return(
 													<CardFull img={item.news.image.sourceUrl} alt={item.news.image.altText} title={item.news.titre} text={item.news.texte} key={item} legendVisible={true} legend={item.news.legende} label={item.news.bouton} href={item.news.boutonLien} />
 												)
@@ -342,7 +417,7 @@ function Resources({ pageContext }){
 											breakpointCols={1}
 											className="my-masonry-grid-mobile"
 											columnClassName="my-masonry-grid_column">
-											{dataNews.map((item)=> {
+											{news.map((item)=> {
 												return(
 													<CardFull img={item.news.image.sourceUrl} alt={item.news.image.altText} title={item.news.titre} text={item.news.texte} key={item} legendVisible={true} legend={item.news.legende} labelMobile={item.news.boutonMobile} href={item.news.boutonLien}/>
 												)
@@ -351,27 +426,19 @@ function Resources({ pageContext }){
 										</>
 								: null}	
 							</div>
-						</div>
-					</section>
-					<section className="bloc-3">
-						<div className="bloc-3__container">
-							<h2>{dataR.bloc3Titre}</h2>
-							<p className="bloc-3__text">{dataR.bloc3Texte}</p>
-							<div className="bloc-3__content">
-								{dataEvents.length > 0 ? 
-										<>
-										{dataEvents.map((item)=> {
-											return(
-												<Events img={item.events.image.sourceUrl} alt={item.events.image.altText} day={item.events.jour} month={item.events.mois} text={item.events.texte} hours={item.events.heures} adress={item.events.adresse} key={item}/>
-											)
-										})}
-										</>
-								: null}
-							</div>
+							{newsIndex <= dataNews.length ? (
+								<div className="container_more">
+									{(metaLang == "fr") ? (
+										<button className="btn_more" onClick={addNews}>Afficher plus d’articles</button>
+									): (
+										<button className="btn_more" onClick={addNews}>View more articles</button>
+									)}
+								</div>
+							):<></>}
 						</div>
 					</section>
 					{dataResources.length > 0 ?
-						<section className="bloc-2">
+						<section className="bloc-2" id="bloc_2">
 							<div className="bloc-2__container">
 								<Description title={dataR.bloc2Titre} text={dataR.bloc2Texte}/>
 								<div className="bloc-2__content">
@@ -388,6 +455,23 @@ function Resources({ pageContext }){
 							</div>
 						</section>
 					: null}
+					<section className="bloc-3" id="bloc_3">
+						<div className="bloc-3__container">
+							<h2>{dataR.bloc3Titre}</h2>
+							<p className="bloc-3__text">{dataR.bloc3Texte}</p>
+							<div className="bloc-3__content">
+								{dataEvents.length > 0 ? 
+										<>
+										{dataEvents.map((item)=> {
+											return(
+												<Events img={item.events.image.sourceUrl} alt={item.events.image.altText} day={item.events.jour} month={item.events.mois} text={item.events.texte} hours={item.events.heures} adress={item.events.adresse} isSpeaker={item.events.speaker} lang={metaLang} key={item}/>
+											)
+										})}
+										</>
+								: null}
+							</div>
+						</div>
+					</section>
 				</main>
 				</>
 			: <Loader /> }
