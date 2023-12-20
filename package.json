@@ -51,7 +51,7 @@
     "sass": "^1.42.1",
     "scroll": "^3.0.1",
     "smooth": "^0.1.1-alpha.61",
-    "swiper": "^8.0.6",
+    "swiper": "^11.0.5",
     "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "resolutions": {
