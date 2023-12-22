@@ -402,6 +402,7 @@ exports.createPages = async ({ graphql, actions }) =>  {
                     bloc1Texte
                     bloc2Titre
                     bloc2Texte
+                    legendeMap
                   }
                   slug
                   language {

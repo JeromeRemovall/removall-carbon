@@ -195,14 +195,33 @@ main.project{
 	.map_interactive {
 		display: flex;
 		flex-direction: column;
-		gap: 24px;
+		gap: 40px;
 		@include xl {
+			gap: 24px;
 			.datamaps-hoverover {
 				display: none !important;
 			}
-			
-
 		}
+
+		.info_container {
+			padding: 0px 96px 80px 96px;
+			position: relative;
+			@include xl {
+				padding: 0px 24px 64px 24px;
+			}
+			> p {
+				padding: 18px 20px;
+				border-radius: 8px;
+				background-color: #FFF;
+				box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+				margin-bottom: 24px;
+			}
+
+			#maps_mobile {
+				width: 100%;
+			}
+		}
+
 		#maps_mobile {
 			display: none;
 			@include xl {

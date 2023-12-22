@@ -222,7 +222,7 @@ function Project({ pageContext }){
 								<div id="map"></div>
 							</div>
 							<div className="info_container">
-								<div></div>
+								<p>{dataP.legendeMap}</p>
 								<div id='maps_mobile'></div>
 							</div>
 						</div>

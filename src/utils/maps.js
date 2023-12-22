@@ -161,10 +161,17 @@ import isMobile from './global'
 			</div>`
 			if (isMobile()) {
 				const infoContainer = document.querySelector('.info_container #maps_mobile')
+				const infopContainer = document.querySelector('.info_container p')
+				infopContainer.style.display = 'none'
 				infoContainer.innerHTML = result
 			} else {
 				return result;
 			}
+		} else  {
+			const infoContainer = document.querySelector('.info_container #maps_mobile')
+			const infopContainer = document.querySelector('.info_container p')
+			infopContainer.style.display = 'block'
+			infoContainer.innerHTML = ""
 		}
 	}
 
