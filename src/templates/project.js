@@ -143,7 +143,7 @@ function Project({ pageContext }){
 
 	
 
-	useEffect(async() => {
+	useEffect(() => {
 		if(!isMobile()) {
 			projectionMobile = null
 		}
@@ -154,8 +154,10 @@ function Project({ pageContext }){
 			lang = "en"
 		}
 
-
-		await maps.clearData(projects.projectsMap.edges, lang);
+		const asyncFn = async () => { 
+			await maps.clearData(projects.projectsMap.edges, lang);
+		};
+  		asyncFn();
 
 		var map = new DataMap({
 			element: document.querySelector('#map'),
