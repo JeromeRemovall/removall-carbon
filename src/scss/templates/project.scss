@@ -210,6 +210,8 @@ main.project{
 				padding: 0px 24px 64px 24px;
 			}
 			> p {
+				@include montserrat-paragraph-l-m;
+				color: $dark-700;
 				padding: 18px 20px;
 				border-radius: 8px;
 				background-color: #FFF;
