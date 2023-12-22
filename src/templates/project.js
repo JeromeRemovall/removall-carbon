@@ -78,6 +78,31 @@ const query = graphql`
 				}
 			}
 		}
+		projectsMap:  allWpAllPays(filter: {}) {
+			edges {
+				node {
+					posts {
+						nodes {
+							projetsMap {
+								nomDuProjet
+								nomDuProjetEn
+								imageDuProjet {
+									mediaItemUrl
+								}
+							}
+							title
+						}
+					}
+					slug
+					name
+					paysTax {
+						capitale
+						code
+						nomDuPays
+					}
+				}
+			}
+		}
 	}
 `
 
@@ -91,7 +116,6 @@ function Project({ pageContext }){
 
 	const [metaLang, setMetaLang] = useState("");
 	let maps
-
 	const zoomIn = () => {
 		maps.zoomIn();
 	}
@@ -119,11 +143,20 @@ function Project({ pageContext }){
 
 	
 
-	useEffect(() => {
+	useEffect(async() => {
 		if(!isMobile()) {
 			projectionMobile = null
 		}
-		
+		let lang; 
+		if(window.location.href.match("/fr$") || window.location.href.match("/fr/")){
+			lang = "fr"
+		}else if(window.location.href.match("/en$") || window.location.href.match("/en/")){
+			lang = "en"
+		}
+
+
+		await maps.clearData(projects.projectsMap.edges, lang);
+
 		var map = new DataMap({
 			element: document.querySelector('#map'),
 			setProjection: projectionMobile ,
@@ -131,30 +164,7 @@ function Project({ pageContext }){
 			   defaultFill: '#EBF2FF',
 			   project: '#B7CBFF'
 		    },
-			data: {
-				BRA: {
-					fillKey: 'project',
-					numberOfThings: 2002
-				},
-				AGO: {
-					fillKey: 'project',
-					place: 'Angola, Luanda',
-					projects: [
-						{
-							id: 'ago_prj_1',
-							name: 'Restauration mangrove'
-						},
-						{
-							id: 'ago_prj_2',
-							name: 'Restauration mangrove'
-						},
-						{
-							id: 'ago_prj_3',
-							name: 'Restauration mangrove'
-						}
-					]
-				}
-			},
+			data: maps.data,
 			responsive: true,
 			geographyConfig: {
 				borderWidth: 1,
@@ -202,13 +212,19 @@ function Project({ pageContext }){
 						<div className="map_title">
 							<Description title={dataP.bloc1Titre} text={dataP.bloc1Texte}/>
 						</div>
-						<div className="map_container">
-							<div className="controls_container">
-								<button className="btn_map minus_btn" onClick={zoomIn}></button>
-								<div className="divider"></div>
-								<button className="btn_map plus_btn" onClick={zoomOut}></button>
+						<div className="map_interactive">
+							<div className="map_container">
+								<div className="controls_container">
+									<button className="btn_map minus_btn" onClick={zoomIn}></button>
+									<div className="divider"></div>
+									<button className="btn_map plus_btn" onClick={zoomOut}></button>
+								</div>
+								<div id="map"></div>
 							</div>
-							<div id="map"></div>
+							<div className="info_container">
+								<div></div>
+								<div id='maps_mobile'></div>
+							</div>
 						</div>
 					</section>
 					<section className="bloc-1">

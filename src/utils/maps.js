@@ -1,4 +1,5 @@
 import DataMap from  'datamaps'
+import isMobile from './global'
 
  class Maps {
 
@@ -13,6 +14,8 @@ import DataMap from  'datamaps'
 		this.mapStyle = map?.querySelector('g')
 		this.moveMap = this.moveMap.bind(this);
 		this.actualGeo = null
+		this.itemsImgList = null
+		this.itemImgLength = 0
 		this.itemsList = null
 		this.itemLength = 0
 		this.itemIndex = 0
@@ -63,6 +66,18 @@ import DataMap from  'datamaps'
 		this.updateStyle()
 	}
 
+	listMedia(projects) {
+		let lists = ''
+		for(let i = 0; i<projects.length; i++) {
+			if(this.itemIndex == i) {
+				lists += `<img src='${projects[i].image}' class='active'/>`
+			} else {
+				lists += `<img src='${projects[i].image}' class=''/>`
+			}
+		}
+		return lists;
+	}
+
 	listItem(projects) {
 		let lists = ''
 		for(let i = 0; i<projects.length; i++) {
@@ -75,8 +90,31 @@ import DataMap from  'datamaps'
 		return lists;
 	}
 
-	templatePopIn(geo, data) {
+	clearData(data, lang) {
+		const dataClean = data.map(element => element.node).filter((r)=> r.posts.nodes.length > 0)
+		let dataFormate = {}
+			dataClean.forEach((item) => {
+				const pays = item.paysTax
+				dataFormate[pays.code] = {
+					fillKey: 'project',
+					place: `${pays.nomDuPays}, ${pays.capitale}`,
+					projects: []
+				}
+				
+				item.posts.nodes.forEach((projet) => {
 
+					dataFormate[pays.code].projects.push({
+						name: (lang == "fr" ? projet.projetsMap.nomDuProjet : projet.projetsMap.nomDuProjetEn),
+						image: projet.projetsMap.imageDuProjet.mediaItemUrl
+					})
+				})
+			})
+			this.data = dataFormate
+			console.log(dataFormate)
+		return  dataFormate;
+	}
+
+	templatePopIn(geo, data) {
 		if(data) {
 
 			if(geo.id !== this.actualGeo) {
@@ -88,23 +126,31 @@ import DataMap from  'datamaps'
 				this.itemIndex = 0
 			} else if( this.itemsList === null ) {
 				const timeout = setTimeout(() => {
+					let domIMG = document.querySelectorAll(".hover_container img")
 					let dom = document.querySelectorAll(".hover_container ul li")
 					this.itemsList = dom
 					this.itemLength = dom.length
+					this.itemsImgList = domIMG
+					this.itemImgLength = domIMG.length
 					clearTimeout(timeout);
 				}, 10);
 			} else if(this.itemsList != null & this.itemLength > 0 & this.interval == null) {
 				this.interval = setInterval(() => {
 					let dom = document.querySelectorAll(".hover_container ul li")
+					let domImg = document.querySelectorAll(".hover_container img")
+					domImg[this.itemIndex]?.classList.remove('active')
 					dom[this.itemIndex]?.classList.remove('active')
 					this.itemIndex =  (this.itemIndex + 1) % this.itemLength
+					domImg[this.itemIndex]?.classList.add('active')
 					dom[this.itemIndex]?.classList.add('active')
 				}, this.intervalTime)
 			}
 
-			return `
+			const result = `
 			<div class="hover_container">
-				<div class="hover_container_illu"></div>
+				<div class="hover_container_illu">
+					${this.listMedia(data.projects)}
+				</div>
 				<div class="hover_container_info">
 					<p class="title"> ${data.projects.length} projets</p>
 					<p class="subtitle">${data.place}</p>
@@ -113,7 +159,12 @@ import DataMap from  'datamaps'
 					</ul>
 				</div>
 			</div>`
-			
+			if (isMobile()) {
+				const infoContainer = document.querySelector('.info_container #maps_mobile')
+				infoContainer.innerHTML = result
+			} else {
+				return result;
+			}
 		}
 	}
 
