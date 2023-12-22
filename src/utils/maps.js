@@ -110,13 +110,11 @@ import isMobile from './global'
 				})
 			})
 			this.data = dataFormate
-			console.log(dataFormate)
 		return  dataFormate;
 	}
 
 	templatePopIn(geo, data) {
 		if(data) {
-
 			if(geo.id !== this.actualGeo) {
 				this.actualGeo = geo.id
 				this.itemsList = null
@@ -124,6 +122,7 @@ import isMobile from './global'
 				this.interval = null
 				this.itemLength = 0
 				this.itemIndex = 0
+				this.templatePopIn(geo, data)
 			} else if( this.itemsList === null ) {
 				const timeout = setTimeout(() => {
 					let domIMG = document.querySelectorAll(".hover_container img")
@@ -133,6 +132,7 @@ import isMobile from './global'
 					this.itemsImgList = domIMG
 					this.itemImgLength = domIMG.length
 					clearTimeout(timeout);
+					this.templatePopIn(geo, data)
 				}, 10);
 			} else if(this.itemsList != null & this.itemLength > 0 & this.interval == null) {
 				this.interval = setInterval(() => {
