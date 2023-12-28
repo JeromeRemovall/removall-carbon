@@ -562,6 +562,85 @@ exports.createPages = async ({ graphql, actions }) =>  {
                 }
               }
             }
+
+            rse :  allWpPage(filter: {category: {name: {eq: "rse"}}}) {
+              nodes {
+                slug
+                language {
+                  slug
+                }
+                rse {
+                  titrePage
+                  titreOngletDeLaPage
+                  titreBloc1
+                  titreBloc2
+                  imageHeaderPage {
+                    altText
+                    mediaItemUrl
+                  }
+                  bloc1 {
+                    texte
+                    image {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  bloc2 {
+                    texte
+                    image {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  bloc3 {
+                    texte
+                    image {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  bloc4 {
+                    texte
+                    image {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  premierElement {
+                    description
+                    titre
+                    icon {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  secondElement {
+                    description
+                    titre
+                    icon {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  troisiemeElement {
+                    description
+                    titre
+                    icon {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  quatriemeElement {
+                    description
+                    titre
+                    icon {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                }
+              }
+            }
         }
     `);
 
@@ -581,6 +660,7 @@ exports.createPages = async ({ graphql, actions }) =>  {
     const legalNoticeTemplate = require.resolve("./src/templates/legalNotice.js");
     const recruitmentTemplate = require.resolve("./src/templates/recruitment.js");
     const offersTemplate = require.resolve("./src/templates/offers.js");
+    const rseTemplate = require.resolve("./src/templates/rse.js");
 
     result.data.home.nodes.forEach(node => {
         createPage({
@@ -662,6 +742,16 @@ exports.createPages = async ({ graphql, actions }) =>  {
       })
     })
 
+    result.data.rse.nodes.forEach(node => {
+      createPage({
+          path: `/${node.language.slug}/${node.slug}/`,
+          component: rseTemplate,
+          context: {
+            dataRse: node,
+          }
+      })
+    })
+    
     result.data.legalNotice.nodes.forEach(node => {
       createPage({
           path: `/${node.language.slug}/${node.slug}/`,
@@ -691,5 +781,7 @@ exports.createPages = async ({ graphql, actions }) =>  {
         })
       })
     })
+
+
 }
 

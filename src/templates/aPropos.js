@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import { graphql, useStaticQuery } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import "../scss/templates/aPropos.scss"
 
 import BlocHeader from "../components/blocHeader"
@@ -287,10 +287,10 @@ function APropos({ pageContext }){
 					<div className="bloc-rse__content">
 						<div className="text_container">
 							<div dangerouslySetInnerHTML={{ __html: dataA.texteRse}}></div>
-							<a href="#" className="link-primary" >
+							<Link to={`/${metaLang}/${metaLang == "fr" ? 'rse' : 'csr'}`} className="link-primary" >
 								<hr />
 								{dataA.texteLienVersLaPageRse}
-							</a>
+							</Link>
 						</div>
 						<div className="illu_container">
 							<img src={dataA.imageRse.sourceUrl} alt={dataA.imageRse.altText}/>

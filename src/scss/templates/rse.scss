@@ -1,0 +1,205 @@
+@import "../variables/colors";
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+main.rse{
+	width: 100vw;
+	section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 1248px;
+		padding: 80px 0px 0px 0px;
+		margin-bottom: 80px;
+		margin: 0 auto;
+		box-sizing: border-box;
+
+		&:last-child{
+			padding-bottom: 111px;
+		}
+
+		@include xl {
+			padding: 48px 24px 0px 24px;
+			width: 100%;
+		}
+	
+		@include xl-paysage {
+			padding: 80px 48px 0px 48px;
+			width: 100%;
+		}
+	}
+
+	h2{
+		@include chillax-display-m;
+		color: $primary-blue-700;
+		margin-bottom: 80px;
+
+		@include xl {
+			@include chillax-heading-xl;
+			margin-bottom: 40px;
+		}
+	}
+
+	h3{
+		@include chillax-heading-m;
+		color: $primary-blue-700;
+		margin-bottom: 16px;
+
+		@include xl {
+			@include chillax-heading-s;
+			margin-bottom: 12px;
+		}
+	}
+	p, li {
+		@include montserrat-paragraph-l-m;
+		color: $dark-500;
+
+		@include xl {
+			@include montserrat-paragraph-m-m;
+		}
+	}
+
+	.btn-primary {
+		@include montserrat-label-l-s;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 24px;
+		border: 2px solid $primary-blue-500;
+		border-radius: 29px;
+		color: $primary-blue-500;
+
+		&::before {
+			content: '';
+			display: block;
+			width: 24px;
+			height: 24px;
+			background-image: url(../../images/arrow-left.svg);
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+	}
+
+	#bloc_1 {
+		.bloc_content {
+			display: flex;
+			flex-wrap: wrap;
+			row-gap: 88px;
+			gap: 32px;
+			@include xl {
+				flex-direction: column;
+				justify-content: center;
+				row-gap: 44px;
+			}
+			.item {
+				display: flex;
+				gap: 32px;
+				width: calc(50% - 32px);
+				@include xl {
+					flex-direction: column;
+					align-items: center;
+					width: 100%;
+				}
+				img {
+					width: 75px;
+					height: 75px;
+					@include xl {
+						width: 48px;
+						height: 48px;
+					}
+				}
+				> div {
+					@include xl {
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+
+	#bloc_2 {
+		@include xl {
+			padding: 80px 0px 0px 0px;
+		}
+		.bloc_content {
+			display: flex;
+			flex-direction: column;
+			gap: 104px;
+			.item {
+				display: flex;
+				gap: min(10%, 140px );
+				> div {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					@include xl {
+						padding: 16px 24px;
+					}
+				}
+				img {
+					width: 50%;
+					object-fit: cover;
+					@include xl {
+						height: 220px;
+						width: 100%;
+					}
+				}
+
+				ul {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					margin-top: 16px;
+					margin-left: 40px;
+					li {
+						display: flex;
+						gap: 12px;
+						&::before {
+							content: '';
+							display: block;
+							width: 8px;
+							height: 8px;
+							min-width: 8px;
+							min-height: 8px;
+							border-radius: 2px;
+							background-color: #24304F;
+							margin-top: 10px;
+							@include xl {
+								margin-top: 8px;
+							}
+						}
+					}
+					@include xl {
+						gap: 8px;
+						margin-left: 0px;
+					}
+				}
+
+				@include xl {
+					flex-direction: column;
+				}
+
+			}
+
+			#commitments_2 {
+				img {
+					@include xl {
+						object-fit: contain;
+					}
+				}
+			}
+
+			.item:nth-child(even) {
+				flex-direction: row-reverse;
+				@include xl {
+					flex-direction: column;
+				}
+			}
+			@include xl {
+				gap: 48px;
+			}
+		}
+	}
+
+}
