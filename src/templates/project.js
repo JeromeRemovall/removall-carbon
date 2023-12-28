@@ -12,8 +12,8 @@ import CardFull from "../components/cardFull"
 
 import Loader from "../components/loader"
 import { Helmet } from "react-helmet"
-import isMobile from "../utils/global";
 import Maps from "../utils/maps";
+import { isMobile } from "../utils/global";
 
 const query = graphql`
 	query{

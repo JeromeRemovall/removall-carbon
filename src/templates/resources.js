@@ -13,8 +13,7 @@ import Loader from "../components/loader"
 import Masonry from 'react-masonry-css'
 
 import { Helmet } from "react-helmet"
-import { Element} from 'react-scroll'
-import NavbarSmall from "../components/navbar-small";
+import { isInViewport } from "../utils/global";
 
 const query = graphql`
 	query{
@@ -208,6 +207,26 @@ function Resources({ pageContext }){
 		}
 		getLanguage();
 		addNews();
+
+		if(popIn === false){
+			setMessage("");
+		}
+	}, [data.enEvents.nodes, data.enNews.nodes, data.enResources.nodes, data.frEvents.nodes, data.frNews.nodes, data.frResources.nodes, url, popIn])
+
+
+	function downloadFile(path, title){
+		setPopIn(true);
+		setFilePath(path);
+		// setFileTitle(title);
+	}
+
+	const myStateRef = React.useRef(itemNavSelected);
+	const setMyState = data => {
+	  myStateRef.current = data;
+	  setItemNavSelected(data);
+	};
+  
+	const listener = () => {
 		const blocOneDOM = document.querySelector("#bloc_1")
 		const blocTwoDOM = document.querySelector("#bloc_2")
 		const blocThreeDOM = document.querySelector("#bloc_3")
@@ -225,44 +244,22 @@ function Resources({ pageContext }){
 				selectItemNav("bloc_3")
 			} 
 		})
+	};
+  
+	useEffect(() => {
+		window.addEventListener("scroll", listener);
+	}, []);
 
-		if(popIn === false){
-			setMessage("");
-		}
-	}, [data.enEvents.nodes, data.enNews.nodes, data.enResources.nodes, data.frEvents.nodes, data.frNews.nodes, data.frResources.nodes, url, popIn])
-
-	function isInViewport(element) {
-		const rect = element.getBoundingClientRect();
-		return (
-			(
-				rect.top <= 0 &&
-				rect.bottom >= 0 
-			) ||
-			(
-				rect.top >= 0 &&
-				rect.bottom <= 0 
-			)
-			
-		);
-	}
-
-
-	function downloadFile(path, title){
-		setPopIn(true);
-		setFilePath(path);
-		// setFileTitle(title);
-	}
 
 	function selectItemNav(newItem) {
-		if(newItem !== itemNavSelected) {
-			const oldDom = document.querySelector(`[data-item=${itemNavSelected}]`)
-			oldDom.classList.remove('active')
+		if(newItem !== myStateRef.current) {
+			const oldDom = document.querySelector(`[data-item=${myStateRef.current}]`)
+			oldDom?.classList.remove('active')
 			const newDOM = document.querySelector(`[data-item=${newItem}]`)
-			newDOM.classList.add('active')
-			setItemNavSelected(newItem)
+			newDOM?.classList.add('active')
+			setMyState(newItem)
 		}
 	}
-
 	function addNews() {
 		let newNews = news
 		for(let i = newsIndex; i < dataNews.length & i < newsIndex + 6; i++) {

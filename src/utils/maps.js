@@ -1,5 +1,5 @@
 import DataMap from  'datamaps'
-import isMobile from './global'
+import { isMobile } from './global'
 
  class Maps {
 
@@ -104,8 +104,8 @@ import isMobile from './global'
 				item.posts.nodes.forEach((projet) => {
 
 					dataFormate[pays.code].projects.push({
-						name: (lang == "fr" ? projet.projetsMap.nomDuProjet : projet.projetsMap.nomDuProjetEn),
-						image: projet.projetsMap.imageDuProjet.mediaItemUrl
+						name: (lang == "fr" ? projet.projetsMap.nomDuProjet : projet.projetsMap?.nomDuProjetEn),
+						image: projet.projetsMap?.imageDuProjet?.mediaItemUrl
 					})
 				})
 			})

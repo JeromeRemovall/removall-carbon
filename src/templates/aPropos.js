@@ -14,6 +14,7 @@ import PopInProfil from "../components/popInProfil"
 import Loader from "../components/loader"
 
 import { Helmet } from "react-helmet"
+import { isInViewport } from "../utils/global";
 
 const query = graphql`
 	query{
@@ -76,7 +77,6 @@ const query = graphql`
 
 function APropos({ pageContext }){
 	const equipe = useStaticQuery(query);
-
 	const { dataAPropos } = pageContext;
 	const dataA = dataAPropos.APropos;
 	const [dataE, setDataE] = useState("");
@@ -87,6 +87,8 @@ function APropos({ pageContext }){
 	const [metaLang, setMetaLang] = useState("");
 
 	const [dataPopIn, setDataPopIn] = useState({});
+	const [itemNavSelected, setItemNavSelected] = useState("about");
+	const [section, setSection] = useState(null);
 
 	useEffect(() => {
 
@@ -115,8 +117,41 @@ function APropos({ pageContext }){
 				document.getElementById(url).scrollIntoView()
 			}
 		}
+
+		
 		scrollTo()   
 	}, [dataE, equipe.en.nodes, equipe.fr.nodes, dataPopIn, openPopIn])
+
+	const myStateRef = React.useRef(itemNavSelected);
+	const setMyState = data => {
+	  myStateRef.current = data;
+	  setItemNavSelected(data);
+	};
+  
+	const listener = () => {
+		const tabDOM = document.querySelectorAll("section")
+		tabDOM.forEach(item => {
+			if(item && isInViewport(item)) {
+				selectItemNav(item.dataset.section)
+			}
+		})
+	};
+  
+	useEffect(() => {
+		window.addEventListener("scroll", listener);
+	}, []);
+
+
+	function selectItemNav(newItem) {
+		if(newItem !== myStateRef.current) {
+			const oldDom = document.querySelector(`[data-item=${myStateRef.current}]`)
+			oldDom?.classList.remove('active')
+			const newDOM = document.querySelector(`[data-item=${newItem}]`)
+			newDOM?.classList.add('active')
+			setMyState(newItem)
+		}
+	}
+
 
 	function addDataPopIn(i){
 		if(dataA && dataE){
@@ -168,13 +203,12 @@ function APropos({ pageContext }){
 		}
 	}
 
+
 	function clickOverlay(e) {
 		if(e.target.className === "pop-in__profil__overlay"){
 			setOpenPopIn(false)
 		}
 	}
-
-	console.log(dataA.bloc8Visible);
 
 	return(
 		<Layout>
@@ -187,10 +221,20 @@ function APropos({ pageContext }){
 			<main className="a-propos">
 				{openPopIn ? <PopInProfil onOverlay={(e)=> clickOverlay(e)} onClose={()=> setOpenPopIn(false)} text={dataPopIn.description} firstname={dataPopIn.firstname} lastname={dataPopIn.lastname} job={dataPopIn.job} img={dataPopIn.img} icon1={dataPopIn.icon1} icon2={dataPopIn.icon2} link1={dataPopIn.link1} link2={dataPopIn.link2} alt={dataPopIn.alt} altIcon1={dataPopIn.altIcon1} altIcon2={dataPopIn.altIcon2} /> : null }
 				<BlocHeader title={dataA.titre} text={dataA.description} img={dataA.imageDeFond.sourceUrl} alt={dataA.imageDeFond.altText}/>
-				<section className="bloc-1" id={language === "fr" ? "a-propos" : "about"}>
+				<div className="navbar-container-secondary">
+					<nav className="navbar-small">
+						<ul>
+							<li><a href="#about" onClick={() => selectItemNav("about")} data-item="about" className="active">{dataA.bloc1Titre}</a></li>
+							<li><a href="#our-vision" onClick={() => selectItemNav("our-vision")} data-item="our-vision" className="">{dataA.bloc3Titre}</a></li>
+							<li><a href="#our-values" onClick={() => selectItemNav("our-values")} data-item="our-values" className="">{language == "fr" ? "Valeurs & RSE" :"Values & CSR"}</a></li>
+							<li><a href="#our-team" onClick={() => selectItemNav("our-team")} data-item="our-team" className="">{language == "fr" ? "Équipe" :"Team"}</a></li>
+						</ul>
+					</nav>
+				</div>
+				<section className="bloc-1"  data-section="about" id="about">
 					<Description title={dataA.bloc1Titre} text={dataA.bloc1Texte}/>
 				</section>
-				<section className="bloc-2">
+				<section className="bloc-2" data-section="about">
 					<div className="bloc-2__image">
 						<img src={dataA.bloc2Image.sourceUrl} alt={dataA.bloc2Image.altText}/>
 					</div>
@@ -201,17 +245,17 @@ function APropos({ pageContext }){
 						<div dangerouslySetInnerHTML={{ __html: dataA.bloc2Texte2}}></div>
 					</div>
 				</section>
-				<section className="bloc-3" id={language === "fr" ? "notre-vision" : "our-vision"}>
+				<section className="bloc-3" data-section="our-vision" >
 					<div className="bloc-3__image">
 						<img src={dataA.bloc3Image.sourceUrl} alt={dataA.bloc3Image.altText} />
 						<div className="bloc-3__background-mobile"></div>
 					</div>
 					<div className="bloc-3__content">
-						<h2>{dataA.bloc3Titre}</h2>
+						<h2 id="our-vision">{dataA.bloc3Titre}</h2>
 						<div dangerouslySetInnerHTML={{ __html: dataA.bloc3Texte}}></div>
 					</div>
 				</section>
-				<section className="bloc-4" id={language === "fr" ? "notre-role" : "our-role"}>
+				<section className="bloc-4" data-section="our-vision">
 					<Description title={dataA.bloc4Titre} text={dataA.bloc4Texte}/>
 					<div className="bloc-4__content">
 						<CardList title={dataA.bloc4Item1Titre} text={dataA.bloc4Item1Texte}  img={dataA.bloc4Item1Image.sourceUrl} alt={dataA.bloc4Item1Image.altText}/>
@@ -219,7 +263,7 @@ function APropos({ pageContext }){
 						<CardList title={dataA.bloc4Item3Titre} text={dataA.bloc4Item3Texte} img={dataA.bloc4Item3Image.sourceUrl} alt={dataA.bloc4Item3Image.altText}/>
 					</div>
 				</section>
-				<section className="bloc-5" id={language === "fr" ? "notre-methodologie" : "our-methodology"}>
+				<section className="bloc-5" data-section="our-vision">
 					<h2>{dataA.bloc5Titre}</h2>
 					<div dangerouslySetInnerHTML={{ __html: dataA.bloc5Texte}}></div>
 					<div className="bloc-5__content">
@@ -229,8 +273,8 @@ function APropos({ pageContext }){
 						<CardNumber number={dataA.bloc5Carte4Number}  text={dataA.bloc5Carte4Titre} />
 					</div>
 				</section>
-				<section className="bloc-6" id={language === "fr" ? "nos-valeurs" : "our-values"}>
-					<h2>{dataA.bloc6Titre}</h2>
+				<section className="bloc-6" data-section="our-values" >
+					<h2 id="our-values">{dataA.bloc6Titre}</h2>
 					<div className="bloc-6__content">
 						<CardListIcon title={dataA.bloc6Item1Titre} text={dataA.bloc6Item1Texte} icon={dataA.bloc6Item1Icon.sourceUrl} alt={dataA.bloc6Item1Icon.altText}/>
 						<CardListIcon title={dataA.bloc6Item2Titre} text={dataA.bloc6Item2Texte} icon={dataA.bloc6Item2Icon.sourceUrl} alt={dataA.bloc6Item2Icon.altText}/>
@@ -238,8 +282,23 @@ function APropos({ pageContext }){
 						<CardListIcon title={dataA.bloc6Item4Titre} text={dataA.bloc6Item4Texte} icon={dataA.bloc6Item4Icon.sourceUrl} alt={dataA.bloc6Item4Icon.altText}/>
 					</div>
 				</section>
-				<section className="bloc-7" id={language === "fr" ? "notre-equipe" : "our-team"}>
-					<h2>{dataA.bloc7Titre}</h2>
+				<section className="bloc-rse" data-section="our-values">
+					<h2>{dataA.titreRse}</h2>
+					<div className="bloc-rse__content">
+						<div className="text_container">
+							<div dangerouslySetInnerHTML={{ __html: dataA.texteRse}}></div>
+							<a href="#" className="link-primary" >
+								<hr />
+								{dataA.texteLienVersLaPageRse}
+							</a>
+						</div>
+						<div className="illu_container">
+							<img src={dataA.imageRse.sourceUrl} alt={dataA.imageRse.altText}/>
+						</div>
+					</div>
+				</section>
+				<section className="bloc-7" data-section="our-team" >
+					<h2 id="our-team">{dataA.bloc7Titre}</h2>
 					<div dangerouslySetInnerHTML={{ __html: dataA.bloc7Texte}}></div>
 					<div className="bloc-7__content">
 						<CardProfil onClick={()=> addDataPopIn(1)} img={dataA.bloc7Item1Image.sourceUrl} firstname={dataA.bloc7Item1Titre} text={dataA.bloc7Item1Texte} icon1={dataA.bloc7Item1Icon1.sourceUrl} icon2={dataA.bloc7Item1Icon2.sourceUrl} alt={dataA.bloc7Item1Image.altText} altIcon1={dataA.bloc7Item1Icon1.altText} altIcon2={dataA.bloc7Item1Icon2.altText} link1={dataA.bloc7Item1Lien1} link2={dataA.bloc7Item1Lien2}/>
@@ -247,7 +306,7 @@ function APropos({ pageContext }){
 					</div>
 				</section>
 				{dataE.length > 0 && dataA.bloc8Visible === true ?
-					<section className="bloc-8">
+					<section className="bloc-8" data-section="our-team">
 						<div className="bloc-8_container">
 							<Description title={dataA.bloc8Titre} text={dataA.bloc8Texte}/>
 							<div className="bloc-8__content">

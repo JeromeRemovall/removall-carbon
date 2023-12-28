@@ -380,6 +380,13 @@ exports.createPages = async ({ graphql, actions }) =>  {
                         bloc7Item1Description
                         bloc7Item2Description
                         bloc8Visible
+                        imageRse {
+                          sourceUrl
+                          altText
+                        }
+                        texteLienVersLaPageRse
+                        texteRse
+                        titreRse
                     }
                     slug
                     language {
