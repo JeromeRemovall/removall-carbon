@@ -1,0 +1,107 @@
+@import "../mixins/text-style";
+@import "../variables/colors";
+@import "../mixins//breakpoints";
+
+.search-container {
+  position: fixed;
+  top: 88px;
+  display: flex;
+  justify-content: center;
+  height: calc(100dvh - 88px);
+  width: 100dvw;
+  background: rgba(241, 245, 252, 0.94);
+  z-index: 1000000;
+
+  @include xxl {
+    top: 80px;
+    height: calc(100dvh - 80px);
+  }
+
+  .content {
+    width: 100%;
+    max-width: 822px;
+    padding: 72px 0px;
+    overflow: scroll;
+    @include xl {
+      padding: 28px 24px;
+    }
+    .form-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid #24304f;
+      input {
+        @include montserrat-paragraph-l-m;
+        width: 100%;
+        height: 48px;
+        border: 0px;
+        background-color: transparent;
+        &:focus-visible {
+          outline: none;
+        }
+      }
+      @include xxl {
+        a {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .result_search-container {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .item_illu {
+      img {
+        width: 220px;
+        height: 140px;
+        object-position: center;
+        object-fit: cover;
+      }
+    }
+    .item_search {
+      display: flex;
+      gap: 20px;
+      background-color: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      @include xl {
+        flex-direction: column;
+      }
+
+      .title {
+        @include montserrat-label-m-s;
+        margin-bottom: 4px;
+      }
+
+      .description {
+        @include montserrat-paragraph-m-m;
+        height: 48px;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        p {
+          display: none;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          &:first-child {
+            display: -webkit-box;
+          }
+        }
+        a {
+          color: #5f89f4;
+        }
+      }
+      .button-primary {
+        @include xl {
+          display: flex;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
