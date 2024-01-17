@@ -1006,7 +1006,7 @@ exports.createPages = async ({
     "./src/templates/rse.js"
   );
   const plasticBiodivTemplate = require.resolve(
-    "./src/templates/plastic_Biodiv.js"
+    "./src/templates/bioAndPlastics.js"
   );
 
   result.data.home.nodes.forEach((node) => {
