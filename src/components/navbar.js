@@ -375,9 +375,6 @@ const Navbar = () => {
 
           const isInViewport =
             rect.top >= -672 && rect.left >= 0;
-          // console.log("aaaa", rect.top)
-          // rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-          // rect.right <= (window.innerWidth || document.documentElement.clientWidth);
 
           if (isInViewport === true) {
             setNavStyle("navbar-transparent");
@@ -442,7 +439,6 @@ const Navbar = () => {
 
     function isActive() {
       setActiveLink(window.location.pathname);
-      // console.log("activeLink", activeLink)
     }
     isActive();
   }, [
@@ -710,10 +706,6 @@ const Navbar = () => {
                         <>
                           {activeLink === path ? (
                             <>
-                              {console.log(
-                                path,
-                                activeLink
-                              )}
                               <li>
                                 <Link
                                   className="active"

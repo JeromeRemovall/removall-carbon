@@ -334,65 +334,79 @@ function Ecosystem({ pageContext }) {
               </div>
             </section>
           ) : null}
-          {dataVerbatims.length > 0 ? (
-            <Swiper
-              modules={[
-                Navigation,
-                Pagination,
-                Autoplay,
-              ]}
-              spaceBetween={space}
-              slidesPerView={1}
-              pagination={{ clickable: true }}
-              className="swiper_verbatims"
-              autoplay={{
-                delay: 2500,
-                pauseOnMouseEnter: true,
-              }}
-            >
-              {dataVerbatims.map(
-                (verbatim, index) => (
-                  <SwiperSlide>
-                    <div className="content_slide">
-                      <p>
-                        "
-                        {
-                          verbatim.node.verbatims
-                            .verbatim
-                        }
-                        "
-                      </p>
-                      <div className="slide_info">
-                        <img
-                          src={
-                            verbatim.node
-                              .verbatims
-                              .photoDeLauteur
-                              .mediaItemUrl
-                          }
-                          alt=""
-                        />
-                        <p className="auteur">
-                          {
-                            verbatim.node
-                              .verbatims
-                              .nomDeLauteur
-                          }
-                        </p>
-                        <p className="fonction">
-                          {
-                            verbatim.node
-                              .verbatims
-                              .fonctionDeLauteur
-                          }
-                        </p>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                )
-              )}
-            </Swiper>
-          ) : null}
+          <section className="verba_bloc">
+            {dataVerbatims.length > 0 ? (
+              <>
+                <h2>{dataE.bloc2Titre}</h2>
+                <div className="container_verba">
+                  <Swiper
+                    modules={[
+                      Navigation,
+                      Pagination,
+                      Autoplay,
+                    ]}
+                    spaceBetween={space}
+                    slidesPerView={1}
+                    pagination={{
+                      clickable: true,
+                    }}
+                    className="swiper_verbatims"
+                    autoplay={{
+                      delay: 2500,
+                      pauseOnMouseEnter: true,
+                    }}
+                  >
+                    {dataVerbatims.map(
+                      (verbatim, index) => (
+                        <SwiperSlide>
+                          <div className="content_slide">
+                            <p>
+                              "
+                              {
+                                verbatim.node
+                                  .verbatims
+                                  .verbatim
+                              }
+                              "
+                            </p>
+                            <div className="slide_info">
+                              {verbatim.node
+                                .verbatims
+                                .photoDeLauteur ? (
+                                <img
+                                  src={
+                                    verbatim.node
+                                      .verbatims
+                                      .photoDeLauteur
+                                      .mediaItemUrl
+                                  }
+                                  alt=""
+                                />
+                              ) : null}
+                              <p className="auteur">
+                                {
+                                  verbatim.node
+                                    .verbatims
+                                    .nomDeLauteur
+                                }
+                              </p>
+                              <p className="fonction">
+                                {
+                                  verbatim.node
+                                    .verbatims
+                                    .fonctionDeLauteur
+                                }
+                              </p>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+                      )
+                    )}
+                  </Swiper>
+                </div>
+              </>
+            ) : null}
+          </section>
         </main>
       ) : (
         <Loader />

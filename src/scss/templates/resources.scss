@@ -2,350 +2,343 @@
 @import "../mixins/text-style";
 @import "../mixins//breakpoints";
 
-@media (max-width: 834px){
-	.navbar-responsive {
-		display: none;
-	}
+@media (max-width: 834px) {
+  .navbar-responsive {
+    display: none;
+  }
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
-main.resources{
-	width: 100vw;
-	padding-top: 100px;
-	background-color: $primary-blue-100;
-	.navbar-container-secondary{
-		position: sticky;
-		top: 10px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 1248px;
-		height: auto;
-		margin: 0 auto;
-		box-sizing: border-box;
+main.resources {
+  width: 100vw;
+  padding-top: 100px;
+  background-color: $primary-blue-100;
+  .navbar-container-secondary {
+    position: sticky;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1248px;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
 
-		@include xl {
-			width: 100%;
-			padding: 0px 24px;
-		}
+    @include xl {
+      width: 100%;
+      padding: 0px 24px;
+    }
 
-		.navbar-small{
-			
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: fit-content;
-			height: 56px;
-			background-color: $primary-blue-100;
-			border-radius: 50px;
-		
-			@include xl {
-				display: flex;
-			}
-		
-			ul{
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				width: fit-content;
-				padding: 8px 8px;
-				box-sizing: border-box;
-		
-				a{
-					@include montserrat-label-m-s;
-					display: flex;
-					color: $primary-blue-500;
-					cursor: pointer;
-					transition: all 0.5s ease-in-out 0s;
-					padding: 12px;
-					border-radius: 24px;
-					text-align: center;
-		
-					&.active{
-						color: $light-100;
-						padding: 12px;
-						background-color: $primary-blue-500;
-						border-radius: 24px;
-					}
-				}
-			}
-		}
+    .navbar-small {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      height: 56px;
+      background-color: $primary-blue-100;
+      border-radius: 50px;
 
-		@include xl-paysage{
-			width: 100%;
-			padding: 0 48px 0px 48px;
-			box-sizing: border-box;
-		}
-	}
+      @include xl {
+        display: flex;
+      }
 
-	.bloc-1{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		padding: 18px 0px 108px 0px;
-		box-sizing: border-box;
-		background-color: $primary-blue-100;
+      ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        padding: 8px 8px;
+        box-sizing: border-box;
 
-		@include xl{
-			padding: 138px 0px 80px 0px;
-		}
+        a {
+          @include montserrat-label-m-s;
+          display: flex;
+          color: $primary-blue-500;
+          cursor: pointer;
+          transition: all 0.5s ease-in-out 0s;
+          padding: 12px;
+          border-radius: 24px;
+          text-align: center;
 
-		.bloc-1__container{
-			width: 1248px;
-			margin: 0 auto;
+          &.active {
+            color: $light-100;
+            padding: 12px;
+            background-color: $primary-blue-500;
+            border-radius: 24px;
+          }
+        }
+      }
+    }
 
-			@include xl{
-				width: 100%;
-				padding: 0px 24px 0 24px;
-				box-sizing: border-box
-			}
+    @include xl-paysage {
+      width: 100%;
+      padding: 0 48px 0px 48px;
+      box-sizing: border-box;
+    }
+  }
 
-			@include xl-paysage{
-				width: 100%;
-				padding: 0px 48px 0 48px;
-				box-sizing: border-box
-			}
+  .bloc-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 18px 0px 108px 0px;
+    box-sizing: border-box;
+    background-color: $primary-blue-100;
 
-			h1, h2{
-				@include chillax-display-m;
-				color: $primary-blue-700;
-				width: 342px;
-	
-				@include xl {
-					text-align: center;
-					width: 100%;
-				}
-			}
+    @include xl {
+      padding: 138px 0px 80px 0px;
+    }
 
-			.bloc-1__content{
-				display: flex;
-				margin-top: 64px;
+    .bloc-1__container {
+      width: 1248px;
+      margin: 0 auto;
 
-				.my-masonry-grid {
-					display: flex;
-					width: 100%;
-					@include xl{
-						display: none;
-					}
-	
-					.my-masonry-grid_column:nth-child(1) {
-	
-						.card-full{
-							
-							margin: 96px 0px;
-							.card-full__image{
-								height: 408px;
-							}
-	
-							&:nth-child(odd){
-								margin-top: 0px;
-								
-								.card-full__image{
-									height: 552px;
-	
-								}
-							}
-						}
-					}
-	
-					.my-masonry-grid_column:nth-child(2) {
-						margin-left: 32px;
-	
-						.card-full{
-							margin-top: 0px;
-				
-							.card-full__image{
-								height: 552px;
-							}
-	
-							&:nth-child(odd){
-								margin: 96px 0px;
-								
-								.card-full__image{
-									height: 408px;
-								}
-							}
-						}
-	
-					}
-				}
+      @include xl {
+        width: 100%;
+        padding: 0px 24px 0 24px;
+        box-sizing: border-box;
+      }
 
-				.my-masonry-grid-mobile{
-					display: none;
-	
-					@include xl{
-						display: flex;
-	
-						.card-full{
-							margin-bottom: 56px;
-						}
-					}
-				}
-			}
+      @include xl-paysage {
+        width: 100%;
+        padding: 0px 48px 0 48px;
+        box-sizing: border-box;
+      }
 
-		}
-	}
+      h1,
+      h2 {
+        @include chillax-display-m;
+        color: $primary-blue-700;
+        width: 342px;
 
-	.container_more {
-		display: flex;
-		justify-content: center;
-		width: 100%;
-		.btn_more {
-			@include montserrat-label-l-s;
-			padding: 12px 32px;
-			background: $primary-blue-500;
-			border-radius: 29px;
-			border: 0px;
-			color: $primary-blue-100;
-		}
+        @include xl {
+          text-align: center;
+          width: 100%;
+        }
+      }
 
-	}
+      .bloc-1__content {
+        display: flex;
+        margin-top: 64px;
 
-	.bloc-2{
-		padding: 120px 0px 104px 0px;
-		box-sizing: border-box;
+        .my-masonry-grid {
+          display: flex;
+          width: 100%;
+          @include xl {
+            display: none;
+          }
 
-		@include xl-paysage {
-			padding: 120px 48px 104px 48px;
-		}
+          .my-masonry-grid_column:nth-child(1) {
+            .card-full {
+              margin: 96px 0px;
+              .card-full__image {
+                height: 408px;
+              }
 
-		@include xl {
-			padding: 80px 24px 88px 24px;
-		}
+              // &:nth-child(odd){
+              // 	margin-top: 0px;
 
-		.bloc-2__container{
-			width: 1248px;
-			margin: 0 auto;
+              // 	.card-full__image{
+              // 		height: 552px;
 
-			@include xl{
-				width: 100%;
-			}
+              // 	}
+              // }
+            }
+          }
 
-			@include xl-paysage{
-				width: 100%;
-			}
+          .my-masonry-grid_column:nth-child(2) {
+            margin-left: 32px;
 
-			.bloc-description{
+            .card-full {
+              margin-top: 0px;
 
-				h2{
-					width: 433px;
-	
-					@include xl {
-						width: 300px;
-					}
+              .card-full__image {
+                height: 552px;
+              }
 
-					@include xl-paysage{
-						width: 830px;
-					}
-				}
-	
-				.bloc-description__content{
-					p{
-						@include xl-paysage{
-							width: 90%;
-							margin-left: 80px;
-						}
-					}
-				}
-			}
-	
-			.bloc-2__content{
-				display: flex;
-				margin-top: 80px;
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				grid-gap: 32px;
-				row-gap: 32px;
-				justify-content: center;
-				// align-items: center;
-	
-				@include xl {
-					grid-template-columns: repeat(1, 1fr);
-				}
-	
-				@include xl-paysage {
-					grid-template-columns: repeat(3, 1fr);
-	
-					.card{
-						width: 100%;
-					}
-				}
-			}
-		}
-	}
+              &:nth-child(odd) {
+                margin: 96px 0px;
 
-	.bloc-3{
-		background-color: $primary-blue-700;
-		padding: 104px 0px 144px 0px;
-		box-sizing: border-box;
+                .card-full__image {
+                  height: 408px;
+                }
+              }
+            }
+          }
+        }
 
-		@include xl {
-			padding: 80px 24px 80px 24px;
-		}
+        .my-masonry-grid-mobile {
+          display: none;
 
-		@include xl-paysage {
-			padding: 104px 48px 144px 48px;
-		}
+          @include xl {
+            display: flex;
 
-		.bloc-3__container{
-			width: 1248px;
-			margin: 0 auto;
+            .card-full {
+              margin-bottom: 56px;
+            }
+          }
+        }
+      }
+    }
+  }
 
-			@include xl {
-				width: 100%;
-			}
-	
-			@include xl-paysage {
-				width: 100%;
-			}
+  .container_more {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    .btn_more {
+      @include montserrat-label-l-s;
+      padding: 12px 32px;
+      background: $primary-blue-500;
+      border-radius: 29px;
+      border: 0px;
+      color: $primary-blue-100;
+    }
+  }
 
+  .bloc-2 {
+    padding: 120px 0px 104px 0px;
+    box-sizing: border-box;
 
-			h2{
-				text-align: center;
-				@include chillax-display-m;
-				color: $light-100;
-				margin-bottom: 32px;
-	
-				@include xl {
-					@include chillax-heading-xl;
-				}
-			}
-	
-			p.bloc-3__text{
-				text-align: center;
-				margin: 0 auto;
-				@include montserrat-paragraph-xl-m;
-				color: $light-100;
-				width: 608px;
-	
-				@include xl {
-					width: 100%;
-					@include montserrat-paragraph-l-m;
-				}
-			}
-	
-			.bloc-3__content{
-				display: flex;
-				margin-top: 80px;
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				grid-gap: 32px;
-				width: 100%;
-				justify-content: center;
-				// align-items: center;
-	
-				@include xl {
-					grid-template-columns: repeat(1, 1fr);
-				}
-				
-				@include xl-paysage {
-					grid-template-columns: repeat(3, 1fr);
-				}
-			}
-		}
-	}
+    @include xl-paysage {
+      padding: 120px 48px 104px 48px;
+    }
+
+    @include xl {
+      padding: 80px 24px 88px 24px;
+    }
+
+    .bloc-2__container {
+      width: 1248px;
+      margin: 0 auto;
+
+      @include xl {
+        width: 100%;
+      }
+
+      @include xl-paysage {
+        width: 100%;
+      }
+
+      .bloc-description {
+        h2 {
+          width: 433px;
+
+          @include xl {
+            width: 300px;
+          }
+
+          @include xl-paysage {
+            width: 830px;
+          }
+        }
+
+        .bloc-description__content {
+          p {
+            @include xl-paysage {
+              width: 90%;
+              margin-left: 80px;
+            }
+          }
+        }
+      }
+
+      .bloc-2__content {
+        display: flex;
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 32px;
+        row-gap: 32px;
+        justify-content: center;
+        // align-items: center;
+
+        @include xl {
+          grid-template-columns: repeat(1, 1fr);
+        }
+
+        @include xl-paysage {
+          grid-template-columns: repeat(3, 1fr);
+
+          .card {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .bloc-3 {
+    background-color: $primary-blue-700;
+    padding: 104px 0px 144px 0px;
+    box-sizing: border-box;
+
+    @include xl {
+      padding: 80px 24px 80px 24px;
+    }
+
+    @include xl-paysage {
+      padding: 104px 48px 144px 48px;
+    }
+
+    .bloc-3__container {
+      width: 1248px;
+      margin: 0 auto;
+
+      @include xl {
+        width: 100%;
+      }
+
+      @include xl-paysage {
+        width: 100%;
+      }
+
+      h2 {
+        text-align: center;
+        @include chillax-display-m;
+        color: $light-100;
+        margin-bottom: 32px;
+
+        @include xl {
+          @include chillax-heading-xl;
+        }
+      }
+
+      p.bloc-3__text {
+        text-align: center;
+        margin: 0 auto;
+        @include montserrat-paragraph-xl-m;
+        color: $light-100;
+        width: 608px;
+
+        @include xl {
+          width: 100%;
+          @include montserrat-paragraph-l-m;
+        }
+      }
+
+      .bloc-3__content {
+        display: flex;
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 32px;
+        width: 100%;
+        justify-content: center;
+        // align-items: center;
+
+        @include xl {
+          grid-template-columns: repeat(1, 1fr);
+        }
+
+        @include xl-paysage {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    }
+  }
 }

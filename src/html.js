@@ -10,15 +10,15 @@ export default function HTML(props) {
 	  	<script
 			dangerouslySetInnerHTML={{
 				__html: `
-						window.axeptioSettings = {
-							clientId: "62364fe462f500a3bda378a7",
-						};
+						// window.axeptioSettings = {
+						// 	clientId: "62364fe462f500a3bda378a7",
+						// };
 						
-						(function(d, s) {
-							var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-							e.async = true; e.src = "//static.axept.io/sdk-slim.js";
-							t.parentNode.insertBefore(e, t);
-						})(document, "script");
+						// (function(d, s) {
+						// 	var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+						// 	e.async = true; e.src = "//static.axept.io/sdk-slim.js";
+						// 	t.parentNode.insertBefore(e, t);
+						// })(document, "script");
 
 						function launchGA() {
 							(function(d, s) {
@@ -37,30 +37,34 @@ export default function HTML(props) {
 							})(document, "script");
 						}
 
-						void 0 === window._axcb && (window._axcb = []);
+						window.addEventListener("load", ()=> {
+							launchGA();
+						});
 
-						window._axcb.push(function(axeptio) {
-							axeptio.on("cookies:complete", function(choices) {
-								if(choices.google_analytics){
-									launchGA();
-								}
-							})
+						// void 0 === window._axcb && (window._axcb = []);
 
-							const observer = new MutationObserver(function(mutations_list) {
-								mutations_list.forEach(function(mutation) {
-									mutation.addedNodes.forEach(function(added_node) {
-										if(added_node.className === "WebsiteOverlay__WidgetContainer-sc-1tlh7za-2 lmCzqk ax-widget-container"){
-											let button = document.querySelector("button#axeptio_btn_dismiss");
-											button.addEventListener("click", ()=> {
-												window.location.reload();
-											})
-										}
-									});
-								});
-							});
+						// window._axcb.push(function(axeptio) {
+						// 	axeptio.on("cookies:complete", function(choices) {
+						// 		if(choices.google_analytics){
+						// 			launchGA();
+						// 		}
+						// 	})
+
+						// 	const observer = new MutationObserver(function(mutations_list) {
+						// 		mutations_list.forEach(function(mutation) {
+						// 			mutation.addedNodes.forEach(function(added_node) {
+						// 				if(added_node.className === "WebsiteOverlay__WidgetContainer-sc-1tlh7za-2 lmCzqk ax-widget-container"){
+						// 					let button = document.querySelector("button#axeptio_btn_dismiss");
+						// 					button.addEventListener("click", ()=> {
+						// 						window.location.reload();
+						// 					})
+						// 				}
+						// 			});
+						// 		});
+						// 	});
 							
-							observer.observe(document.querySelector(".WebsiteOverlay__WebsiteOverlayStyle-sc-1tlh7za-0.bqzerq.ax-website-overlay"), { subtree: true, childList: true });
-						});	
+						// 	observer.observe(document.querySelector(".WebsiteOverlay__WebsiteOverlayStyle-sc-1tlh7za-0.bqzerq.ax-website-overlay"), { subtree: true, childList: true });
+						// });	
 					`,
 			}}
 		/>

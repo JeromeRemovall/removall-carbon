@@ -176,6 +176,16 @@ exports.createPages = async ({
             groupeCarbon7 {
               titre
               description
+              partenaires {
+                logoClientOuPartenaires {
+                  fieldGroupName
+                  lienVersSite
+                  logo {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
             }
             groupePlastics1 {
               titre
@@ -282,6 +292,16 @@ exports.createPages = async ({
             groupePlastics7 {
               titre
               description
+              partenaires {
+                logoClientOuPartenaires {
+                  fieldGroupName
+                  lienVersSite
+                  logo {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
             }
           }
           slug

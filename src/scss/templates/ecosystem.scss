@@ -2,168 +2,190 @@
 @import "../mixins/text-style";
 @import "../mixins//breakpoints";
 
-main.ecosystem{
+main.ecosystem {
+  width: 100vw;
 
-	width: 100vw;
-	
-	.bloc-content{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 1248px;
-		margin: 0 auto;
-		padding: 80px 0px 104px 0px;
-		box-sizing: border-box;
+  .bloc-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1248px;
+    margin: 0 auto;
+    padding: 80px 0px 104px 0px;
+    box-sizing: border-box;
 
-		&:nth-of-type(2){
-			padding: 0px 0px 104px 0px;
-		}
+    &:nth-of-type(2) {
+      padding: 0px 0px 104px 0px;
+    }
 
-		@include xl {
-			width: 100%;
-			padding: 40px 24px 60px 24px;
-		}
+    @include xl {
+      width: 100%;
+      padding: 40px 24px 60px 24px;
+    }
 
-		@include xl-paysage {
-			padding: 80px 48px 104px 48px;
-		}
+    @include xl-paysage {
+      padding: 80px 48px 104px 48px;
+    }
 
-		h2{
-			@include chillax-display-m;
-			color: $primary-blue-700;
+    h2 {
+      @include chillax-display-m;
+      color: $primary-blue-700;
 
-			@include xl {
-				@include chillax-heading-xl;
-				margin-top: 40px;
-			}
-		}
+      @include xl {
+        @include chillax-heading-xl;
+        margin-top: 40px;
+      }
+    }
 
-		p{
-			margin-top: 24px;
-			@include montserrat-paragraph-xl-m;
-			width: 608px;
-			text-align: center;
+    p {
+      margin-top: 24px;
+      @include montserrat-paragraph-xl-m;
+      width: 608px;
+      text-align: center;
 
-			@include xl {
-				width: 100%;
-				@include montserrat-paragraph-l-m;
-			}
-		}
+      @include xl {
+        width: 100%;
+        @include montserrat-paragraph-l-m;
+      }
+    }
 
-		.bloc-logo{
-			width: 100%;
-			margin-top: 48px;
-			align-items: center;
-			justify-content: center;
-			display: flex;
-			flex-wrap: wrap;
-			flex-direction: row;
+    .bloc-logo {
+      width: 100%;
+      margin-top: 48px;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
 
-			@include xl {
-				grid-template-columns: repeat(2, 1fr);
-				column-gap: 50px;
-				row-gap: 20px;
-			}
+      @include xl {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 50px;
+        row-gap: 20px;
+      }
 
-			@include xl-paysage {
-				grid-template-columns: repeat(3, 1fr);
-				width: auto;
-			}
+      @include xl-paysage {
+        grid-template-columns: repeat(3, 1fr);
+        width: auto;
+      }
 
-			.bloc-logo__image{
-				width: 260px;
-				height: auto;
-				margin: 0 26px;
-				aspect-ratio: 16/9;
-				img{
-					width: 100%;
-					height: 100%;
-					object-fit: contain;
-					object-position: center;
-				}
-			}
-		}
-	}
+      .bloc-logo__image {
+        width: 260px;
+        height: auto;
+        margin: 0 26px;
+        aspect-ratio: 16/9;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+        }
+      }
+    }
+  }
+}
+.verba_bloc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    @include chillax-display-m;
+    color: $primary-blue-700;
+
+    @include xl {
+      @include chillax-heading-xl;
+      margin-top: 40px;
+    }
+  }
+}
+.container_verba {
+  width: 100%;
 }
 
 .swiper.swiper_verbatims {
-	margin-bottom: 104px;
-	cursor: pointer;
-	&::after {
-		content: "";
-		display: block;
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		background: radial-gradient(circle, rgba(9, 93, 121, 0) 30%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
-		top: 0px;
-		left: 0px;
-		pointer-events: none;
-		z-index: 1000;
-		@include lg{
-			display: none;
-		}
-	}
-	.swiper-wrapper {
-		.swiper-slide {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			height: 360px;
-			color: $primary-blue-700;
-			@include lg{
-				height: 80vh;
-			}
-			.content_slide {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				gap: 32px;
-				width: 50%;
-				@include lg{
-					width: 100%;
-					padding: 0px 32px;
-					box-sizing: border-box
-				}
-				p {
-					@include montserrat-paragraph-l-m;
-					text-align: center;
-				}
-				.slide_info {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					img {
-						width: 64px;
-						height: 64px;
-						object-fit: cover;
-						border-radius: 50%;
-						margin-bottom: 12px;
-					}
-					.auteur {
-						@include montserrat-paragraph-xl-m
-					}
-					.fonction {
-						@include montserrat-paragraph-l-m;
-						color: $dark-500;
-					}
-				}
-			}
-		}
-	}
-	.swiper-pagination{
-		.swiper-pagination-bullet {
-			transition: width 0.2s;
-			background-color: #DCE4F9;
-			opacity: 1;
-			&-active {
-				width: 16px;
-				background: #5F89F4;
-				border-radius: 80px;
-			}
-		}
-	}
+  margin-bottom: 104px;
+  cursor: pointer;
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle,
+      rgba(9, 93, 121, 0) 30%,
+      rgb(255, 255, 255) 97%,
+      rgb(255, 255, 255) 100%
+    );
+    top: 0px;
+    left: 0px;
+    pointer-events: none;
+    z-index: 1000;
+    @include lg {
+      display: none;
+    }
+  }
+  .swiper-wrapper {
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 360px;
+      color: $primary-blue-700;
+      @include lg {
+        height: 80vh;
+      }
+      .content_slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        width: 50%;
+        @include lg {
+          width: 100%;
+          padding: 0px 32px;
+          box-sizing: border-box;
+        }
+        p {
+          @include montserrat-paragraph-l-m;
+          text-align: center;
+        }
+        .slide_info {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 12px;
+          }
+          .auteur {
+            @include montserrat-paragraph-xl-m;
+          }
+          .fonction {
+            @include montserrat-paragraph-l-m;
+            color: $dark-500;
+          }
+        }
+      }
+    }
+  }
+  .swiper-pagination {
+    .swiper-pagination-bullet {
+      transition: width 0.2s;
+      background-color: #dce4f9;
+      opacity: 1;
+      &-active {
+        width: 16px;
+        background: #5f89f4;
+        border-radius: 80px;
+      }
+    }
+  }
 }

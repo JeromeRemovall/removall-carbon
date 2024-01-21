@@ -8,13 +8,63 @@ import "../scss/templates/plasticBiodiv.scss";
 import { Helmet } from "react-helmet";
 import Loader from "../components/loader";
 import Layout from "../components/layout";
-import { isInViewport } from "../utils/global";
+import { graphql, useStaticQuery } from "gatsby";
+import {
+  Autoplay,
+  Navigation,
+} from "swiper/modules";
+import {
+  Swiper,
+  SwiperSlide,
+} from "swiper/react";
+const query = graphql`
+  query {
+    allProjects: allWpPost(
+      filter: {
+        categories: {
+          nodes: {
+            elemMatch: {
+              name: {
+                in: ["projects", "projets"]
+                nin: [
+                  "map"
+                  "carte"
+                  "emission reduction"
+                  "carbon sequestration"
+                  "séquestration carbonne"
+                  "réduction d’émission"
+                ]
+              }
+            }
+          }
+        }
+      }
+    ) {
+      nodes {
+        projetsPB {
+          descriptionFr
+          descriptionEn
+          titleEn
+          titleFr
+          plastiqueOuBiodiversite
+          image {
+            altText
+            sourceUrl
+          }
+          paysSearch {
+            paysTax {
+              capitale
+              nomDuPays
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 function PlaticBiodiv({ pageContext }) {
-  console.info(
-    "DATA WAGY",
-    pageContext.dataPB.PlasticBiodiv
-  );
+  const allProjects = useStaticQuery(query);
   const { dataPB } = pageContext;
   const dataPage = dataPB.PlasticBiodiv;
   const [metaLang, setMetaLang] = useState("");
@@ -28,6 +78,8 @@ function PlaticBiodiv({ pageContext }) {
   const [dataBloc3, setdataBloc3] = useState();
   const [dataBloc4, setdataBloc4] = useState();
   const [dataBloc5, setdataBloc5] = useState();
+  const [dataBloc5Project, setdataBloc5Project] =
+    useState();
   const [dataBloc6, setdataBloc6] = useState();
   const [dataBloc7, setdataBloc7] = useState();
 
@@ -46,11 +98,13 @@ function PlaticBiodiv({ pageContext }) {
       }
     }
     getLanguage();
+    setProjects();
     updateData("plastic");
-  }, [dataPage]);
+  }, [dataPage, allProjects]);
 
   useEffect(() => {
     updateData(currentPage);
+    setProjects();
   }, [currentPage]);
 
   const updateData = (page) => {
@@ -73,10 +127,42 @@ function PlaticBiodiv({ pageContext }) {
       setdataBloc6(dataPage.groupeCarbon6);
       setdataBloc7(dataPage.groupeCarbon7);
     }
-
     setDataLoad(true);
   };
 
+  const setProjects = () => {
+    const plastique = [];
+    const biodiv = [];
+
+    allProjects?.allProjects?.nodes.map(
+      (project) => {
+        if (
+          project.projetsPB
+            .plastiqueOuBiodiversite ==
+          "Biodiversité"
+        ) {
+          biodiv.push(
+            ...biodiv,
+            project.projetsPB
+          );
+        } else if (
+          project.projetsPB
+            .plastiqueOuBiodiversite ==
+          "Plastique"
+        ) {
+          plastique.push(
+            ...plastique,
+            project.projetsPB
+          );
+        }
+      }
+    );
+    if (currentPage == "plastic") {
+      setdataBloc5Project(plastique);
+    } else {
+      setdataBloc5Project(biodiv);
+    }
+  };
   return (
     <Layout>
       <Helmet>
@@ -538,6 +624,112 @@ function PlaticBiodiv({ pageContext }) {
                     <h2>{dataBloc5.titre}</h2>
                     <p>{dataBloc5.description}</p>
                   </div>
+                  {dataBloc5Project.length > 2 ? (
+                    <div className="arrow_container">
+                      <div className="arrow left">
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 8H1M1 8L8 15M1 8L8 1"
+                            stroke="#5F89F4"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div className="arrow right">
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 8H15M15 8L8 1M15 8L8 15"
+                            stroke="#5F89F4"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  ) : null}
+                  {dataBloc5Project ? (
+                    <Swiper
+                      modules={[
+                        Navigation,
+                        Autoplay,
+                      ]}
+                      navigation={{
+                        nextEl: ".arrow.right",
+                        prevEl: ".arrow.left",
+                      }}
+                      spaceBetween="32"
+                      slidesPerView="auto"
+                      pagination={{
+                        clickable: true,
+                      }}
+                      className="swiper_project"
+                      autoplay={{
+                        delay: 2500,
+                        pauseOnMouseEnter: true,
+                      }}
+                    >
+                      {dataBloc5Project.map(
+                        (project) => (
+                          <SwiperSlide>
+                            <div className="content_container">
+                              <h3>
+                                {metaLang == "fr"
+                                  ? project.titleFr
+                                  : project.titleEn}
+                              </h3>
+                              <p className="description">
+                                {metaLang == "fr"
+                                  ? project.descriptionFr
+                                  : project.descriptionEn}
+                              </p>
+                              <p className="place">
+                                {
+                                  project
+                                    .paysSearch
+                                    .paysTax
+                                    .nomDuPays
+                                }
+                                , 
+                                {
+                                  project
+                                    .paysSearch
+                                    .paysTax
+                                    .capitale
+                                }
+                              </p>
+                            </div>
+                            <div className="illu_container">
+                              <img
+                                src={
+                                  project.image
+                                    .sourceUrl
+                                }
+                                alt={
+                                  project.image
+                                    .altText
+                                }
+                              />
+                            </div>
+                          </SwiperSlide>
+                        )
+                      )}
+                    </Swiper>
+                  ) : null}
                 </section>
                 <section className="bloc_6">
                   <div className="illu">
@@ -609,6 +801,33 @@ function PlaticBiodiv({ pageContext }) {
                 <section className="bloc_7">
                   <h2>{dataBloc7.titre}</h2>
                   <p>{dataBloc7.description}</p>
+                  <div className="logo_container">
+                    {dataBloc7.partenaires?.map(
+                      (partenaire) => (
+                        <a
+                          href={
+                            partenaire
+                              .logoClientOuPartenaires
+                              .lienVersSite
+                          }
+                          className="logo_item"
+                        >
+                          <img
+                            src={
+                              partenaire
+                                .logoClientOuPartenaires
+                                .logo.sourceUrl
+                            }
+                            alt={
+                              partenaire
+                                .logoClientOuPartenaires
+                                .logo.altText
+                            }
+                          />
+                        </a>
+                      )
+                    )}
+                  </div>
                 </section>
               </div>
               <section className="contact">
