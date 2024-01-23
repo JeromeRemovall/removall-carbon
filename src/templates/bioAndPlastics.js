@@ -687,16 +687,20 @@ function PlaticBiodiv({ pageContext }) {
                         (project) => (
                           <SwiperSlide>
                             <div className="content_container">
-                              <h3>
-                                {metaLang == "fr"
-                                  ? project.titleFr
-                                  : project.titleEn}
-                              </h3>
-                              <p className="description">
-                                {metaLang == "fr"
-                                  ? project.descriptionFr
-                                  : project.descriptionEn}
-                              </p>
+                              <div>
+                                <h3>
+                                  {metaLang ==
+                                  "fr"
+                                    ? project.titleFr
+                                    : project.titleEn}
+                                </h3>
+                                <p className="description">
+                                  {metaLang ==
+                                  "fr"
+                                    ? project.descriptionFr
+                                    : project.descriptionEn}
+                                </p>
+                              </div>
                               <p className="place">
                                 {
                                   project

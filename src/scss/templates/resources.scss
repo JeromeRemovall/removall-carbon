@@ -152,20 +152,18 @@ main.resources {
 
           .my-masonry-grid_column:nth-child(2) {
             margin-left: 32px;
-
+            .card-full__image {
+              height: 408px;
+            }
             .card-full {
               margin-top: 0px;
 
-              .card-full__image {
-                height: 552px;
-              }
+              // .card-full__image {
+              //   height: 552px;
+              // }
 
               &:nth-child(odd) {
                 margin: 96px 0px;
-
-                .card-full__image {
-                  height: 408px;
-                }
               }
             }
           }
