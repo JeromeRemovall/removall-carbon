@@ -701,21 +701,23 @@ function PlaticBiodiv({ pageContext }) {
                                     : project.descriptionEn}
                                 </p>
                               </div>
-                              <p className="place">
-                                {
-                                  project
-                                    .paysSearch
-                                    .paysTax
-                                    .nomDuPays
-                                }
-                                , 
-                                {
-                                  project
-                                    .paysSearch
-                                    .paysTax
-                                    .capitale
-                                }
-                              </p>
+                              {project.paysSearch ? (
+                                <p className="place">
+                                  {
+                                    project
+                                      .paysSearch
+                                      .paysTax
+                                      .nomDuPays
+                                  }
+                                  , 
+                                  {
+                                    project
+                                      .paysSearch
+                                      .paysTax
+                                      .capitale
+                                  }
+                                </p>
+                              ) : null}
                             </div>
                             <div className="illu_container">
                               <img
