@@ -613,7 +613,7 @@ function PlaticBiodiv({ pageContext }) {
                       </h3>
                       <p>
                         {
-                          dataBloc4.descriptionService1
+                          dataBloc4.descriptionService2
                         }
                       </p>
                     </div>
