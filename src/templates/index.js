@@ -175,6 +175,8 @@ function Home({ pageContext }) {
     dataSlider.map((slide) => {
       return slides.push(slide.slider);
     });
+    slides[0].titre = dataH?.titre;
+    slides[0].texte = dataH?.description;
   }
 
   if (dataCustomers) {

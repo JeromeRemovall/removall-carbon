@@ -52,7 +52,10 @@ main.a-propos {
           padding: 12px;
           border-radius: 24px;
           text-align: center;
-
+          text-wrap: nowrap;
+          @include xl {
+            font-size: 12px;
+          }
           &.active {
             color: $light-100;
             padding: 12px;
@@ -193,7 +196,7 @@ main.a-propos {
 
     .bloc-3__image {
       width: 45%;
-      max-height: 916px;
+      height: auto;
       overflow: hidden;
 
       .bloc-3__background-mobile {
