@@ -133,7 +133,6 @@ function PlaticBiodiv({ pageContext }) {
   const setProjects = () => {
     const plastique = [];
     const biodiv = [];
-
     allProjects?.allProjects?.nodes.map(
       (project) => {
         if (
@@ -141,22 +140,17 @@ function PlaticBiodiv({ pageContext }) {
             .plastiqueOuBiodiversite ==
           "Biodiversité"
         ) {
-          biodiv.push(
-            ...biodiv,
-            project.projetsPB
-          );
+          biodiv.push(project.projetsPB);
         } else if (
           project.projetsPB
             .plastiqueOuBiodiversite ==
           "Plastique"
         ) {
-          plastique.push(
-            ...plastique,
-            project.projetsPB
-          );
+          plastique.push(project.projetsPB);
         }
       }
     );
+
     if (currentPage == "plastic") {
       setdataBloc5Project(plastique);
     } else {
