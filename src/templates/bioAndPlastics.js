@@ -792,7 +792,12 @@ function PlaticBiodiv({ pageContext }) {
                       {dataBloc6.texteContact}
                     </p>
                     <div>
-                      <a className="btn" href="">
+                      <a
+                        className="btn"
+                        href={
+                          dataPage.lienContactUs
+                        }
+                      >
                         {dataBloc6.boutonContact}
                       </a>
                     </div>
