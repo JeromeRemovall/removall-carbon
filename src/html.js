@@ -19,25 +19,43 @@ export default function HTML(props) {
 						// 	t.parentNode.insertBefore(e, t);
 						// })(document, "script");
 
-						function launchGA() {
+						function launchGA_Analytics() {
 							(function(d, s) {
 								var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-								e.async = true; e.src = "https://www.googletagmanager.com/gtag/js?id=G-FTJ26XV0B7";
+								e.async = true; e.src = "https://www.googletagmanager.com/gtag/js?id=G-FTJ26XV0B7&l=dataLayerAnalytics";
 								t.parentNode.insertBefore(e, t);
 							})(document, "script");
 							
 							(function(){
-								window.dataLayer = window.dataLayer || [];
+								window.dataLayerAnalytics = window.dataLayerAnalytics || [];
 								function gtag(){
-									dataLayer.push(arguments);
+									dataLayerAnalytics.push(arguments);
 								}
 								gtag('js', new Date());
 								gtag('config', 'G-FTJ26XV0B7');
 							})(document, "script");
 						}
 
+						function launchGA_Ads() {
+							(function(d, s) {
+								var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+								e.async = true; e.src = "https://www.googletagmanager.com/gtag/js?id=G-T3J1VPFELX&l=dataLayerAds";
+								t.parentNode.insertBefore(e, t);
+							})(document, "script");
+							
+							(function(){
+								window.dataLayerAds = window.dataLayerAds || [];
+								function gtag(){
+									dataLayerAds.push(arguments);
+								}
+								gtag('js', new Date());
+								gtag('config', 'G-T3J1VPFELX');
+							})(document, "script");
+						}
+
 						window.addEventListener("load", ()=> {
-							launchGA();
+							launchGA_Analytics();
+							launchGA_Ads();
 						});
 
 						// void 0 === window._axcb && (window._axcb = []);
