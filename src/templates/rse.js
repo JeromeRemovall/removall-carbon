@@ -51,114 +51,143 @@ function Rse({ pageContext }) {
             }
             alt={dataPage.imageHeaderPage.altText}
           />
-          <section id="bloc_1">
-            <h2 id="our-values">
-              {dataPage.titreBloc1}
-            </h2>
-            <div className="bloc_content">
-              <div className="item" id="value_1">
-                <img
-                  src={
-                    dataPage.premierElement.icon
-                      .mediaItemUrl
-                  }
-                  alt={
-                    dataPage.premierElement.icon
-                      .altText
-                  }
-                />
-                <div>
-                  <h3>
-                    {
-                      dataPage.premierElement
-                        .titre
-                    }
-                  </h3>
-                  <p>
-                    {
-                      dataPage.premierElement
-                        .description
-                    }
-                  </p>
+          {dataPage.titreBloc1 ? (
+            <section id="bloc_1">
+              <h2 id="our-values">
+                {dataPage.titreBloc1}
+              </h2>
+              <div className="bloc_content">
+                <div
+                  className="item"
+                  id="value_1"
+                >
+                  {dataPage.premierElement?.icon
+                    ?.mediaItemUrl ? (
+                    <img
+                      src={
+                        dataPage.premierElement
+                          ?.icon?.mediaItemUrl
+                      }
+                      alt={
+                        dataPage.premierElement
+                          ?.icon?.altText
+                      }
+                    />
+                  ) : null}
+                  <div>
+                    <h3>
+                      {
+                        dataPage.premierElement
+                          ?.titre
+                      }
+                    </h3>
+                    <p>
+                      {
+                        dataPage.premierElement
+                          ?.description
+                      }
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="item"
+                  id="value_2"
+                >
+                  {dataPage.secondElement?.icon
+                    ?.mediaItemUrl ? (
+                    <img
+                      src={
+                        dataPage.secondElement
+                          ?.icon?.mediaItemUrl
+                      }
+                      alt={
+                        dataPage.secondElement
+                          ?.icon?.altText
+                      }
+                    />
+                  ) : null}
+                  <div>
+                    <h3>
+                      {
+                        dataPage.secondElement
+                          ?.titre
+                      }
+                    </h3>
+                    <p>
+                      {
+                        dataPage.secondElement
+                          ?.description
+                      }
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="item"
+                  id="value_3"
+                >
+                  {dataPage.troisiemeElement?.icon
+                    ?.mediaItemUrl ? (
+                    <img
+                      src={
+                        dataPage.troisiemeElement
+                          ?.icon?.mediaItemUrl
+                      }
+                      alt={
+                        dataPage.troisiemeElement
+                          ?.icon?.altText
+                      }
+                    />
+                  ) : null}
+                  <div>
+                    <h3>
+                      {
+                        dataPage.troisiemeElement
+                          ?.titre
+                      }
+                    </h3>
+                    <p>
+                      {
+                        dataPage.troisiemeElement
+                          ?.description
+                      }
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="item"
+                  id="value_4"
+                >
+                  {dataPage.quatriemeElement?.icon
+                    ?.mediaItemUrl ? (
+                    <img
+                      src={
+                        dataPage.quatriemeElement
+                          ?.icon?.mediaItemUrl
+                      }
+                      alt={
+                        dataPage.quatriemeElement
+                          ?.icon?.altText
+                      }
+                    />
+                  ) : null}
+                  <div>
+                    <h3>
+                      {
+                        dataPage.quatriemeElement
+                          ?.titre
+                      }
+                    </h3>
+                    <p>
+                      {
+                        dataPage.quatriemeElement
+                          ?.description
+                      }
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="item" id="value_2">
-                <img
-                  src={
-                    dataPage.secondElement.icon
-                      .mediaItemUrl
-                  }
-                  alt={
-                    dataPage.secondElement.icon
-                      .altText
-                  }
-                />
-                <div>
-                  <h3>
-                    {dataPage.secondElement.titre}
-                  </h3>
-                  <p>
-                    {
-                      dataPage.secondElement
-                        .description
-                    }
-                  </p>
-                </div>
-              </div>
-              <div className="item" id="value_3">
-                <img
-                  src={
-                    dataPage.troisiemeElement.icon
-                      .mediaItemUrl
-                  }
-                  alt={
-                    dataPage.troisiemeElement.icon
-                      .altText
-                  }
-                />
-                <div>
-                  <h3>
-                    {
-                      dataPage.troisiemeElement
-                        .titre
-                    }
-                  </h3>
-                  <p>
-                    {
-                      dataPage.troisiemeElement
-                        .description
-                    }
-                  </p>
-                </div>
-              </div>
-              <div className="item" id="value_4">
-                <img
-                  src={
-                    dataPage.quatriemeElement.icon
-                      .mediaItemUrl
-                  }
-                  alt={
-                    dataPage.quatriemeElement.icon
-                      .altText
-                  }
-                />
-                <div>
-                  <h3>
-                    {
-                      dataPage.quatriemeElement
-                        .titre
-                    }
-                  </h3>
-                  <p>
-                    {
-                      dataPage.quatriemeElement
-                        .description
-                    }
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+            </section>
+          ) : null}
           <section id="bloc_2">
             <h2 id="our-commitments">
               {dataPage.titreBloc2}
@@ -225,15 +254,17 @@ function Rse({ pageContext }) {
                 className="item"
                 id="commitments_4"
               >
-                <img
-                  src={
-                    dataPage.bloc4.image
-                      .mediaItemUrl
-                  }
-                  alt={
-                    dataPage.bloc4.image.altText
-                  }
-                />
+                <div className="illu_container">
+                  <img
+                    src={
+                      dataPage.bloc4.image
+                        .mediaItemUrl
+                    }
+                    alt={
+                      dataPage.bloc4.image.altText
+                    }
+                  />
+                </div>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: dataPage.bloc4.texte,
