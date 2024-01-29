@@ -292,12 +292,12 @@ function Project({ pageContext }) {
             alt={dataP.image.altText}
           />
           <section className="map_project">
-            <div className="map_title">
+            {/* <div className="map_title">
               <Description
                 title={dataP.bloc1Titre}
                 text={dataP.bloc1Texte}
               />
-            </div>
+            </div> */}
             <div className="map_interactive">
               <div className="map_container">
                 <div className="controls_container">
