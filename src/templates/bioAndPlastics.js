@@ -716,12 +716,12 @@ function PlaticBiodiv({ pageContext }) {
                             <div className="illu_container">
                               <img
                                 src={
-                                  project.image
-                                    .sourceUrl
+                                  project?.image
+                                    ?.sourceUrl
                                 }
                                 alt={
-                                  project.image
-                                    .altText
+                                  project?.image
+                                    ?.altText
                                 }
                               />
                             </div>
