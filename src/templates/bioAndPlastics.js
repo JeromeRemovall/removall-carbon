@@ -51,12 +51,7 @@ const query = graphql`
             altText
             sourceUrl
           }
-          paysSearch {
-            paysTax {
-              capitale
-              nomDuPays
-            }
-          }
+          paysSearch
         }
       }
     }
@@ -698,17 +693,7 @@ function PlaticBiodiv({ pageContext }) {
                               {project.paysSearch ? (
                                 <p className="place">
                                   {
-                                    project
-                                      .paysSearch
-                                      .paysTax
-                                      .nomDuPays
-                                  }
-                                  , 
-                                  {
-                                    project
-                                      .paysSearch
-                                      .paysTax
-                                      .capitale
+                                    project.paysSearch
                                   }
                                 </p>
                               ) : null}
