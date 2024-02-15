@@ -3,208 +3,216 @@
 @import "../mixins//breakpoints";
 
 .pop_container {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100dvw;
-	height: 100dvh;
-	padding: 16px;
-	background: #000000A3;
-	z-index: 200;
-	box-sizing: border-box;
-	.newsletter_container {
-		position: relative;
-		display: flex;
-		max-width: 1034px;
-		background-color: $primary-blue-100;
-		border-radius: 8px;
-		overflow: hidden;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100dvw;
+  height: 100dvh;
+  padding: 16px;
+  background: #000000a3;
+  z-index: 200;
+  box-sizing: border-box;
+  .newsletter_container {
+    position: relative;
+    display: flex;
+    max-width: 1034px;
+    background-color: $primary-blue-100;
+    border-radius: 8px;
+    overflow: hidden;
 
-		.btn_close {
-			position: absolute;
-			top: 8px;
-			right: 8px;
-			width: 32px;
-			height: 32px;
-			background-image: url(../../images/close_btn.svg);
-			background-repeat: no-repeat;
-			background-position: center;
-			cursor: pointer;
-		}
-		.newsletter-content {
-			@include xl {
-				padding: 32px 20px;
-			}
-			padding: 68px 76px;
-		}
+    .btn_close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      background-color: $primary-blue-100;
+      border-radius: 8px;
+      cursor: pointer;
+      &::before {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        background-image: url(../../images/close_btn.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+    .newsletter-content {
+      @include xl {
+        padding: 32px 20px;
+      }
+      padding: 68px 76px;
+    }
 
-		h2{
-			@include chillax-heading-xl;
-			color: $primary-blue-700;
-			margin-bottom: 16px;
+    h2 {
+      @include chillax-heading-xl;
+      color: $primary-blue-700;
+      margin-bottom: 16px;
 
-			@include xl {
-				text-align: center;
-				@include montserrat-heading-m;
-			}
+      @include xl {
+        text-align: center;
+        @include montserrat-heading-m;
+      }
 
-			@include xl {
-				text-align: center;
-				@include montserrat-heading-m;
-			}
-		}
-		p:nth-of-type(1){
-			@include montserrat-paragraph-l-m;
-			color: $dark-500;
-			// width: 450px;
-			margin-bottom: 24px;
+      @include xl {
+        text-align: center;
+        @include montserrat-heading-m;
+      }
+    }
+    p:nth-of-type(1) {
+      @include montserrat-paragraph-l-m;
+      color: $dark-500;
+      // width: 450px;
+      margin-bottom: 24px;
 
-			@include xl {
-				width: 100%;
-				@include montserrat-paragraph-m-m;
-			}
-		}
+      @include xl {
+        width: 100%;
+        @include montserrat-paragraph-m-m;
+      }
+    }
 
-		.newsletter-content__field{
-			display: flex;
-			margin-bottom: 18px;
-			position: relative;
-			flex-direction: column;
+    .newsletter-content__field {
+      display: flex;
+      margin-bottom: 18px;
+      position: relative;
+      flex-direction: column;
 
-			@include xl{
-				width: 100%;
-			}
+      @include xl {
+        width: 100%;
+      }
 
-			input{
-				border-radius: 50px;
-				border: 1px solid $primary-blue-500;
-				padding: 14px 0px 14px 24px;
-				@include montserrat-label-l-m;
+      input {
+        border-radius: 50px;
+        border: 1px solid $primary-blue-500;
+        padding: 14px 0px 14px 24px;
+        @include montserrat-label-l-m;
 
-				@include xl{ 
-					@include montserrat-label-s-m;
-				}
-			}
+        @include xl {
+          @include montserrat-label-s-m;
+        }
+      }
 
-			input::placeholder{
-				@include montserrat-label-l-m;
-				color: $dark-300;
-			}
+      input::placeholder {
+        @include montserrat-label-l-m;
+        color: $dark-300;
+      }
 
-			button{
-				box-sizing: border-box;
-				padding: 14px 32px;
-				right: 0px;
-				border-radius: 50px;
-				background-color: $primary-blue-500;
-				border: none;
-				color: $light-100;
-				@include montserrat-label-l-s;
-				position: absolute;
-				top: 1px; 
+      button {
+        box-sizing: border-box;
+        padding: 14px 32px;
+        right: 0px;
+        border-radius: 50px;
+        background-color: $primary-blue-500;
+        border: none;
+        color: $light-100;
+        @include montserrat-label-l-s;
+        position: absolute;
+        top: 1px;
 
-				@include xl{
-					padding: 8px 32px;
-				}
-			}
+        @include xl {
+          padding: 8px 32px;
+        }
+      }
 
-			.checkbox{
-				display: flex;
-				align-items: center;
-				width: 100%;
-				margin-top: 16px;
+      .checkbox {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-top: 16px;
 
-				input{
-					width: 34px;
-					height: 34px;
+        input {
+          width: 34px;
+          height: 34px;
 
-					@include  xl{
-						width: 60px;
-						height: 60px;
-					}
-				}
+          @include xl {
+            width: 60px;
+            height: 60px;
+          }
+        }
 
-				label{
-					margin-left: 16px;
-					@include montserrat-label-s-m;
-					color: $dark-500;
+        label {
+          margin-left: 16px;
+          @include montserrat-label-s-m;
+          color: $dark-500;
 
-					@include xl{
-						@include montserrat-label-xs-m
-					}
-				}
-			}
+          @include xl {
+            @include montserrat-label-xs-m;
+          }
+        }
+      }
 
-			.form-message__validate{
-				margin: 0;
-				padding-left: 0;
-				color: $secondary-green-500;
-				@include montserrat-paragraph-m-m;
-				margin-top: 5px;
-				width: 100%;
-			}
+      .form-message__validate {
+        margin: 0;
+        padding-left: 0;
+        color: $secondary-green-500;
+        @include montserrat-paragraph-m-m;
+        margin-top: 5px;
+        width: 100%;
+      }
 
-			.form-message__error{
-				margin: 0;
-				padding-left: 0;
-				color: $red;
-				@include montserrat-paragraph-s-m;
-				margin-top: 5px;
-				width: 100%;
-			}
-		}
+      .form-message__error {
+        margin: 0;
+        padding-left: 0;
+        color: $red;
+        @include montserrat-paragraph-s-m;
+        margin-top: 5px;
+        width: 100%;
+      }
+    }
 
-		.newsletter-content__conditions{
-			p{
-				width: 100% !important;
-				@include montserrat-label-s-m;
-				color: $dark-500;
-				margin-bottom: 0px;
+    .newsletter-content__conditions {
+      p {
+        width: 100% !important;
+        @include montserrat-label-s-m;
+        color: $dark-500;
+        margin-bottom: 0px;
 
-				@include xl {
-					text-align: center;
-					@include montserrat-label-xs-m;
-				}
+        @include xl {
+          text-align: center;
+          @include montserrat-label-xs-m;
+        }
 
-				a{
-					@include montserrat-label-s-m;
-					text-decoration: underline;
-					color: $dark-500;
+        a {
+          @include montserrat-label-s-m;
+          text-decoration: underline;
+          color: $dark-500;
 
-					@include xl {
-						text-align: center;
-						@include montserrat-label-xs-m;
-					}
-				}
-			}
-		}
+          @include xl {
+            text-align: center;
+            @include montserrat-label-xs-m;
+          }
+        }
+      }
+    }
 
-		.newsletter-image{
-			object-fit: contain;
-			overflow: hidden;
-	
-			@include xl {
-				display: none;
-			}
-	
-			@include xl-paysage {
-				width: 45%;
-				height: auto;
-			}
-	
-			img{
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
-		}
-	}
+    .newsletter-image {
+      object-fit: contain;
+      overflow: hidden;
+
+      @include xl {
+        display: none;
+      }
+
+      @include xl-paysage {
+        width: 45%;
+        height: auto;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
 }
 
 .stop-scrolling {
-	height: 100%;
-	overflow: hidden;
-  }
+  height: 100%;
+  overflow: hidden;
+}

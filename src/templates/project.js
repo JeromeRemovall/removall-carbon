@@ -114,7 +114,23 @@ const query = graphql`
         }
       }
     }
-    projectsMap: allWpAllPays(filter: {}) {
+    projectsMap: allWpAllPays(
+      filter: {
+        posts: {
+          nodes: {
+            elemMatch: {
+              categories: {
+                nodes: {
+                  elemMatch: {
+                    name: { in: "carte" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ) {
       edges {
         node {
           posts {
@@ -313,9 +329,9 @@ function Project({ pageContext }) {
                 </div>
                 <div id="map"></div>
               </div>
-              <div className="info_container">
+              {/* <div className="info_container">
                 <div id="maps_mobile"></div>
-              </div>
+              </div> */}
             </div>
           </section>
           <section className="bloc-1">
