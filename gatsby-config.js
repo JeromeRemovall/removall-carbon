@@ -1,15 +1,15 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
     title: `Removall carbon`,
-    siteUrl: process.env.GATSBY_URL_SITE,
+    siteUrl: process.env.URL_SITE,
     description: `Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.`,
   },
   flags: {
-    DEV_SSR: true
+    DEV_SSR: true,
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -21,26 +21,25 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: process.env.GATSBY_URL_API,
+        url: process.env.URL_API,
         debug: {
-          graphql: {
-          }
+          graphql: {},
         },
         schema: {
           perPage: 20,
           requestConcurrency: 5,
           previewRequestConcurrency: 2,
-        }
-      }
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-i18n`,
       options: {
-        langKeyDefault: 'fr',
-        langKeyForNull: 'fr',
+        langKeyDefault: "fr",
+        langKeyForNull: "fr",
         prefixDefault: false,
         useLangKeyLayout: false,
-      }
+      },
     },
     /*{
       resolve: `gatsby-plugin-manifest`,
