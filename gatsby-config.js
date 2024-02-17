@@ -5,8 +5,11 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Removall carbon`,
-    siteUrl: process.env.URL_SITE,
+    siteUrl: process.env.GATSBY_URL_SITE,
     description: `Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.`,
+  },
+  flags: {
+    DEV_SSR: true
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -18,7 +21,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: process.env.URL_API,
+        url: process.env.GATSBY_URL_API,
         debug: {
           graphql: {
           }

@@ -175,6 +175,8 @@ function Home({ pageContext }) {
     dataSlider.map((slide) => {
       return slides.push(slide.slider);
     });
+    slides[0].titre = dataH?.titre;
+    slides[0].texte = dataH?.description;
   }
 
   if (dataCustomers) {
@@ -188,7 +190,6 @@ function Home({ pageContext }) {
         );
       }
     });
-    console.log(logoCustomers);
   }
 
   if (dataPartners) {
@@ -202,8 +203,47 @@ function Home({ pageContext }) {
         );
       }
     });
-    console.log(logoPartners);
   }
+
+  useEffect(() => {
+    function getLanguage() {
+      if (
+        window.location.href.match("/fr$") ||
+        window.location.href.match("/fr/")
+      ) {
+        setDataCustomers(data.blocClients.nodes);
+        setDataPartners(
+          data.blocPartenaires.nodes
+        );
+        setDataSlider(data.sliderFr.nodes);
+        setMetaLang("fr");
+        setMetaDescription(
+          "Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone."
+        );
+      } else if (
+        window.location.href.match("/en$") ||
+        window.location.href.match("/en/")
+      ) {
+        setDataCustomers(
+          data.blocCustomers.nodes
+        );
+        setDataPartners(data.blocPartners.nodes);
+        setDataSlider(data.sliderEn.nodes);
+        setMetaLang("en");
+        setMetaDescription(
+          "Removall is specialized in designing carbon funds and developing carbon sequestration projects."
+        );
+      }
+    }
+    getLanguage();
+  }, [
+    data.blocClients.nodes,
+    data.blocCustomers.nodes,
+    data.blocPartenaires.nodes,
+    data.blocPartners.nodes,
+    data.sliderEn.nodes,
+    data.sliderFr.nodes,
+  ]);
 
   useEffect(() => {
     function getLanguage() {
@@ -333,7 +373,7 @@ function Home({ pageContext }) {
                   dataH.bloc3item4Image.altText
                 }
               />
-            ) : null}
+            ) : null}{" "}
             <ButtonLink
               label={dataH.bloc3Bouton}
               to={dataH.bloc3BoutonLien}
@@ -470,6 +510,19 @@ function Home({ pageContext }) {
               </div>
             </section>
           ) : null}
+          {/* <aside className='linkedin_container'>
+						<div className='linkedin_posts'>
+							<div className='posts_header'>
+								<h3 className='title_mobile'>Nos dernières publications</h3>
+								<h3 className='title_desktop'>Nos dernières publications Linkedin</h3>
+								<div className='btn_close'></div>
+							</div>
+							<div>
+								<div class='sk-ww-linkedin-page-post' data-embed-id='224960'></div>
+							</div>
+						</div>
+						<p className='linkedin_tooltip'>Nos dernières<br/>publications</p>
+					</aside> */}
         </main>
       ) : (
         <Loader />

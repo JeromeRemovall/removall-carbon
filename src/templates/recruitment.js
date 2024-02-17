@@ -99,7 +99,6 @@ function Recruitment({ pageContext }){
 
 	const { dataRecruitment } = pageContext;
 	const dataR = dataRecruitment.recruitment;
-
 	const [metaLang, setMetaLang] = useState("");
 
 	const arrayfilters1 = [];
@@ -147,6 +146,7 @@ function Recruitment({ pageContext }){
 			}
 		}
 		getLanguage();
+
 	}, [dataO, dataSlider, openPanelFilters, data.imagesSliderEn.nodes, data.imagesSliderFr.nodes, data.offersEn.nodes, data.offersFr.nodes])
 
 	function setFilters(){
@@ -185,8 +185,6 @@ function Recruitment({ pageContext }){
 		setSelectedLocation(dataR.nomDuTroisiemeFiltre)
 	}
 
-	console.log(slides.length > 0)
-
 	return(
 		<Layout>
 			<Helmet>
@@ -197,9 +195,6 @@ function Recruitment({ pageContext }){
 			{dataO && dataR ?
 			<main className="recruitment">
 				<BlocHeader title={dataR.titre} img={dataR.imageDeFond.sourceUrl} alt={dataR.imageDeFond.altText}/>
-				<section className="bloc-1">
-					<Description title={dataR.bloc1Titre} text={dataR.bloc1Texte} />
-				</section>
 				{dataR.bloc2Video !== null? 
 					<section className="bloc-2">
 						<Video src={dataR.bloc2Video.mediaItemUrl} thumbnail={dataR.miniatureVideo.sourceUrl}/>
@@ -210,7 +205,7 @@ function Recruitment({ pageContext }){
 						<h2>{dataR.bloc3Titre}</h2>
 						<div className="bloc-3__header-filter">
 							<select name="team" id="team" value={selectedTeam} onChange={(e)=> setSelectedTeam(e.target.value)}>
-								<option class="optionDefault" value={dataR.nomDuPremierFiltre} selected disabled>{dataR.nomDuPremierFiltre}</option>
+								<option class="optionDefault" value={dataR.nomDuPremierFiltre} selected>{dataR.nomDuPremierFiltre}</option>
 								{arrayfilters1.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
@@ -218,7 +213,7 @@ function Recruitment({ pageContext }){
 								})}
 							</select>
 							<select name="typeOfContract" id="typeOfContract" value={selectedTypeOfContract} onChange={(e)=> setSelectedTypeOfContract(e.target.value)}>
-								<option value={dataR.nomDuDeuxiemeFiltre} selected disabled>{dataR.nomDuDeuxiemeFiltre}</option>
+								<option value={dataR.nomDuDeuxiemeFiltre} selected>{dataR.nomDuDeuxiemeFiltre}</option>
 								{arrayfilters2.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
@@ -226,7 +221,7 @@ function Recruitment({ pageContext }){
 								})}
 							</select>
 							<select name="location" id="location" value={selectedLocation} onChange={(e)=> setSelectedLocation(e.target.value)}>
-								<option value={dataR.nomDuTroisiemeFiltre} selected disabled>{dataR.nomDuTroisiemeFiltre}</option>
+								<option value={dataR.nomDuTroisiemeFiltre} selected >{dataR.nomDuTroisiemeFiltre}</option>
 								{arrayfilters3.map((item)=> {
 									return(
 										<option value={item}>{item}</option>
@@ -332,6 +327,29 @@ function Recruitment({ pageContext }){
 					</div>
 					{dataO.length > 6 && open === false ? <Button label={dataR.bloc3BoutonOuvrir} labelMobile={dataR.bloc3BoutonOuvrirMobile} onClick={openOffers} /> : null}
 					{dataO.length > 6 && open === true ? <Button label={dataR.bloc3BoutonFermer} labelMobile={dataR.bloc3BoutonFermerMobile} onClick={openOffers} /> : null}
+				</section>
+				<section className="bloc-1">
+					<Description title={dataR.rhSectionTitre} text={dataR.rhSectionDescription} />
+				</section>
+				<section className='rh_container'>
+					<div className='illustration'>
+							<img src={dataR.rhSectionVisuel.mediaItemUrl} alt=""/>
+					</div>
+					<div className='content'>
+						<div class="content_part_text" dangerouslySetInnerHTML={ { __html: dataR.rhSectionBlocTexte } }>
+						</div>
+						<div class="content_part_data">
+							<div>
+								<div className='data_content' dangerouslySetInnerHTML={ { __html: dataR.rhSectionData.data1 }}></div>
+								<div className='data_content' dangerouslySetInnerHTML={ { __html: dataR.rhSectionData.data2 }}></div>
+							</div>
+							<div className='data_content' dangerouslySetInnerHTML={ { __html: dataR.rhSectionData.data3 }}></div>
+							<div className='data_content' dangerouslySetInnerHTML={ { __html: dataR.rhSectionData.data4 }}></div>
+						</div>
+						<div class="content_part_file">
+							<a target='_blank' href={dataR.rhSectionFile.mediaItemUrl} >{dataR.rhSectionTexteCharteDeParite}</a>
+						</div>
+					</div>
 				</section>
 				{slides.length > 0 ? 
 				<section className="bloc-4">
