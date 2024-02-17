@@ -46,6 +46,18 @@ class Maps {
         );
       }
     );
+
+    this.map?.addEventListener(
+      "touchstart",
+      (_eventStart) => {
+        this.positionXTpm = _eventStart.clientX;
+        this.positionYTpm = _eventStart.clientY;
+        this.map.addEventListener(
+          "touchend",
+          this.moveMap
+        );
+      }
+    );
   }
 
   moveMap(_event) {
