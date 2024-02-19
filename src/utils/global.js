@@ -17,7 +17,7 @@ export const isMobile = () => {
 export const isInViewport = (element) => {
   const rect = element?.getBoundingClientRect();
   return (
-    (rect.top <= 0 && rect.bottom >= 0) ||
-    (rect.top >= 0 && rect.bottom <= 0)
+    (rect.top <= 0 + 60 && rect.bottom >= 0) ||
+    (rect.top >= 0 - 60 && rect.bottom <= 0)
   );
 };
