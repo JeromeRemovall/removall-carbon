@@ -125,6 +125,8 @@ function PlaticBiodiv({ pageContext }) {
     setDataLoad(true);
   };
 
+  console.log(dataBloc6);
+
   const setProjects = () => {
     const plastique = [];
     const biodiv = [];
@@ -780,7 +782,7 @@ function PlaticBiodiv({ pageContext }) {
                       <a
                         className="btn"
                         href={
-                          dataPage.lienContactUs
+                          dataBloc6.lienBoutonContact
                         }
                       >
                         {dataBloc6.boutonContact}

@@ -172,6 +172,7 @@ exports.createPages = async ({
                 altText
                 sourceUrl
               }
+              lienBoutonContact
             }
             groupeCarbon7 {
               titre
@@ -288,6 +289,7 @@ exports.createPages = async ({
                 altText
                 sourceUrl
               }
+              lienBoutonContact
             }
             groupePlastics7 {
               titre
