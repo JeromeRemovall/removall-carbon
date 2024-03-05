@@ -73,9 +73,6 @@ function Offers({ pageContext }) {
     const formElement = event.target,
       { action, method } = formElement,
       body = new FormData(formElement);
-    for (const value of body.values()) {
-      console.log(value);
-    }
     fetch(action, {
       method,
       body,
