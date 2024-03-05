@@ -73,13 +73,16 @@ function Offers({ pageContext }) {
     const formElement = event.target,
       { action, method } = formElement,
       body = new FormData(formElement);
-
+    for (const value of body.values()) {
+      console.log(value);
+    }
     fetch(action, {
       method,
       body,
     })
       .then((response) => response.json())
       .then((response) => {
+        console.log(response);
         setMessageEmail("");
         setMessageLetter("");
         setMessageSurname("");
@@ -220,7 +223,7 @@ function Offers({ pageContext }) {
           >
             <h2>{dataForm.titreFormulaire}</h2>
             <form
-              className="form"
+              className="form "
               method="post"
               action={url}
               onSubmit={formSubmissionHandler}
@@ -233,6 +236,15 @@ function Offers({ pageContext }) {
                   value={dataO.sousTitre}
                 />
               </div>
+              <div className="group-input hide">
+                <input
+                  type="text"
+                  id="_wpcf7_unit_tag"
+                  name="_wpcf7_unit_tag"
+                  value="6124bb2"
+                />
+              </div>
+
               <div className="group-input">
                 <input
                   type="text"
