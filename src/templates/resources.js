@@ -85,7 +85,7 @@ const query = graphql`
           }
         }
       }
-      sort: { fields: date, order: ASC }
+      sort: { fields: date, order: DESC }
     ) {
       nodes {
         resources {
@@ -116,7 +116,7 @@ const query = graphql`
           }
         }
       }
-      sort: { fields: date, order: ASC }
+      sort: { fields: date, order: DESC }
     ) {
       nodes {
         resources {
