@@ -36,7 +36,7 @@ exports.createPages = async ({
   const { createRedirect } = actions;
   createRedirect({
     fromPath: "/",
-    toPath: "/fr/",
+    toPath: "/en/",
     isPermanent: true,
   });
 
