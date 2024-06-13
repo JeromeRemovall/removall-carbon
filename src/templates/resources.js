@@ -34,7 +34,7 @@ const query = graphql`
     ) {
       nodes {
         news {
-          texte
+          texteActualite
           titre
           legende
           image {
@@ -60,7 +60,7 @@ const query = graphql`
     ) {
       nodes {
         news {
-          texte
+          texteActualite
           titre
           legende
           image {
@@ -94,7 +94,7 @@ const query = graphql`
             altText
           }
           titre
-          texte
+          texteRessource
           bouton
           boutonMobile
           fichier {
@@ -125,7 +125,7 @@ const query = graphql`
             altText
           }
           titre
-          texte
+          texteRessource
           bouton
           boutonMobile
           fichier {
@@ -617,7 +617,7 @@ function Resources({ pageContext }) {
                                 item.news.titre
                               }
                               text={
-                                item.news.texte
+                                item.news.texteActualite
                               }
                               key={item}
                               legendVisible={true}
@@ -655,7 +655,7 @@ function Resources({ pageContext }) {
                                 item.news.titre
                               }
                               text={
-                                item.news.texte
+                                item.news.texteActualite
                               }
                               key={item}
                               legendVisible={true}
@@ -732,7 +732,7 @@ function Resources({ pageContext }) {
                                 }
                                 text={
                                   item.resources
-                                    .texte
+                                    .texteRessource
                                 }
                                 buttonVisible={
                                   true

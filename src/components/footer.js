@@ -253,7 +253,7 @@ const query = graphql`
             altText
           }
           titre
-          texte
+          texteRessource
           bouton
           boutonMobile
           fichier {
@@ -284,7 +284,7 @@ const query = graphql`
             altText
           }
           titre
-          texte
+          texteRessource
           bouton
           boutonMobile
           fichier {

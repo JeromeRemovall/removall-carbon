@@ -24,7 +24,7 @@ const query = graphql`
     ) {
       nodes {
         news {
-          texte
+          texteActualite
           titre
           image {
             sourceUrl
@@ -49,7 +49,7 @@ const query = graphql`
     ) {
       nodes {
         news {
-          texte
+        texteActualite
           titre
           legende
           image {
