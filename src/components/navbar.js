@@ -578,7 +578,7 @@ const Navbar = () => {
                                   {preferredLanguage == "en" ? (
                                     <>
                                       <Link to={`/${preferredLanguage}/News`} className={window.location.pathname ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
-                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources and publications/` ? 'active' : ''}>Resources and publications</Link>
+                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
                                       <Link to={`/${preferredLanguage}/Events`} className={window.location.pathname == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
                                     </>
                                   ) : (
@@ -619,7 +619,7 @@ const Navbar = () => {
                                   {preferredLanguage == "en" ? (
                                     <>
                                       <Link to={`/${preferredLanguage}/News`} className={activeLink ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
-                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={activeLink == `/${preferredLanguage}/Resources and publications/` ? 'active' : ''}>Resources and publications</Link>
+                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={activeLink == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
                                       <Link to={`/${preferredLanguage}/Events`} className={activeLink == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
                                     </>
                                   ) : (
