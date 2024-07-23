@@ -118,7 +118,7 @@ $font-path: '../../';
       a {
         @include montserrat-label-l-m;
         color: $primary-blue-700;
-
+        padding: 8px 0px;
         &:hover {
           color: $primary-blue-500;
         }
@@ -152,6 +152,39 @@ $font-path: '../../';
 
   svg {
     stroke: #5f89f4;
+  }
+}
+.subMenu {
+  position: relative;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    .container_subMenu {
+      display: flex;
+    }
+  }
+  .container_subMenu {
+    position: absolute;
+    top: calc(100% );
+    left: -8px;
+    display: none;
+    text-wrap: nowrap;
+    flex-direction: column;
+    background-color: $light-100;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(237, 237, 237, 1);
+    border-radius: 8px;
+    a {
+      padding: 6px 12px;
+      border-bottom: 1px solid rgba(237, 237, 237, 1);
+      color: $dark-900;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
   }
 }
 .navbar-responsive {
