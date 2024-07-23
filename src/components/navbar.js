@@ -613,7 +613,7 @@ const Navbar = () => {
                                 className={`subMenu`}
                                 key={label}
                               >
-                                {activeLink}
+                                {label}
                                 <ChevronDown size={20}/>
                                 <div className="container_subMenu">
                                   {preferredLanguage == "en" ? (
