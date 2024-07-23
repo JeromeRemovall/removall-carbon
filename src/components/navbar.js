@@ -438,7 +438,14 @@ const Navbar = () => {
     checkPreferredLanguage();
 
     function isActive() {
-      setActiveLink(window.location.pathname);
+      console.log();
+      if (["/fr/%C3%89v%C3%A8nements/", "/fr/Ressources%20et%20Publications/", "/fr/Actualit%C3%A9s/"].includes(window.location.pathname)) {
+        setActiveLink("/fr/ressources/");
+      } else if (["/en/Events/", "/en/News/", "/en/Resources%20and%20publications/"].includes(window.location.pathname)) {
+        setActiveLink("/en/resources/");
+      } else {
+        setActiveLink(window.location.pathname);
+      }
     }
     isActive();
   }, [
@@ -567,7 +574,21 @@ const Navbar = () => {
                               >
                                 {label}
                                 <ChevronDown size={20} />
-                                
+                                <div className="container_subMenu">
+                                  {preferredLanguage == "en" ? (
+                                    <>
+                                      <Link to={`/${preferredLanguage}/News`} className={window.location.pathname ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
+                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources and publications/` ? 'active' : ''}>Resources and publications</Link>
+                                      <Link to={`/${preferredLanguage}/Events`} className={window.location.pathname == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Link to={`/${preferredLanguage}/Actualités`} className={window.location.pathname == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
+                                      <Link to={`/${preferredLanguage}/Ressources et Publications`} className={window.location.pathname == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
+                                      <Link to={`/${preferredLanguage}/Évènements`} className={window.location.pathname == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
+                                    </>
+                                  )} 
+                                </div>
                               </Link>
                             </li>
                             ): (
@@ -589,10 +610,10 @@ const Navbar = () => {
                             {label == "News & Events" || label == "Actualités" ? (
                               <li>
                               <Link
-                                className={`subMenu ${path == "/en/resources/" || path == "/fr/ressources/" ? 'active' : ''}`}
+                                className={`subMenu`}
                                 key={label}
                               >
-                                {label}
+                                {activeLink}
                                 <ChevronDown size={20}/>
                                 <div className="container_subMenu">
                                   {preferredLanguage == "en" ? (
