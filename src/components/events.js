@@ -21,7 +21,7 @@ function Events({
           <p>{month}</p>
         </div>
         <div className="events-content__infos">
-          <p>{hours}</p>
+          {hours && (<p>{hours}</p>)}
           <div>
             <p>{adress}</p>
             <div className="speaker_container">

@@ -1,0 +1,19 @@
+@import "../../variables/colors";
+$font-path: '../../../';
+@import "../../mixins/text-style";
+@import "../../mixins//breakpoints";
+
+.actuality_header {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 715px;
+	h2 {
+		@include chillax-display-m;
+		color: $primary-blue-700;
+	}
+	div {
+		@include montserrat-paragraph-l-m;
+		color: $dark-900;
+	}
+}

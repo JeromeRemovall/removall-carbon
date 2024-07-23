@@ -1009,9 +1009,7 @@ exports.createPages = async ({
   const projectTemplate = require.resolve(
     "./src/templates/project.js"
   );
-  const resourceTemplate = require.resolve(
-    "./src/templates/resources.js"
-  );
+
   const conditionsOfUseTemplate = require.resolve(
     "./src/templates/conditionsOfUse.js"
   );
@@ -1090,15 +1088,17 @@ exports.createPages = async ({
       },
     });
   });
-
   result.data.resource.nodes.forEach((node) => {
-    createPage({
-      path: `/${node.language.slug}/${node.slug}/`,
-      component: resourceTemplate,
-      context: {
-        dataResource: node,
-      },
-    });
+    for(let i = 1; i <= 3; i++) {
+      const slug = `bloc${i}Titre`
+      createPage({
+        path: `/${node.language.slug}/${node.ressource[slug]}`,
+        component: require.resolve(`./src/templates/${slug}.js`),
+        context: {
+          dataResource: node,
+        },
+      });
+    }
   });
 
   result.data.conditionsOfUse.nodes.forEach(

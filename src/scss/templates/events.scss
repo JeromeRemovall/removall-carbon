@@ -1,0 +1,31 @@
+@import "../variables/colors";
+$font-path: '../../';
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+main.events {
+	width: 100vw;
+	padding-top: 88px;
+	background-color: $light-100;
+	section {
+		padding: 112px 96px;
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(395px, 1fr));
+			gap: 32px;
+			margin-top: 64px;
+			justify-content: center;
+			justify-items: center;
+			align-items: baseline;
+			.event {
+				width: 395px;
+				height: 412px;
+				border-radius: 8px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+	}
+}

@@ -1,0 +1,14 @@
+@import "../variables/colors";
+$font-path: '../../';
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+main.actuality {
+	width: 100vw;
+	padding-top: 88px;
+	background-color: $light-100;
+	section {
+		padding: 112px 96px;
+		height: 100vh;
+	}
+}
