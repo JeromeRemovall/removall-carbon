@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
+@font-face {
+  font-family: "Chillax-Semibold";
+  src: url(../../assets/fonts/Chillax-Semibold.woff2) format("woff2"), url(../../assets/fonts/Chillax-Semibold.woff) format("woff"), url(../../assets/fonts/Chillax-Semibold.ttf) format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Chillax-Bold";
+  src: url(../../assets/fonts/Chillax-Bold.woff2) format("woff2"), url(../../assets/fonts/Chillax-Bold.woff) format("woff"), url(../../assets/fonts/Chillax-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+em {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
+.article {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.article .article-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 160px;
+  max-width: 1034px;
+}
+@media (max-width: 834px) {
+  .article .article-container {
+    padding-top: 112px;
+  }
+}
+.article .article-container .heading .content-container {
+  margin: 0px 106px;
+}
+@media (max-width: 834px) {
+  .article .article-container .heading .content-container {
+    margin: 0px 16px;
+  }
+}
+.article .article-container .heading .content-container .header {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  margin-left: 16px;
+}
+.article .article-container .heading .content-container .header .tag-article {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  color: #5F89F4;
+}
+.article .article-container .heading .content-container .header .time {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  font-size: 12px;
+}
+.article .article-container .heading .content-container h1 {
+  font-family: Chillax-Semibold;
+  font-size: 56px;
+  letter-spacing: -1px;
+  line-height: 60px;
+  margin-bottom: 16px;
+}
+@media (max-width: 834px) {
+  .article .article-container .heading .content-container h1 {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+.article .article-container .heading .content-container > p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+}
+.article .article-container .heading img {
+  width: 100%;
+  aspect-ratio: 2.01953125;
+  margin: 24px 0px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+@media (max-width: 834px) {
+  .article .article-container .heading img {
+    border-radius: 0px;
+    aspect-ratio: 1.875;
+  }
+}

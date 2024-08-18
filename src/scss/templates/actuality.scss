@@ -9,6 +9,8 @@ main.actuality {
 	background-color: $light-100;
 	section {
 		padding: 112px 96px;
-		height: 100vh;
+		@include xl {
+			padding: 40px 16px;
+		}
 	}
 }

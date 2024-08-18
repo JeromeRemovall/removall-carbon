@@ -11,6 +11,10 @@ $font-path: '../../../';
 	h2 {
 		@include chillax-display-m;
 		color: $primary-blue-700;
+		@include xl {
+			font-size: 32px;
+			line-height: 40px;
+		}
 	}
 	div {
 		@include montserrat-paragraph-l-m;

@@ -9,6 +9,9 @@ main.events {
 	background-color: $light-100;
 	section {
 		padding: 112px 96px;
+		@include xl {
+			padding: 40px 16px;
+		}
 		.grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(395px, 1fr));
@@ -17,6 +20,12 @@ main.events {
 			justify-content: center;
 			justify-items: center;
 			align-items: baseline;
+			@include xl {
+				grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+				grid-auto-rows: min-content;
+				grid-row-gap: 16px;
+				margin-top: 32px;
+			}
 			.event {
 				width: 395px;
 				height: 412px;

@@ -1,0 +1,70 @@
+@import "../variables/colors";
+$font-path: '../../';
+@import "../mixins/text-style";
+@import "../mixins//breakpoints";
+
+.article {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	.article-container{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		padding-top: 160px;
+		max-width: 1034px;
+		@include xl {
+			padding-top: 112px;
+		}
+		.heading { 
+			.content-container {
+				margin: 0px 106px;
+				@include xl {
+					margin: 0px 16px;
+				}
+				.header {
+					display: flex;
+					gap: 16px;
+					margin-bottom: 24px;
+					margin-left: 16px;
+					.tag-article {
+						@include montserrat-label-m-s;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						background-color: inherit;
+						color: $primary-blue-500;
+					}
+					.time {
+						@include montserrat-label-m-s;
+						font-weight: 500;
+						font-size: 12px;
+					}
+				}
+				h1 {
+					@include chillax-display-l;
+					margin-bottom: 16px;
+					@include xl {
+						font-size: 40px;
+						line-height: 48px;
+					}
+				}
+				> p {
+					@include montserrat-paragraph-xl-m;
+				}
+			}
+			img {
+				width: 100%;
+				aspect-ratio: 2.01953125;
+				margin: 24px 0px;
+				object-fit: cover;
+				border-radius: 12px;
+				@include xl {
+					border-radius: 0px;
+					aspect-ratio: 1.875;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
+@font-face {
+  font-family: "Chillax-Semibold";
+  src: url(../../assets/fonts/Chillax-Semibold.woff2) format("woff2"), url(../../assets/fonts/Chillax-Semibold.woff) format("woff"), url(../../assets/fonts/Chillax-Semibold.ttf) format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Chillax-Bold";
+  src: url(../../assets/fonts/Chillax-Bold.woff2) format("woff2"), url(../../assets/fonts/Chillax-Bold.woff) format("woff"), url(../../assets/fonts/Chillax-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+em {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
+main.resources {
+  width: 100vw;
+  padding-top: 88px;
+  background-color: #ffffff;
+}
+main.resources section {
+  padding: 112px 96px;
+}
+@media (max-width: 834px) {
+  main.resources section {
+    padding: 40px 16px;
+  }
+}

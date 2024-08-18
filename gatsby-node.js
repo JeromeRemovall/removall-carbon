@@ -1,5 +1,6 @@
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 // const { default: Recruitment } = require("./src/templates/test");
+const {BLOC_FIELDS} = require("./src/utils/queryNews");
 
 exports.onCreateWebpackConfig = ({
   stage,
@@ -41,6 +42,7 @@ exports.createPages = async ({
   });
 
   const { createPage } = actions;
+
   const result = await graphql(`
     query MyQuery {
       plasticBiodiv: allWpPage(
@@ -983,6 +985,63 @@ exports.createPages = async ({
           }
         }
       }
+    news: allWpPost(
+      filter: {categories: {nodes: {elemMatch: {name: {eq: "Uncategorized"}}}}, title: {eq: "Article test, non visible"}}
+    ) 
+      {
+        edges {
+           node {
+            id
+            articles {
+              titre
+              sousTitre
+              duree
+              photoMiseEnAvant {
+                altText
+                sourceUrl
+              }
+              tags {
+                name
+              }
+              auteur {
+                Auteur {
+                  fonction
+                  photo {
+                    altText
+                    sourceUrl
+                  }
+                }
+                name
+              }
+              bloc1 {
+                ${BLOC_FIELDS}
+              }
+              bloc2 {
+                ${BLOC_FIELDS}
+              }
+              bloc3 {
+                ${BLOC_FIELDS}
+              }
+              bloc4 {
+                ${BLOC_FIELDS}
+              }
+              bloc5 {
+                ${BLOC_FIELDS}
+              }
+              typeBloc1
+              typeBloc2
+              typeBloc3
+              typeBloc4
+              typeBloc5
+            }
+            date
+            slug
+            language {
+              slug
+            }
+          }
+        }
+      }
     }
   `);
 
@@ -1028,6 +1087,10 @@ exports.createPages = async ({
   const plasticBiodivTemplate = require.resolve(
     "./src/templates/bioAndPlastics.js"
   );
+  const articlesTemplate = require.resolve(
+    "./src/templates/articles.js"
+  );
+
 
   result.data.home.nodes.forEach((node) => {
     createPage({
@@ -1168,4 +1231,14 @@ exports.createPages = async ({
       });
     }
   );
+
+  result.data.news.edges.forEach((node) => {
+    createPage({
+      path: `${node.node.language.slug}/${node.node.slug}`,
+      component: articlesTemplate,
+      context: {
+        dataArticle: node.node,
+      },
+    });
+  });
 };

@@ -15,6 +15,10 @@ $font-path: '../../../';
     box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
     background-color: $light-100;
+    z-index: 1;
+    @include xl {
+      display: none;
+    }
 
     @include xl {
       width: 100%;
