@@ -50,8 +50,25 @@ $font-path: '../../';
       width: 200px;
       margin-left: 32px;
 
+      .place-container {
+        display:  flex;
+        align-items: center;
+        gap: 4px;
+        .picto {
+          width: 20px;
+          height: 20px;
+          &.place {
+            background-image: url(../../images/placeEvent.svg);
+          }
+          &.webinar {
+            background-image: url(../../images/webinarEvent.svg);
+          }
+        }
+      }
+
       p {
         @include montserrat-label-m-m;
+        color: $dark-700;
         @include xl {
           @include montserrat-label-s-m;
         }

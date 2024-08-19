@@ -39,6 +39,8 @@ const query = graphql`
           texte
           dateDeLevenement
           speaker
+          lienCliquable
+          enLigne
         }
       }
     }
@@ -64,6 +66,8 @@ const query = graphql`
           texte
           speaker
           dateDeLevenement
+          lienCliquable
+          enLigne
         }
       }
     }
@@ -76,19 +80,51 @@ function Event({ pageContext }) {
   const [events, setEvents] = useState([]);
   const dataR = dataResource.ressource;
   const data = useStaticQuery(query);
-  console.log(data)
+  
   useEffect(() => {
     function getLanguage() {
       if (
         window.location.href.match("/fr$") ||
         window.location.href.match("/fr/")
       ) {
+        data.frEvents.nodes.sort(function (a, b) {
+          return (
+            new Date(
+              b.events.dateDeLevenement?.replace(
+                /(\d{2})\/(\d{2})\/(\d{4})/,
+                "$2/$1/$3"
+              )
+            ) -
+            new Date(
+              a.events.dateDeLevenement?.replace(
+                /(\d{2})\/(\d{2})\/(\d{4})/,
+                "$2/$1/$3"
+              )
+            )
+          );
+        });
         setEvents(data.frEvents.nodes);
         setMetaLang("fr");
       } else if (
         window.location.href.match("/en$") ||
         window.location.href.match("/en/")
       ) {
+        data.enEvents.nodes.sort(function (a, b) {
+          return (
+            new Date(
+              b.events.dateDeLevenement?.replace(
+                /(\d{2})\/(\d{2})\/(\d{4})/,
+                "$2/$1/$3"
+              )
+            ) -
+            new Date(
+              a.events.dateDeLevenement?.replace(
+                /(\d{2})\/(\d{2})\/(\d{4})/,
+                "$2/$1/$3"
+              )
+            )
+          );
+        });
         setEvents(data.enEvents.nodes);
         setMetaLang("en");
       }
@@ -96,7 +132,7 @@ function Event({ pageContext }) {
     getLanguage();
   }, [data]);
 
-
+  console.log(data.frEvents.nodes)
   return (
     <Layout>
       {dataR && (
@@ -121,6 +157,8 @@ function Event({ pageContext }) {
                     adress={event.events.adresse}
                     alt={event.events.image.altText}
                     isSpeaker={event.events.speaker}
+                    lien={event.events.lienCliquable}
+                    enLigne={event.events.enLigne}
                     lang={metaLang}
                     key={index}
                    />

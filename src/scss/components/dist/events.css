@@ -79,10 +79,26 @@ i {
   width: 200px;
   margin-left: 32px;
 }
+.events .events-content .events-content__infos .place-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.events .events-content .events-content__infos .place-container .picto {
+  width: 20px;
+  height: 20px;
+}
+.events .events-content .events-content__infos .place-container .picto.place {
+  background-image: url(../../images/placeEvent.svg);
+}
+.events .events-content .events-content__infos .place-container .picto.webinar {
+  background-image: url(../../images/webinarEvent.svg);
+}
 .events .events-content .events-content__infos p {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   line-height: 16px;
+  color: #333333;
 }
 @media (max-width: 834px) {
   .events .events-content .events-content__infos p {

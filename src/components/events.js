@@ -11,10 +11,13 @@ function Events({
   adress,
   alt,
   isSpeaker = false,
+  enLigne,
+  lien,
   lang,
 }) {
+  console.log(lien)
   return (
-    <div className="events">
+    <a href={lien} className="events">
       <div className="events-content">
         <div className="events-content__date">
           <p>{day}</p>
@@ -23,7 +26,10 @@ function Events({
         <div className="events-content__infos">
           {hours && (<p>{hours}</p>)}
           <div>
-            <p>{adress}</p>
+            <div className="place-container">
+              <div className={`picto ${enLigne ? 'webinar' : 'place'}`}></div>
+              <p>{adress}</p>
+            </div>
             <div className="speaker_container">
               {isSpeaker ? (
                 <p className="speaker_item">
@@ -43,7 +49,7 @@ function Events({
         className="events-content__text"
         dangerouslySetInnerHTML={{ __html: text }}
       ></div>
-    </div>
+    </a>
   );
 }
 
