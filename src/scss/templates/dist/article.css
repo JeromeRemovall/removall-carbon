@@ -50,6 +50,7 @@ i {
 }
 .article .article-container .heading .content-container .header {
   display: flex;
+  align-items: center;
   gap: 16px;
   margin-bottom: 24px;
   margin-left: 16px;
@@ -60,9 +61,11 @@ i {
   font-size: 14px;
   line-height: 16px;
   display: flex;
+  padding: 10px 16px;
   justify-content: center;
   align-items: center;
-  background-color: inherit;
+  background-color: #F2F7FF;
+  border-radius: 8px;
   color: #5F89F4;
 }
 .article .article-container .heading .content-container .header .time {
@@ -70,6 +73,7 @@ i {
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
+  color: #333333;
   font-weight: 500;
   font-size: 12px;
 }

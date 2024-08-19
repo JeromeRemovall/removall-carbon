@@ -25,19 +25,23 @@ $font-path: '../../';
 				}
 				.header {
 					display: flex;
+					align-items: center;
 					gap: 16px;
 					margin-bottom: 24px;
 					margin-left: 16px;
 					.tag-article {
 						@include montserrat-label-m-s;
 						display: flex;
+						padding: 10px 16px;
 						justify-content: center;
 						align-items: center;
-						background-color: inherit;
+						background-color: $primary-blue-100;
+						border-radius: 8px;
 						color: $primary-blue-500;
 					}
 					.time {
 						@include montserrat-label-m-s;
+						color: $dark-700;
 						font-weight: 500;
 						font-size: 12px;
 					}
