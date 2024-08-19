@@ -318,6 +318,7 @@ h4.titre {
 .chiffres-container .chiffre {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 12px;
 }
 .chiffres-container .chiffre .index {
@@ -363,6 +364,7 @@ h4.titre {
   }
   .icons-container .icons {
     flex-direction: column;
+    width: 100%;
   }
   .icons-container .icons .index {
     height: 100px;

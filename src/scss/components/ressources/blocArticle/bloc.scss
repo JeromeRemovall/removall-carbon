@@ -257,6 +257,7 @@ h4.titre {
 	.chiffre {
 		display: flex;
 		align-items: center;
+		width: 100%;
 		gap: 12px;
 		.index {
 			@include chillax-heading-xl;
@@ -296,6 +297,7 @@ h4.titre {
 		gap: 48px;
 		.icons {
 			flex-direction: column;
+			width: 100%;
 			.index {
 				height: 100px;
 				width: 100px;

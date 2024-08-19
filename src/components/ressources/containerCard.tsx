@@ -35,6 +35,8 @@ const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage
 
 	useEffect(() => {
 		setItemsToShow(itemFilter.slice(0, itemsPerPage));
+		setMaxPage(Math.ceil(itemFilter.length / itemsPerPage));
+		console.log(maxPage)
 	}, [itemFilter]);
 
 	useEffect(() => {
@@ -53,7 +55,7 @@ const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage
 		sort(itemFilter);
 		setCurrentPage(1);
 	}, [sortItem]);
-
+	
 	const sort = (items) => {
 		if (sortItem === "newest") {
 			setItemFilter([...items].sort((a: any, b: any) => new Date(b.date) - new Date(a.date)));

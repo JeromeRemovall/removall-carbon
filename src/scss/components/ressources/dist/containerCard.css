@@ -106,6 +106,9 @@ i {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
   height: 32px;
   border-radius: 6px;

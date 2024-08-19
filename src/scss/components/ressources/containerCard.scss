@@ -82,6 +82,9 @@ $font-path: '../../../';
 		gap: 16px;
 		 .btn-page {
 			@include montserrat-label-l-m;
+			display: flex;
+    		align-items: center;
+    		justify-content: center;
 			width: 32px;
 			height: 32px;
 			border-radius: 6px;
