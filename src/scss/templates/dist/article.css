@@ -78,6 +78,7 @@ i {
   font-size: 56px;
   letter-spacing: -1px;
   line-height: 60px;
+  color: #24304F;
   margin-bottom: 16px;
 }
 @media (max-width: 834px) {
@@ -90,6 +91,7 @@ i {
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
   line-height: 28px;
+  color: #333333;
 }
 .article .article-container .heading img {
   width: 100%;

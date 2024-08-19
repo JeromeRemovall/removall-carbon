@@ -68,7 +68,7 @@ i {
   font-size: 32px;
   letter-spacing: -1px;
   line-height: 36px;
-  color: #1A1A1A;
+  color: #24304F;
 }
 .signature-container .signature .content-container .fonction {
   font-family: "Montserrat", sans-serif;
@@ -88,7 +88,7 @@ i {
 .titre {
   width: 100%;
   max-width: 822px;
-  color: #1A1A1A;
+  color: #24304F;
   margin-bottom: 20px;
   box-sizing: border-box;
 }
@@ -145,6 +145,7 @@ h4.titre {
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
   line-height: 28px;
+  color: #333333;
 }
 @media (max-width: 834px) {
   .paragraphe {
@@ -342,6 +343,7 @@ h4.titre {
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
   line-height: 28px;
+  color: #333333;
   flex: 1;
 }
 .chiffres-container .chiffre .content strong {
@@ -401,6 +403,7 @@ h4.titre {
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
+  color: #333333;
   flex: 1;
 }
 .icons-container .icons .content strong {
@@ -456,6 +459,7 @@ h4.titre {
   font-size: 48px;
   letter-spacing: -1px;
   line-height: 52px;
+  color: #24304F;
   margin-bottom: 16px;
 }
 .complexe-container .title strong {
@@ -471,6 +475,7 @@ h4.titre {
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
   line-height: 28px;
+  color: #333333;
 }
 .complexe-container .complexe .content em {
   font-family: "Montserrat", sans-serif;

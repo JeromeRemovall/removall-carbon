@@ -44,6 +44,7 @@ $font-path: '../../';
 				}
 				h1 {
 					@include chillax-display-l;
+					color: $primary-blue-700;
 					margin-bottom: 16px;
 					@include xl {
 						font-size: 40px;
@@ -52,6 +53,7 @@ $font-path: '../../';
 				}
 				> p {
 					@include montserrat-paragraph-xl-m;
+					color: $dark-700;
 				}
 			}
 			img {
