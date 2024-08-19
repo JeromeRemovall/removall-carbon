@@ -43,12 +43,13 @@ $font-path: '../../../';
 			width: 100%;
 			.tag {
 				@include montserrat-label-m-s;
-				height: 36px;
+				padding: 10px 16px;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				background-color: inherit;
+				background-color: $primary-blue-100;
 				color: $primary-blue-500;
+				border-radius: 8px;
 			}
 			.time {
 				@include montserrat-label-m-s;
@@ -59,7 +60,7 @@ $font-path: '../../../';
 		}
 		.title {
 			@include montserrat-heading-m;
-			color: $dark-900;
+			color: $primary-blue-700;
 			display: -webkit-box;
 			-webkit-line-clamp: 3;
 			-webkit-box-orient: vertical;

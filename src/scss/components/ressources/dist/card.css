@@ -62,12 +62,13 @@ i {
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  height: 36px;
+  padding: 10px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: inherit;
+  background-color: #F2F7FF;
   color: #5F89F4;
+  border-radius: 8px;
 }
 .card .content-container .tags .time {
   font-family: "Montserrat", sans-serif;
@@ -83,7 +84,7 @@ i {
   font-weight: bold;
   font-size: 24px;
   line-height: 28px;
-  color: #1A1A1A;
+  color: #24304F;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
