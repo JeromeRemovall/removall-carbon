@@ -85,7 +85,7 @@ const ArticlesPage = ({pageContext}) => {
 			<main className='article'>
 				<section className='article-container'>
 					<div className='heading'>
-						<div class="content-container">
+						<div className="content-container">
 							<div className='header'>
 								{pageContext.dataArticle.articles.tags?.map((tag, index) => (
 									<span key={index} className='tag-article'>{tag.name}</span>

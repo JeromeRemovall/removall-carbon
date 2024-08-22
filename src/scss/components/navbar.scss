@@ -154,6 +154,28 @@ $font-path: '../../';
     stroke: #5f89f4;
   }
 }
+.navbar-responsive .navbar-responsive__open .navbar-responsive__open-items ul .parent-submenu {
+  display: flex;
+  flex-direction: column;
+  .subMenu {
+    @include montserrat-heading-m;
+    color: $dark-500;
+    align-self: start;
+    align-items: center;
+  }
+  .container_subMenu {
+    display: none;
+    flex-direction: column;
+    margin-left: 16px;
+    &.active {
+      display: flex;
+    }
+    a {
+      @include montserrat-label-l-m;
+      font-weight: 500;
+    }
+  }
+}
 .subMenu {
   position: relative;
   display: flex;

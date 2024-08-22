@@ -26,9 +26,9 @@ module.exports = {
           graphql: {},
         },
         schema: {
-          perPage: 5,
-          requestConcurrency: 5,
-          previewRequestConcurrency: 2,
+          perPage: 1,
+          requestConcurrency: 2,
+          previewRequestConcurrency: 3,
         },
       },
     },

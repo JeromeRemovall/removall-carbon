@@ -68,6 +68,7 @@ $max-width: 822px;
 	max-width: $max-width;
 	color: $primary-blue-700;
 	margin-bottom: 20px;
+	margin-top: 64px;
 	box-sizing: border-box;
 	@include xl {
 		padding: 0px 16px;

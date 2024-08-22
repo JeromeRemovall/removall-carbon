@@ -90,6 +90,7 @@ i {
   max-width: 822px;
   color: #24304F;
   margin-bottom: 20px;
+  margin-top: 64px;
   box-sizing: border-box;
 }
 @media (max-width: 834px) {
