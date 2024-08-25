@@ -69,7 +69,7 @@ const ArticlesPage = ({pageContext}) => {
 
 	const rendersBlocks = () => {
 		const blocks = [];
-		for (let i = 1; i < 6; i++) {
+		for (let i = 1; i < 21; i++) {
 			blocks.push(renderBlock(pageContext.dataArticle.articles[`typeBloc${i}`], i, pageContext.dataArticle.articles[`bloc${i}`]));
 		}
 		return blocks;
