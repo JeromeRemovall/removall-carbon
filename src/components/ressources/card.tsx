@@ -31,6 +31,9 @@ const Card: React.FC<CardProps> = ({ title, description, tags, files,linkText, i
 							<img src={image?.sourceUrl} alt={image?.altText} />
 						</div>
 						<div className='content-container'>
+							{type == "ressource" && (
+									<p className='date'>{new Date(date).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+							)}
 							{tags && time && (
 								<div className="tags">
 									{tags && tags.map((tag, index) => (
@@ -52,7 +55,7 @@ const Card: React.FC<CardProps> = ({ title, description, tags, files,linkText, i
 								<a className='link' href={files?.mediaItemUrl} target="_blank" download={files?.title}>{linkText}</a>
 							)}
 							<div className='footer'>
-								<p className='date'>{new Date(date).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+		
 								{auteur && (
 									<p className='author'>{lang == "fr" ? 'Par' : "By"} {auteur.name}</p>
 								)}
@@ -67,6 +70,9 @@ const Card: React.FC<CardProps> = ({ title, description, tags, files,linkText, i
 							<img src={image.sourceUrl} alt={image.altText} />
 						</div>
 						<div className='content-container'>
+							{type == "ressource" && (
+									<p className='date'>{new Date(date).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+							)}
 							{tags && time && (
 								<div className="tags">
 									{tags && tags.map((tag, index) => (
@@ -84,7 +90,6 @@ const Card: React.FC<CardProps> = ({ title, description, tags, files,linkText, i
 								<a className='link' href={files?.mediaItemUrl} target="_blank" download={files?.title}>{linkText}</a>
 							)}
 							<div className='footer'>
-								<p className='date'>{new Date(date).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}</p>
 								{auteur && (
 									<p className='author'>{lang == "fr" ? 'Par' : "By"} {auteur.name}</p>
 								)}

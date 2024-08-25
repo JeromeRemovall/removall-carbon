@@ -28,16 +28,18 @@ function Actuality({ pageContext }) {
         window.location.href.match("/fr$") ||
         window.location.href.match("/fr/")
       ) {
-        let mergedData = mergeOldDataObject(data.frNews);
-        mergedData = mergedData.concat(mergeNewDataObject(data.enNewNews));
+        const oldData = mergeOldDataObject(data.frNews);
+        const newData = mergeNewDataObject(data.frNewNews);
+        const mergedData = merge(oldData, newData);
         setActuality(mergedData);
         setMetaLang("fr");
       } else if (
         window.location.href.match("/en$") ||
         window.location.href.match("/en/")
       ) {
-        let mergedData = mergeOldDataObject(data.enNews);
-        mergedData = mergedData.concat(mergeNewDataObject(data.enNewNews));
+        const oldData = mergeOldDataObject(data.enNews);
+        const newData = mergeNewDataObject(data.enNewNews);
+        const mergedData = merge(oldData, newData);
         setActuality(mergedData);
         setMetaLang("en");
       }
@@ -45,7 +47,21 @@ function Actuality({ pageContext }) {
     getLanguage();
   }, [data]);
 
-  console.log(dataR);
+
+  const merge = (oldData, newData) => {
+    console.log(oldData, newData)
+    newData.map((item, index) => {
+      const i = oldData.findIndex((element) => {
+        return element.id === item.id;
+      })
+      if (i !== -1 && item.auteur !== null) {
+        oldData[i] = item;
+      } else if (i === -1) {
+        oldData.push(item);
+      }
+    });
+    return oldData;
+  }
 
   const mergeOldDataObject = (data) => {
     return data.nodes.map((item, index) => {
@@ -54,19 +70,20 @@ function Actuality({ pageContext }) {
         texte: item.news.texteActualite,
         fichier: {mediaItemUrl: item.news.boutonLien},
         date: data.edges[index].node.date,
+        id: item.id,
       };
     });
   };
 
   const mergeNewDataObject = (data) => {
     return data.edges.map((item, index) => {
-      console.log(item)
       return {
         ...item.node.articles,
         image: item.node.articles.photoMiseEnAvant,
         texte: item.node.articles.sousTitre,
         date: item.node.date,
         slug: item.node.slug,
+        id: item.node.id,
       };
     });
   }
@@ -132,6 +149,7 @@ const query = graphql`
           boutonLien
         }
         date
+        id
       }
     }
     enNews: allWpPost(
@@ -162,10 +180,11 @@ const query = graphql`
           boutonMobile
           boutonLien
         }
+        id
       }
     }
     enNewNews: allWpPost(
-    filter: {categories: {nodes: {elemMatch: {name: {eq: "Uncategorized"}}}}, title: {eq: "Article test, non visible"}}
+    filter: {categories: {nodes: {elemMatch: {name: {eq: "news"}}}}}
   ) {
     edges {
       node {
@@ -187,6 +206,34 @@ const query = graphql`
         }
         date
         slug
+        id
+      }
+    }
+  }
+  frNewNews: allWpPost(
+    filter: {categories: {nodes: {elemMatch: {name: {eq: "actualités"}}}}}
+  ) {
+    edges {
+      node {
+        id
+        articles {
+          titre
+          sousTitre
+          duree
+          photoMiseEnAvant {
+            altText
+            sourceUrl
+          }
+          tags {
+            name
+          }
+          auteur {
+            name
+          }
+        }
+        date
+        slug
+        id
       }
     }
     }

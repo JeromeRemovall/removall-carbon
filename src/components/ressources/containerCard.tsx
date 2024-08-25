@@ -36,7 +36,6 @@ const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage
 	useEffect(() => {
 		setItemsToShow(itemFilter.slice(0, itemsPerPage));
 		setMaxPage(Math.ceil(itemFilter.length / itemsPerPage));
-		console.log(maxPage)
 	}, [itemFilter]);
 
 	useEffect(() => {

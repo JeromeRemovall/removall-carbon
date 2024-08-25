@@ -33,7 +33,6 @@ var ContainerCard = function (_a) {
     react_1.useEffect(function () {
         setItemsToShow(itemFilter.slice(0, itemsPerPage));
         setMaxPage(Math.ceil(itemFilter.length / itemsPerPage));
-        console.log(maxPage);
     }, [itemFilter]);
     react_1.useEffect(function () {
         if (tagFilter === "") {

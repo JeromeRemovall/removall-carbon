@@ -79,6 +79,13 @@ i {
   font-weight: 500;
   font-size: 12px;
 }
+.card .content-container .date {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #333333;
+}
 .card .content-container .title {
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
@@ -130,13 +137,4 @@ i {
 .card .content-container .footer .author {
   display: flex;
   align-items: center;
-}
-.card .content-container .footer .author::before {
-  content: "";
-  display: block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: #D9D9D9;
-  margin-right: 12px;
 }
