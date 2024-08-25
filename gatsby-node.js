@@ -1013,6 +1013,36 @@ exports.createPages = async ({
                 }
                 name
               }
+              articlesSimilaires {
+                ... on WpPost {
+                  news {
+                    image {
+                      altText
+                      sourceUrl
+                      date
+                    }
+                    texteActualite
+                    titre
+                  }
+                  articles {
+                    auteur {
+                      name
+                    }
+                    photoMiseEnAvant {
+                      altText
+                      sourceUrl
+                    }
+                    titre
+                    tags {
+                      name
+                    }
+                    sousTitre
+                    duree
+                  }
+                  slug
+                  date
+                }
+              }
               bloc1 {
                 ${BLOC_FIELDS}
               }
@@ -1028,11 +1058,71 @@ exports.createPages = async ({
               bloc5 {
                 ${BLOC_FIELDS}
               }
+              bloc6 {
+                ${BLOC_FIELDS}
+              }
+              bloc7 {
+                ${BLOC_FIELDS}
+              }
+              bloc8 {
+                ${BLOC_FIELDS}
+              }
+              bloc9 {
+                ${BLOC_FIELDS}
+              }
+              bloc10 {
+                ${BLOC_FIELDS}
+              }
+              bloc11 {
+                ${BLOC_FIELDS}
+              }
+              bloc12 {
+                ${BLOC_FIELDS}
+              }
+              bloc13 {
+                ${BLOC_FIELDS}
+              }
+              bloc14 {
+                ${BLOC_FIELDS}
+              }
+              bloc15 {
+                ${BLOC_FIELDS}
+              }
+              bloc16 {
+                ${BLOC_FIELDS}
+              }
+              bloc17 {
+                ${BLOC_FIELDS}
+              }
+              bloc18 {
+                ${BLOC_FIELDS}
+              }
+              bloc19 {
+                ${BLOC_FIELDS}
+              }
+              bloc20 {
+                ${BLOC_FIELDS}
+              }
               typeBloc1
               typeBloc2
               typeBloc3
               typeBloc4
               typeBloc5
+              typeBloc6
+              typeBloc7
+              typeBloc8
+              typeBloc9
+              typeBloc10
+              typeBloc11
+              typeBloc12
+              typeBloc13
+              typeBloc14
+              typeBloc15
+              typeBloc16
+              typeBloc17
+              typeBloc18
+              typeBloc19
+              typeBloc20
             }
             date
             slug

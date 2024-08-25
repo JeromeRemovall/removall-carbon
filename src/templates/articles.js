@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Layout from '../components/layout';
@@ -13,11 +13,12 @@ import Photos from '../components/ressources/blocArticle/photo';
 import Chiffres from '../components/ressources/blocArticle/chiffres';
 import Complex from '../components/ressources/blocArticle/complex';
 import Icons from '../components/ressources/blocArticle/icons';
+import { set } from 'd3';
 
 const ArticlesPage = ({pageContext}) => {
 	const [metaLang, setMetaLang] = useState("");
 	const [url, setUrl] = useState("");
-	console.log(pageContext)
+	const [shareLink, setShareLink] = useState("");
 	useEffect(() => {
 		function getLanguage() {
 		  if (
@@ -38,12 +39,12 @@ const ArticlesPage = ({pageContext}) => {
 			setMetaLang("en");
 		  }
 		}
+		setShareLink(window.location.href)
 		getLanguage();
 	  }, [url]);
 
 	// fonction qui prend une chaine de caratère qui est un type de bloc render le bon bloc
 	const renderBlock = (type, index, data) => {
-		console.log(type);
 		switch (type) {
 			case 'Titre':
 				return <Titre key={index} data={data.titres} />;
@@ -74,12 +75,26 @@ const ArticlesPage = ({pageContext}) => {
 		return blocks;
 	}
 
-	console.log(pageContext.dataArticle);
+	const copied = () => {
+		navigator.clipboard.writeText(shareLink);
+	}
+
 	return (
 		<Layout>
 			<Helmet>
 			<meta charSet="utf-8" />
 			<html lang={metaLang} />
+			<meta property="og:title" content={pageContext.dataArticle.articles.titre} />
+			<meta property="og:url" content={shareLink} />
+			<meta property="og:image" content={pageContext.dataArticle.articles.photoMiseEnAvant?.sourceUrl} />
+			<meta property="og:description" content={pageContext.dataArticle.articles.sousTitre} />
+			<meta property="og:type" content="website" />
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:title" content={pageContext.dataArticle.articles.titre} />
+			<meta name="twitter:description" content={pageContext.dataArticle.articles.sousTitre} />
+			<meta name="twitter:image" content={pageContext.dataArticle.articles.photoMiseEnAvant?.sourceUrl} />
+			<meta name="twitter:url" content={shareLink} />
+			<meta property="twitter:domain" content="removall-carbon.com"/>
 			<title></title>
 			</Helmet>
 			<main className='article'>
@@ -99,6 +114,65 @@ const ArticlesPage = ({pageContext}) => {
 					</div>
 					{ rendersBlocks()}
 					<Author author={pageContext.dataArticle.articles.auteur} />
+					<div className='share-container'>
+						<ul>
+							<li>
+								<a  onClick={() => copied()} rel="noreferrer" id='link'>
+								</a>
+							</li>
+							<li>
+								<a href={`https://www.linkedin.com/shareArticle?url=${shareLink}`} target="_blank" rel="noreferrer" id="linkedin">
+								</a>
+							</li>
+							<li>
+								<a href={`https://twitter.com/intent/tweet?url=${shareLink}`} target="_blank" rel="noreferrer" id='twitter'>
+								</a>
+							</li>
+						</ul>
+					</div>
+					{pageContext.dataArticle.articles.articlesSimilaires?.length > 0 && (
+						<div className='related-articles'>
+							<h2>Articles similaires</h2>
+							<div className='articles-container'>
+								{pageContext.dataArticle.articles.articlesSimilaires.map((article, index) => {
+									let news = article.news;
+									if(article.articles.photoMiseEnAvant !== null){
+										news = article.articles;
+										news.image = article.articles.photoMiseEnAvant;
+										news.texteActualite = article.articles.sousTitre;
+									}
+									return(
+										<Link to={`/${metaLang}/${article.slug}`} key={index} className='article-card'>
+											<img src={news.image?.sourceUrl} alt={news.image?.altText}/>
+											<div className='content'>
+											{news.tags !== null && news.duree !== null && (
+													<div className="tags">
+														{news.tags && news.tags.map((tag, index) => (
+															<p className='tag' key={index}>{tag.name}</p>
+														))}
+														{ !news.tags && (<></>)}
+														{news.duree && (
+															<p className='time'>{news.duree} MIN</p>
+														)}
+													</div>
+												)}
+												<h3>{news.titre}</h3>
+												<div className='desc' dangerouslySetInnerHTML={ { __html: news.texteActualite} }></div>
+												<div className='footer'>
+													{metaLang && (
+														<p className='date'>{new Date(article.date).toLocaleDateString(metaLang, { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+													)}
+													{news.auteur && (
+														<p className='author'>{metaLang == "fr" ? 'Par' : "By"} {news.auteur.name}</p>
+													)}
+												</div>
+											</div>
+										</Link>
+									)
+								})}
+							</div>
+						</div>
+					)}
 				</section>
 			</main>
 		</Layout>

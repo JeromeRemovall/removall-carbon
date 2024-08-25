@@ -165,6 +165,7 @@ $font-path: '../../';
   }
   .container_subMenu {
     display: none;
+    gap: 8px;
     flex-direction: column;
     margin-left: 16px;
     &.active {

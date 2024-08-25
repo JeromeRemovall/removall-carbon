@@ -165,6 +165,7 @@ i {
 }
 .navbar-responsive .navbar-responsive__open .navbar-responsive__open-items ul .parent-submenu .container_subMenu {
   display: none;
+  gap: 8px;
   flex-direction: column;
   margin-left: 16px;
 }
