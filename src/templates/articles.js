@@ -75,8 +75,13 @@ const ArticlesPage = ({pageContext}) => {
 		return blocks;
 	}
 
-	const copied = () => {
+	const copied = (e) => {
+		e.target.classList.add('active');
 		navigator.clipboard.writeText(shareLink);
+		setTimeout(() => {
+			e.target.classList.remove('active')
+		},800)
+
 	}
 
 	return (
@@ -117,7 +122,7 @@ const ArticlesPage = ({pageContext}) => {
 					<div className='share-container'>
 						<ul>
 							<li>
-								<a  onClick={() => copied()} rel="noreferrer" id='link'>
+								<a  onClick={(e) => copied(e)} rel="noreferrer" id='link'>
 								</a>
 							</li>
 							<li>

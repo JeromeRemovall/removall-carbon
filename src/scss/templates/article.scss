@@ -83,6 +83,9 @@ $font-path: '../../';
 				border-radius: 100%;
 				background-color: $primary-blue-100;
 				cursor: pointer;
+				&:hover {
+					background-color: #D0DBEB;
+				}
 				a {
 					display: block;
 					width: 100%;
@@ -94,7 +97,28 @@ $font-path: '../../';
 					background-image: url('../../images/twitterShare.svg');
 				}
 				#link {
+					position: relative;
 					background-image: url('../../images/linkShare.svg');
+					overflow: hidden;
+					transition: all 0.3s;
+					&.active {
+						background-position-y: 200%;
+						&::after {
+							transform: translateY(100%);
+						}
+					}
+					&::after {
+						content: "";
+						position: absolute;
+						bottom: 100%;
+						display: block;
+						width: 40px;
+    					height: 40px;
+						background-image: url('../../images/valide.svg');
+						background-position: center;
+						background-repeat: no-repeat;
+						transition: all 0.3s;
+					}
 				}
 				#linkedin {
 					background-image: url('../../images/linkedinShare.svg');

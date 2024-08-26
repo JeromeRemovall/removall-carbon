@@ -121,6 +121,9 @@ i {
   background-color: #F2F7FF;
   cursor: pointer;
 }
+.article .share-container ul li:hover {
+  background-color: #D0DBEB;
+}
 .article .share-container ul li a {
   display: block;
   width: 100%;
@@ -132,7 +135,28 @@ i {
   background-image: url("../../images/twitterShare.svg");
 }
 .article .share-container ul li #link {
+  position: relative;
   background-image: url("../../images/linkShare.svg");
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.article .share-container ul li #link.active {
+  background-position-y: 200%;
+}
+.article .share-container ul li #link.active::after {
+  transform: translateY(100%);
+}
+.article .share-container ul li #link::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url("../../images/valide.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.3s;
 }
 .article .share-container ul li #linkedin {
   background-image: url("../../images/linkedinShare.svg");
