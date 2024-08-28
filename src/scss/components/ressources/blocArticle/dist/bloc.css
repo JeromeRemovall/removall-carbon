@@ -300,6 +300,7 @@ h4.titre {
   width: 100%;
   margin: 24px 0px;
   box-sizing: border-box;
+  max-width: 822px;
 }
 @media (max-width: 834px) {
   .chiffres-container {
@@ -321,6 +322,7 @@ h4.titre {
   display: flex;
   align-items: center;
   width: 100%;
+  max-width: 822px;
   gap: 12px;
 }
 .chiffres-container .chiffre .index {

@@ -239,6 +239,7 @@ h4.titre {
 	width: 100%;
 	margin: 24px 0px;
 	box-sizing: border-box;
+	max-width: $max-width;
 
 	@include xl {
 		padding: 0px 16px;
@@ -260,6 +261,8 @@ h4.titre {
 		display: flex;
 		align-items: center;
 		width: 100%;
+		max-width: $max-width;
+
 		gap: 12px;
 		.index {
 			@include chillax-heading-xl;
