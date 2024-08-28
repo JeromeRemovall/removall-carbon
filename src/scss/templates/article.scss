@@ -37,6 +37,7 @@ $font-path: '../../';
 						background-color: $primary-blue-100;
 						border-radius: 8px;
 						color: $primary-blue-500;
+						text-transform: capitalize;
 					}
 					.time {
 						@include montserrat-label-m-s;

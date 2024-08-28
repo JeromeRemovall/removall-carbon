@@ -66,6 +66,7 @@ i {
   background-color: #F2F7FF;
   border-radius: 8px;
   color: #5F89F4;
+  text-transform: capitalize;
 }
 .article .article-container .heading .content-container .header .time {
   font-family: "Montserrat", sans-serif;
