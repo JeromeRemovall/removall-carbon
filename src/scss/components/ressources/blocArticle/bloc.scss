@@ -77,6 +77,10 @@ $max-width: 822px;
 
 h2.titre {
 	@include chillax-display-l;
+	font-size: 64px;
+	font-weight: 600;
+	line-height: 72px;
+
 	@include xl {
 		font-size: 32px;
 		line-height: 40px;
@@ -85,6 +89,10 @@ h2.titre {
 
 h3.titre {
 	@include chillax-display-m;
+	font-size: 48px;
+	font-weight: 600;
+	line-height: 52px;
+
 	@include xl {
 		font-size: 24px;
 		line-height: 32px
@@ -93,6 +101,9 @@ h3.titre {
 
 h4.titre {
 	@include chillax-display-s;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 28px;
 	@include xl {
 		font-size: 20px;
 		line-height: 24px;
@@ -386,6 +397,9 @@ h4.titre {
 	}
 	.title {
 		@include chillax-display-m;
+		font-size: 48px;
+		font-weight: 600;
+		line-height: 52px;
 		color: $primary-blue-700;
 		margin-bottom: 16px;
 		strong {

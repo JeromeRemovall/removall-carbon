@@ -104,6 +104,9 @@ h2.titre {
   font-size: 56px;
   letter-spacing: -1px;
   line-height: 60px;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 72px;
 }
 @media (max-width: 834px) {
   h2.titre {
@@ -116,6 +119,9 @@ h3.titre {
   font-family: Chillax-Semibold;
   font-size: 48px;
   letter-spacing: -1px;
+  line-height: 52px;
+  font-size: 48px;
+  font-weight: 600;
   line-height: 52px;
 }
 @media (max-width: 834px) {
@@ -130,6 +136,9 @@ h4.titre {
   font-size: 40px;
   letter-spacing: -1px;
   line-height: 44px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
 }
 @media (max-width: 834px) {
   h4.titre {
@@ -461,6 +470,9 @@ h4.titre {
   font-family: Chillax-Semibold;
   font-size: 48px;
   letter-spacing: -1px;
+  line-height: 52px;
+  font-size: 48px;
+  font-weight: 600;
   line-height: 52px;
   color: #24304F;
   margin-bottom: 16px;
