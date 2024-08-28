@@ -322,7 +322,6 @@ h4.titre {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 822px;
   gap: 12px;
 }
 .chiffres-container .chiffre .index {
@@ -359,6 +358,7 @@ h4.titre {
   align-items: start;
   gap: 12px;
   width: 100%;
+  max-width: 822px;
   margin: 24px 0px;
   box-sizing: border-box;
 }

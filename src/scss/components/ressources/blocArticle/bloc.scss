@@ -261,7 +261,6 @@ h4.titre {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		max-width: $max-width;
 
 		gap: 12px;
 		.index {
@@ -295,6 +294,7 @@ h4.titre {
 	align-items: start;
 	gap: 12px;
 	width: 100%;
+	max-width: $max-width;
 	margin: 24px 0px;
 	box-sizing: border-box;
 
