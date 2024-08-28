@@ -100,7 +100,7 @@ const ArticlesPage = ({pageContext}) => {
 			<meta name="twitter:image" content={pageContext.dataArticle.articles.photoMiseEnAvant?.sourceUrl} />
 			<meta name="twitter:url" content={shareLink} />
 			<meta property="twitter:domain" content="removall-carbon.com"/>
-			<title></title>
+			<title>{pageContext.dataArticle.articles.titre}</title>
 			</Helmet>
 			<main className='article'>
 				<section className='article-container'>
