@@ -9,14 +9,15 @@ interface ContainerCardProps {
 	lang: string;
 	itemsPerPage?: number;
 	type: string;
+	filtre?: string; 
 }
 
-const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage = 9, type = "actuality" }) => {
+const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage = 9, type = "actuality", filtre = "test" }) => {
 	const [nbItem, setNbItem] = React.useState(0);
 	const [currentPage, setCurrentPage] = React.useState(1);
 	const [maxPage, setMaxPage] = React.useState(0);
-	const [itemsToShow, setItemsToShow] = React.useState(items.slice(0, itemsPerPage));
-	const [itemFilter, setItemFilter] = React.useState([].concat(items));
+	const [itemsToShow, setItemsToShow] = React.useState([]);
+	const [itemFilter, setItemFilter] = React.useState([]);
 	const [tags, setTags] = React.useState([]);
 	const [tagFilter, setTagFilter] = React.useState("");
 	const [sortItem, setSortItem] = React.useState("");
@@ -25,43 +26,58 @@ const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage
 		const filteredTags =[].concat(Array.from(new Set(items.flatMap((item: any) => item.tags?.map((tag: any) => tag.name)).filter((name: any) => name !== undefined && name !== null))));
 		setTags(filteredTags);
 		setSortItem("newest")
-		setNbItem(itemFilter.length);
+		setTagFilter(filtre);
 		setMaxPage(Math.ceil(itemFilter.length / itemsPerPage));
+		filterItem();
 	}, [items]);
 
 	useEffect(() => {
 		setItemsToShow(itemFilter.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
 	}, [currentPage]);
 
-	useEffect(() => {
-		setItemsToShow(itemFilter.slice(0, itemsPerPage));
-		setMaxPage(Math.ceil(itemFilter.length / itemsPerPage));
-	}, [itemFilter]);
 
 	useEffect(() => {
-		if (tagFilter === "") {
-			const copieItems = [].concat(items);
-			setItemFilter([].concat(copieItems));
-			sort(copieItems);
-		} else {
-			const copieItems = [].concat(items);
-			setItemFilter(copieItems.filter((item: any) => item.tags?.map((tag: any) => tag.name).includes(tagFilter)));
-		}
+		filterItem()
 		setCurrentPage(1);
 	}, [tagFilter]);
 
+	const filterItem = () => {
+		let itemsFiltered = [].concat(items);
+		if (tagFilter === "") {
+			setItemFilter([].concat(itemsFiltered));
+		} else {
+			const copieItems = [].concat(items);
+			itemsFiltered = copieItems.filter((item: any) => item.tags?.map((tag: any) => tag.name).includes(tagFilter));
+			setItemFilter([...itemsFiltered]);	
+		}
+		const item = sort(itemsFiltered);
+		setItemsToShow(item.slice(0, itemsPerPage));
+		setMaxPage(Math.ceil(item.length / itemsPerPage));
+		setNbItem(item.length);
+	}
+
 	useEffect(() => {
-		sort(itemFilter);
+		const item = sort(itemFilter);
+		setItemsToShow(item.slice(0, itemsPerPage));
+		setMaxPage(Math.ceil(item.length / itemsPerPage));
+		setNbItem(item.length);
+	}, [itemFilter]);
+
+	useEffect(() => {
+		const item = sort(itemFilter);
+		setItemsToShow(item.slice(0, itemsPerPage));
+		setMaxPage(Math.ceil(item.length / itemsPerPage));
+		setNbItem(item.length);
 		setCurrentPage(1);
 	}, [sortItem]);
 	
-	const sort = (items) => {
+	const sort = (item) => {
 		if (sortItem === "newest") {
-			setItemFilter([...items].sort((a: any, b: any) => new Date(b.date) - new Date(a.date)));
+			return([...item].sort((a: any, b: any) => new Date(b.date) - new Date(a.date)));
 		} else if (sortItem === "oldest") {
-			setItemFilter([...items].sort((a: any, b: any) => new Date(a.date) - new Date(b.date)));
+			return([...item].sort((a: any, b: any) => new Date(a.date) - new Date(b.date)));
 		} else {
-			setItemFilter([...items].sort((a: any, b: any) => new Date(b.date) - new Date(a.date)));
+			return([...item].sort((a: any, b: any) => new Date(b.date) - new Date(a.date)));
 		}
 	}
 
@@ -70,7 +86,7 @@ const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage
 			<div className='header'>
 				<p className='indicator'>{nbItem} {lang == "fr" ? "articles" : "news" }</p>
 				<div className='container-selector'>
-					<select name="" id="" onChange={(e) => setTagFilter(e.target.value)}>
+					<select name="" id="" value={tagFilter} onChange={(e) => setTagFilter(e.target.value)}>
 						<option value="">{lang == "fr" ? "Tous les articles" : "All news"}</option>
 						{tags.map((tag: any, index: number) => (
 							<option key={index} value={tag}>{tag}</option>

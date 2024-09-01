@@ -19,6 +19,8 @@ const ArticlesPage = ({pageContext}) => {
 	const [metaLang, setMetaLang] = useState("");
 	const [url, setUrl] = useState("");
 	const [shareLink, setShareLink] = useState("");
+	const [linkActualite, setLinkActualite] = useState("");
+
 	useEffect(() => {
 		function getLanguage() {
 		  if (
@@ -29,6 +31,7 @@ const ArticlesPage = ({pageContext}) => {
 			  `${process.env.GATSBY_RECRUITMENT_FORM_FR}`
 			);
 			setMetaLang("fr");
+			setLinkActualite("/fr/Actualités");
 		  } else if (
 			window.location.href.match("/en$") ||
 			window.location.href.match("/en/")
@@ -37,6 +40,7 @@ const ArticlesPage = ({pageContext}) => {
 			  `${process.env.GATSBY_RECRUITMENT_FORM_EN}`
 			);
 			setMetaLang("en");
+			setLinkActualite("/en/News");
 		  }
 		}
 		setShareLink(window.location.href)
@@ -108,7 +112,7 @@ const ArticlesPage = ({pageContext}) => {
 						<div className="content-container">
 							<div className='header'>
 								{pageContext.dataArticle.articles.tags?.map((tag, index) => (
-									<span key={index} className='tag-article'>{tag.name}</span>
+									<Link to={`${linkActualite}?filtre=${tag.name}`} key={index} className='tag-article'>{tag.name}</Link>
 								))}
 								<p className='time'>{pageContext.dataArticle.articles.duree} MIN</p>
 							</div>

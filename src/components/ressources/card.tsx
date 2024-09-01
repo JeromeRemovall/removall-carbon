@@ -54,12 +54,11 @@ const Card: React.FC<CardProps> = ({ title, description, tags, files,linkText, i
 							{linkText && (
 								<a className='link' href={files?.mediaItemUrl} target="_blank" download={files?.title}>{linkText}</a>
 							)}
-							<div className='footer'>
-		
+							{/* <div className='footer'>
 								{auteur && (
 									<p className='author'>{lang == "fr" ? 'Par' : "By"} {auteur.name}</p>
 								)}
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</Link>
@@ -89,11 +88,11 @@ const Card: React.FC<CardProps> = ({ title, description, tags, files,linkText, i
 							{linkText && type == "ressource" && (
 								<a className='link' href={files?.mediaItemUrl} target="_blank" download={files?.title}>{linkText}</a>
 							)}
-							<div className='footer'>
+							{/* <div className='footer'>
 								{auteur && (
 									<p className='author'>{lang == "fr" ? 'Par' : "By"} {auteur.name}</p>
 								)}
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</a>

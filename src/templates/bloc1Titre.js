@@ -18,11 +18,16 @@ function Actuality({ pageContext }) {
   const { dataResource } = pageContext;
   const [metaLang, setMetaLang] = useState("");
   const [actuality, setActuality] = useState(null);
+  const [filtre, setFiltre] = useState(null);
   const dataR = dataResource.ressource;
   const data = useStaticQuery(query);
 
+
   useEffect(() => {
-    console.log(data)
+    const queryParameters = new URLSearchParams(window.location.search)
+    const filtre = queryParameters.get("filtre")
+    setFiltre(filtre)
+    
     function getLanguage() {
       if (
         window.location.href.match("/fr$") ||
@@ -103,7 +108,7 @@ function Actuality({ pageContext }) {
             <section>
               <Header title={dataR.bloc1Titre} description={dataR.bloc1Texte} />
               {actuality && (
-                <ContainerCard items={actuality} lang={metaLang}/>
+                <ContainerCard items={actuality} lang={metaLang} filtre={filtre ? filtre : ""}/>
               )}
             </section>
           </main>

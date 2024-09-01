@@ -415,6 +415,9 @@ h4.titre {
 			width: 65%;
 			@include montserrat-paragraph-xl-m;
 			color: $dark-700;
+			strong {
+				font-weight: 700!important;
+			}
 			em {
 				@include montserrat-paragraph-l-m;
 				font-weight: 500;

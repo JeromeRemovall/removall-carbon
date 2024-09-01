@@ -11,54 +11,67 @@ var react_1 = require("react");
 require("../../scss/components/ressources/containerCard.scss");
 var card_1 = require("./card");
 var ContainerCard = function (_a) {
-    var items = _a.items, lang = _a.lang, _b = _a.itemsPerPage, itemsPerPage = _b === void 0 ? 9 : _b, _c = _a.type, type = _c === void 0 ? "actuality" : _c;
-    var _d = react_1["default"].useState(0), nbItem = _d[0], setNbItem = _d[1];
-    var _e = react_1["default"].useState(1), currentPage = _e[0], setCurrentPage = _e[1];
-    var _f = react_1["default"].useState(0), maxPage = _f[0], setMaxPage = _f[1];
-    var _g = react_1["default"].useState(items.slice(0, itemsPerPage)), itemsToShow = _g[0], setItemsToShow = _g[1];
-    var _h = react_1["default"].useState([].concat(items)), itemFilter = _h[0], setItemFilter = _h[1];
-    var _j = react_1["default"].useState([]), tags = _j[0], setTags = _j[1];
-    var _k = react_1["default"].useState(""), tagFilter = _k[0], setTagFilter = _k[1];
-    var _l = react_1["default"].useState(""), sortItem = _l[0], setSortItem = _l[1];
+    var items = _a.items, lang = _a.lang, _b = _a.itemsPerPage, itemsPerPage = _b === void 0 ? 9 : _b, _c = _a.type, type = _c === void 0 ? "actuality" : _c, _d = _a.filtre, filtre = _d === void 0 ? "test" : _d;
+    var _e = react_1["default"].useState(0), nbItem = _e[0], setNbItem = _e[1];
+    var _f = react_1["default"].useState(1), currentPage = _f[0], setCurrentPage = _f[1];
+    var _g = react_1["default"].useState(0), maxPage = _g[0], setMaxPage = _g[1];
+    var _h = react_1["default"].useState([]), itemsToShow = _h[0], setItemsToShow = _h[1];
+    var _j = react_1["default"].useState([]), itemFilter = _j[0], setItemFilter = _j[1];
+    var _k = react_1["default"].useState([]), tags = _k[0], setTags = _k[1];
+    var _l = react_1["default"].useState(""), tagFilter = _l[0], setTagFilter = _l[1];
+    var _m = react_1["default"].useState(""), sortItem = _m[0], setSortItem = _m[1];
     react_1.useEffect(function () {
         var filteredTags = [].concat(Array.from(new Set(items.flatMap(function (item) { var _a; return (_a = item.tags) === null || _a === void 0 ? void 0 : _a.map(function (tag) { return tag.name; }); }).filter(function (name) { return name !== undefined && name !== null; }))));
         setTags(filteredTags);
         setSortItem("newest");
-        setNbItem(itemFilter.length);
+        setTagFilter(filtre);
         setMaxPage(Math.ceil(itemFilter.length / itemsPerPage));
+        filterItem();
     }, [items]);
     react_1.useEffect(function () {
         setItemsToShow(itemFilter.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
     }, [currentPage]);
     react_1.useEffect(function () {
-        setItemsToShow(itemFilter.slice(0, itemsPerPage));
-        setMaxPage(Math.ceil(itemFilter.length / itemsPerPage));
-    }, [itemFilter]);
-    react_1.useEffect(function () {
-        if (tagFilter === "") {
-            var copieItems = [].concat(items);
-            setItemFilter([].concat(copieItems));
-            sort(copieItems);
-        }
-        else {
-            var copieItems = [].concat(items);
-            setItemFilter(copieItems.filter(function (item) { var _a; return (_a = item.tags) === null || _a === void 0 ? void 0 : _a.map(function (tag) { return tag.name; }).includes(tagFilter); }));
-        }
+        filterItem();
         setCurrentPage(1);
     }, [tagFilter]);
-    react_1.useEffect(function () {
-        sort(itemFilter);
-        setCurrentPage(1);
-    }, [sortItem]);
-    var sort = function (items) {
-        if (sortItem === "newest") {
-            setItemFilter(__spreadArrays(items).sort(function (a, b) { return new Date(b.date) - new Date(a.date); }));
-        }
-        else if (sortItem === "oldest") {
-            setItemFilter(__spreadArrays(items).sort(function (a, b) { return new Date(a.date) - new Date(b.date); }));
+    var filterItem = function () {
+        var itemsFiltered = [].concat(items);
+        if (tagFilter === "") {
+            setItemFilter([].concat(itemsFiltered));
         }
         else {
-            setItemFilter(__spreadArrays(items).sort(function (a, b) { return new Date(b.date) - new Date(a.date); }));
+            var copieItems = [].concat(items);
+            itemsFiltered = copieItems.filter(function (item) { var _a; return (_a = item.tags) === null || _a === void 0 ? void 0 : _a.map(function (tag) { return tag.name; }).includes(tagFilter); });
+            setItemFilter(__spreadArrays(itemsFiltered));
+        }
+        var item = sort(itemsFiltered);
+        setItemsToShow(item.slice(0, itemsPerPage));
+        setMaxPage(Math.ceil(item.length / itemsPerPage));
+        setNbItem(item.length);
+    };
+    react_1.useEffect(function () {
+        var item = sort(itemFilter);
+        setItemsToShow(item.slice(0, itemsPerPage));
+        setMaxPage(Math.ceil(item.length / itemsPerPage));
+        setNbItem(item.length);
+    }, [itemFilter]);
+    react_1.useEffect(function () {
+        var item = sort(itemFilter);
+        setItemsToShow(item.slice(0, itemsPerPage));
+        setMaxPage(Math.ceil(item.length / itemsPerPage));
+        setNbItem(item.length);
+        setCurrentPage(1);
+    }, [sortItem]);
+    var sort = function (item) {
+        if (sortItem === "newest") {
+            return (__spreadArrays(item).sort(function (a, b) { return new Date(b.date) - new Date(a.date); }));
+        }
+        else if (sortItem === "oldest") {
+            return (__spreadArrays(item).sort(function (a, b) { return new Date(a.date) - new Date(b.date); }));
+        }
+        else {
+            return (__spreadArrays(item).sort(function (a, b) { return new Date(b.date) - new Date(a.date); }));
         }
     };
     return (react_1["default"].createElement("div", { className: "container" },
@@ -68,7 +81,7 @@ var ContainerCard = function (_a) {
                 " ",
                 lang == "fr" ? "articles" : "news"),
             react_1["default"].createElement("div", { className: 'container-selector' },
-                react_1["default"].createElement("select", { name: "", id: "", onChange: function (e) { return setTagFilter(e.target.value); } },
+                react_1["default"].createElement("select", { name: "", id: "", value: tagFilter, onChange: function (e) { return setTagFilter(e.target.value); } },
                     react_1["default"].createElement("option", { value: "" }, lang == "fr" ? "Tous les articles" : "All news"),
                     tags.map(function (tag, index) { return (react_1["default"].createElement("option", { key: index, value: tag }, tag)); })),
                 react_1["default"].createElement("select", { name: "", id: "", onChange: function (e) { return setSortItem(e.target.value); } },

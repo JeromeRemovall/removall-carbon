@@ -19,11 +19,7 @@ var Card = function (_a) {
                         " MIN")))),
                 title && (react_1["default"].createElement("p", { className: 'title' }, title)),
                 description && (react_1["default"].createElement("div", { className: 'description', dangerouslySetInnerHTML: { __html: description } })),
-                linkText && (react_1["default"].createElement("a", { className: 'link', href: files === null || files === void 0 ? void 0 : files.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title }, linkText)),
-                react_1["default"].createElement("div", { className: 'footer' }, auteur && (react_1["default"].createElement("p", { className: 'author' },
-                    lang == "fr" ? 'Par' : "By",
-                    " ",
-                    auteur.name))))))) : (react_1["default"].createElement("a", { className: 'link', href: files === null || files === void 0 ? void 0 : files.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title },
+                linkText && (react_1["default"].createElement("a", { className: 'link', href: files === null || files === void 0 ? void 0 : files.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title }, linkText)))))) : (react_1["default"].createElement("a", { className: 'link', href: files === null || files === void 0 ? void 0 : files.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title },
         react_1["default"].createElement("div", { className: "card" },
             react_1["default"].createElement("div", { className: 'image-container' },
                 react_1["default"].createElement("img", { src: image.sourceUrl, alt: image.altText })),
@@ -37,10 +33,6 @@ var Card = function (_a) {
                         " MIN")))),
                 react_1["default"].createElement("p", { className: 'title' }, title),
                 react_1["default"].createElement("div", { className: 'description', dangerouslySetInnerHTML: { __html: description } }),
-                linkText && type == "ressource" && (react_1["default"].createElement("a", { className: 'link', href: files === null || files === void 0 ? void 0 : files.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title }, linkText)),
-                react_1["default"].createElement("div", { className: 'footer' }, auteur && (react_1["default"].createElement("p", { className: 'author' },
-                    lang == "fr" ? 'Par' : "By",
-                    " ",
-                    auteur.name)))))))));
+                linkText && type == "ressource" && (react_1["default"].createElement("a", { className: 'link', href: files === null || files === void 0 ? void 0 : files.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title }, linkText))))))));
 };
 exports["default"] = Card;

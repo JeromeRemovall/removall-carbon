@@ -492,6 +492,9 @@ h4.titre {
   line-height: 28px;
   color: #333333;
 }
+.complexe-container .complexe .content strong {
+  font-weight: 700 !important;
+}
 .complexe-container .complexe .content em {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
