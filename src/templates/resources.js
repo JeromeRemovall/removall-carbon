@@ -247,9 +247,10 @@ function Resources({ pageContext }) {
         window.location.href.match("/fr$") ||
         window.location.href.match("/fr/")
       ) {
-        setDataNews(data.frNews.nodes);
         setDataResources(data.frResources.nodes);
-
+        const newsFilter = [...data.frNews.nodes.filter(item => item.news.image !== null)]
+        setDataNews(newsFilter)
+        console.log(newsFilter) 
         data.frEvents.nodes.sort(function (a, b) {
           return (
             new Date(
@@ -275,7 +276,8 @@ function Resources({ pageContext }) {
         window.location.href.match("/en$") ||
         window.location.href.match("/en/")
       ) {
-        setDataNews(data.enNews.nodes);
+        const newsFilter = [...data.enNews.nodes.filter(item => item.news.image !== null)]
+        setDataNews(newsFilter)
         setDataResources(data.enResources.nodes);
         data.enEvents.nodes.sort(function (a, b) {
           return (
@@ -503,7 +505,7 @@ function Resources({ pageContext }) {
       setPopIn(false);
     }
   }
-
+  console.log(news)
   return (
     <Layout>
       <Helmet>
