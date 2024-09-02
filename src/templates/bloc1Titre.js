@@ -84,7 +84,7 @@ function Actuality({ pageContext }) {
     return data.edges.map((item, index) => {
       return {
         ...item.node.articles,
-        image: item.node.articles.photoMiseEnAvant,
+        image: item.node.articles.previewCard,
         texte: item.node.articles.sousTitre,
         date: item.node.date,
         slug: item.node.slug,
@@ -198,6 +198,10 @@ const query = graphql`
           titre
           sousTitre
           duree
+          previewCard {
+            altText
+            sourceUrl
+          }
           photoMiseEnAvant {
             altText
             sourceUrl
@@ -225,6 +229,10 @@ const query = graphql`
           titre
           sousTitre
           duree
+          previewCard {
+            altText
+            sourceUrl
+          }
           photoMiseEnAvant {
             altText
             sourceUrl

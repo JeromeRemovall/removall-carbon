@@ -27,7 +27,7 @@ const Chiffres: React.FC<Props> = ({data}) => {
 
 	const renderImages = () => {
 		const blocks = [];
-		for (let i = 1; i < 5; i++) {
+		for (let i = 1; i < 11; i++) {
 			blocks.push(renderItem(data, i));
 		}
 		return blocks;

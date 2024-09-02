@@ -73,6 +73,9 @@ $max-width: 822px;
 	@include xl {
 		padding: 0px 16px;
 	}
+	strong {
+		color: $primary-blue-500
+	}
 }
 
 h2.titre {
@@ -422,6 +425,10 @@ h4.titre {
 				@include montserrat-paragraph-l-m;
 				font-weight: 500;
 				font-style: italic;
+			}
+			a {
+				color: $primary-blue-500;
+				font-style: none;
 			}
 
 		}

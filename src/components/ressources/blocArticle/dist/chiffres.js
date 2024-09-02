@@ -12,7 +12,7 @@ var Chiffres = function (_a) {
     };
     var renderImages = function () {
         var blocks = [];
-        for (var i = 1; i < 5; i++) {
+        for (var i = 1; i < 11; i++) {
             blocks.push(renderItem(data, i));
         }
         return blocks;
