@@ -426,7 +426,7 @@ h4.titre {
 				font-weight: 500;
 				font-style: italic;
 			}
-			a {
+			a:not(.cta) {
 				color: $primary-blue-500;
 				font-style: none;
 			}

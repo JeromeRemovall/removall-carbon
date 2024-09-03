@@ -505,7 +505,7 @@ h4.titre {
   font-weight: 500;
   font-style: italic;
 }
-.complexe-container .complexe .content a {
+.complexe-container .complexe .content a:not(.cta) {
   color: #5F89F4;
   font-style: none;
 }

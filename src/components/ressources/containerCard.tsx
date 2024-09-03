@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import '../../scss/components/ressources/containerCard.scss';
 import { max, set } from 'd3';
 import Card from './card';
+import Events from '../events';
 
 interface ContainerCardProps {
 	items: any;
@@ -12,7 +13,7 @@ interface ContainerCardProps {
 	filtre?: string; 
 }
 
-const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage = 9, type = "actuality", filtre = "test" }) => {
+const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage = 9, type = "actuality", filtre = "" }) => {
 	const [nbItem, setNbItem] = React.useState(0);
 	const [currentPage, setCurrentPage] = React.useState(1);
 	const [maxPage, setMaxPage] = React.useState(0);
@@ -56,6 +57,7 @@ const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage
 		setNbItem(item.length);
 	}
 
+
 	useEffect(() => {
 		const item = sort(itemFilter);
 		setItemsToShow(item.slice(0, itemsPerPage));
@@ -81,43 +83,71 @@ const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage
 		}
 	}
 
+	console.log(itemsToShow);
 	return (
 		<div className="container">
-			<div className='header'>
-				<p className='indicator'>{nbItem} {lang == "fr" ? "articles" : "news" }</p>
-				<div className='container-selector'>
-					<select name="" id="" value={tagFilter} onChange={(e) => setTagFilter(e.target.value)}>
-						<option value="">{lang == "fr" ? "Tous les articles" : "All news"}</option>
-						{tags.map((tag: any, index: number) => (
-							<option key={index} value={tag}>{tag}</option>
-						))}
-					</select>
-					<select name="" id="" onChange={(e) => setSortItem(e.target.value)} > 
-						<option value="">{lang == "fr" ? "Trier par" : "Sort by"}</option>
-						<option value="newest">{lang == "fr" ? "Plus récent" : "more recent"}</option>
-						<option value="oldest">{lang == "fr" ? "Plus ancien" : "older"}</option>
-					</select>
+			{type !== "events" && (
+				<div className='header'>
+					<p className='indicator'>{nbItem} {lang == "fr" ? "articles" : "news" }</p>
+					<div className='container-selector'>
+						<select name="" id="" value={tagFilter} onChange={(e) => setTagFilter(e.target.value)}>
+							<option value="">{lang == "fr" ? "Tous les articles" : "All news"}</option>
+							{tags.map((tag: any, index: number) => (
+								<option key={index} value={tag}>{tag}</option>
+							))}
+						</select>
+						<select name="" id="" onChange={(e) => setSortItem(e.target.value)} > 
+							<option value="">{lang == "fr" ? "Trier par" : "Sort by"}</option>
+							<option value="newest">{lang == "fr" ? "Plus récent" : "more recent"}</option>
+							<option value="oldest">{lang == "fr" ? "Plus ancien" : "older"}</option>
+						</select>
+					</div>
 				</div>
-			</div>
+			)}
 			<div className='container-card'>
 				<div className='cards'>
-					{itemsToShow.map((item: any, index: number) => (
-						<Card
-							key={index}
-							title={item.titre}
-							description={item.texte}
-							tags={item.tags}
-							files={item.fichier}
-							linkText={item.bouton}
-							image={item.image}
-							lang={lang}
-							time={item.duree}
-							date={item.date}
-							auteur={item.auteur}
-							slug={item.slug}
-							type={type}
-						/>
-					))}
+
+					{type === "events" ? (
+						<>
+							{itemsToShow?.map((event, index) => (
+								<Events
+									img={event.events.image.sourceUrl}
+									day={event.events.jour}
+									month={event.events.mois}
+									text={event.events.texte}
+									hours={event.events.heures}
+									adress={event.events.adresse}
+									alt={event.events.image.altText}
+									isSpeaker={event.events.speaker}
+									lien={event.events.lienCliquable}
+									enLigne={event.events.enLigne}
+									lang={lang}
+									key={index}
+								/>
+								)
+							)} 
+						</>
+						) : (
+						<>
+							{itemsToShow.map((item: any, index: number) => (
+								<Card
+									key={index}
+									title={item.titre}
+									description={item.texte}
+									tags={item.tags}
+									files={item.fichier}
+									linkText={item.bouton}
+									image={item.image}
+									lang={lang}
+									time={item.duree}
+									date={item.date}
+									auteur={item.auteur}
+									slug={item.slug}
+									type={type}
+								/>
+							))}
+						</>
+					)}
 				</div>
 				<div className='pagination'>
 					<button className={`btn-page ${currentPage == 1 ? "active" : ""}`} onClick={() => setCurrentPage(1)}>1</button>

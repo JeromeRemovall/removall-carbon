@@ -10,8 +10,9 @@ exports.__esModule = true;
 var react_1 = require("react");
 require("../../scss/components/ressources/containerCard.scss");
 var card_1 = require("./card");
+var events_1 = require("../events");
 var ContainerCard = function (_a) {
-    var items = _a.items, lang = _a.lang, _b = _a.itemsPerPage, itemsPerPage = _b === void 0 ? 9 : _b, _c = _a.type, type = _c === void 0 ? "actuality" : _c, _d = _a.filtre, filtre = _d === void 0 ? "test" : _d;
+    var items = _a.items, lang = _a.lang, _b = _a.itemsPerPage, itemsPerPage = _b === void 0 ? 9 : _b, _c = _a.type, type = _c === void 0 ? "actuality" : _c, _d = _a.filtre, filtre = _d === void 0 ? "" : _d;
     var _e = react_1["default"].useState(0), nbItem = _e[0], setNbItem = _e[1];
     var _f = react_1["default"].useState(1), currentPage = _f[0], setCurrentPage = _f[1];
     var _g = react_1["default"].useState(0), maxPage = _g[0], setMaxPage = _g[1];
@@ -74,8 +75,9 @@ var ContainerCard = function (_a) {
             return (__spreadArrays(item).sort(function (a, b) { return new Date(b.date) - new Date(a.date); }));
         }
     };
+    console.log(itemsToShow);
     return (react_1["default"].createElement("div", { className: "container" },
-        react_1["default"].createElement("div", { className: 'header' },
+        type !== "events" && (react_1["default"].createElement("div", { className: 'header' },
             react_1["default"].createElement("p", { className: 'indicator' },
                 nbItem,
                 " ",
@@ -87,9 +89,9 @@ var ContainerCard = function (_a) {
                 react_1["default"].createElement("select", { name: "", id: "", onChange: function (e) { return setSortItem(e.target.value); } },
                     react_1["default"].createElement("option", { value: "" }, lang == "fr" ? "Trier par" : "Sort by"),
                     react_1["default"].createElement("option", { value: "newest" }, lang == "fr" ? "Plus récent" : "more recent"),
-                    react_1["default"].createElement("option", { value: "oldest" }, lang == "fr" ? "Plus ancien" : "older")))),
+                    react_1["default"].createElement("option", { value: "oldest" }, lang == "fr" ? "Plus ancien" : "older"))))),
         react_1["default"].createElement("div", { className: 'container-card' },
-            react_1["default"].createElement("div", { className: 'cards' }, itemsToShow.map(function (item, index) { return (react_1["default"].createElement(card_1["default"], { key: index, title: item.titre, description: item.texte, tags: item.tags, files: item.fichier, linkText: item.bouton, image: item.image, lang: lang, time: item.duree, date: item.date, auteur: item.auteur, slug: item.slug, type: type })); })),
+            react_1["default"].createElement("div", { className: 'cards' }, type === "events" ? (react_1["default"].createElement(react_1["default"].Fragment, null, itemsToShow === null || itemsToShow === void 0 ? void 0 : itemsToShow.map(function (event, index) { return (react_1["default"].createElement(events_1["default"], { img: event.events.image.sourceUrl, day: event.events.jour, month: event.events.mois, text: event.events.texte, hours: event.events.heures, adress: event.events.adresse, alt: event.events.image.altText, isSpeaker: event.events.speaker, lien: event.events.lienCliquable, enLigne: event.events.enLigne, lang: lang, key: index })); }))) : (react_1["default"].createElement(react_1["default"].Fragment, null, itemsToShow.map(function (item, index) { return (react_1["default"].createElement(card_1["default"], { key: index, title: item.titre, description: item.texte, tags: item.tags, files: item.fichier, linkText: item.bouton, image: item.image, lang: lang, time: item.duree, date: item.date, auteur: item.auteur, slug: item.slug, type: type })); })))),
             react_1["default"].createElement("div", { className: 'pagination' },
                 react_1["default"].createElement("button", { className: "btn-page " + (currentPage == 1 ? "active" : ""), onClick: function () { return setCurrentPage(1); } }, "1"),
                 currentPage - 2 > 0 && (react_1["default"].createElement("button", { className: "btn-page", disabled: true }, "...")),

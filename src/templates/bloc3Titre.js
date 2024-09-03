@@ -12,6 +12,7 @@ import "../scss/templates/events.scss";
 import Header from "../components/ressources/header";
 import Events from "../components/events";
 import { set } from "d3";
+import ContainerCard from "../components/ressources/containerCard";
 
 const query = graphql`
   query {
@@ -146,25 +147,9 @@ function Event({ pageContext }) {
             <Navbar data={dataR} lang={metaLang} active={dataR?.bloc3Titre} />
             <section>
               <Header title={dataR.bloc3Titre} description={dataR.bloc3Texte} />
-              <div className="grid">
-                {events?.map((event, index) => (
-                  <Events
-                    img={event.events.image.sourceUrl}
-                    day={event.events.jour}
-                    month={event.events.mois}
-                    text={event.events.texte}
-                    hours={event.events.heures}
-                    adress={event.events.adresse}
-                    alt={event.events.image.altText}
-                    isSpeaker={event.events.speaker}
-                    lien={event.events.lienCliquable}
-                    enLigne={event.events.enLigne}
-                    lang={metaLang}
-                    key={index}
-                   />
-                )
-                )}
-              </div>
+              {events && (
+                <ContainerCard items={events} lang={metaLang} type="events"/>
+              )}
             </section>
           </main>
         </>
