@@ -5,7 +5,7 @@ import React, {
 import { Link } from "gatsby";
 import { graphql, useStaticQuery } from "gatsby";
 // import {ArrowUpRight} from "react-feather";
-import { Menu, Search } from "react-feather";
+import { ArrowDown, ChevronDown, Menu, Search } from "react-feather";
 import { X } from "react-feather";
 
 import "../scss/components/navbar.scss";
@@ -438,7 +438,14 @@ const Navbar = () => {
     checkPreferredLanguage();
 
     function isActive() {
-      setActiveLink(window.location.pathname);
+      console.log();
+      if (["/fr/%C3%89v%C3%A8nements/", "/fr/Ressources%20et%20Publications/", "/fr/Actualit%C3%A9s/"].includes(window.location.pathname)) {
+        setActiveLink("/fr/ressources/");
+      } else if (["/en/Events/", "/en/News/", "/en/Resources%20and%20publications/"].includes(window.location.pathname)) {
+        setActiveLink("/en/resources/");
+      } else {
+        setActiveLink(window.location.pathname);
+      }
     }
     isActive();
   }, [
@@ -456,6 +463,47 @@ const Navbar = () => {
     openMenu,
     visibleSearch,
   ]);
+
+  const handleLink = (preferredLanguage, slug) => {
+    let redirectName = preferredLanguage
+
+    if(preferredLanguage == "") {
+      const pathname = window.location.pathname;
+      const segments = pathname.split('/').filter(Boolean); // filter(Boolean) élimine les segments vides
+
+      // Vérifier si le premier segment est 'fr' ou 'en'
+      if (segments[0] === 'fr' || segments[0] === 'en') {
+        // Si oui, récupérer le texte après '/fr/' ou '/en/'
+        const textAfterLang = segments[1] ? decodeURIComponent(segments[1]) : '';
+        console.log(textAfterLang); // Traiter ou utiliser le texte comme nécessaire
+        if(textAfterLang == "Évènements") {
+          redirectName = "Events"
+        } else if( textAfterLang == "Events") 
+        {
+          redirectName =  "Évènements"
+        } else if (textAfterLang == "Actualités") {
+          redirectName = "News"
+        } else if (textAfterLang == "News") {
+          redirectName = "Actualités"
+        } else if (textAfterLang == "Ressources et Publications") {
+          redirectName = "Resources and publications"
+        } else if (textAfterLang == "Resources and publications") {
+          redirectName = "Ressources et Publications"
+        } 
+      }
+    };
+    const baseUrl = window.location.origin;
+    const redirectUrl = `${baseUrl}/${slug}/${redirectName}`;
+    window.location.href = redirectUrl;
+  }
+
+  const openSubMenu = (e) => {
+    e.stopPropagation();
+    const submenu = document.querySelectorAll(".container_subMenu")
+    for(let i = 0; i < submenu.length; i++) {
+      submenu[i].classList.toggle("active")
+    }
+  }
 
   return (
     <>
@@ -510,40 +558,100 @@ const Navbar = () => {
                           >
                             <Search />
                           </li>
-                          <li>
-                            <Link
-                              className="tag"
-                              key={label}
-                              to={path}
-                            >
-                              {label}
-                              {/* <ArrowUpRight /> */}
-                            </Link>
-                          </li>
+                            <li>
+                              <Link
+                                className="tag"
+                                key={label}
+                                to={path}
+                              >
+                                {label}
+                                {/* <ArrowUpRight /> */}
+                              </Link>
+                            </li>
                         </>
                       ) : (
                         <>
                           {activeLink === path ? (
                             <>
+                                {label == "News & Events" || label == "Actualités" ? (
                               <li>
-                                <Link
-                                  className="active"
-                                  key={label}
-                                  to={path}
-                                >
-                                  {label}
-                                </Link>
-                              </li>
-                            </>
-                          ) : (
+                              <Link
+                                className="subMenu active"
+                                key={label}
+                              >
+                                {label}
+                                <ChevronDown size={20} />
+                                <div className="container_subMenu">
+                                  {preferredLanguage == "en" ? (
+                                    <>
+                                      <Link to={`/${preferredLanguage}/News`} className={window.location.pathname ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
+                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
+                                      <Link to={`/${preferredLanguage}/Events`} className={window.location.pathname == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Link to={`/${preferredLanguage}/Actualités`} className={window.location.pathname == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
+                                      <Link to={`/${preferredLanguage}/Ressources et Publications`} className={window.location.pathname == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
+                                      <Link to={`/${preferredLanguage}/Évènements`} className={window.location.pathname == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
+                                    </>
+                                  )} 
+                                </div>
+                              </Link>
+                            </li>
+                            ): (
                             <li>
                               <Link
+                                className="active"
                                 key={label}
                                 to={path}
                               >
                                 {label}
+                                {/* <ArrowUpRight /> */}
                               </Link>
                             </li>
+
+                            )}
+                            </>
+                          ) : (
+                            <>
+                            {label == "News & Events" || label == "Actualités" ? (
+                              <li>
+                              <Link
+                                className={`subMenu`}
+                                key={label}
+                              >
+                                {label}
+                                <ChevronDown size={20}/>
+                                <div className="container_subMenu">
+                                  {preferredLanguage == "en" ? (
+                                    <>
+                                      <Link to={`/${preferredLanguage}/News`} className={activeLink ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
+                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={activeLink == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
+                                      <Link to={`/${preferredLanguage}/Events`} className={activeLink == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Link to={`/${preferredLanguage}/Actualités`} className={activeLink == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
+                                      <Link to={`/${preferredLanguage}/Ressources et Publications`} className={activeLink == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
+                                      <Link to={`/${preferredLanguage}/Évènements`} className={activeLink == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
+                                    </>
+                                  )} 
+                                </div>
+                              </Link>
+                            </li>
+                              ): (
+                              <li>
+                                <Link
+                                  className=""
+                                  key={label}
+                                  to={path}
+                                >
+                                  {label}
+                                  {/* <ArrowUpRight /> */}
+                                </Link>
+                              </li>
+                              )}
+                              </>
                           )}
                         </>
                       )}
@@ -562,13 +670,13 @@ const Navbar = () => {
                             {slug}
                           </Link>
                         ) : (
-                          <Link
+                          <a
                             key={slug}
                             className="language"
-                            to={`/${slug}/${switchLanguage}`}
+                            onClick={() => handleLink(switchLanguage, slug)}
                           >
                             {slug}
-                          </Link>
+                          </a>
                         )}
                       </>
                     )
@@ -706,25 +814,83 @@ const Navbar = () => {
                         <>
                           {activeLink === path ? (
                             <>
+                              {label == "News & Events" || label == "Actualités" ? (
+                                <li className="parent-submenu"> 
+                                  <p
+                                    className="subMenu active"
+                                    key={label}
+                                    onClick={(e) => openSubMenu(e)}
+                                  >
+                                    {label}
+                                    <ChevronDown size={20} />
+                                  </p>
+                                  <div className="container_subMenu">
+                                    {preferredLanguage == "en" ? (
+                                      <>
+                                        <Link to={`/${preferredLanguage}/News`} className={window.location.pathname ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
+                                        <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
+                                        <Link to={`/${preferredLanguage}/Events`} className={window.location.pathname == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Link to={`/${preferredLanguage}/Actualités`} className={window.location.pathname == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
+                                        <Link to={`/${preferredLanguage}/Ressources et Publications`} className={window.location.pathname == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
+                                        <Link to={`/${preferredLanguage}/Évènements`} className={window.location.pathname == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
+                                      </>
+                                    )} 
+                                  </div>
+                                </li>
+                              ) :(
+                                <li>
+                                  <Link
+                                    className="active"
+                                    key={label}
+                                    to={path}
+                                  >
+                                    {label}
+                                  </Link>
+                                </li>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                            {label == "News & Events" || label == "Actualités" ? (
+                              <li className="parent-submenu">
+                                <p
+                                  className="subMenu"
+                                  key={label}
+                                  onClick={(e) => openSubMenu(e)}
+                                >
+                                  {label}
+                                  <ChevronDown size={20} />
+                                </p>
+                                <div className="container_subMenu">
+                                    {preferredLanguage == "en" ? (
+                                      <>
+                                        <Link to={`/${preferredLanguage}/News`} className={window.location.pathname ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
+                                        <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
+                                        <Link to={`/${preferredLanguage}/Events`} className={window.location.pathname == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Link to={`/${preferredLanguage}/Actualités`} className={window.location.pathname == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
+                                        <Link to={`/${preferredLanguage}/Ressources et Publications`} className={window.location.pathname == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
+                                        <Link to={`/${preferredLanguage}/Évènements`} className={window.location.pathname == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
+                                      </>
+                                    )} 
+                                  </div>
+                              </li>
+                            ) :(
                               <li>
                                 <Link
-                                  className="active"
                                   key={label}
                                   to={path}
                                 >
                                   {label}
                                 </Link>
                               </li>
-                            </>
-                          ) : (
-                            <li>
-                              <Link
-                                key={label}
-                                to={path}
-                              >
-                                {label}
-                              </Link>
-                            </li>
+                            )}
+                          </>
                           )}
                         </>
                       )

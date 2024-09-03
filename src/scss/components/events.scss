@@ -1,4 +1,5 @@
 @import "../variables/colors";
+$font-path: '../../';
 @import "../mixins/text-style";
 @import "../mixins//breakpoints";
 
@@ -28,7 +29,9 @@
 
       p:nth-child(1) {
         @include chillax-display-m;
-        color: $primary-blue-100;
+        color: $primary-blue-700;
+        font-size: 56px;
+        line-height: 56px;
 
         @include xxl {
           @include chillax-display-l;
@@ -38,7 +41,7 @@
 
       p:nth-child(2) {
         @include montserrat-label-s-s;
-        color: $primary-blue-500;
+        color: $primary-blue-700;
       }
     }
 
@@ -47,29 +50,44 @@
       width: 200px;
       margin-left: 32px;
 
+      .place-container {
+        display:  flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 8px;
+        .picto {
+          width: 20px;
+          height: 20px;
+          &.place {
+            background-image: url(../../images/placeEvent.svg);
+          }
+          &.webinar {
+            background-image: url(../../images/webinarEvent.svg);
+          }
+        }
+      }
+
       p {
         @include montserrat-label-m-m;
-        color: $light-100;
-
+        color: $dark-700;
         @include xl {
           @include montserrat-label-s-m;
         }
       }
 
       p:nth-child(1):not(.speaker_item) {
-        margin-bottom: 12px;
+        margin-bottom: 8px;
       }
     }
   }
 
   .events-content__image {
     width: 100%;
-    height: 160px;
     overflow: hidden;
-
+    border-radius: 8px;
+    aspect-ratio: 2;
     @include xxl {
       width: 100%;
-      height: 132px;
       overflow: hidden;
     }
 
@@ -91,8 +109,8 @@
     width: fit-content;
     padding: 8px 16px;
     border-radius: 40px;
-    background: rgba(242, 247, 255, 0.08);
-    color: #f2f7ff;
+    background: #DFEAFB;
+    color: $primary-blue-500;
     margin-bottom: 0px;
     &::before {
       content: "";
@@ -105,9 +123,13 @@
   .events-content__text {
     p {
       text-align: left;
-      @include montserrat-paragraph-l-m;
+      @include montserrat-heading-m;
       margin-top: 16px;
-      color: $light-80;
+      color: $primary-blue-700;
+      @include xl {
+        font-size: 20px;
+        line-height: 24px;
+       }
     }
   }
 }
