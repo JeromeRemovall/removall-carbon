@@ -83,6 +83,7 @@ i {
   display: flex;
   align-items: center;
   gap: 4px;
+  margin-bottom: 8px;
 }
 .events .events-content .events-content__infos .place-container .picto {
   width: 20px;

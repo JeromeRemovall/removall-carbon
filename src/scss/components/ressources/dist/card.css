@@ -68,6 +68,7 @@ i {
   align-items: center;
   background-color: #F2F7FF;
   color: #5F89F4;
+  text-transform: capitalize;
   border-radius: 8px;
 }
 .card .content-container .tags .time {

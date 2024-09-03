@@ -151,7 +151,7 @@ const ContainerCard: React.FC<ContainerCardProps> = ({ items, lang, itemsPerPage
 				</div>
 				<div className='pagination'>
 					<button className={`btn-page ${currentPage == 1 ? "active" : ""}`} onClick={() => setCurrentPage(1)}>1</button>
-					{currentPage - 2 >  0 && (
+					{currentPage - 2 >  0 && currentPage - 2 !== 1 && (
 						<button className={`btn-page`} disabled>...</button>
 					)}
 					{currentPage > 2 && (
