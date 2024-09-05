@@ -35,6 +35,7 @@ function Actuality({ pageContext }) {
       ) {
         const oldData = mergeOldDataObject(data.frNews);
         const newData = mergeNewDataObject(data.frNewNews);
+        console.log(data.frNewNews)
         const mergedData = merge(oldData, newData);
         setActuality(mergedData);
         setMetaLang("fr");

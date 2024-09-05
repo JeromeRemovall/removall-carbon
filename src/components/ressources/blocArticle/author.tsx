@@ -19,7 +19,7 @@ const Author: React.FC<AuthorProps> = ({ author, lang }) => {
 				<p>Article written by : </p>
 			)} 
 			<div className='signature'>
-				<img src={author?.Auteur.photo.sourceUrl} alt={author?.Auteur.photo.altText} className="avatar" />
+				<img src={author?.Auteur.photo?.sourceUrl} alt={author?.Auteur.photo?.altText} className="avatar" />
 				<div className='content-container'>
 					<p className='name'>{author?.name}</p>
 					<p className='fonction'>{author?.Auteur.fonction}</p>
