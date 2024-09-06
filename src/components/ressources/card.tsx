@@ -66,7 +66,7 @@ const Card: React.FC<CardProps> = ({ title, description, tags, files,linkText, i
 				<a className='link' href={files?.mediaItemUrl} target="_blank" download={files?.title}>
 					<div className="card">
 						<div className='image-container'>
-							<img src={image.sourceUrl} alt={image.altText} />
+							<img src={image?.sourceUrl} alt={image?.altText} />
 						</div>
 						<div className='content-container'>
 							{type == "ressource" && (

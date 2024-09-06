@@ -17,7 +17,7 @@ const Complex: React.FC<Props> = ({data}) => {
 					<a className='cta' href={data.lienCta}>{data.texteCta}</a>
 				</div>
 				<div className='illustration'>
-					<img src={data.photo.sourceUrl} alt={data.altText} />
+					<img src={data.photo?.sourceUrl} alt={data.photo?.altText} />
 					<p className='legende'>{data.legende}</p>
 				</div>
 				<a className='cta mobile' href={data.lienCta}>{data.texteCta}</a>

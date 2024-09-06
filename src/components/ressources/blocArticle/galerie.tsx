@@ -14,11 +14,11 @@ const Galerie: React.FC<Props> = ({data}) => {
 				{data[`photo${index}`] && (
 					<div className='row'>
 						<div className='image'>
-							<img src={image[`photo${index}`].sourceUrl} alt={image[`photo${index}`].altText} />
+							<img src={image[`photo${index}`]?.sourceUrl} alt={image[`photo${index}`]?.altText} />
 						</div>
 						{data[`photo${index + 1}`] && (
 							<div className='image'>
-							<img src={image[`photo${index+1}`].sourceUrl} alt={image[`photo${index+1}`].altText} />
+							<img src={image[`photo${index+1}`]?.sourceUrl} alt={image[`photo${index+1}`]?.altText} />
 							</div>
 						)}
 					</div>

@@ -5,11 +5,12 @@ require("../../../scss/components/ressources/blocArticle/bloc.scss");
 var Galerie = function (_a) {
     var data = _a.data;
     var renderImage = function (image, index) {
+        var _a, _b, _c, _d;
         return (react_1["default"].createElement(react_1["default"].Fragment, null, data["photo" + index] && (react_1["default"].createElement("div", { className: 'row' },
             react_1["default"].createElement("div", { className: 'image' },
-                react_1["default"].createElement("img", { src: image["photo" + index].sourceUrl, alt: image["photo" + index].altText })),
+                react_1["default"].createElement("img", { src: (_a = image["photo" + index]) === null || _a === void 0 ? void 0 : _a.sourceUrl, alt: (_b = image["photo" + index]) === null || _b === void 0 ? void 0 : _b.altText })),
             data["photo" + (index + 1)] && (react_1["default"].createElement("div", { className: 'image' },
-                react_1["default"].createElement("img", { src: image["photo" + (index + 1)].sourceUrl, alt: image["photo" + (index + 1)].altText })))))));
+                react_1["default"].createElement("img", { src: (_c = image["photo" + (index + 1)]) === null || _c === void 0 ? void 0 : _c.sourceUrl, alt: (_d = image["photo" + (index + 1)]) === null || _d === void 0 ? void 0 : _d.altText })))))));
     };
     var renderImages = function () {
         var blocks = [];

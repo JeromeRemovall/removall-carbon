@@ -13,7 +13,7 @@ const Photos: React.FC<Props> = ({data}) => {
 			<>
 				{data[`photo${index}`] && (
 					<div className={`image ${image.photoFullSize ? 'full' : ''}`}>
-						<img src={image[`photo${index}`].sourceUrl} alt={image[`photo${index}`].altText} />
+						<img src={image[`photo${index}`]?.sourceUrl} alt={image[`photo${index}`]?.altText} />
 						<p className='legende'>{image[`legendePhoto${index}`]}</p>
 					</div>
 				)}
