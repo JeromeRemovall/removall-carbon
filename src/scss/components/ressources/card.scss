@@ -41,6 +41,10 @@ $font-path: '../../../';
 			justify-content: space-between;
 			align-items: center;
 			width: 100%;
+			>div {
+				display: flex;
+				gap: 8px;
+			}
 			.tag {
 				@include montserrat-label-m-s;
 				padding: 10px 16px;

@@ -12,7 +12,7 @@ var Card = function (_a) {
             react_1["default"].createElement("div", { className: 'content-container' },
                 type == "ressource" && (react_1["default"].createElement("p", { className: 'date' }, new Date(date).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' }))),
                 tags && time && (react_1["default"].createElement("div", { className: "tags" },
-                    tags && tags.map(function (tag, index) { return (react_1["default"].createElement("p", { className: 'tag', key: index }, tag.name)); }),
+                    tags && (react_1["default"].createElement("div", null, tags.map(function (tag, index) { return (react_1["default"].createElement("p", { className: 'tag', key: index }, tag.name)); }))),
                     !tags && (react_1["default"].createElement(react_1["default"].Fragment, null)),
                     time && (react_1["default"].createElement("p", { className: 'time' },
                         time,

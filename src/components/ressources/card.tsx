@@ -36,9 +36,13 @@ const Card: React.FC<CardProps> = ({ title, description, tags, files,linkText, i
 							)}
 							{tags && time && (
 								<div className="tags">
-									{tags && tags.map((tag, index) => (
-										<p className='tag' key={index}>{tag.name}</p>
-									))}
+									{tags && (
+										<div>
+											{tags.map((tag, index) => (
+												<p className='tag' key={index}>{tag.name}</p>
+											))}
+										</div>
+									)}
 									{ !tags && (<></>)}
 									{time && (
 										<p className='time'>{time} MIN</p>

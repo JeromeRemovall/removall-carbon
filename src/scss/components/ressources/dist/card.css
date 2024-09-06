@@ -57,6 +57,10 @@ i {
   align-items: center;
   width: 100%;
 }
+.card .content-container .tags > div {
+  display: flex;
+  gap: 8px;
+}
 .card .content-container .tags .tag {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
