@@ -43,7 +43,7 @@ $font-path: '../../../';
 			width: 100%;
 			>div {
 				display: flex;
-				gap: 8px;
+				gap: 4px;
 			}
 			.tag {
 				@include montserrat-label-m-s;
