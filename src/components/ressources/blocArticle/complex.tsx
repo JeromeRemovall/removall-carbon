@@ -16,11 +16,15 @@ const Complex: React.FC<Props> = ({data}) => {
 					<div className="description" dangerouslySetInnerHTML={{ __html: data.texte }}></div>
 					<a className='cta' href={data.lienCta}>{data.texteCta}</a>
 				</div>
-				<div className='illustration'>
-					<img src={data.photo?.sourceUrl} alt={data.photo?.altText} />
-					<p className='legende'>{data.legende}</p>
-				</div>
-				<a className='cta mobile' href={data.lienCta}>{data.texteCta}</a>
+				{data.photo && (
+					<div className='illustration'>
+						<img src={data.photo?.sourceUrl} alt={data.photo?.altText} />
+						<p className='legende'>{data.legende}</p>
+					</div>
+				)}
+				{data.lienCta && (
+					<a className='cta mobile' href={data.lienCta}>{data.texteCta}</a>
+				)}
 			</div>
 		</div>
 	);
