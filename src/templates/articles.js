@@ -141,7 +141,7 @@ const ArticlesPage = ({pageContext}) => {
 					</div>
 					{pageContext.dataArticle.articles.articlesSimilaires?.length > 0 && (
 						<div className='related-articles'>
-							<h2>Articles similaires</h2>
+							{ metaLang == "fr" ? <h2>Articles similaires</h2> : <h2>Related articles</h2>}
 							<div className='articles-container'>
 								{pageContext.dataArticle.articles.articlesSimilaires.map((article, index) => {
 									let news = article.news;
