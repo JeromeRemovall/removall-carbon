@@ -173,6 +173,7 @@ h4.titre {
   gap: 16px;
   list-style: none;
   margin: 32px 0px;
+  line-break: anywhere;
 }
 @media (max-width: 834px) {
   .paragraphe ul {
