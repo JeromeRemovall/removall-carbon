@@ -634,7 +634,6 @@ const Footer = () => {
                 <div className="footer-link">
                   <ul>
                     {dataMenuF.map((item) => {
-                      console.log(item);
                       if (
                         item.label ===
                         "News & Events"
