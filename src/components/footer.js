@@ -634,6 +634,31 @@ const Footer = () => {
                 <div className="footer-link">
                   <ul>
                     {dataMenuF.map((item) => {
+                      console.log(item);
+                      if (
+                        item.label ===
+                        "News & Events"
+                      )
+                        return (
+                          <a
+                            href={"/en/News/"}
+                            key={item}
+                          >
+                            {item.label}
+                          </a>
+                        );
+                      else if (
+                        item.label ===
+                        "Actualités"
+                      )
+                        return (
+                          <Link
+                            to={"/fr/Actualités/"}
+                            key={item}
+                          >
+                            {item.label}
+                          </Link>
+                        );
                       return (
                         <Link
                           to={item.path}
