@@ -197,6 +197,9 @@ h4.titre {
   border-radius: 50%;
   background-color: #1A1A1A;
 }
+.paragraphe img {
+  max-width: 100%;
+}
 .paragraphe em {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
@@ -423,7 +426,6 @@ h4.titre {
 }
 .icons-container .icons .content {
   font-family: "Montserrat", sans-serif;
-  font-weight: 600;
   font-size: 18px;
   line-height: 24px;
   color: #333333;

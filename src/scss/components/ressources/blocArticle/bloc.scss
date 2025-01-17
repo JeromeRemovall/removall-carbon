@@ -152,6 +152,9 @@ h4.titre {
       }
     }
   }
+  img {
+    max-width: 100%;
+  }
   em {
     @include montserrat-paragraph-l-m;
     @include xl {
@@ -355,7 +358,7 @@ h4.titre {
       background-image: url(../../../../images/hexa.svg);
     }
     .content {
-      @include montserrat-label-xl-s;
+      @include montserrat-label-xl-m;
       color: $dark-700;
       flex: 1;
       strong {
