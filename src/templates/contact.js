@@ -373,25 +373,6 @@ function Contact({ pageContext }) {
                   </div>
                 ) : null}
                 <div className="content-sociaux">
-                  {dataC.lienTwitter ? (
-                    <a
-                      href={dataC.lienTwitter}
-                      className="content-sociaux__image"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <img
-                        src={
-                          dataC.iconTwitter
-                            .sourceUrl
-                        }
-                        alt={
-                          dataC.iconTwitter
-                            .altText
-                        }
-                      />
-                    </a>
-                  ) : null}
                   {dataC.lienFacebook ? (
                     <a
                       href={dataC.lienFacebook}
