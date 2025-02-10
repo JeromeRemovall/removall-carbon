@@ -79,6 +79,7 @@ const Odometer = ({ value }) => {
             <div key="10">0</div>
           </div>
           {index % 3 === 0 &&
+            index !== 0 &&
             index !== digits.length && (
               <div className="separator">
                 &nbsp;

@@ -399,6 +399,8 @@ exports.createPages = async ({
             bloc6Titre
             bloc6item1SousTitre
             bloc6item2SousTitre
+             titreChiffresCles
+             descriptionChiffresCles
  chiffre1 {
           prDirection
           text

@@ -240,7 +240,6 @@ function Home({ pageContext }) {
       }
     }
     const formateDataKeyNumber = () => {
-      console.log(dataH);
       setDataKeyNumber([
         {
           ...dataH.chiffre1,
@@ -356,18 +355,8 @@ function Home({ pageContext }) {
             </div>
           </section>
           <section className="key-numbers">
-            <h2>
-              Nos actions en quelques chiffres
-            </h2>
-            <p>
-              Nous sommes fiers de mesurer notre
-              impact positif pour le climat et les
-              communautés locales, à travers des
-              projets ambitieux et durables.
-              Prenez par à ces ces améliorations
-              dès maintenant !{" "}
-            </p>
-
+            <h2>{dataH.titreChiffresCles}</h2>
+            <p>{dataH.descriptionChiffresCles}</p>
             <div className="key-numbers__content">
               {dataKeyNumber.map(
                 (item, index) => (
