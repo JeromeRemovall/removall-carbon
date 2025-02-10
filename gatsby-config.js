@@ -9,7 +9,7 @@ module.exports = {
     description: `Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone.`,
   },
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
   plugins: [
     `gatsby-plugin-sass`,

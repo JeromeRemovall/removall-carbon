@@ -1,6 +1,8 @@
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 // const { default: Recruitment } = require("./src/templates/test");
-const {BLOC_FIELDS} = require("./src/utils/queryNews");
+const {
+  BLOC_FIELDS,
+} = require("./src/utils/queryNews");
 
 exports.onCreateWebpackConfig = ({
   stage,
@@ -397,6 +399,48 @@ exports.createPages = async ({
             bloc6Titre
             bloc6item1SousTitre
             bloc6item2SousTitre
+ chiffre1 {
+          prDirection
+          text
+          prefixe
+          value
+        }
+           chiffre2 {
+          prDirection
+          text
+          prefixe
+          value
+        }
+           chiffre3 {
+          prDirection
+          text
+          prefixe
+          value
+        }
+           chiffre4 {
+          prDirection
+          text
+          prefixe
+          value
+        }
+           chiffre5 {
+          prDirection
+          text
+          prefixe
+          value
+        }
+           chiffre6 {
+          prDirection
+          text
+          prefixe
+          value
+        }
+           chiffre7 {
+          prDirection
+          text
+          prefixe
+          value
+        }
           }
           language {
             slug
@@ -1328,7 +1372,6 @@ exports.createPages = async ({
     "./src/templates/articles.js"
   );
 
-
   result.data.home.nodes.forEach((node) => {
     createPage({
       path: `/${node.language.slug}/`,
@@ -1389,11 +1432,13 @@ exports.createPages = async ({
     });
   });
   result.data.resource.nodes.forEach((node) => {
-    for(let i = 1; i <= 3; i++) {
-      const slug = `bloc${i}Titre`
+    for (let i = 1; i <= 3; i++) {
+      const slug = `bloc${i}Titre`;
       createPage({
         path: `/${node.language.slug}/${node.ressource[slug]}`,
-        component: require.resolve(`./src/templates/${slug}.js`),
+        component: require.resolve(
+          `./src/templates/${slug}.js`
+        ),
         context: {
           dataResource: node,
         },

@@ -1,5 +1,6 @@
 import React, {
   useEffect,
+  useRef,
   useState,
 } from "react";
 import Slider from "../components/slider";
@@ -17,6 +18,7 @@ import "../scss/templates/index.scss";
 
 import { graphql, useStaticQuery } from "gatsby";
 import { Helmet } from "react-helmet";
+import Odometer from "../components/odometre";
 
 const query = graphql`
   query {
@@ -167,6 +169,8 @@ function Home({ pageContext }) {
   const [metaLang, setMetaLang] = useState("");
   const [metaDescription, setMetaDescription] =
     useState("");
+  const [dataKeyNumber, setDataKeyNumber] =
+    useState([]);
   const logoCustomers = [];
   const logoPartners = [];
 
@@ -235,46 +239,61 @@ function Home({ pageContext }) {
         );
       }
     }
-    getLanguage();
-  }, [
-    data.blocClients.nodes,
-    data.blocCustomers.nodes,
-    data.blocPartenaires.nodes,
-    data.blocPartners.nodes,
-    data.sliderEn.nodes,
-    data.sliderFr.nodes,
-  ]);
-
-  useEffect(() => {
-    function getLanguage() {
-      if (
-        window.location.href.match("/fr$") ||
-        window.location.href.match("/fr/")
-      ) {
-        setDataCustomers(data.blocClients.nodes);
-        setDataPartners(
-          data.blocPartenaires.nodes
-        );
-        setDataSlider(data.sliderFr.nodes);
-        setMetaLang("fr");
-        setMetaDescription(
-          "Removall est une société spécialisée dans le montage de fonds carbone et le développement de projets de compensation carbone."
-        );
-      } else if (
-        window.location.href.match("/en$") ||
-        window.location.href.match("/en/")
-      ) {
-        setDataCustomers(
-          data.blocCustomers.nodes
-        );
-        setDataPartners(data.blocPartners.nodes);
-        setDataSlider(data.sliderEn.nodes);
-        setMetaLang("en");
-        setMetaDescription(
-          "Removall is specialized in designing carbon funds and developing carbon sequestration projects."
-        );
-      }
-    }
+    const formateDataKeyNumber = () => {
+      console.log(dataH);
+      setDataKeyNumber([
+        {
+          ...dataH.chiffre1,
+          pr_direction: dataH.chiffre1.prDirection
+            ? "left"
+            : "right",
+          style: "blue",
+        },
+        {
+          ...dataH.chiffre2,
+          pr_direction: dataH.chiffre2.prDirection
+            ? "left"
+            : "right",
+          style: "blue",
+        },
+        {
+          ...dataH.chiffre3,
+          pr_direction: dataH.chiffre3.prDirection
+            ? "left"
+            : "right",
+          style: "blue",
+        },
+        {
+          ...dataH.chiffre4,
+          pr_direction: dataH.chiffre4.prDirection
+            ? "left"
+            : "right",
+          style: "grey",
+        },
+        {
+          ...dataH.chiffre5,
+          pr_direction: dataH.chiffre5.prDirection
+            ? "left"
+            : "right",
+          style: "grey",
+        },
+        {
+          ...dataH.chiffre6,
+          pr_direction: dataH.chiffre6.prDirection
+            ? "left"
+            : "right",
+          style: "grey",
+        },
+        {
+          ...dataH.chiffre7,
+          pr_direction: dataH.chiffre7.prDirection
+            ? "left"
+            : "right",
+          style: "grey",
+        },
+      ]);
+    };
+    formateDataKeyNumber();
     getLanguage();
   }, [
     data.blocClients.nodes,
@@ -334,6 +353,46 @@ function Home({ pageContext }) {
                   dataH.bloc2BoutonMobile
                 }
               />
+            </div>
+          </section>
+          <section className="key-numbers">
+            <h2>
+              Nos actions en quelques chiffres
+            </h2>
+            <p>
+              Nous sommes fiers de mesurer notre
+              impact positif pour le climat et les
+              communautés locales, à travers des
+              projets ambitieux et durables.
+              Prenez par à ces ces améliorations
+              dès maintenant !{" "}
+            </p>
+
+            <div className="key-numbers__content">
+              {dataKeyNumber.map(
+                (item, index) => (
+                  <div
+                    key={index}
+                    className={`key-numbers__content__item  ${item.style}`}
+                  >
+                    <div
+                      className={`key-numbers__content__item__number  ${
+                        item.pr_direction ?? ""
+                      }`}
+                    >
+                      <span
+                        className={`key-numbers__content__item__number__prefixe`}
+                      >
+                        {item.prefixe}
+                      </span>
+                      <Odometer
+                        value={item.value}
+                      />
+                    </div>
+                    <p>{item.text}</p>
+                  </div>
+                )
+              )}
             </div>
           </section>
           <section className="bloc-3">
