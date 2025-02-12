@@ -54,7 +54,7 @@ const Odometer = ({ value }) => {
                 delay: index * 0.08,
                 scrollTrigger: {
                   trigger: odometerRef.current,
-                  start: "top 70%",
+                  start: "top 80%",
                   // markers: true,
                 },
               }
