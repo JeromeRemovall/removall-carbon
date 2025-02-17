@@ -358,30 +358,191 @@ function Home({ pageContext }) {
             <h2>{dataH.titreChiffresCles}</h2>
             <p>{dataH.descriptionChiffresCles}</p>
             <div className="key-numbers__content">
-              {dataKeyNumber.map(
-                (item, index) => (
-                  <div
-                    key={index}
-                    className={`key-numbers__content__item  ${item.style}`}
+              <div
+                key="0"
+                className={`key-numbers__content__item  ${dataKeyNumber[0].style}`}
+              >
+                <div
+                  className={`key-numbers__content__item__number  ${
+                    dataKeyNumber[0]
+                      .pr_direction ?? ""
+                  }`}
+                >
+                  <span
+                    className={`key-numbers__content__item__number__prefixe`}
                   >
+                    {dataKeyNumber[0].prefixe}
+                  </span>
+                  <Odometer
+                    value={dataKeyNumber[0].value}
+                  />
+                </div>
+                <p>{dataKeyNumber[0].text}</p>
+              </div>
+              <div
+                key="1"
+                className={`key-numbers__content__item  ${dataKeyNumber[1].style}`}
+              >
+                <div
+                  className={`key-numbers__content__item__number  ${
+                    dataKeyNumber[1]
+                      .pr_direction ?? ""
+                  }`}
+                >
+                  <span
+                    className={`key-numbers__content__item__number__prefixe`}
+                  >
+                    {dataKeyNumber[1].prefixe}
+                  </span>
+                  <Odometer
+                    value={dataKeyNumber[1].value}
+                  />
+                </div>
+                <p>{dataKeyNumber[1].text}</p>
+              </div>
+              <div
+                key="2"
+                className={`key-numbers__content__item  ${dataKeyNumber[2].style}`}
+              >
+                <div
+                  className={`key-numbers__content__item__number  ${
+                    dataKeyNumber[2]
+                      .pr_direction ?? ""
+                  }`}
+                >
+                  <span
+                    className={`key-numbers__content__item__number__prefixe`}
+                  >
+                    {dataKeyNumber[2].prefixe}
+                  </span>
+                  <Odometer
+                    value={dataKeyNumber[2].value}
+                  />
+                </div>
+                <p>{dataKeyNumber[2].text}</p>
+                <div className="key__number_little">
+                  <div>
                     <div
-                      className={`key-numbers__content__item__number  ${
-                        item.pr_direction ?? ""
-                      }`}
+                      key="3"
+                      className={`key-numbers__content__item  ${dataKeyNumber[3].style}`}
                     >
-                      <span
-                        className={`key-numbers__content__item__number__prefixe`}
+                      <div
+                        className={`key-numbers__content__item__number  ${
+                          dataKeyNumber[3]
+                            .pr_direction ?? ""
+                        }`}
                       >
-                        {item.prefixe}
-                      </span>
-                      <Odometer
-                        value={item.value}
-                      />
+                        <span
+                          className={`key-numbers__content__item__number__prefixe`}
+                        >
+                          {
+                            dataKeyNumber[3]
+                              .prefixe
+                          }
+                        </span>
+                        <Odometer
+                          value={
+                            dataKeyNumber[3].value
+                          }
+                        />
+                      </div>
+                      <p>
+                        {dataKeyNumber[3].text}
+                      </p>
                     </div>
-                    <p>{item.text}</p>
                   </div>
-                )
-              )}
+                  <div>
+                    <div
+                      key="4"
+                      className={`key-numbers__content__item  ${dataKeyNumber[4].style}`}
+                    >
+                      <div
+                        className={`key-numbers__content__item__number  ${
+                          dataKeyNumber[4]
+                            .pr_direction ?? ""
+                        }`}
+                      >
+                        <span
+                          className={`key-numbers__content__item__number__prefixe`}
+                        >
+                          {
+                            dataKeyNumber[4]
+                              .prefixe
+                          }
+                        </span>
+                        <Odometer
+                          value={
+                            dataKeyNumber[4].value
+                          }
+                        />
+                      </div>
+                      <p>
+                        {dataKeyNumber[4].text}
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      key="5"
+                      className={`key-numbers__content__item  ${dataKeyNumber[5].style}`}
+                    >
+                      <div
+                        className={`key-numbers__content__item__number  ${
+                          dataKeyNumber[5]
+                            .pr_direction ?? ""
+                        }`}
+                      >
+                        <span
+                          className={`key-numbers__content__item__number__prefixe`}
+                        >
+                          {
+                            dataKeyNumber[5]
+                              .prefixe
+                          }
+                        </span>
+                        <Odometer
+                          value={
+                            dataKeyNumber[5].value
+                          }
+                        />
+                      </div>
+                      <p>
+                        {dataKeyNumber[5].text}
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      key="6"
+                      className={`key-numbers__content__item  ${dataKeyNumber[6].style}`}
+                    >
+                      <div
+                        className={`key-numbers__content__item__number  ${
+                          dataKeyNumber[6]
+                            .pr_direction ?? ""
+                        }`}
+                      >
+                        <span
+                          className={`key-numbers__content__item__number__prefixe`}
+                        >
+                          {
+                            dataKeyNumber[6]
+                              .prefixe
+                          }
+                        </span>
+                        <Odometer
+                          value={
+                            dataKeyNumber[6].value
+                          }
+                        />
+                      </div>
+                      <p>
+                        {dataKeyNumber[6].text}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
           <section className="bloc-3">

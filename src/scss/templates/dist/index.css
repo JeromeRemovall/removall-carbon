@@ -163,6 +163,12 @@ main.home .key-numbers .key-numbers__content .key-numbers__content__item p {
   font-family: "Montserrat";
   color: #5F89F4;
 }
+main.home .key-numbers .key-numbers__content .key-numbers__content__item .key__number_little {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(329px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
 main.home .key-numbers .key-numbers__content .key-numbers__content__item .key-numbers__content__item__number {
   display: flex;
   align-items: baseline;
@@ -178,12 +184,12 @@ main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue {
   background-color: #F2F7FF;
   box-shadow: 0px 4px 16px 0px #0000001a;
 }
-main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue .key-numbers__content__item__number {
+main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue > .key-numbers__content__item__number {
   font-size: 80px;
   line-height: 62px;
   margin-bottom: 12px;
 }
-main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue .key-numbers__content__item__number .key-numbers__content__item__number__prefixe {
+main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue > .key-numbers__content__item__number > .key-numbers__content__item__number__prefixe {
   font-family: Chillax-Regular;
   font-size: 64px;
   line-height: 52px;
@@ -195,6 +201,7 @@ main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue p 
 }
 main.home .key-numbers .key-numbers__content .key-numbers__content__item.grey {
   padding: 16px 8px 0px 8px;
+  border-top: 1px solid #dfeafb;
 }
 main.home .key-numbers .key-numbers__content .key-numbers__content__item.grey .key-numbers__content__item__number {
   gap: 6px;
@@ -223,10 +230,6 @@ main.home .key-numbers .key-numbers__content .key-numbers__content__item:nth-chi
 main.home .key-numbers .key-numbers__content .key-numbers__content__item:nth-child(5) {
   margin-top: -12px;
 }
-main.home .key-numbers .key-numbers__content .key-numbers__content__item:nth-child(6),
-main.home .key-numbers .key-numbers__content .key-numbers__content__item:nth-child(7) {
-  border-top: 1px solid #dfeafb;
-}
 @media (max-width: 820px) {
   main.home .key-numbers {
     padding: 100px 24px 0px 24px;
@@ -246,11 +249,11 @@ main.home .key-numbers .key-numbers__content .key-numbers__content__item:nth-chi
   main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue {
     padding-top: 40px;
   }
-  main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue .key-numbers__content__item__number {
+  main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue > .key-numbers__content__item__number {
     font-size: 64px;
     line-height: 48px;
   }
-  main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue .key-numbers__content__item__number .key-numbers__content__item__number__prefixe {
+  main.home .key-numbers .key-numbers__content .key-numbers__content__item.blue > .key-numbers__content__item__number > .key-numbers__content__item__number__prefixe {
     font-size: 40px;
     line-height: 32px;
   }
