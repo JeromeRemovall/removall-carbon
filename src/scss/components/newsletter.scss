@@ -1,270 +1,268 @@
-$font-path: '../../';
+$font-path: "../../";
 @import "../mixins/text-style";
 @import "../variables/colors";
 @import "../mixins//breakpoints";
 
-.newsletter{
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 356px;
-	justify-content: flex-end;
-	position: relative;
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 356px;
+  justify-content: flex-end;
+  position: relative;
 
-	@include xl {
-		width: 100%;
-		height: 400px;
-	}
+  @include xl {
+    width: 100%;
+    height: 400px;
+  }
 
-	@include xl-paysage {
-		width: 100%;
-	}
+  @include xl-paysage {
+    width: 100%;
+  }
 
-	.newsletter-background{
-		height: 50%;
-		width: 100%;
-		background-color: $primary-blue-700;
-	}
+  .newsletter-background {
+    height: 50%;
+    width: 100%;
+    background-color: $primary-blue-700;
+  }
 
-	.newsletter-container{
-		display: flex;
-		justify-content: center;
-		height: 50%;
-		width: 100%;
-		
-		&.white{
-			background-color: $light-100;
-		}
+  .newsletter-container {
+    display: flex;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
 
+    &.white {
+      background-color: $light-100;
+    }
 
-		&.blue{
-			background-color: $primary-blue-100;
-		}
+    &.blue {
+      background-color: $primary-blue-100;
+    }
 
-		&.dark{
-			background-color: $primary-blue-700;
-		}
+    &.dark {
+      background-color: $primary-blue-700;
+    }
 
-		.newsletter-container__block{
-			display: flex;
-			justify-content: space-between;
-			width: 1248px;
-			height: 356px;
-			border-radius: 12px;
-			overflow: hidden;
-			z-index: 2;
+    .newsletter-container__block {
+      display: flex;
+      justify-content: space-between;
+      width: 1248px;
+      height: 356px;
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 2;
 
-			@include xl {
-				width: 90%;
-				height: 350px;
-				padding: 32px 0;
-			}
+      @include xl {
+        width: 90%;
+        height: 350px;
+        padding: 32px 0;
+      }
 
-			@include xl-paysage {
-				width: 90%;
-				height: 356px;
-			}
+      @include xl-paysage {
+        width: 90%;
+        height: 356px;
+      }
 
-			&.white{
-				background-color: $light-100;
-			}
+      &.white {
+        background-color: $light-100;
+      }
 
-			&.blue{
-				background-color: $primary-blue-100;
-			}
+      &.blue {
+        background-color: $primary-blue-100;
+      }
 
-			.newsletter-content{
-				padding: 0px 112px 0px 75px;
-				box-sizing: border-box;
-				justify-content: center;
-				display: flex;
-				flex-direction: column;
-				width: 744px;
-				height: 100%;
-		
-				@include xl-paysage {
-					padding: 32px 20px;
-					width: 65%;
-				}
-		
-				@include xl {
-					align-items: center;
-					width: 100%;
-					padding: 0px 20px;
-					border-radius: 12px;
-				}
-		
-				&.blue{
-					background-color: $primary-blue-100;
-				}
-		
-				&.white{
-					background-color: $light-100;
-				}
-		
-				h2{
-					@include chillax-heading-xl;
-					color: $primary-blue-700;
-					margin-bottom: 16px;
-		
-					@include xl {
-						text-align: center;
-						@include montserrat-heading-m;
-					}
-		
-					@include xl {
-						text-align: center;
-						@include montserrat-heading-m;
-					}
-				}
-		
-				p:nth-of-type(1){
-					@include montserrat-paragraph-l-m;
-					color: $dark-500;
-					// width: 450px;
-					margin-bottom: 24px;
-		
-					@include xl {
-						width: 100%;
-						@include montserrat-paragraph-m-m;
-					}
-				}
-		
-				.newsletter-content__field{
-					display: flex;
-					margin-bottom: 18px;
-					position: relative;
-					flex-direction: column;
-		
-					@include xl{
-						width: 100%;
-					}
-		
-					input{
-						border-radius: 50px;
-						border: 1px solid $primary-blue-500;
-						padding: 14px 0px 14px 24px;
-						@include montserrat-label-l-m;
+      .newsletter-content {
+        padding: 0px 112px 0px 75px;
+        box-sizing: border-box;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        width: 744px;
+        height: 100%;
 
-						@include xl{ 
-							@include montserrat-label-s-m;
-						}
-					}
-		
-					input::placeholder{
-						@include montserrat-label-l-m;
-						color: $dark-300;
-					}
-		
-					button{
-						box-sizing: border-box;
-						padding: 14px 32px;
-						right: 0px;
-						border-radius: 50px;
-						background-color: $primary-blue-500;
-						border: none;
-						color: $light-100;
-						@include montserrat-label-l-s;
-						position: absolute;
-						top: 1px; 
-		
-						@include xl{
-							padding: 8px 32px;
-						}
-					}
+        @include xl-paysage {
+          padding: 32px 20px;
+          width: 65%;
+        }
 
-					.checkbox{
-						display: flex;
-						align-items: center;
-						width: 100%;
-						margin-top: 16px;
+        @include xl {
+          align-items: center;
+          width: 100%;
+          padding: 0px 20px;
+          border-radius: 12px;
+        }
 
-						input{
-							width: 34px;
-							height: 34px;
+        &.blue {
+          background-color: $primary-blue-100;
+        }
 
-							@include  xl{
-								width: 60px;
-								height: 60px;
-							}
-						}
+        &.white {
+          background-color: $light-100;
+        }
 
-						label{
-							margin-left: 16px;
-							@include montserrat-label-s-m;
-							color: $dark-500;
+        h2 {
+          @include chillax-heading-xl;
+          color: $primary-blue-700;
+          margin-bottom: 16px;
 
-							@include xl{
-								@include montserrat-label-xs-m
-							}
-						}
-					}
+          @include xl {
+            text-align: center;
+            @include montserrat-heading-m;
+          }
 
-					.form-message__validate{
-						margin: 0;
-						padding-left: 0;
-						color: $secondary-green-500;
-						@include montserrat-paragraph-m-m;
-						margin-top: 5px;
-						width: 100%;
-					}
-	
-					.form-message__error{
-						margin: 0;
-						padding-left: 0;
-						color: $red;
-						@include montserrat-paragraph-s-m;
-						margin-top: 5px;
-						width: 100%;
-					}
-				}
-		
-				.newsletter-content__conditions{
-					p{
-						width: 100% !important;
-						@include montserrat-label-s-m;
-						color: $dark-500;
-						margin-bottom: 0px;
-		
-						@include xl {
-							text-align: center;
-							@include montserrat-label-xs-m;
-						}
-		
-						a{
-							@include montserrat-label-s-m;
-							text-decoration: underline;
-							color: $dark-500;
+          @include xl {
+            text-align: center;
+            @include montserrat-heading-m;
+          }
+        }
 
-							@include xl {
-								text-align: center;
-								@include montserrat-label-xs-m;
-							}
-						}
-					}
-				}
-			}
-		
-			.newsletter-image{
-				width: 500px;
-				height: 100%;
-				overflow: hidden;
-		
-				@include xl {
-					display: none;
-				}
-		
-				@include xl-paysage {
-					width: 45%;
-					height: auto;
-				}
-		
-				img{
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-				}
-			}
-		}
-	}
+        p:nth-of-type(1) {
+          @include montserrat-paragraph-l-m;
+          color: $dark-500;
+          // width: 450px;
+          margin-bottom: 24px;
+
+          @include xl {
+            width: 100%;
+            @include montserrat-paragraph-m-m;
+          }
+        }
+
+        .newsletter-content__field {
+          display: flex;
+          margin-bottom: 18px;
+          position: relative;
+          flex-direction: column;
+
+          @include xl {
+            width: 100%;
+          }
+
+          input {
+            border-radius: 50px;
+            border: 1px solid $primary-blue-500;
+            padding: 14px 0px 14px 24px;
+            @include montserrat-label-l-m;
+
+            @include xl {
+              @include montserrat-label-s-m;
+            }
+          }
+
+          input::placeholder {
+            @include montserrat-label-l-m;
+            color: $dark-300;
+          }
+
+          @include xl {
+            padding: 8px 32px;
+          }
+        }
+
+        .checkbox {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          margin-top: 16px;
+
+          input {
+            width: 34px;
+            height: 34px;
+
+            @include xl {
+              width: 60px;
+              height: 60px;
+            }
+          }
+
+          label {
+            margin-left: 16px;
+            @include montserrat-label-s-m;
+            color: $dark-500;
+
+            @include xl {
+              @include montserrat-label-xs-m;
+            }
+          }
+        }
+        .btn-submit {
+          box-sizing: border-box;
+          text-align: center;
+          padding: 14px 32px;
+          right: 0px;
+          border-radius: 50px;
+          background-color: $primary-blue-500;
+          border: none;
+          color: $light-100;
+          width: 100%;
+          @include montserrat-label-l-s;
+
+          .form-message__validate {
+            margin: 0;
+            padding-left: 0;
+            color: $secondary-green-500;
+            @include montserrat-paragraph-m-m;
+            margin-top: 5px;
+            width: 100%;
+          }
+
+          .form-message__error {
+            margin: 0;
+            padding-left: 0;
+            color: $red;
+            @include montserrat-paragraph-s-m;
+            margin-top: 5px;
+            width: 100%;
+          }
+        }
+
+        .newsletter-content__conditions {
+          p {
+            width: 100% !important;
+            @include montserrat-label-s-m;
+            color: $dark-500;
+            margin-bottom: 0px;
+
+            @include xl {
+              text-align: center;
+              @include montserrat-label-xs-m;
+            }
+
+            a {
+              @include montserrat-label-s-m;
+              text-decoration: underline;
+              color: $dark-500;
+
+              @include xl {
+                text-align: center;
+                @include montserrat-label-xs-m;
+              }
+            }
+          }
+        }
+      }
+
+      .newsletter-image {
+        width: 500px;
+        height: 100%;
+        overflow: hidden;
+
+        @include xl {
+          display: none;
+        }
+
+        @include xl-paysage {
+          width: 45%;
+          height: auto;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
 }

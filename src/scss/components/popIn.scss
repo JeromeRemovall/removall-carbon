@@ -1,4 +1,4 @@
-$font-path: '../../';
+$font-path: "../../";
 @import "../mixins/text-style";
 @import "../variables/colors";
 @import "../mixins//breakpoints";
@@ -103,23 +103,6 @@ $font-path: '../../';
         color: $dark-300;
       }
 
-      button {
-        box-sizing: border-box;
-        padding: 14px 32px;
-        right: 0px;
-        border-radius: 50px;
-        background-color: $primary-blue-500;
-        border: none;
-        color: $light-100;
-        @include montserrat-label-l-s;
-        position: absolute;
-        top: 1px;
-
-        @include xl {
-          padding: 8px 32px;
-        }
-      }
-
       .checkbox {
         display: flex;
         align-items: center;
@@ -165,7 +148,20 @@ $font-path: '../../';
         width: 100%;
       }
     }
-
+    .btn-submit {
+      box-sizing: border-box;
+      padding: 14px 32px;
+      right: 0px;
+      border-radius: 50px;
+      width: 100%;
+      background-color: $primary-blue-500;
+      border: none;
+      color: $light-100;
+      @include montserrat-label-l-s;
+      @include xl {
+        padding: 8px 32px;
+      }
+    }
     .newsletter-content__conditions {
       p {
         width: 100% !important;

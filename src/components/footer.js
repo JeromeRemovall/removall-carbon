@@ -581,6 +581,7 @@ const Footer = () => {
         <>
           {visibleNewsletter ? (
             <Newsletter
+              lang={language}
               title={dataFooterN.titre}
               text={dataFooterN.texte}
               textChampsDeSaisie={

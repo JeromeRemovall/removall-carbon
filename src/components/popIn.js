@@ -257,92 +257,32 @@ const PopIn = () => {
             <div className="newsletter-content">
               <h2>{dataFooterN.titre}</h2>
               <p>{dataFooterN.texte}</p>
-              <form
-                className="newsletter-content__field"
-                action={url}
-                method="post"
-                onSubmit={formSubmissionHandler}
+              <a
+                className="btn-submit"
+                target="_blank"
+                href={`https://share-eu1.hsforms.com/${
+                  language == "fr"
+                    ? "268Pb-JUURhOnFOtSp09tIwfdgdo"
+                    : "2M_Tm3aUkR5CZPOLNwOqzuAfdgdo"
+                }`}
               >
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder={
-                    window.matchMedia(
-                      "(max-width: 834px)"
-                    ).matches
-                      ? dataFooterN.texteChampsDeSaisieMobile
-                      : dataFooterN.texteChampsDeSaisie
-                  }
-                />
-                <button type="submit">
-                  {window.matchMedia(
-                    "(max-width: 834px)"
-                  ).matches ? (
-                    <img
-                      src={
-                        dataFooterN
-                          .logoBoutonMobile
-                          .sourceUrl
-                      }
-                      alt={
-                        dataFooterN
-                          .logoBoutonMobile
-                          .altText
-                      }
-                    />
-                  ) : (
-                    <>
-                      {" "}
-                      {
-                        dataFooterN.texteBouton
-                      }{" "}
-                    </>
-                  )}
-                </button>
-                <p className="form-message__error">
-                  {messageEmail}
-                </p>
-                <div className="checkbox">
-                  <input
-                    type="hidden"
-                    name="mc4wp-subscribe"
-                    value="1"
+                {window.matchMedia(
+                  "(max-width: 834px)"
+                ).matches ? (
+                  <img
+                    src={
+                      dataFooterN.logoBoutonMobile
+                        .sourceUrl
+                    }
+                    alt={
+                      dataFooterN.logoBoutonMobile
+                        .altText
+                    }
                   />
-                  <input
-                    type="checkbox"
-                    id="checkbox"
-                    name="checkbox"
-                  />
-                  <label for="checkbox">
-                    {dataFooterN.phraseRgpd}
-                  </label>
-                  <div className="group-input hide">
-                    <input
-                      type="text"
-                      id="_wpcf7_unit_tag"
-                      name="_wpcf7_unit_tag"
-                      value="6124bb2"
-                    />
-                  </div>
-                </div>
-                <p className="form-message__error">
-                  {messageCheckbox}
-                </p>
-                <p className="form-message__validate">
-                  {message}
-                </p>
-                <p className="form-message__error">
-                  {error}
-                </p>
-              </form>
-              <div
-                className="newsletter-content__conditions"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    dataFooterN.texteConditions,
-                }}
-              ></div>
+                ) : (
+                  <> {dataFooterN.texteBouton} </>
+                )}
+              </a>
             </div>
             <div className="newsletter-image">
               <img
