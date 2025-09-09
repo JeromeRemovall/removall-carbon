@@ -76,8 +76,10 @@ const Slider = ({ slides }) => {
               <>
                 <div className="slider-image">
                   <img
-                    src={slide.image.sourceUrl}
-                    alt={slide.image.altText}
+                    src={
+                      slide.image.node.sourceUrl
+                    }
+                    alt={slide.image.node.altText}
                   />
                 </div>
                 <div

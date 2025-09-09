@@ -17,57 +17,79 @@ const BLOC_FIELDS = `
               texteCta
               titre
               photo {
+              node {
                 altText
                 sourceUrl
+              }
               }
             }
             galeriePhoto {
               legende
               photo2 {
+                node {
                 altText
                 sourceUrl
+              }
               }
               photo3 {
+                node {
                 altText
                 sourceUrl
+              }
               }
               photo4 {
+               node {
                 altText
                 sourceUrl
+              }
               }
               photo5 {
+                node {
                 altText
                 sourceUrl
+              }
               }
               photo6 {
+                node {
                 altText
                 sourceUrl
               }
+              }
               photo1 {
+                node {
                 altText
                 sourceUrl
+              }
               }
             }
             icons {
               item1
               icon1 {
+               node {
                 altText
                 sourceUrl
+              }
               }
               item2
               icon2 {
+               node {
                 altText
                 sourceUrl
+              }
               }
               item3
               icon3 {
+                node {
                 altText
                 sourceUrl
               }
+              }
               item4
               icon4 {
+                node {
                 altText
                 sourceUrl
+              }
               }
             }
             photo {
@@ -75,17 +97,21 @@ const BLOC_FIELDS = `
               legendePhoto1
               legendePhoto2
               photo1 {
+               node {
                 altText
                 sourceUrl
               }
+              }
               photoFullSize
               photo2 {
+                node {
                 altText
                 sourceUrl
+              }
               }
             }
 `;
 
 module.exports = {
-	BLOC_FIELDS,
-  };
+  BLOC_FIELDS,
+};

@@ -32,46 +32,64 @@ const query = graphql`
           lien4ReseauxSociaux
           lien5ReseauxSociaux
           logo1ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo2ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo3ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo4ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo5ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           mentions
           conditions
           lienConditions {
-            ... on WpPage {
-              uri
+            nodes {
+              ... on WpPage {
+                uri
+              }
             }
           }
           lienMentions {
-            ... on WpPage {
-              uri
+            nodes {
+              ... on WpPage {
+                uri
+              }
             }
           }
         }
         logo {
           logoFondBlanc {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logoTransparent {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -96,46 +114,64 @@ const query = graphql`
           lien4ReseauxSociaux
           lien5ReseauxSociaux
           logo1ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo2ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo3ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo4ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo5ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           mentions
           conditions
           lienConditions {
-            ... on WpPage {
-              uri
+            nodes {
+              ... on WpPage {
+                uri
+              }
             }
           }
           lienMentions {
-            ... on WpPage {
-              uri
+            nodes {
+              ... on WpPage {
+                uri
+              }
             }
           }
         }
         logo {
           logoFondBlanc {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logoTransparent {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -153,8 +189,10 @@ const query = graphql`
           blocVisiblePageNotreEcosysteme
           blocVisiblePageRessourcesEtPublications
           logoBoutonMobile {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           texteChampsDeSaisieMobile
           texte
@@ -163,8 +201,10 @@ const query = graphql`
           texteConditions
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           phraseRgpd
         }
@@ -183,8 +223,10 @@ const query = graphql`
           blocVisiblePageNotreEcosysteme
           blocVisiblePageRessourcesEtPublications
           logoBoutonMobile {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           texteChampsDeSaisieMobile
           texte
@@ -193,8 +235,10 @@ const query = graphql`
           texteConditions
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           phraseRgpd
         }
@@ -249,16 +293,20 @@ const query = graphql`
       nodes {
         resources {
           image {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           titre
           texteRessource
           bouton
           boutonMobile
           fichier {
-            mediaItemUrl
-            title
+            node {
+              mediaItemUrl
+              title
+            }
           }
         }
       }
@@ -280,16 +328,20 @@ const query = graphql`
       nodes {
         resources {
           image {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           titre
           texteRessource
           bouton
           boutonMobile
           fichier {
-            mediaItemUrl
-            title
+            node {
+              mediaItemUrl
+              title
+            }
           }
         }
       }
@@ -592,18 +644,20 @@ const Footer = () => {
               }
               textBouton={dataFooterN.texteBouton}
               imageLogo={
-                dataFooterN.logoBoutonMobile
+                dataFooterN.logoBoutonMobile.node
                   .sourceUrl
               }
               altLogo={
-                dataFooterN.logoBoutonMobile
+                dataFooterN.logoBoutonMobile.node
                   .altText
               }
               textConditions={
                 dataFooterN.texteConditions
               }
-              image={dataFooterN.image.sourceUrl}
-              alt={dataFooterN.image.altText}
+              image={
+                dataFooterN.image.node.sourceUrl
+              }
+              alt={dataFooterN.image.node.altText}
               styleContainer={containerStyle}
               newsletterStyle={newsletterStyle}
               action={url}
@@ -622,11 +676,11 @@ const Footer = () => {
                   <Link to={path}>
                     <img
                       src={
-                        logo.logoTransparent
+                        logo.logoTransparent.node
                           .sourceUrl
                       }
                       alt={
-                        logo.logoTransparent
+                        logo.logoTransparent.node
                           .altText
                       }
                     />
@@ -722,12 +776,12 @@ const Footer = () => {
                               src={
                                 dataF
                                   .logo1ReseauxSociaux
-                                  .sourceUrl
+                                  .node.sourceUrl
                               }
                               alt={
                                 dataF
                                   .logo1ReseauxSociaux
-                                  .altText
+                                  .node.altText
                               }
                             />
                           </a>
@@ -745,12 +799,12 @@ const Footer = () => {
                               src={
                                 dataF
                                   .logo2ReseauxSociaux
-                                  .sourceUrl
+                                  .node.sourceUrl
                               }
                               alt={
                                 dataF
                                   .logo2ReseauxSociaux
-                                  .altText
+                                  .node.altText
                               }
                             />
                           </a>
@@ -768,12 +822,12 @@ const Footer = () => {
                               src={
                                 dataF
                                   .logo3ReseauxSociaux
-                                  .sourceUrl
+                                  .node.sourceUrl
                               }
                               alt={
                                 dataF
                                   .logo3ReseauxSociaux
-                                  .altText
+                                  .node.altText
                               }
                             />
                           </a>
@@ -791,12 +845,12 @@ const Footer = () => {
                               src={
                                 dataF
                                   .logo4ReseauxSociaux
-                                  .sourceUrl
+                                  .node.sourceUrl
                               }
                               alt={
                                 dataF
                                   .logo4ReseauxSociaux
-                                  .altText
+                                  .node.altText
                               }
                             />
                           </a>
@@ -814,12 +868,12 @@ const Footer = () => {
                               src={
                                 dataF
                                   .logo5ReseauxSociaux
-                                  .sourceUrl
+                                  .node.sourceUrl
                               }
                               alt={
                                 dataF
                                   .logo5ReseauxSociaux
-                                  .altText
+                                  .node.altText
                               }
                             />
                           </a>

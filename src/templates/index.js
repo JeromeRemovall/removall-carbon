@@ -36,8 +36,10 @@ const query = graphql`
         logoClientOuPartenaires {
           visiblePageHome
           logo {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -58,8 +60,10 @@ const query = graphql`
         logoClientOuPartenaires {
           visiblePageHome
           logo {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -80,8 +84,10 @@ const query = graphql`
         logoClientOuPartenaires {
           visiblePageHome
           logo {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -102,8 +108,10 @@ const query = graphql`
         logoClientOuPartenaires {
           visiblePageHome
           logo {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -118,13 +126,14 @@ const query = graphql`
           }
         }
       }
-      sort: { fields: date, order: ASC }
     ) {
       nodes {
         slider {
           image {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           titre
           texte
@@ -144,8 +153,10 @@ const query = graphql`
       nodes {
         slider {
           image {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           titre
           texte
@@ -334,8 +345,12 @@ function Home({ pageContext }) {
           <section className="bloc-2">
             <div className="bloc-2__image">
               <img
-                src={dataH.bloc2Image.sourceUrl}
-                alt={dataH.bloc2Image.altText}
+                src={
+                  dataH.bloc2Image.node.sourceUrl
+                }
+                alt={
+                  dataH.bloc2Image.node.altText
+                }
               />
             </div>
             <div className="bloc-2__content">
@@ -551,35 +566,46 @@ function Home({ pageContext }) {
               title={dataH.bloc3item1SousTitre}
               text={dataH.bloc3item1Texte}
               img={
-                dataH.bloc3item1Image.sourceUrl
+                dataH.bloc3item1Image.node
+                  .sourceUrl
               }
-              alt={dataH.bloc3item1Image.altText}
+              alt={
+                dataH.bloc3item1Image.node.altText
+              }
             />
             <CardList
               title={dataH.bloc3item2SousTitre}
               text={dataH.bloc3item2Texte}
               img={
-                dataH.bloc3item2Image.sourceUrl
+                dataH.bloc3item2Image.node
+                  .sourceUrl
               }
-              alt={dataH.bloc3item2Image.altText}
+              alt={
+                dataH.bloc3item2Image.node.altText
+              }
             />
             <CardList
               title={dataH.bloc3item3SousTitre}
               text={dataH.bloc3item3Texte}
               img={
-                dataH.bloc3item3Image.sourceUrl
+                dataH.bloc3item3Image.node
+                  .sourceUrl
               }
-              alt={dataH.bloc3item3Image.altText}
+              alt={
+                dataH.bloc3item3Image.node.altText
+              }
             />
             {dataH.bloc3item4Texte ? (
               <CardList
                 title={dataH.bloc3item4SousTitre}
                 text={dataH.bloc3item4Texte}
                 img={
-                  dataH.bloc3item4Image.sourceUrl
+                  dataH.bloc3item4Image.node
+                    .sourceUrl
                 }
                 alt={
-                  dataH.bloc3item4Image.altText
+                  dataH.bloc3item4Image.node
+                    .altText
                 }
               />
             ) : null}{" "}
@@ -603,30 +629,36 @@ function Home({ pageContext }) {
                 title={dataH.bloc4item1SousTitre}
                 text={dataH.bloc4item1Texte}
                 img={
-                  dataH.bloc4item1Image.sourceUrl
+                  dataH.bloc4item1Image.node
+                    .sourceUrl
                 }
                 alt={
-                  dataH.bloc4item1Image.altText
+                  dataH.bloc4item1Image.node
+                    .altText
                 }
               />
               <Card
                 title={dataH.bloc4item2SousTitre}
                 text={dataH.bloc4item2Texte}
                 img={
-                  dataH.bloc4item2Image.sourceUrl
+                  dataH.bloc4item2Image.node
+                    .sourceUrl
                 }
                 alt={
-                  dataH.bloc4item2Image.altText
+                  dataH.bloc4item2Image.node
+                    .altText
                 }
               />
               <Card
                 title={dataH.bloc4item3SousTitre}
                 text={dataH.bloc4item3Texte}
                 img={
-                  dataH.bloc4item3Image.sourceUrl
+                  dataH.bloc4item3Image.node
+                    .sourceUrl
                 }
                 alt={
-                  dataH.bloc4item3Image.altText
+                  dataH.bloc4item3Image.node
+                    .altText
                 }
               />
             </div>
@@ -673,11 +705,13 @@ function Home({ pageContext }) {
                               <div className="bloc-6__content__logo--ligne__image">
                                 <img
                                   src={
-                                    item.sourceUrl
+                                    item.node
+                                      .sourceUrl
                                   }
                                   key={item}
                                   alt={
-                                    item.altText
+                                    item.node
+                                      .altText
                                   }
                                 />
                               </div>
@@ -701,11 +735,13 @@ function Home({ pageContext }) {
                               <div className="bloc-6__content__logo--ligne__image">
                                 <img
                                   src={
-                                    item.sourceUrl
+                                    item.node
+                                      .sourceUrl
                                   }
                                   key={item}
                                   alt={
-                                    item.altText
+                                    item.node
+                                      .altText
                                   }
                                 />
                               </div>

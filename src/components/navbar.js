@@ -5,7 +5,12 @@ import React, {
 import { Link } from "gatsby";
 import { graphql, useStaticQuery } from "gatsby";
 // import {ArrowUpRight} from "react-feather";
-import { ArrowDown, ChevronDown, Menu, Search } from "react-feather";
+import {
+  ArrowDown,
+  ChevronDown,
+  Menu,
+  Search,
+} from "react-feather";
 import { X } from "react-feather";
 
 import "../scss/components/navbar.scss";
@@ -46,12 +51,16 @@ const query = graphql`
         }
         logo {
           logoFondBlanc {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logoTransparent {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -70,12 +79,16 @@ const query = graphql`
         }
         logo {
           logoFondBlanc {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logoTransparent {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -102,46 +115,64 @@ const query = graphql`
           lien4ReseauxSociaux
           lien5ReseauxSociaux
           logo1ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo2ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo3ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo4ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo5ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           mentions
           conditions
           lienConditions {
-            ... on WpPage {
-              uri
+            nodes {
+              ... on WpPage {
+                uri
+              }
             }
           }
           lienMentions {
-            ... on WpPage {
-              uri
+            nodes {
+              ... on WpPage {
+                uri
+              }
             }
           }
         }
         logo {
           logoFondBlanc {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logoTransparent {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -168,46 +199,64 @@ const query = graphql`
           lien4ReseauxSociaux
           lien5ReseauxSociaux
           logo1ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo2ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo3ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo4ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logo5ReseauxSociaux {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           mentions
           conditions
           lienConditions {
-            ... on WpPage {
-              uri
+            nodes {
+              ... on WpPage {
+                uri
+              }
             }
           }
           lienMentions {
-            ... on WpPage {
-              uri
+            nodes {
+              ... on WpPage {
+                uri
+              }
             }
           }
         }
         logo {
           logoFondBlanc {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           logoTransparent {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
@@ -439,9 +488,21 @@ const Navbar = () => {
 
     function isActive() {
       console.log();
-      if (["/fr/%C3%89v%C3%A8nements/", "/fr/Ressources%20et%20Publications/", "/fr/Actualit%C3%A9s/"].includes(window.location.pathname)) {
+      if (
+        [
+          "/fr/%C3%89v%C3%A8nements/",
+          "/fr/Ressources%20et%20Publications/",
+          "/fr/Actualit%C3%A9s/",
+        ].includes(window.location.pathname)
+      ) {
         setActiveLink("/fr/ressources/");
-      } else if (["/en/Events/", "/en/News/", "/en/Resources%20and%20publications/"].includes(window.location.pathname)) {
+      } else if (
+        [
+          "/en/Events/",
+          "/en/News/",
+          "/en/Resources%20and%20publications/",
+        ].includes(window.location.pathname)
+      ) {
         setActiveLink("/en/resources/");
       } else {
         setActiveLink(window.location.pathname);
@@ -464,46 +525,67 @@ const Navbar = () => {
     visibleSearch,
   ]);
 
-  const handleLink = (preferredLanguage, slug) => {
-    let redirectName = preferredLanguage
+  const handleLink = (
+    preferredLanguage,
+    slug
+  ) => {
+    let redirectName = preferredLanguage;
 
-    if(preferredLanguage == "") {
+    if (preferredLanguage == "") {
       const pathname = window.location.pathname;
-      const segments = pathname.split('/').filter(Boolean); // filter(Boolean) élimine les segments vides
+      const segments = pathname
+        .split("/")
+        .filter(Boolean); // filter(Boolean) élimine les segments vides
 
       // Vérifier si le premier segment est 'fr' ou 'en'
-      if (segments[0] === 'fr' || segments[0] === 'en') {
+      if (
+        segments[0] === "fr" ||
+        segments[0] === "en"
+      ) {
         // Si oui, récupérer le texte après '/fr/' ou '/en/'
-        const textAfterLang = segments[1] ? decodeURIComponent(segments[1]) : '';
+        const textAfterLang = segments[1]
+          ? decodeURIComponent(segments[1])
+          : "";
         console.log(textAfterLang); // Traiter ou utiliser le texte comme nécessaire
-        if(textAfterLang == "Évènements") {
-          redirectName = "Events"
-        } else if( textAfterLang == "Events") 
-        {
-          redirectName =  "Évènements"
-        } else if (textAfterLang == "Actualités") {
-          redirectName = "News"
+        if (textAfterLang == "Évènements") {
+          redirectName = "Events";
+        } else if (textAfterLang == "Events") {
+          redirectName = "Évènements";
+        } else if (
+          textAfterLang == "Actualités"
+        ) {
+          redirectName = "News";
         } else if (textAfterLang == "News") {
-          redirectName = "Actualités"
-        } else if (textAfterLang == "Ressources et Publications") {
-          redirectName = "Resources and publications"
-        } else if (textAfterLang == "Resources and publications") {
-          redirectName = "Ressources et Publications"
-        } 
+          redirectName = "Actualités";
+        } else if (
+          textAfterLang ==
+          "Ressources et Publications"
+        ) {
+          redirectName =
+            "Resources and publications";
+        } else if (
+          textAfterLang ==
+          "Resources and publications"
+        ) {
+          redirectName =
+            "Ressources et Publications";
+        }
       }
-    };
+    }
     const baseUrl = window.location.origin;
     const redirectUrl = `${baseUrl}/${slug}/${redirectName}`;
     window.location.href = redirectUrl;
-  }
+  };
 
   const openSubMenu = (e) => {
     e.stopPropagation();
-    const submenu = document.querySelectorAll(".container_subMenu")
-    for(let i = 0; i < submenu.length; i++) {
-      submenu[i].classList.toggle("active")
+    const submenu = document.querySelectorAll(
+      ".container_subMenu"
+    );
+    for (let i = 0; i < submenu.length; i++) {
+      submenu[i].classList.toggle("active");
     }
-  }
+  };
 
   return (
     <>
@@ -518,20 +600,23 @@ const Navbar = () => {
                 "navbar-transparent" ? (
                   <img
                     src={
-                      logo.logoTransparent
+                      logo.logoTransparent.node
                         .sourceUrl
                     }
                     alt={
-                      logo.logoTransparent.altText
+                      logo.logoTransparent.node
+                        .altText
                     }
                   />
                 ) : (
                   <img
                     src={
-                      logo.logoFondBlanc.sourceUrl
+                      logo.logoFondBlanc.node
+                        .sourceUrl
                     }
                     alt={
-                      logo.logoFondBlanc.altText
+                      logo.logoFondBlanc.node
+                        .altText
                     }
                   />
                 )}
@@ -558,100 +643,251 @@ const Navbar = () => {
                           >
                             <Search />
                           </li>
-                            <li>
-                              <Link
-                                className="tag"
-                                key={label}
-                                to={path}
-                              >
-                                {label}
-                                {/* <ArrowUpRight /> */}
-                              </Link>
-                            </li>
+                          <li>
+                            <Link
+                              className="tag"
+                              key={label}
+                              to={path}
+                            >
+                              {label}
+                              {/* <ArrowUpRight /> */}
+                            </Link>
+                          </li>
                         </>
                       ) : (
                         <>
                           {activeLink === path ? (
                             <>
-                                {label == "News & Events" || label == "Actualités" ? (
-                              <li>
-                              <Link
-                                className="subMenu active"
-                                key={label}
-                              >
-                                {label}
-                                <ChevronDown size={20} />
-                                <div className="container_subMenu">
-                                  {preferredLanguage == "en" ? (
-                                    <>
-                                      <Link to={`/${preferredLanguage}/News`} className={window.location.pathname ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
-                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
-                                      <Link to={`/${preferredLanguage}/Events`} className={window.location.pathname == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <Link to={`/${preferredLanguage}/Actualités`} className={window.location.pathname == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
-                                      <Link to={`/${preferredLanguage}/Ressources et Publications`} className={window.location.pathname == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
-                                      <Link to={`/${preferredLanguage}/Évènements`} className={window.location.pathname == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
-                                    </>
-                                  )} 
-                                </div>
-                              </Link>
-                            </li>
-                            ): (
-                            <li>
-                              <Link
-                                className="active"
-                                key={label}
-                                to={path}
-                              >
-                                {label}
-                                {/* <ArrowUpRight /> */}
-                              </Link>
-                            </li>
-
-                            )}
+                              {label ==
+                                "News & Events" ||
+                              label ==
+                                "Actualités" ? (
+                                <li>
+                                  <Link
+                                    className="subMenu active"
+                                    key={label}
+                                  >
+                                    {label}
+                                    <ChevronDown
+                                      size={20}
+                                    />
+                                    <div className="container_subMenu">
+                                      {preferredLanguage ==
+                                      "en" ? (
+                                        <>
+                                          <Link
+                                            to={`/${preferredLanguage}/News`}
+                                            className={
+                                              window
+                                                .location
+                                                .pathname ==
+                                              `/${preferredLanguage}/News/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            News
+                                          </Link>
+                                          <Link
+                                            to={`/${preferredLanguage}/Resources and publications`}
+                                            className={
+                                              window
+                                                .location
+                                                .pathname ==
+                                              `/${preferredLanguage}/Resources%20and%20publications/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Resources
+                                            and
+                                            publications
+                                          </Link>
+                                          <Link
+                                            to={`/${preferredLanguage}/Events`}
+                                            className={
+                                              window
+                                                .location
+                                                .pathname ==
+                                              `/${preferredLanguage}/Events/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Events
+                                          </Link>
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Link
+                                            to={`/${preferredLanguage}/Actualités`}
+                                            className={
+                                              window
+                                                .location
+                                                .pathname ==
+                                              `/fr/Actualit%C3%A9s/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Actualités
+                                          </Link>
+                                          <Link
+                                            to={`/${preferredLanguage}/Ressources et Publications`}
+                                            className={
+                                              window
+                                                .location
+                                                .pathname ==
+                                              `/fr/Ressources%20et%20Publications/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Ressources
+                                            et
+                                            publications
+                                          </Link>
+                                          <Link
+                                            to={`/${preferredLanguage}/Évènements`}
+                                            className={
+                                              window
+                                                .location
+                                                .pathname ==
+                                              `/fr/%C3%89v%C3%A8nements/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Évènements
+                                          </Link>
+                                        </>
+                                      )}
+                                    </div>
+                                  </Link>
+                                </li>
+                              ) : (
+                                <li>
+                                  <Link
+                                    className="active"
+                                    key={label}
+                                    to={path}
+                                  >
+                                    {label}
+                                    {/* <ArrowUpRight /> */}
+                                  </Link>
+                                </li>
+                              )}
                             </>
                           ) : (
                             <>
-                            {label == "News & Events" || label == "Actualités" ? (
-                              <li>
-                              <Link
-                                className={`subMenu`}
-                                key={label}
-                              >
-                                {label}
-                                <ChevronDown size={20}/>
-                                <div className="container_subMenu">
-                                  {preferredLanguage == "en" ? (
-                                    <>
-                                      <Link to={`/${preferredLanguage}/News`} className={activeLink ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
-                                      <Link to={`/${preferredLanguage}/Resources and publications`} className={activeLink == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
-                                      <Link to={`/${preferredLanguage}/Events`} className={activeLink == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <Link to={`/${preferredLanguage}/Actualités`} className={activeLink == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
-                                      <Link to={`/${preferredLanguage}/Ressources et Publications`} className={activeLink == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
-                                      <Link to={`/${preferredLanguage}/Évènements`} className={activeLink == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
-                                    </>
-                                  )} 
-                                </div>
-                              </Link>
-                            </li>
-                              ): (
-                              <li>
-                                <Link
-                                  className=""
-                                  key={label}
-                                  to={path}
-                                >
-                                  {label}
-                                  {/* <ArrowUpRight /> */}
-                                </Link>
-                              </li>
+                              {label ==
+                                "News & Events" ||
+                              label ==
+                                "Actualités" ? (
+                                <li>
+                                  <Link
+                                    className={`subMenu`}
+                                    key={label}
+                                  >
+                                    {label}
+                                    <ChevronDown
+                                      size={20}
+                                    />
+                                    <div className="container_subMenu">
+                                      {preferredLanguage ==
+                                      "en" ? (
+                                        <>
+                                          <Link
+                                            to={`/${preferredLanguage}/News`}
+                                            className={
+                                              activeLink ==
+                                              `/${preferredLanguage}/News/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            News
+                                          </Link>
+                                          <Link
+                                            to={`/${preferredLanguage}/Resources and publications`}
+                                            className={
+                                              activeLink ==
+                                              `/${preferredLanguage}/Resources%20and%20publications/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Resources
+                                            and
+                                            publications
+                                          </Link>
+                                          <Link
+                                            to={`/${preferredLanguage}/Events`}
+                                            className={
+                                              activeLink ==
+                                              `/${preferredLanguage}/Events/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Events
+                                          </Link>
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Link
+                                            to={`/${preferredLanguage}/Actualités`}
+                                            className={
+                                              activeLink ==
+                                              `/fr/Actualit%C3%A9s/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Actualités
+                                          </Link>
+                                          <Link
+                                            to={`/${preferredLanguage}/Ressources et Publications`}
+                                            className={
+                                              activeLink ==
+                                              `/fr/Ressources%20et%20Publications/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Ressources
+                                            et
+                                            publications
+                                          </Link>
+                                          <Link
+                                            to={`/${preferredLanguage}/Évènements`}
+                                            className={
+                                              activeLink ==
+                                              `/fr/%C3%89v%C3%A8nements/`
+                                                ? "active"
+                                                : ""
+                                            }
+                                          >
+                                            Évènements
+                                          </Link>
+                                        </>
+                                      )}
+                                    </div>
+                                  </Link>
+                                </li>
+                              ) : (
+                                <li>
+                                  <Link
+                                    className=""
+                                    key={label}
+                                    to={path}
+                                  >
+                                    {label}
+                                    {/* <ArrowUpRight /> */}
+                                  </Link>
+                                </li>
                               )}
-                              </>
+                            </>
                           )}
                         </>
                       )}
@@ -673,7 +909,12 @@ const Navbar = () => {
                           <a
                             key={slug}
                             className="language"
-                            onClick={() => handleLink(switchLanguage, slug)}
+                            onClick={() =>
+                              handleLink(
+                                switchLanguage,
+                                slug
+                              )
+                            }
                           >
                             {slug}
                           </a>
@@ -692,11 +933,11 @@ const Navbar = () => {
                   <img
                     src={
                       logoHamburger.logoFondBlanc
-                        .sourceUrl
+                        .node.sourceUrl
                     }
                     alt={
                       logoHamburger.logoFondBlanc
-                        .altText
+                        .node.altText
                     }
                   />
                 </Link>
@@ -732,20 +973,23 @@ const Navbar = () => {
                 "navbar-transparent" ? (
                   <img
                     src={
-                      logo.logoTransparent
+                      logo.logoTransparent.node
                         .sourceUrl
                     }
                     alt={
-                      logo.logoTransparent.altText
+                      logo.logoTransparent.node
+                        .altText
                     }
                   />
                 ) : (
                   <img
                     src={
-                      logo.logoFondBlanc.sourceUrl
+                      logo.logoFondBlanc.node
+                        .sourceUrl
                     }
                     alt={
-                      logo.logoFondBlanc.altText
+                      logo.logoFondBlanc.node
+                        .altText
                     }
                   />
                 )}
@@ -758,11 +1002,13 @@ const Navbar = () => {
                     <img
                       src={
                         logoHamburger
-                          .logoFondBlanc.sourceUrl
+                          .logoFondBlanc.node
+                          .sourceUrl
                       }
                       alt={
                         logoHamburger
-                          .logoFondBlanc.altText
+                          .logoFondBlanc.node
+                          .altText
                       }
                     />
                   </Link>
@@ -814,33 +1060,121 @@ const Navbar = () => {
                         <>
                           {activeLink === path ? (
                             <>
-                              {label == "News & Events" || label == "Actualités" ? (
-                                <li className="parent-submenu"> 
+                              {label ==
+                                "News & Events" ||
+                              label ==
+                                "Actualités" ? (
+                                <li className="parent-submenu">
                                   <p
                                     className="subMenu active"
                                     key={label}
-                                    onClick={(e) => openSubMenu(e)}
+                                    onClick={(
+                                      e
+                                    ) =>
+                                      openSubMenu(
+                                        e
+                                      )
+                                    }
                                   >
                                     {label}
-                                    <ChevronDown size={20} />
+                                    <ChevronDown
+                                      size={20}
+                                    />
                                   </p>
                                   <div className="container_subMenu">
-                                    {preferredLanguage == "en" ? (
+                                    {preferredLanguage ==
+                                    "en" ? (
                                       <>
-                                        <Link to={`/${preferredLanguage}/News`} className={window.location.pathname ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
-                                        <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
-                                        <Link to={`/${preferredLanguage}/Events`} className={window.location.pathname == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/News`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/${preferredLanguage}/News/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          News
+                                        </Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Resources and publications`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/${preferredLanguage}/Resources%20and%20publications/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Resources
+                                          and
+                                          publications
+                                        </Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Events`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/${preferredLanguage}/Events/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Events
+                                        </Link>
                                       </>
                                     ) : (
                                       <>
-                                        <Link to={`/${preferredLanguage}/Actualités`} className={window.location.pathname == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
-                                        <Link to={`/${preferredLanguage}/Ressources et Publications`} className={window.location.pathname == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
-                                        <Link to={`/${preferredLanguage}/Évènements`} className={window.location.pathname == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Actualités`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/fr/Actualit%C3%A9s/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Actualités
+                                        </Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Ressources et Publications`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/fr/Ressources%20et%20Publications/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Ressources
+                                          et
+                                          publications
+                                        </Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Évènements`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/fr/%C3%89v%C3%A8nements/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Évènements
+                                        </Link>
                                       </>
-                                    )} 
+                                    )}
                                   </div>
                                 </li>
-                              ) :(
+                              ) : (
                                 <li>
                                   <Link
                                     className="active"
@@ -854,43 +1188,131 @@ const Navbar = () => {
                             </>
                           ) : (
                             <>
-                            {label == "News & Events" || label == "Actualités" ? (
-                              <li className="parent-submenu">
-                                <p
-                                  className="subMenu"
-                                  key={label}
-                                  onClick={(e) => openSubMenu(e)}
-                                >
-                                  {label}
-                                  <ChevronDown size={20} />
-                                </p>
-                                <div className="container_subMenu">
-                                    {preferredLanguage == "en" ? (
+                              {label ==
+                                "News & Events" ||
+                              label ==
+                                "Actualités" ? (
+                                <li className="parent-submenu">
+                                  <p
+                                    className="subMenu"
+                                    key={label}
+                                    onClick={(
+                                      e
+                                    ) =>
+                                      openSubMenu(
+                                        e
+                                      )
+                                    }
+                                  >
+                                    {label}
+                                    <ChevronDown
+                                      size={20}
+                                    />
+                                  </p>
+                                  <div className="container_subMenu">
+                                    {preferredLanguage ==
+                                    "en" ? (
                                       <>
-                                        <Link to={`/${preferredLanguage}/News`} className={window.location.pathname ==`/${preferredLanguage}/News/` ? 'active' : '' }>News</Link>
-                                        <Link to={`/${preferredLanguage}/Resources and publications`} className={window.location.pathname == `/${preferredLanguage}/Resources%20and%20publications/` ? 'active' : ''}>Resources and publications</Link>
-                                        <Link to={`/${preferredLanguage}/Events`} className={window.location.pathname == `/${preferredLanguage}/Events/` ? 'active' : ''}>Events</Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/News`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/${preferredLanguage}/News/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          News
+                                        </Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Resources and publications`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/${preferredLanguage}/Resources%20and%20publications/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Resources
+                                          and
+                                          publications
+                                        </Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Events`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/${preferredLanguage}/Events/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Events
+                                        </Link>
                                       </>
                                     ) : (
                                       <>
-                                        <Link to={`/${preferredLanguage}/Actualités`} className={window.location.pathname == `/fr/Actualit%C3%A9s/` ? 'active' : '' }>Actualités</Link>
-                                        <Link to={`/${preferredLanguage}/Ressources et Publications`} className={window.location.pathname == `/fr/Ressources%20et%20Publications/` ? 'active' : '' }>Ressources et publications</Link>
-                                        <Link to={`/${preferredLanguage}/Évènements`} className={window.location.pathname == `/fr/%C3%89v%C3%A8nements/` ? 'active' : '' }>Évènements</Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Actualités`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/fr/Actualit%C3%A9s/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Actualités
+                                        </Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Ressources et Publications`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/fr/Ressources%20et%20Publications/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Ressources
+                                          et
+                                          publications
+                                        </Link>
+                                        <Link
+                                          to={`/${preferredLanguage}/Évènements`}
+                                          className={
+                                            window
+                                              .location
+                                              .pathname ==
+                                            `/fr/%C3%89v%C3%A8nements/`
+                                              ? "active"
+                                              : ""
+                                          }
+                                        >
+                                          Évènements
+                                        </Link>
                                       </>
-                                    )} 
+                                    )}
                                   </div>
-                              </li>
-                            ) :(
-                              <li>
-                                <Link
-                                  key={label}
-                                  to={path}
-                                >
-                                  {label}
-                                </Link>
-                              </li>
-                            )}
-                          </>
+                                </li>
+                              ) : (
+                                <li>
+                                  <Link
+                                    key={label}
+                                    to={path}
+                                  >
+                                    {label}
+                                  </Link>
+                                </li>
+                              )}
+                            </>
                           )}
                         </>
                       )
@@ -924,12 +1346,12 @@ const Navbar = () => {
                             src={
                               dataHamburger
                                 .logo1ReseauxSociaux
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataHamburger
                                 .logo1ReseauxSociaux
-                                .altText
+                                .node.altText
                             }
                           />
                         </a>
@@ -944,12 +1366,12 @@ const Navbar = () => {
                             src={
                               dataHamburger
                                 .logo2ReseauxSociaux
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataHamburger
                                 .logo2ReseauxSociaux
-                                .altText
+                                .node.altText
                             }
                           />
                         </a>
@@ -964,12 +1386,12 @@ const Navbar = () => {
                             src={
                               dataHamburger
                                 .logo3ReseauxSociaux
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataHamburger
                                 .logo3ReseauxSociaux
-                                .altText
+                                .node.altText
                             }
                           />
                         </a>
@@ -984,12 +1406,12 @@ const Navbar = () => {
                             src={
                               dataHamburger
                                 .logo4ReseauxSociaux
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataHamburger
                                 .logo4ReseauxSociaux
-                                .altText
+                                .node.altText
                             }
                           />
                         </a>
@@ -1004,12 +1426,12 @@ const Navbar = () => {
                             src={
                               dataHamburger
                                 .logo5ReseauxSociaux
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataHamburger
                                 .logo5ReseauxSociaux
-                                .altText
+                                .node.altText
                             }
                           />
                         </a>
@@ -1051,11 +1473,13 @@ const Navbar = () => {
                     <img
                       src={
                         logoHamburger
-                          .logoFondBlanc.sourceUrl
+                          .logoFondBlanc.node
+                          .sourceUrl
                       }
                       alt={
                         logoHamburger
-                          .logoFondBlanc.altText
+                          .logoFondBlanc.node
+                          .altText
                       }
                     />
                   </Link>

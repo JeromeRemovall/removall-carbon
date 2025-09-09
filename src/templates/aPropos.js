@@ -41,17 +41,23 @@ const query = graphql`
           prenom
           nom
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           logo1 {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           lien1
           logo2 {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           lien2
           description
@@ -74,17 +80,23 @@ const query = graphql`
           prenom
           nom
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           logo1 {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           lien1
           logo2 {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           lien2
           description
@@ -97,7 +109,7 @@ const query = graphql`
 function APropos({ pageContext }) {
   const equipe = useStaticQuery(query);
   const { dataAPropos } = pageContext;
-  const dataA = dataAPropos.APropos;
+  const dataA = dataAPropos.aPropos;
   const [dataE, setDataE] = useState("");
   const [language, setLanguage] = useState("");
 
@@ -160,6 +172,8 @@ function APropos({ pageContext }) {
     openPopIn,
   ]);
 
+  console.log(equipe);
+
   const myStateRef = React.useRef(
     itemNavSelected
   );
@@ -177,7 +191,7 @@ function APropos({ pageContext }) {
       }
     });
   };
-
+  console.log(dataA);
   useEffect(() => {
     window.addEventListener("scroll", listener);
   }, []);
@@ -202,14 +216,19 @@ function APropos({ pageContext }) {
         setDataPopIn({
           firstname: dataA.bloc7Item1Titre,
           job: dataA.bloc7Item1Texte,
-          img: dataA.bloc7Item1Image?.sourceUrl,
-          icon1: dataA.bloc7Item1Icon1?.sourceUrl,
+          img: dataA.bloc7Item1Image?.node
+            .sourceUrl,
+          icon1:
+            dataA.bloc7Item1Icon1?.node.sourceUrl,
           link1: dataA.bloc7Item1Lien1,
-          icon2: dataA.bloc7Item1Icon2?.sourceUrl,
+          icon2:
+            dataA.bloc7Item1Icon2?.node.sourceUrl,
           link2: dataA.bloc7Item1Lien2,
-          alt: dataA.bloc7Item1Image.altText,
-          altIcon1: dataA.bloc7Item1Icon1.altText,
-          altIcon2: dataA.bloc7Item1Icon2.altText,
+          alt: dataA.bloc7Item1Image.node.altText,
+          altIcon1:
+            dataA.bloc7Item1Icon1.node.altText,
+          altIcon2:
+            dataA.bloc7Item1Icon2.node.altText,
           description:
             dataA.bloc7Item1Description,
         });
@@ -217,14 +236,19 @@ function APropos({ pageContext }) {
         setDataPopIn({
           firstname: dataA.bloc7Item2Titre,
           job: dataA.bloc7Item2Texte,
-          img: dataA.bloc7Item2Image?.sourceUrl,
-          icon1: dataA.bloc7Item2Icon1?.sourceUrl,
+          img: dataA.bloc7Item2Image?.node
+            .sourceUrl,
+          icon1:
+            dataA.bloc7Item2Icon1?.node.sourceUrl,
           link1: dataA.bloc7Item2Lien1,
-          icon2: dataA.bloc7Item2Icon2?.sourceUrl,
+          icon2:
+            dataA.bloc7Item2Icon2?.node.sourceUrl,
           link2: dataA.bloc7Item2Lien2,
-          alt: dataA.bloc7Item1Image.altText,
-          altIcon1: dataA.bloc7Item2Icon1.altText,
-          altIcon2: dataA.bloc7Item2Icon2.altText,
+          alt: dataA.bloc7Item1Image.node.altText,
+          altIcon1:
+            dataA.bloc7Item2Icon1.node.altText,
+          altIcon2:
+            dataA.bloc7Item2Icon2.node.altText,
           description:
             dataA.bloc7Item2Description,
         });
@@ -233,14 +257,14 @@ function APropos({ pageContext }) {
           firstname: i.prenom,
           lastname: i.nom,
           job: i.poste,
-          img: i.image?.sourceUrl,
-          icon1: i.logo1?.sourceUrl,
+          img: i.image?.node.sourceUrl,
+          icon1: i.logo1?.node.sourceUrl,
           link1: i.lien1,
-          icon2: i.logo2?.sourceUrl,
+          icon2: i.logo2?.node.sourceUrl,
           link2: i.lien2,
-          alt: i.image.altText,
-          altIcon1: i.logo1.altText,
-          altIcon2: i.logo2.altText,
+          alt: i.image.node.altText,
+          altIcon1: i.logo1.node.altText,
+          altIcon2: i.logo2.node.altText,
           description: i.description,
         });
       }
@@ -287,8 +311,10 @@ function APropos({ pageContext }) {
           <BlocHeader
             title={dataA.titre}
             text={dataA.description}
-            img={dataA.imageDeFond?.sourceUrl}
-            alt={dataA.imageDeFond.altText}
+            img={
+              dataA.imageDeFond?.node.sourceUrl
+            }
+            alt={dataA.imageDeFond.node.altText}
           />
           <div className="navbar-container-secondary">
             <nav className="navbar-small">
@@ -364,8 +390,12 @@ function APropos({ pageContext }) {
           >
             <div className="bloc-2__image">
               <img
-                src={dataA.bloc2Image?.sourceUrl}
-                alt={dataA.bloc2Image.altText}
+                src={
+                  dataA.bloc2Image?.node.sourceUrl
+                }
+                alt={
+                  dataA.bloc2Image.node.altText
+                }
               />
             </div>
             <div className="bloc-2__content">
@@ -389,8 +419,12 @@ function APropos({ pageContext }) {
           >
             <div className="bloc-3__image">
               <img
-                src={dataA.bloc3Image?.sourceUrl}
-                alt={dataA.bloc3Image.altText}
+                src={
+                  dataA.bloc3Image?.node.sourceUrl
+                }
+                alt={
+                  dataA.bloc3Image.node.altText
+                }
               />
               <div className="bloc-3__background-mobile"></div>
             </div>
@@ -418,30 +452,36 @@ function APropos({ pageContext }) {
                 title={dataA.bloc4Item1Titre}
                 text={dataA.bloc4Item1Texte}
                 img={
-                  dataA.bloc4Item1Image?.sourceUrl
+                  dataA.bloc4Item1Image?.node
+                    .sourceUrl
                 }
                 alt={
-                  dataA.bloc4Item1Image.altText
+                  dataA.bloc4Item1Image.node
+                    .altText
                 }
               />
               <CardList
                 title={dataA.bloc4Item2Titre}
                 text={dataA.bloc4Item2Texte}
                 img={
-                  dataA.bloc4Item2Image?.sourceUrl
+                  dataA.bloc4Item2Image?.node
+                    .sourceUrl
                 }
                 alt={
-                  dataA.bloc4Item2Image.altText
+                  dataA.bloc4Item2Image.node
+                    .altText
                 }
               />
               <CardList
                 title={dataA.bloc4Item3Titre}
                 text={dataA.bloc4Item3Texte}
                 img={
-                  dataA.bloc4Item3Image?.sourceUrl
+                  dataA.bloc4Item3Image?.node
+                    .sourceUrl
                 }
                 alt={
-                  dataA.bloc4Item3Image.altText
+                  dataA.bloc4Item3Image.node
+                    .altText
                 }
               />
             </div>
@@ -487,33 +527,49 @@ function APropos({ pageContext }) {
                 title={dataA.bloc6Item1Titre}
                 text={dataA.bloc6Item1Texte}
                 icon={
-                  dataA.bloc6Item1Icon?.sourceUrl
+                  dataA.bloc6Item1Icon?.node
+                    .sourceUrl
                 }
-                alt={dataA.bloc6Item1Icon.altText}
+                alt={
+                  dataA.bloc6Item1Icon.node
+                    .altText
+                }
               />
               <CardListIcon
                 title={dataA.bloc6Item2Titre}
                 text={dataA.bloc6Item2Texte}
                 icon={
-                  dataA.bloc6Item2Icon?.sourceUrl
+                  dataA.bloc6Item2Icon?.node
+                    .sourceUrl
                 }
-                alt={dataA.bloc6Item2Icon.altText}
+                alt={
+                  dataA.bloc6Item2Icon.node
+                    .altText
+                }
               />
               <CardListIcon
                 title={dataA.bloc6Item3Titre}
                 text={dataA.bloc6Item3Texte}
                 icon={
-                  dataA.bloc6Item3Icon?.sourceUrl
+                  dataA.bloc6Item3Icon?.node
+                    .sourceUrl
                 }
-                alt={dataA.bloc6Item3Icon.altText}
+                alt={
+                  dataA.bloc6Item3Icon.node
+                    .altText
+                }
               />
               <CardListIcon
                 title={dataA.bloc6Item4Titre}
                 text={dataA.bloc6Item4Texte}
                 icon={
-                  dataA.bloc6Item4Icon?.sourceUrl
+                  dataA.bloc6Item4Icon?.node
+                    .sourceUrl
                 }
-                alt={dataA.bloc6Item4Icon.altText}
+                alt={
+                  dataA.bloc6Item4Icon.node
+                    .altText
+                }
               />
             </div>
           </section>
@@ -543,8 +599,12 @@ function APropos({ pageContext }) {
               </div>
               <div className="illu_container">
                 <img
-                  src={dataA.imageRse?.sourceUrl}
-                  alt={dataA.imageRse.altText}
+                  src={
+                    dataA.imageRse?.node.sourceUrl
+                  }
+                  alt={
+                    dataA.imageRse.node.altText
+                  }
                 />
               </div>
             </div>
@@ -565,24 +625,30 @@ function APropos({ pageContext }) {
               <CardProfil
                 onClick={() => addDataPopIn(1)}
                 img={
-                  dataA.bloc7Item1Image?.sourceUrl
+                  dataA.bloc7Item1Image?.node
+                    .sourceUrl
                 }
                 firstname={dataA.bloc7Item1Titre}
                 text={dataA.bloc7Item1Texte}
                 icon1={
-                  dataA.bloc7Item1Icon1?.sourceUrl
+                  dataA.bloc7Item1Icon1?.node
+                    .sourceUrl
                 }
                 icon2={
-                  dataA.bloc7Item1Icon2?.sourceUrl
+                  dataA.bloc7Item1Icon2?.node
+                    .sourceUrl
                 }
                 alt={
-                  dataA.bloc7Item1Image.altText
+                  dataA.bloc7Item1Image?.node
+                    .altText
                 }
                 altIcon1={
-                  dataA.bloc7Item1Icon1.altText
+                  dataA.bloc7Item1Icon1.node
+                    .altText
                 }
                 altIcon2={
-                  dataA.bloc7Item1Icon2.altText
+                  dataA.bloc7Item1Icon2.node
+                    .altText
                 }
                 link1={dataA.bloc7Item1Lien1}
                 link2={dataA.bloc7Item1Lien2}
@@ -590,24 +656,30 @@ function APropos({ pageContext }) {
               <CardProfil
                 onClick={() => addDataPopIn(2)}
                 img={
-                  dataA.bloc7Item2Image?.sourceUrl
+                  dataA.bloc7Item2Image?.node
+                    .sourceUrl
                 }
                 firstname={dataA.bloc7Item2Titre}
                 text={dataA.bloc7Item2Texte}
                 icon1={
-                  dataA.bloc7Item2Icon1?.sourceUrl
+                  dataA.bloc7Item2Icon1?.node
+                    .sourceUrl
                 }
                 icon2={
-                  dataA.bloc7Item2Icon2?.sourceUrl
+                  dataA.bloc7Item2Icon2?.node
+                    .sourceUrl
                 }
                 alt={
-                  dataA.bloc7Item2Image.altText
+                  dataA.bloc7Item2Image?.node
+                    .altText
                 }
                 altIcon1={
-                  dataA.bloc7Item2Icon1.altText
+                  dataA.bloc7Item2Icon1.node
+                    .altText
                 }
                 altIcon2={
-                  dataA.bloc7Item2Icon2.altText
+                  dataA.bloc7Item2Icon2.node
+                    .altText
                 }
                 link1={dataA.bloc7Item2Lien1}
                 link2={dataA.bloc7Item2Lien2}
@@ -637,7 +709,7 @@ function APropos({ pageContext }) {
                           }
                           img={
                             item.equipe.image
-                              ?.sourceUrl
+                              ?.node.sourceUrl
                           }
                           firstname={
                             item.equipe.prenom
@@ -648,23 +720,23 @@ function APropos({ pageContext }) {
                           text={item.equipe.poste}
                           icon1={
                             item.equipe.logo1
-                              ?.sourceUrl
+                              ?.node.sourceUrl
                           }
                           icon2={
                             item.equipe.logo2
-                              ?.sourceUrl
+                              ?.node.sourceUrl
                           }
                           key={item}
                           alt={
                             item.equipe.image
-                              .altText
+                              ?.node.altText
                           }
                           altIcon1={
-                            item.equipe.logo1
+                            item.equipe.logo1.node
                               .altText
                           }
                           altIcon2={
-                            item.equipe.logo2
+                            item.equipe.logo2.node
                               .altText
                           }
                           link1={

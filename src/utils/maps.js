@@ -127,7 +127,7 @@ class Maps {
         place: `${pays.nomDuPays}, ${pays.capitale}`,
         projects: [],
       };
-
+      console.log(data);
       item.posts.nodes.forEach((projet) => {
         if (
           projet.projetsMap.nomDuProjet !== null
@@ -140,7 +140,7 @@ class Maps {
                     ?.nomDuProjetEn,
             image:
               projet.projetsMap?.imageDuProjet
-                ?.mediaItemUrl,
+                ?.node.mediaItemUrl,
           });
         }
       });

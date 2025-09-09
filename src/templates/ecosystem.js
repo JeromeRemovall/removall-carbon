@@ -42,8 +42,10 @@ const query = graphql`
       nodes {
         logoClientOuPartenaires {
           logo {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           lienVersSite
         }
@@ -63,8 +65,10 @@ const query = graphql`
       nodes {
         logoClientOuPartenaires {
           logo {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           lienVersSite
         }
@@ -80,14 +84,16 @@ const query = graphql`
           }
         }
       }
-      sort: { fields: title }
+      sort: { title: ASC }
     ) {
       edges {
         node {
           logoClientOuPartenaires {
             logo {
-              altText
-              sourceUrl
+              node {
+                altText
+                sourceUrl
+              }
             }
             lienVersSite
           }
@@ -105,14 +111,16 @@ const query = graphql`
           }
         }
       }
-      sort: { fields: title }
+      sort: { title: ASC }
     ) {
       edges {
         node {
           logoClientOuPartenaires {
             logo {
-              altText
-              sourceUrl
+              node {
+                altText
+                sourceUrl
+              }
             }
             lienVersSite
           }
@@ -130,10 +138,7 @@ const query = graphql`
           }
         }
       }
-      sort: {
-        fields: verbatims___ordre
-        order: ASC
-      }
+      sort: { verbatims: { ordre: ASC } }
     ) {
       edges {
         node {
@@ -143,7 +148,9 @@ const query = graphql`
             ordre
             verbatim
             photoDeLauteur {
-              mediaItemUrl
+              node {
+                mediaItemUrl
+              }
             }
           }
         }
@@ -172,7 +179,9 @@ const query = graphql`
             ordre
             verbatim
             photoDeLauteur {
-              mediaItemUrl
+              node {
+                mediaItemUrl
+              }
             }
           }
         }
@@ -205,7 +214,7 @@ function Ecosystem({ pageContext }) {
         setDataPartners(
           data.blocPartenaires.edges
         );
-        setDataVerbatims(data.verbatimsFR.edges);
+        // setDataVerbatims(data.verbatimsFR.edges);
         setMetaLang("fr");
       } else if (
         window.location.href.match("/en$") ||
@@ -215,7 +224,7 @@ function Ecosystem({ pageContext }) {
           data.blocCustomers.nodes
         );
         setDataPartners(data.blocPartners.edges);
-        setDataVerbatims(data.verbatimsEN.edges);
+        // setDataVerbatims(data.verbatimsEN.edges);
         setMetaLang("en");
       }
     }
@@ -229,6 +238,7 @@ function Ecosystem({ pageContext }) {
     data.blocPartenaires.edges,
     data.blocPartners.edges,
   ]);
+  console.log(data);
 
   return (
     <Layout>
@@ -242,8 +252,8 @@ function Ecosystem({ pageContext }) {
           <BlocHeader
             title={dataE.titre}
             text={dataE.description}
-            img={dataE.imageDeFond.sourceUrl}
-            alt={dataE.imageDeFond.altText}
+            img={dataE.imageDeFond.node.sourceUrl}
+            alt={dataE.imageDeFond.node.altText}
           />
           {dataPartners.length === 0 &&
           dataCustomers.length === 0 ? (
@@ -279,12 +289,13 @@ function Ecosystem({ pageContext }) {
                           src={
                             logo.node
                               .logoClientOuPartenaires
-                              .logo.sourceUrl
+                              ?.logo?.node
+                              .sourceUrl
                           }
                           alt={
                             logo.node
                               .logoClientOuPartenaires
-                              .logo.altText
+                              ?.logo?.node.altText
                           }
                         />
                       </a>
@@ -320,12 +331,12 @@ function Ecosystem({ pageContext }) {
                         src={
                           logo
                             .logoClientOuPartenaires
-                            .logo.sourceUrl
+                            .logo.node.sourceUrl
                         }
                         alt={
                           logo
                             .logoClientOuPartenaires
-                            .logo.altText
+                            .logo.node.altText
                         }
                       />
                     </a>
@@ -378,6 +389,7 @@ function Ecosystem({ pageContext }) {
                                     verbatim.node
                                       .verbatims
                                       .photoDeLauteur
+                                      .node
                                       .mediaItemUrl
                                   }
                                   alt=""

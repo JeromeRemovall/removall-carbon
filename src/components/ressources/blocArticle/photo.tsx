@@ -21,10 +21,12 @@ const Photos: React.FC<Props> = ({ data }) => {
           >
             <img
               src={
-                image[`photo${index}`]?.sourceUrl
+                image[`photo${index}`]?.node
+                  .sourceUrl
               }
               alt={
-                image[`photo${index}`]?.altText
+                image[`photo${index}`]?.node
+                  .altText
               }
             />
             <p className="legende">

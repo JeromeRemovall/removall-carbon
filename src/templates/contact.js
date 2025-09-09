@@ -197,8 +197,12 @@ function Contact({ pageContext }) {
             <div className="overlay"></div>
             <div className="image-background__image">
               <img
-                src={dataC.imageDeFond.sourceUrl}
-                alt={dataC.imageDeFond.altText}
+                src={
+                  dataC.imageDeFond.node.sourceUrl
+                }
+                alt={
+                  dataC.imageDeFond.node.altText
+                }
               />
             </div>
           </div>
@@ -327,11 +331,11 @@ function Contact({ pageContext }) {
                     <div className="content-information__item__image">
                       <img
                         src={
-                          dataC.iconAdresse
+                          dataC.iconAdresse.node
                             .sourceUrl
                         }
                         alt={
-                          dataC.iconAdresse
+                          dataC.iconAdresse.node
                             .altText
                         }
                       />
@@ -344,11 +348,11 @@ function Contact({ pageContext }) {
                     <div className="content-information__item__image">
                       <img
                         src={
-                          dataC.iconTelephone
+                          dataC.iconTelephone.node
                             .sourceUrl
                         }
                         alt={
-                          dataC.iconTelephone
+                          dataC.iconTelephone.node
                             .altText
                         }
                       />
@@ -361,11 +365,12 @@ function Contact({ pageContext }) {
                     <div className="content-information__item__image">
                       <img
                         src={
-                          dataC.iconEmail
+                          dataC.iconEmail.node
                             .sourceUrl
                         }
                         alt={
-                          dataC.iconEmail.altText
+                          dataC.iconEmail.node
+                            .altText
                         }
                       />
                     </div>
@@ -382,11 +387,11 @@ function Contact({ pageContext }) {
                     >
                       <img
                         src={
-                          dataC.iconFacebook
+                          dataC.iconFacebook.node
                             .sourceUrl
                         }
                         alt={
-                          dataC.iconFacebook
+                          dataC.iconFacebook.node
                             .altText
                         }
                       />
@@ -401,11 +406,11 @@ function Contact({ pageContext }) {
                     >
                       <img
                         src={
-                          dataC.iconInstagram
+                          dataC.iconInstagram.node
                             .sourceUrl
                         }
                         alt={
-                          dataC.iconInstagram
+                          dataC.iconInstagram.node
                             .altText
                         }
                       />
@@ -420,11 +425,11 @@ function Contact({ pageContext }) {
                     >
                       <img
                         src={
-                          dataC.iconLinkedin
+                          dataC.iconLinkedin.node
                             .sourceUrl
                         }
                         alt={
-                          dataC.iconLinkedin
+                          dataC.iconLinkedin.node
                             .altText
                         }
                       />
@@ -439,11 +444,11 @@ function Contact({ pageContext }) {
                     >
                       <img
                         src={
-                          dataC.iconYoutube
+                          dataC.iconYoutube.node
                             .sourceUrl
                         }
                         alt={
-                          dataC.iconYoutube
+                          dataC.iconYoutube.node
                             .altText
                         }
                       />

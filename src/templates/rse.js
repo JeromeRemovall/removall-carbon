@@ -46,10 +46,13 @@ function Rse({ pageContext }) {
           <BlocHeader
             title={dataPage.titrePage}
             img={
-              dataPage.imageHeaderPage
+              dataPage.imageHeaderPage.node
                 .mediaItemUrl
             }
-            alt={dataPage.imageHeaderPage.altText}
+            alt={
+              dataPage.imageHeaderPage.node
+                .altText
+            }
           />
           {dataPage.titreBloc1 ? (
             <section id="bloc_1">
@@ -62,15 +65,16 @@ function Rse({ pageContext }) {
                   id="value_1"
                 >
                   {dataPage.premierElement?.icon
-                    ?.mediaItemUrl ? (
+                    ?.node.mediaItemUrl ? (
                     <img
                       src={
                         dataPage.premierElement
-                          ?.icon?.mediaItemUrl
+                          ?.icon.node
+                          ?.mediaItemUrl
                       }
                       alt={
                         dataPage.premierElement
-                          ?.icon?.altText
+                          ?.icon?.node.altText
                       }
                     />
                   ) : null}
@@ -94,15 +98,16 @@ function Rse({ pageContext }) {
                   id="value_2"
                 >
                   {dataPage.secondElement?.icon
-                    ?.mediaItemUrl ? (
+                    ?.node.mediaItemUrl ? (
                     <img
                       src={
                         dataPage.secondElement
-                          ?.icon?.mediaItemUrl
+                          ?.icon?.node
+                          .mediaItemUrl
                       }
                       alt={
                         dataPage.secondElement
-                          ?.icon?.altText
+                          ?.icon?.node.altText
                       }
                     />
                   ) : null}
@@ -126,15 +131,16 @@ function Rse({ pageContext }) {
                   id="value_3"
                 >
                   {dataPage.troisiemeElement?.icon
-                    ?.mediaItemUrl ? (
+                    ?.node.mediaItemUrl ? (
                     <img
                       src={
                         dataPage.troisiemeElement
-                          ?.icon?.mediaItemUrl
+                          ?.icon?.node
+                          .mediaItemUrl
                       }
                       alt={
                         dataPage.troisiemeElement
-                          ?.icon?.altText
+                          ?.icon?.node.altText
                       }
                     />
                   ) : null}
@@ -158,15 +164,16 @@ function Rse({ pageContext }) {
                   id="value_4"
                 >
                   {dataPage.quatriemeElement?.icon
-                    ?.mediaItemUrl ? (
+                    ?.node.mediaItemUrl ? (
                     <img
                       src={
                         dataPage.quatriemeElement
-                          ?.icon?.mediaItemUrl
+                          ?.icon?.node
+                          .mediaItemUrl
                       }
                       alt={
                         dataPage.quatriemeElement
-                          ?.icon?.altText
+                          ?.icon?.node.altText
                       }
                     />
                   ) : null}
@@ -199,11 +206,12 @@ function Rse({ pageContext }) {
               >
                 <img
                   src={
-                    dataPage.bloc1.image
+                    dataPage.bloc1.image.node
                       .mediaItemUrl
                   }
                   alt={
-                    dataPage.bloc1.image.altText
+                    dataPage.bloc1.image.node
+                      .altText
                   }
                 />
                 <div
@@ -218,11 +226,12 @@ function Rse({ pageContext }) {
               >
                 <img
                   src={
-                    dataPage.bloc2.image
+                    dataPage.bloc2.image.node
                       .mediaItemUrl
                   }
                   alt={
-                    dataPage.bloc2.image.altText
+                    dataPage.bloc2.image.node
+                      .altText
                   }
                 />
                 <div
@@ -237,11 +246,12 @@ function Rse({ pageContext }) {
               >
                 <img
                   src={
-                    dataPage.bloc3.image
+                    dataPage.bloc3.image.node
                       .mediaItemUrl
                   }
                   alt={
-                    dataPage.bloc3.image.altText
+                    dataPage.bloc3.image.node
+                      .altText
                   }
                 />
                 <div
@@ -257,11 +267,12 @@ function Rse({ pageContext }) {
                 <div className="illu_container">
                   <img
                     src={
-                      dataPage.bloc4.image
+                      dataPage.bloc4.image.node
                         .mediaItemUrl
                     }
                     alt={
-                      dataPage.bloc4.image.altText
+                      dataPage.bloc4.image.node
+                        .altText
                     }
                   />
                 </div>

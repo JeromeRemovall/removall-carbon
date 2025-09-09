@@ -39,8 +39,10 @@ const query = graphql`
           texte
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
         }
       }
@@ -62,8 +64,10 @@ const query = graphql`
           texte
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
         }
       }
@@ -85,8 +89,10 @@ const query = graphql`
           texte
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
         }
       }
@@ -108,8 +114,10 @@ const query = graphql`
           texte
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
         }
       }
@@ -139,7 +147,9 @@ const query = graphql`
                 nomDuProjet
                 nomDuProjetEn
                 imageDuProjet {
-                  mediaItemUrl
+                  node {
+                    mediaItemUrl
+                  }
                 }
               }
               title
@@ -303,9 +313,9 @@ function Project({ pageContext }) {
         <main className="project">
           <BlocHeader
             title={dataP.titre}
-            img={dataP.image.sourceUrl}
+            img={dataP.image.node.sourceUrl}
             text={dataP.description}
-            alt={dataP.image.altText}
+            alt={dataP.image.node.altText}
           />
           <section className="map_project">
             {/* <div className="map_title">
@@ -352,7 +362,7 @@ function Project({ pageContext }) {
                         <CardFull
                           img={
                             item.projects.image
-                              .sourceUrl
+                              .node.sourceUrl
                           }
                           title={
                             item.projects.titre
@@ -363,7 +373,7 @@ function Project({ pageContext }) {
                           key={item}
                           alt={
                             item.projects.image
-                              .altText
+                              .node.altText
                           }
                         />
                       );
@@ -379,7 +389,7 @@ function Project({ pageContext }) {
                         <CardFull
                           img={
                             item.projects.image
-                              .sourceUrl
+                              .node.sourceUrl
                           }
                           title={
                             item.projects.titre
@@ -390,7 +400,7 @@ function Project({ pageContext }) {
                           key={item}
                           alt={
                             item.projects.image
-                              .altText
+                              .node.altText
                           }
                         />
                       );
@@ -418,7 +428,7 @@ function Project({ pageContext }) {
                         <CardFull
                           img={
                             item.projects.image
-                              .sourceUrl
+                              .node.sourceUrl
                           }
                           title={
                             item.projects.titre
@@ -429,7 +439,7 @@ function Project({ pageContext }) {
                           key={item}
                           alt={
                             item.projects.image
-                              .altText
+                              .node.altText
                           }
                         />
                       );
@@ -445,7 +455,7 @@ function Project({ pageContext }) {
                         <CardFull
                           img={
                             item.projects.image
-                              .sourceUrl
+                              .node.sourceUrl
                           }
                           title={
                             item.projects.titre
@@ -456,7 +466,7 @@ function Project({ pageContext }) {
                           key={item}
                           alt={
                             item.projects.image
-                              .altText
+                              .node.altText
                           }
                         />
                       );

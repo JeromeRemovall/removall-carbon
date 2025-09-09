@@ -38,8 +38,10 @@ const query = graphql`
           titre
           legende
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           bouton
           boutonMobile
@@ -64,8 +66,10 @@ const query = graphql`
           titre
           legende
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           bouton
           boutonMobile
@@ -90,16 +94,20 @@ const query = graphql`
       nodes {
         resources {
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           titre
           texteRessource
           bouton
           boutonMobile
           fichier {
-            mediaItemUrl
-            title
+            node {
+              mediaItemUrl
+              title
+            }
           }
         }
       }
@@ -121,16 +129,20 @@ const query = graphql`
       nodes {
         resources {
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           titre
           texteRessource
           bouton
           boutonMobile
           fichier {
-            mediaItemUrl
-            title
+            node {
+              mediaItemUrl
+              title
+            }
           }
         }
       }
@@ -153,8 +165,10 @@ const query = graphql`
           heures
           adresse
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           texte
           dateDeLevenement
@@ -178,8 +192,10 @@ const query = graphql`
           heures
           adresse
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           texte
           speaker
@@ -248,9 +264,13 @@ function Resources({ pageContext }) {
         window.location.href.match("/fr/")
       ) {
         setDataResources(data.frResources.nodes);
-        const newsFilter = [...data.frNews.nodes.filter(item => item.news.image !== null)]
-        setDataNews(newsFilter)
-        console.log(newsFilter) 
+        const newsFilter = [
+          ...data.frNews.nodes.filter(
+            (item) => item.news.image !== null
+          ),
+        ];
+        setDataNews(newsFilter);
+        console.log(newsFilter);
         data.frEvents.nodes.sort(function (a, b) {
           return (
             new Date(
@@ -276,8 +296,12 @@ function Resources({ pageContext }) {
         window.location.href.match("/en$") ||
         window.location.href.match("/en/")
       ) {
-        const newsFilter = [...data.enNews.nodes.filter(item => item.news.image !== null)]
-        setDataNews(newsFilter)
+        const newsFilter = [
+          ...data.enNews.nodes.filter(
+            (item) => item.news.image !== null
+          ),
+        ];
+        setDataNews(newsFilter);
         setDataResources(data.enResources.nodes);
         data.enEvents.nodes.sort(function (a, b) {
           return (
@@ -505,7 +529,7 @@ function Resources({ pageContext }) {
       setPopIn(false);
     }
   }
-  console.log(news)
+  console.log(news);
   return (
     <Layout>
       <Helmet>
@@ -609,17 +633,18 @@ function Resources({ pageContext }) {
                             <CardFull
                               img={
                                 item.news.image
-                                  .sourceUrl
+                                  .node.sourceUrl
                               }
                               alt={
                                 item.news.image
-                                  .altText
+                                  .node.altText
                               }
                               title={
                                 item.news.titre
                               }
                               text={
-                                item.news.texteActualite
+                                item.news
+                                  .texteActualite
                               }
                               key={item}
                               legendVisible={true}
@@ -647,17 +672,18 @@ function Resources({ pageContext }) {
                             <CardFull
                               img={
                                 item.news.image
-                                  .sourceUrl
+                                  .node.sourceUrl
                               }
                               alt={
                                 item.news.image
-                                  .altText
+                                  .node.altText
                               }
                               title={
                                 item.news.titre
                               }
                               text={
-                                item.news.texteActualite
+                                item.news
+                                  .texteActualite
                               }
                               key={item}
                               legendVisible={true}
@@ -721,12 +747,13 @@ function Resources({ pageContext }) {
                               <Card
                                 img={
                                   item.resources
-                                    .image
+                                    .image.node
                                     .sourceUrl
                                 }
                                 alt={
                                   item.resources
-                                    .image.altText
+                                    .image.node
+                                    .altText
                                 }
                                 title={
                                   item.resources
@@ -752,6 +779,7 @@ function Resources({ pageContext }) {
                                   downloadFile(
                                     item.resources
                                       .fichier
+                                      .node
                                       .mediaItemUrl,
                                     item.resources
                                       .fichier
@@ -785,11 +813,11 @@ function Resources({ pageContext }) {
                           <Events
                             img={
                               item.events.image
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               item.events.image
-                                .altText
+                                .node.altText
                             }
                             day={item.events.jour}
                             month={

@@ -27,8 +27,10 @@ const query = graphql`
           texteActualite
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           bouton
           boutonMobile
@@ -49,12 +51,14 @@ const query = graphql`
     ) {
       nodes {
         news {
-        texteActualite
+          texteActualite
           titre
           legende
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           bouton
           boutonMobile
@@ -182,8 +186,13 @@ function SearchElement({ quit }) {
             <div className="item_search">
               <div className="item_illu">
                 <img
-                  src={item.news.image?.sourceUrl}
-                  alt={item.news.image?.altText}
+                  src={
+                    item.news.image?.node
+                      .sourceUrl
+                  }
+                  alt={
+                    item.news.image?.node.altText
+                  }
                 />
               </div>
               <div className="item_info">

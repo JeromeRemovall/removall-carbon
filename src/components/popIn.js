@@ -21,8 +21,10 @@ const query = graphql`
           blocVisiblePageNotreEcosysteme
           blocVisiblePageRessourcesEtPublications
           logoBoutonMobile {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           texteChampsDeSaisieMobile
           texte
@@ -31,8 +33,10 @@ const query = graphql`
           texteConditions
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           phraseRgpd
         }
@@ -51,8 +55,10 @@ const query = graphql`
           blocVisiblePageNotreEcosysteme
           blocVisiblePageRessourcesEtPublications
           logoBoutonMobile {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           texteChampsDeSaisieMobile
           texte
@@ -61,8 +67,10 @@ const query = graphql`
           texteConditions
           titre
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           phraseRgpd
         }
@@ -272,11 +280,11 @@ const PopIn = () => {
                   <img
                     src={
                       dataFooterN.logoBoutonMobile
-                        .sourceUrl
+                        .node.sourceUrl
                     }
                     alt={
                       dataFooterN.logoBoutonMobile
-                        .altText
+                        .node.altText
                     }
                   />
                 ) : (
@@ -286,8 +294,12 @@ const PopIn = () => {
             </div>
             <div className="newsletter-image">
               <img
-                src={dataFooterN.image.sourceUrl}
-                alt={dataFooterN.image.altText}
+                src={
+                  dataFooterN.image.node.sourceUrl
+                }
+                alt={
+                  dataFooterN.image.node.altText
+                }
               />
             </div>
           </div>

@@ -13,39 +13,54 @@ import Header from "../components/ressources/header";
 import ContainerCard from "../components/ressources/containerCard";
 import { merge } from "d3";
 
-
 function Actuality({ pageContext }) {
   const { dataResource } = pageContext;
   const [metaLang, setMetaLang] = useState("");
-  const [actuality, setActuality] = useState(null);
+  const [actuality, setActuality] =
+    useState(null);
   const [filtre, setFiltre] = useState(null);
   const dataR = dataResource.ressource;
   const data = useStaticQuery(query);
 
-
   useEffect(() => {
-    const queryParameters = new URLSearchParams(window.location.search)
-    const filtre = queryParameters.get("filtre")
-    setFiltre(filtre)
-    
+    const queryParameters = new URLSearchParams(
+      window.location.search
+    );
+    const filtre = queryParameters.get("filtre");
+    setFiltre(filtre);
+
     function getLanguage() {
       if (
         window.location.href.match("/fr$") ||
         window.location.href.match("/fr/")
       ) {
-        const oldData = mergeOldDataObject(data.frNews);
-        const newData = mergeNewDataObject(data.frNewNews);
-        console.log(data.frNewNews)
-        const mergedData = merge(oldData, newData);
+        const oldData = mergeOldDataObject(
+          data.frNews
+        );
+        const newData = mergeNewDataObject(
+          data.frNewNews
+        );
+        console.log(data.frNewNews);
+        const mergedData = merge(
+          oldData,
+          newData
+        );
         setActuality(mergedData);
         setMetaLang("fr");
       } else if (
         window.location.href.match("/en$") ||
         window.location.href.match("/en/")
       ) {
-        const oldData = mergeOldDataObject(data.enNews);
-        const newData = mergeNewDataObject(data.enNewNews);
-        const mergedData = merge(oldData, newData);
+        const oldData = mergeOldDataObject(
+          data.enNews
+        );
+        const newData = mergeNewDataObject(
+          data.enNewNews
+        );
+        const mergedData = merge(
+          oldData,
+          newData
+        );
         setActuality(mergedData);
         setMetaLang("en");
       }
@@ -53,13 +68,12 @@ function Actuality({ pageContext }) {
     getLanguage();
   }, [data]);
 
-
   const merge = (oldData, newData) => {
-    console.log(oldData, newData)
+    console.log(oldData, newData);
     newData.map((item, index) => {
       const i = oldData.findIndex((element) => {
         return element.id === item.id;
-      })
+      });
       if (i !== -1 && item.auteur !== null) {
         oldData[i] = item;
       } else if (i === -1) {
@@ -67,14 +81,16 @@ function Actuality({ pageContext }) {
       }
     });
     return oldData;
-  }
+  };
 
   const mergeOldDataObject = (data) => {
     return data.nodes.map((item, index) => {
       return {
         ...item.news,
         texte: item.news.texteActualite,
-        fichier: {mediaItemUrl: item.news.boutonLien},
+        fichier: {
+          mediaItemUrl: item.news.boutonLien,
+        },
         date: data.edges[index].node.date,
         id: item.id,
       };
@@ -92,8 +108,7 @@ function Actuality({ pageContext }) {
         id: item.node.id,
       };
     });
-  }
-
+  };
 
   return (
     <Layout>
@@ -105,11 +120,22 @@ function Actuality({ pageContext }) {
             <title>{dataR?.bloc1Titre}</title>
           </Helmet>
           <main className="actuality">
-            <Navbar data={dataR} lang={metaLang} active={dataR?.bloc1Titre} />
+            <Navbar
+              data={dataR}
+              lang={metaLang}
+              active={dataR?.bloc1Titre}
+            />
             <section>
-              <Header title={dataR.bloc1Titre} description={dataR.bloc1Texte} />
+              <Header
+                title={dataR.bloc1Titre}
+                description={dataR.bloc1Texte}
+              />
               {actuality && (
-                <ContainerCard items={actuality} lang={metaLang} filtre={filtre ? filtre : ""}/>
+                <ContainerCard
+                  items={actuality}
+                  lang={metaLang}
+                  filtre={filtre ? filtre : ""}
+                />
               )}
             </section>
           </main>
@@ -120,7 +146,6 @@ function Actuality({ pageContext }) {
 }
 
 export default Actuality;
-
 
 const query = graphql`
   query {
@@ -147,8 +172,10 @@ const query = graphql`
           titre
           legende
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           bouton
           boutonMobile
@@ -179,8 +206,10 @@ const query = graphql`
           titre
           legende
           image {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           bouton
           boutonMobile
@@ -190,66 +219,96 @@ const query = graphql`
       }
     }
     enNewNews: allWpPost(
-    filter: {categories: {nodes: {elemMatch: {name: {eq: "news"}}}}}
-  ) {
-    edges {
-      node {
-        id
-        articles {
-          titre
-          sousTitre
-          duree
-          previewCard {
-            altText
-            sourceUrl
-          }
-          photoMiseEnAvant {
-            altText
-            sourceUrl
-          }
-          tags {
-            name
-          }
-          auteur {
-            name
+      filter: {
+        categories: {
+          nodes: {
+            elemMatch: { name: { eq: "news" } }
           }
         }
-        date
-        slug
-        id
+      }
+    ) {
+      edges {
+        node {
+          id
+          articles {
+            titre
+            sousTitre
+            duree
+            previewCard {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+            photoMiseEnAvant {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+            tags {
+              nodes {
+                name
+              }
+            }
+            auteur {
+              nodes {
+                name
+              }
+            }
+          }
+          date
+          slug
+          id
+        }
       }
     }
-  }
-  frNewNews: allWpPost(
-    filter: {categories: {nodes: {elemMatch: {name: {eq: "actualités"}}}}}
-  ) {
-    edges {
-      node {
-        id
-        articles {
-          titre
-          sousTitre
-          duree
-          previewCard {
-            altText
-            sourceUrl
-          }
-          photoMiseEnAvant {
-            altText
-            sourceUrl
-          }
-          tags {
-            name
-          }
-          auteur {
-            name
+    frNewNews: allWpPost(
+      filter: {
+        categories: {
+          nodes: {
+            elemMatch: {
+              name: { eq: "actualités" }
+            }
           }
         }
-        date
-        slug
-        id
       }
-    }
+    ) {
+      edges {
+        node {
+          id
+          articles {
+            titre
+            sousTitre
+            duree
+            previewCard {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+            photoMiseEnAvant {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+            tags {
+              nodes {
+                name
+              }
+            }
+            auteur {
+              nodes {
+                name
+              }
+            }
+          }
+          date
+          slug
+          id
+        }
+      }
     }
   }
 `;

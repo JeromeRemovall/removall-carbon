@@ -48,8 +48,10 @@ const query = graphql`
           titleFr
           plastiqueOuBiodiversite
           image {
-            altText
-            sourceUrl
+            node {
+              altText
+              sourceUrl
+            }
           }
           paysSearch
         }
@@ -61,7 +63,7 @@ const query = graphql`
 function PlaticBiodiv({ pageContext }) {
   const allProjects = useStaticQuery(query);
   const { dataPB } = pageContext;
-  const dataPage = dataPB.PlasticBiodiv;
+  const dataPage = dataPB.plasticBiodiv;
   const [metaLang, setMetaLang] = useState("");
 
   const [currentPage, setCurrentPage] =
@@ -125,7 +127,7 @@ function PlaticBiodiv({ pageContext }) {
     setDataLoad(true);
   };
 
-  console.log(dataBloc6);
+  console.log(dataBloc7);
 
   const setProjects = () => {
     const plastique = [];
@@ -171,11 +173,12 @@ function PlaticBiodiv({ pageContext }) {
               "</p>"
             }
             img={
-              dataPage.backgroundTitrePage
+              dataPage.backgroundTitrePage.node
                 .sourceUrl
             }
             alt={
-              dataPage.backgroundTitrePage.altText
+              dataPage.backgroundTitrePage.node
+                .altText
             }
           />
           <div className="navbar-container-secondary">
@@ -229,8 +232,8 @@ function PlaticBiodiv({ pageContext }) {
             >
               <div className="logo">
                 <img
-                  src={logoPage.sourceUrl}
-                  alt={logoPage.altText}
+                  src={logoPage.node.sourceUrl}
+                  alt={logoPage.node.altText}
                 />
               </div>
               <div className="container">
@@ -244,12 +247,12 @@ function PlaticBiodiv({ pageContext }) {
                             src={
                               dataBloc1
                                 .imageArgument1
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataBloc1
                                 .imageArgument1
-                                .altText
+                                .node.altText
                             }
                             className="icon"
                           />
@@ -267,12 +270,12 @@ function PlaticBiodiv({ pageContext }) {
                             src={
                               dataBloc1
                                 .imageArgument2
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataBloc1
                                 .imageArgument2
-                                .altText
+                                .node.altText
                             }
                             className="icon"
                           />
@@ -290,12 +293,12 @@ function PlaticBiodiv({ pageContext }) {
                             src={
                               dataBloc1
                                 .imageArgument3
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataBloc1
                                 .imageArgument3
-                                .altText
+                                .node.altText
                             }
                             className="icon"
                           />
@@ -313,12 +316,12 @@ function PlaticBiodiv({ pageContext }) {
                             src={
                               dataBloc1
                                 .imageArgument4
-                                .sourceUrl
+                                .node.sourceUrl
                             }
                             alt={
                               dataBloc1
                                 .imageArgument4
-                                .altText
+                                .node.altText
                             }
                             className="icon"
                           />
@@ -347,11 +350,12 @@ function PlaticBiodiv({ pageContext }) {
                       <img
                         className="img"
                         src={
-                          dataBloc2.image1
+                          dataBloc2.image1.node
                             .sourceUrl
                         }
                         alt={
-                          dataBloc2.image1.altText
+                          dataBloc2.image1.node
+                            .altText
                         }
                       />
                     </div>
@@ -361,11 +365,11 @@ function PlaticBiodiv({ pageContext }) {
                       {dataBloc2.icon2 ? (
                         <img
                           src={
-                            dataBloc2.icon2
+                            dataBloc2.icon2.node
                               .sourceUrl
                           }
                           alt={
-                            dataBloc2.icon2
+                            dataBloc2.icon2.node
                               .altText
                           }
                           className="icon"
@@ -377,11 +381,12 @@ function PlaticBiodiv({ pageContext }) {
                       <img
                         className="img"
                         src={
-                          dataBloc2.image2
+                          dataBloc2.image2.node
                             .sourceUrl
                         }
                         alt={
-                          dataBloc2.image2.altText
+                          dataBloc2.image2.node
+                            .altText
                         }
                       />
                     </div>
@@ -412,11 +417,11 @@ function PlaticBiodiv({ pageContext }) {
                       <img
                         src={
                           dataBloc3.imageStep1
-                            .sourceUrl
+                            .node.sourceUrl
                         }
                         alt={
                           dataBloc3.imageStep1
-                            .altText
+                            .node.altText
                         }
                       />
                       <p>{dataBloc3.step1}</p>
@@ -493,11 +498,11 @@ function PlaticBiodiv({ pageContext }) {
                       <img
                         src={
                           dataBloc3.imageStep2
-                            .sourceUrl
+                            .node.sourceUrl
                         }
                         alt={
                           dataBloc3.imageStep2
-                            .altText
+                            .node.altText
                         }
                       />
                       <p>{dataBloc3.step2}</p>
@@ -574,11 +579,11 @@ function PlaticBiodiv({ pageContext }) {
                       <img
                         src={
                           dataBloc3.imageStep3
-                            .sourceUrl
+                            .node.sourceUrl
                         }
                         alt={
                           dataBloc3.imageStep3
-                            .altText
+                            .node.altText
                         }
                       />
                       <p>{dataBloc3.step3}</p>
@@ -704,11 +709,12 @@ function PlaticBiodiv({ pageContext }) {
                               <img
                                 src={
                                   project?.image
-                                    ?.sourceUrl
+                                    ?.node
+                                    .sourceUrl
                                 }
                                 alt={
                                   project?.image
-                                    ?.altText
+                                    ?.node.altText
                                 }
                               />
                             </div>
@@ -722,10 +728,12 @@ function PlaticBiodiv({ pageContext }) {
                   <div className="illu">
                     <img
                       src={
-                        dataBloc6.image.sourceUrl
+                        dataBloc6.image.node
+                          .sourceUrl
                       }
                       alt={
-                        dataBloc6.image.altText
+                        dataBloc6.image.node
+                          .altText
                       }
                     />
                   </div>
@@ -735,11 +743,11 @@ function PlaticBiodiv({ pageContext }) {
                       <div className="item">
                         <img
                           src={
-                            dataBloc6.icon1
+                            dataBloc6.icon1.node
                               .sourceUrl
                           }
                           alt={
-                            dataBloc6.icon1
+                            dataBloc6.icon1.node
                               .altText
                           }
                           className="icon"
@@ -749,11 +757,11 @@ function PlaticBiodiv({ pageContext }) {
                       <div className="item">
                         <img
                           src={
-                            dataBloc6.icon2
+                            dataBloc6.icon2.node
                               .sourceUrl
                           }
                           alt={
-                            dataBloc6.icon2
+                            dataBloc6.icon2.node
                               .altText
                           }
                           className="icon"
@@ -763,11 +771,11 @@ function PlaticBiodiv({ pageContext }) {
                       <div className="item">
                         <img
                           src={
-                            dataBloc6.icon3
+                            dataBloc6.icon3.node
                               .sourceUrl
                           }
                           alt={
-                            dataBloc6.icon3
+                            dataBloc6.icon3.node
                               .altText
                           }
                           className="icon"
@@ -794,7 +802,7 @@ function PlaticBiodiv({ pageContext }) {
                   <h2>{dataBloc7.titre}</h2>
                   <p>{dataBloc7.description}</p>
                   <div className="logo_container">
-                    {dataBloc7.partenaires?.map(
+                    {dataBloc7.partenaires?.nodes.map(
                       (partenaire) => (
                         <a
                           href={
@@ -808,12 +816,13 @@ function PlaticBiodiv({ pageContext }) {
                             src={
                               partenaire
                                 .logoClientOuPartenaires
-                                .logo.sourceUrl
+                                .logo.node
+                                .sourceUrl
                             }
                             alt={
                               partenaire
                                 .logoClientOuPartenaires
-                                .logo.altText
+                                .logo.node.altText
                             }
                           />
                         </a>

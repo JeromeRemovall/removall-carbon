@@ -22,7 +22,12 @@ var ContainerCard = function (_a) {
     var _l = react_1["default"].useState(""), tagFilter = _l[0], setTagFilter = _l[1];
     var _m = react_1["default"].useState(""), sortItem = _m[0], setSortItem = _m[1];
     react_1.useEffect(function () {
-        var filteredTags = [].concat(Array.from(new Set(items.flatMap(function (item) { var _a; return (_a = item.tags) === null || _a === void 0 ? void 0 : _a.map(function (tag) { return tag.name; }); }).filter(function (name) { return name !== undefined && name !== null; }))));
+        var filteredTags = [].concat(Array.from(new Set(items
+            .flatMap(function (item) { var _a; return (_a = item.tags) === null || _a === void 0 ? void 0 : _a.nodes.map(function (tag) { return tag.name; }); })
+            .filter(function (name) {
+            return name !== undefined &&
+                name !== null;
+        }))));
         setTags(filteredTags);
         setSortItem("newest");
         setTagFilter(filtre);
@@ -43,7 +48,7 @@ var ContainerCard = function (_a) {
         }
         else {
             var copieItems = [].concat(items);
-            itemsFiltered = copieItems.filter(function (item) { var _a; return (_a = item.tags) === null || _a === void 0 ? void 0 : _a.map(function (tag) { return tag.name; }).includes(tagFilter); });
+            itemsFiltered = copieItems.filter(function (item) { var _a; return (_a = item.tags) === null || _a === void 0 ? void 0 : _a.nodes.map(function (tag) { return tag.name; }).includes(tagFilter); });
             setItemFilter(__spreadArrays(itemsFiltered));
         }
         var item = sort(itemsFiltered);
@@ -66,39 +71,71 @@ var ContainerCard = function (_a) {
     }, [sortItem]);
     var sort = function (item) {
         if (sortItem === "newest") {
-            return (__spreadArrays(item).sort(function (a, b) { return new Date(b.date) - new Date(a.date); }));
+            return __spreadArrays(item).sort(function (a, b) {
+                return new Date(b.date) - new Date(a.date);
+            });
         }
         else if (sortItem === "oldest") {
-            return (__spreadArrays(item).sort(function (a, b) { return new Date(a.date) - new Date(b.date); }));
+            return __spreadArrays(item).sort(function (a, b) {
+                return new Date(a.date) - new Date(b.date);
+            });
         }
         else {
-            return (__spreadArrays(item).sort(function (a, b) { return new Date(b.date) - new Date(a.date); }));
+            return __spreadArrays(item).sort(function (a, b) {
+                return new Date(b.date) - new Date(a.date);
+            });
         }
     };
     console.log(itemsToShow);
     return (react_1["default"].createElement("div", { className: "container" },
-        type !== "events" && (react_1["default"].createElement("div", { className: 'header' },
-            react_1["default"].createElement("p", { className: 'indicator' },
+        type !== "events" && (react_1["default"].createElement("div", { className: "header" },
+            react_1["default"].createElement("p", { className: "indicator" },
                 nbItem,
                 " ",
                 lang == "fr" ? "articles" : "news"),
-            react_1["default"].createElement("div", { className: 'container-selector' },
-                react_1["default"].createElement("select", { name: "", id: "", value: tagFilter, onChange: function (e) { return setTagFilter(e.target.value); } },
-                    react_1["default"].createElement("option", { value: "" }, lang == "fr" ? "Tous les articles" : "All news"),
+            react_1["default"].createElement("div", { className: "container-selector" },
+                react_1["default"].createElement("select", { name: "", id: "", value: tagFilter, onChange: function (e) {
+                        return setTagFilter(e.target.value);
+                    } },
+                    react_1["default"].createElement("option", { value: "" }, lang == "fr"
+                        ? "Tous les articles"
+                        : "All news"),
                     tags.map(function (tag, index) { return (react_1["default"].createElement("option", { key: index, value: tag }, tag)); })),
-                react_1["default"].createElement("select", { name: "", id: "", onChange: function (e) { return setSortItem(e.target.value); } },
-                    react_1["default"].createElement("option", { value: "" }, lang == "fr" ? "Trier par" : "Sort by"),
-                    react_1["default"].createElement("option", { value: "newest" }, lang == "fr" ? "Plus récent" : "more recent"),
-                    react_1["default"].createElement("option", { value: "oldest" }, lang == "fr" ? "Plus ancien" : "older"))))),
-        react_1["default"].createElement("div", { className: 'container-card' },
-            react_1["default"].createElement("div", { className: 'cards' }, type === "events" ? (react_1["default"].createElement(react_1["default"].Fragment, null, itemsToShow === null || itemsToShow === void 0 ? void 0 : itemsToShow.map(function (event, index) { return (react_1["default"].createElement(events_1["default"], { img: event.events.image.sourceUrl, day: event.events.jour, month: event.events.mois, text: event.events.texte, hours: event.events.heures, adress: event.events.adresse, alt: event.events.image.altText, isSpeaker: event.events.speaker, lien: event.events.lienCliquable, enLigne: event.events.enLigne, lang: lang, key: index })); }))) : (react_1["default"].createElement(react_1["default"].Fragment, null, itemsToShow.map(function (item, index) { return (react_1["default"].createElement(card_1["default"], { key: index, title: item.titre, description: item.texte, tags: item.tags, files: item.fichier, linkText: item.bouton, image: item.image, lang: lang, time: item.duree, date: item.date, auteur: item.auteur, slug: item.slug, type: type })); })))),
-            react_1["default"].createElement("div", { className: 'pagination' },
+                react_1["default"].createElement("select", { name: "", id: "", onChange: function (e) {
+                        return setSortItem(e.target.value);
+                    } },
+                    react_1["default"].createElement("option", { value: "" }, lang == "fr"
+                        ? "Trier par"
+                        : "Sort by"),
+                    react_1["default"].createElement("option", { value: "newest" }, lang == "fr"
+                        ? "Plus récent"
+                        : "more recent"),
+                    react_1["default"].createElement("option", { value: "oldest" }, lang == "fr"
+                        ? "Plus ancien"
+                        : "older"))))),
+        react_1["default"].createElement("div", { className: "container-card" },
+            react_1["default"].createElement("div", { className: "cards" }, type === "events" ? (react_1["default"].createElement(react_1["default"].Fragment, null, itemsToShow === null || itemsToShow === void 0 ? void 0 : itemsToShow.map(function (event, index) { return (react_1["default"].createElement(events_1["default"], { img: event.events.image.node
+                    .sourceUrl, day: event.events.jour, month: event.events.mois, text: event.events.texte, hours: event.events.heures, adress: event.events.adresse, alt: event.events.image.node
+                    .altText, isSpeaker: event.events.speaker, lien: event.events.lienCliquable, enLigne: event.events.enLigne, lang: lang, key: index })); }))) : (react_1["default"].createElement(react_1["default"].Fragment, null, itemsToShow.map(function (item, index) { return (react_1["default"].createElement(card_1["default"], { key: index, title: item.titre, description: item.texte, tags: item.tags, files: item.fichier, linkText: item.bouton, image: item.image, lang: lang, time: item.duree, date: item.date, auteur: item.auteur, slug: item.slug, type: type })); })))),
+            react_1["default"].createElement("div", { className: "pagination" },
                 react_1["default"].createElement("button", { className: "btn-page " + (currentPage == 1 ? "active" : ""), onClick: function () { return setCurrentPage(1); } }, "1"),
-                currentPage - 2 > 0 && currentPage - 2 !== 1 && (react_1["default"].createElement("button", { className: "btn-page", disabled: true }, "...")),
-                currentPage > 2 && (react_1["default"].createElement("button", { className: "btn-page " + (currentPage === 2 ? "active" : ""), onClick: function () { return setCurrentPage(currentPage - 1); } }, currentPage - 1)),
-                currentPage > 1 && currentPage != maxPage && (react_1["default"].createElement("button", { className: "btn-page active", onClick: function () { return setCurrentPage(currentPage); } }, currentPage)),
-                currentPage < maxPage - 1 && (react_1["default"].createElement("button", { className: "btn-page", onClick: function () { return setCurrentPage(currentPage + 1); } }, currentPage + 1)),
+                currentPage - 2 > 0 &&
+                    currentPage - 2 !== 1 && (react_1["default"].createElement("button", { className: "btn-page", disabled: true }, "...")),
+                currentPage > 2 && (react_1["default"].createElement("button", { className: "btn-page " + (currentPage === 2 ? "active" : ""), onClick: function () {
+                        return setCurrentPage(currentPage - 1);
+                    } }, currentPage - 1)),
+                currentPage > 1 &&
+                    currentPage != maxPage && (react_1["default"].createElement("button", { className: "btn-page active", onClick: function () {
+                        return setCurrentPage(currentPage);
+                    } }, currentPage)),
+                currentPage < maxPage - 1 && (react_1["default"].createElement("button", { className: "btn-page", onClick: function () {
+                        return setCurrentPage(currentPage + 1);
+                    } }, currentPage + 1)),
                 currentPage + 2 < maxPage && (react_1["default"].createElement("button", { className: "btn-page", disabled: true }, "...")),
-                maxPage > 1 && (react_1["default"].createElement("button", { className: "btn-page " + (currentPage == maxPage ? "active" : ""), onClick: function () { return setCurrentPage(maxPage); } }, maxPage))))));
+                maxPage > 1 && (react_1["default"].createElement("button", { className: "btn-page " + (currentPage == maxPage
+                        ? "active"
+                        : ""), onClick: function () {
+                        return setCurrentPage(maxPage);
+                    } }, maxPage))))));
 };
 exports["default"] = ContainerCard;

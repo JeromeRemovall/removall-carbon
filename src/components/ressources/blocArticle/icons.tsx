@@ -18,10 +18,12 @@ const Icons: React.FC<Props> = ({ data }) => {
             <div className="index">
               <img
                 src={
-                  data[`icon${index}`]?.sourceUrl
+                  data[`icon${index}`]?.node
+                    .sourceUrl
                 }
                 alt={
-                  data[`icon${index}`]?.altText
+                  data[`icon${index}`]?.node
+                    .altText
                 }
               />
             </div>

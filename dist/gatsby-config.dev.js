@@ -4,6 +4,7 @@ require("dotenv").config({
   path: ".env.".concat(process.env.NODE_ENV)
 });
 
+console.log("WPGRAPHQL_URL =", process.env.URL_API);
 module.exports = {
   siteMetadata: {
     title: "Removall carbon",
@@ -18,12 +19,19 @@ module.exports = {
     options: {
       url: process.env.URL_API,
       debug: {
-        graphql: {}
+        graphql: {
+          showQueryOnError: true,
+          copyQueryOnError: true
+        }
       },
+      verbose: true,
       schema: {
-        perPage: 5,
-        requestConcurrency: 3,
-        previewRequestConcurrency: 3
+        perPage: 20,
+        // currently set to 25
+        requestConcurrency: 5,
+        // currently set to 1
+        previewRequestConcurrency: 2 // currently set to 2
+
       }
     }
   }, {

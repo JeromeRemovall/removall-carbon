@@ -34,8 +34,10 @@ const query = graphql`
           heures
           adresse
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           texte
           dateDeLevenement
@@ -61,8 +63,10 @@ const query = graphql`
           heures
           adresse
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           texte
           speaker
@@ -81,7 +85,7 @@ function Event({ pageContext }) {
   const [events, setEvents] = useState([]);
   const dataR = dataResource.ressource;
   const data = useStaticQuery(query);
-  
+
   useEffect(() => {
     function getLanguage() {
       if (
@@ -133,7 +137,7 @@ function Event({ pageContext }) {
     getLanguage();
   }, [data]);
 
-  console.log(data.frEvents.nodes)
+  console.log(data.frEvents.nodes);
   return (
     <Layout>
       {dataR && (
@@ -144,11 +148,22 @@ function Event({ pageContext }) {
             <title>{dataR?.bloc3Titre}</title>
           </Helmet>
           <main className="events">
-            <Navbar data={dataR} lang={metaLang} active={dataR?.bloc3Titre} />
+            <Navbar
+              data={dataR}
+              lang={metaLang}
+              active={dataR?.bloc3Titre}
+            />
             <section>
-              <Header title={dataR.bloc3Titre} description={dataR.bloc3Texte} />
+              <Header
+                title={dataR.bloc3Titre}
+                description={dataR.bloc3Texte}
+              />
               {events && (
-                <ContainerCard items={events} lang={metaLang} type="events"/>
+                <ContainerCard
+                  items={events}
+                  lang={metaLang}
+                  type="events"
+                />
               )}
             </section>
           </main>

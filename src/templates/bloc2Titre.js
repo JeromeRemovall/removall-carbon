@@ -36,19 +36,25 @@ const query = graphql`
       nodes {
         resources {
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           titre
           texteRessource
           bouton
           boutonMobile
           fichier {
-            mediaItemUrl
-            title
+            node {
+              mediaItemUrl
+              title
+            }
           }
           tags {
-            name
+            nodes {
+              name
+            }
           }
         }
       }
@@ -75,19 +81,25 @@ const query = graphql`
       nodes {
         resources {
           image {
-            sourceUrl
-            altText
+            node {
+              altText
+              sourceUrl
+            }
           }
           titre
           texteRessource
           bouton
           boutonMobile
           fichier {
-            mediaItemUrl
-            title
+            node {
+              mediaItemUrl
+              title
+            }
           }
           tags {
-            name
+            nodes {
+              name
+            }
           }
         }
       }
@@ -98,7 +110,8 @@ const query = graphql`
 function Resource({ pageContext }) {
   const { dataResource } = pageContext;
   const [metaLang, setMetaLang] = useState("");
-  const [ressource, setRessource] = useState(null);
+  const [ressource, setRessource] =
+    useState(null);
   const dataR = dataResource.ressource;
   const data = useStaticQuery(query);
 
@@ -109,20 +122,23 @@ function Resource({ pageContext }) {
         window.location.href.match("/fr/")
       ) {
         setMetaLang("fr");
-        const mergedData = mergeObject(data.frResources);
+        const mergedData = mergeObject(
+          data.frResources
+        );
         setRessource(mergedData);
       } else if (
         window.location.href.match("/en$") ||
         window.location.href.match("/en/")
       ) {
         setMetaLang("en");
-        const mergedData = mergeObject(data.enResources);
+        const mergedData = mergeObject(
+          data.enResources
+        );
         setRessource(mergedData);
       }
     }
     getLanguage();
   }, [data]);
-  
 
   const mergeObject = (data) => {
     return data.nodes.map((item, index) => {
@@ -144,11 +160,22 @@ function Resource({ pageContext }) {
             <title>{dataR?.bloc2Titre}</title>
           </Helmet>
           <main className="resources">
-            <Navbar data={dataR} lang={metaLang} active={dataR?.bloc2Titre} />
+            <Navbar
+              data={dataR}
+              lang={metaLang}
+              active={dataR?.bloc2Titre}
+            />
             <section>
-              <Header title={dataR.bloc2Titre} description={dataR.bloc2Texte} />
+              <Header
+                title={dataR.bloc2Titre}
+                description={dataR.bloc2Texte}
+              />
               {ressource && (
-                <ContainerCard items={ressource} lang={metaLang} type="ressource"/>
+                <ContainerCard
+                  items={ressource}
+                  lang={metaLang}
+                  type="ressource"
+                />
               )}
             </section>
           </main>

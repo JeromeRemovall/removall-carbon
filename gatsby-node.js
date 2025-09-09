@@ -49,7 +49,7 @@ exports.createPages = async ({
     query MyQuery {
       plasticBiodiv: allWpPage(
         filter: {
-          category: {
+          categoryRemovall: {
             name: {
               eq: "Plastique & Biodiversité"
             }
@@ -57,23 +57,30 @@ exports.createPages = async ({
         }
       ) {
         nodes {
-          PlasticBiodiv {
+          plasticBiodiv
+           {
             descriptionPage
             texteContact
             titrePage
             texteBoutonContact
             lienContactUs
             backgroundTitrePage {
-              altText
+              node {
               sourceUrl
+              altText
+            }
             }
             logoPlastic {
-              altText
+               node {
               sourceUrl
+              altText
+            }
             }
             logoCarbon {
-              altText
+               node {
               sourceUrl
+              altText
+            }
             }
             groupeCarbon1 {
               titre
@@ -84,20 +91,28 @@ exports.createPages = async ({
               texteArgument3
               texteArgument4
               imageArgument1 {
-                altText
-                sourceUrl
+                node {
+              sourceUrl
+              altText
+            }
               }
               imageArgument2 {
-                altText
-                sourceUrl
+                 node {
+              sourceUrl
+              altText
+            }
               }
               imageArgument3 {
-                altText
-                sourceUrl
+               node {
+              sourceUrl
+              altText
+            }
               }
               imageArgument4 {
-                altText
-                sourceUrl
+                 node {
+              sourceUrl
+              altText
+            }
               }
             }
             groupeCarbon2 {
@@ -105,16 +120,22 @@ exports.createPages = async ({
               titre
               texte1
               icon2 {
-                altText
-                sourceUrl
+                node {
+              sourceUrl
+              altText
+            }
               }
               image1 {
-                altText
-                sourceUrl
+                node {
+              sourceUrl
+              altText
+            }
               }
               image2 {
-                altText
-                sourceUrl
+                node {
+              sourceUrl
+              altText
+            }
               }
             }
             groupeCarbon3 {
@@ -130,16 +151,22 @@ exports.createPages = async ({
               step3ToStep2
               step2ToStep3
               imageStep1 {
-                altText
-                sourceUrl
+                node {
+              sourceUrl
+              altText
+            }
               }
               imageStep2 {
-                altText
-                sourceUrl
+                node {
+              sourceUrl
+              altText
+            }
               }
               imageStep3 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
             }
             groupeCarbon4 {
@@ -161,20 +188,40 @@ exports.createPages = async ({
               texteContact
               titre
               image {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               icon1 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               icon2 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               icon3 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
+              }
+              icon2 {
+                node {
+                  altText
+                  sourceUrl
+                }
+              }
+              icon3 {
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               lienBoutonContact
             }
@@ -182,14 +229,19 @@ exports.createPages = async ({
               titre
               description
               partenaires {
-                logoClientOuPartenaires {
+              nodes{
+                 logoClientOuPartenaires {
                   fieldGroupName
                   lienVersSite
                   logo {
-                    altText
-                    sourceUrl
+                  node {
+                  altText
+                  sourceUrl
+                }
                   }
                 }
+              }
+               
               }
             }
             groupePlastics1 {
@@ -201,20 +253,28 @@ exports.createPages = async ({
               texteArgument3
               texteArgument4
               imageArgument1 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               imageArgument2 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               imageArgument3 {
-                altText
-                sourceUrl
+               node {
+                  altText
+                  sourceUrl
+                }
               }
               imageArgument4 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
             }
             groupePlastics2 {
@@ -222,16 +282,22 @@ exports.createPages = async ({
               titre
               texte1
               icon2 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               image1 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               image2 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
             }
             groupePlastics3 {
@@ -247,16 +313,22 @@ exports.createPages = async ({
               step3ToStep2
               step2ToStep3
               imageStep1 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               imageStep2 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               imageStep3 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
             }
             groupePlastics4 {
@@ -278,20 +350,28 @@ exports.createPages = async ({
               texteContact
               titre
               image {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               icon1 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               icon2 {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               icon3 {
-                altText
-                sourceUrl
+               node {
+                  altText
+                  sourceUrl
+                }
               }
               lienBoutonContact
             }
@@ -299,14 +379,19 @@ exports.createPages = async ({
               titre
               description
               partenaires {
+                nodes {
                 logoClientOuPartenaires {
                   fieldGroupName
                   lienVersSite
                   logo {
-                    altText
-                    sourceUrl
-                  }
+                    node {
+                  altText
+                  sourceUrl
                 }
+                  }
+                }  
+                }
+                
               }
             }
           }
@@ -316,9 +401,10 @@ exports.createPages = async ({
           }
         }
       }
+
       home: allWpPage(
         filter: {
-          category: { name: { eq: "accueil" } }
+          categoryRemovall: { name: { eq: "accueil" } }
         }
       ) {
         nodes {
@@ -332,8 +418,10 @@ exports.createPages = async ({
             bloc1BoutonMobile
             bloc1BoutonLien
             bloc2Image {
-              sourceUrl
-              altText
+            node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc2Titre
             bloc2Texte
@@ -342,26 +430,35 @@ exports.createPages = async ({
             bloc2BoutonLien
             bloc3Titre
             bloc3item1Image {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc3item1SousTitre
             bloc3item1Texte
             bloc3item2Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc3item2SousTitre
             bloc3item2Texte
             bloc3item3Image {
+              node {
               sourceUrl
-              altText
+              altText  
+              }
+              
             }
             bloc3item3SousTitre
             bloc3item3Texte
             bloc3item4Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc3item4SousTitre
             bloc3item4Texte
@@ -371,20 +468,26 @@ exports.createPages = async ({
             bloc4Titre
             bloc4Texte
             bloc4item1Image {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc4item1SousTitre
             bloc4item1Texte
             bloc4item2Image {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc4item2SousTitre
             bloc4item2Texte
             bloc4item3Image {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc4item3SousTitre
             bloc4item3Texte
@@ -452,7 +555,7 @@ exports.createPages = async ({
 
       contact: allWpPage(
         filter: {
-          category: { name: { eq: "contact" } }
+          categoryRemovall: { name: { eq: "contact" } }
         }
       ) {
         nodes {
@@ -471,40 +574,58 @@ exports.createPages = async ({
             telephone
             titre
             iconAdresse {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             iconEmail {
-              sourceUrl
-              altText
+            node {
+                  altText
+                  sourceUrl
+                }
             }
             iconFacebook {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             iconInstagram {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             iconLinkedin {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             iconTelephone {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             iconTwitter {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             iconYoutube {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             imageDeFond {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
           }
           contactFormulaire {
@@ -527,7 +648,7 @@ exports.createPages = async ({
 
       services: allWpPage(
         filter: {
-          category: { name: { eq: "services" } }
+          categoryRemovall: { name: { eq: "services" } }
         }
       ) {
         nodes {
@@ -536,32 +657,42 @@ exports.createPages = async ({
             titreOngletDeLaPage
             description
             imageDeFond {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc1Titre
             bloc1Texte
             bloc1Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc2Titre
             bloc2Texte
             bloc2Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc3Titre
             bloc3Texte
             bloc3Image {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc4Titre
             bloc4Texte
             bloc4Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             itemMenu1
             itemMenu2
@@ -577,7 +708,7 @@ exports.createPages = async ({
 
       ecosystem: allWpPage(
         filter: {
-          category: { name: { eq: "écosystème" } }
+          categoryRemovall: { name: { eq: "écosystème" } }
         }
       ) {
         nodes {
@@ -586,8 +717,10 @@ exports.createPages = async ({
             titreOngletDeLaPage
             description
             imageDeFond {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc1Titre
             bloc1Texte
@@ -604,51 +737,63 @@ exports.createPages = async ({
 
       aPropos: allWpPage(
         filter: {
-          category: { name: { eq: "à propos" } }
+          categoryRemovall: { name: { eq: "à propos" } }
         }
       ) {
         nodes {
-          APropos {
+          aPropos {
             titre
             titreOngletDeLaPage
             description
             imageDeFond {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc1Titre
             bloc1Texte
             bloc2Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc2Texte1
             bloc2Texte2
             bloc2Titre1
             bloc2Titre2
             bloc3Image {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc3Titre
             bloc3Texte
             bloc4Titre
             bloc4Texte
             bloc4Item1Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc4Item1Titre
             bloc4Item1Texte
             bloc4Item2Image {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc4Item2Titre
             bloc4Item2Texte
             bloc4Item3Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc4Item3Titre
             bloc4Item3Texte
@@ -664,58 +809,78 @@ exports.createPages = async ({
             bloc5Carte4Number
             bloc6Titre
             bloc6Item1Icon {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc6Item1Titre
             bloc6Item1Texte
             bloc6Item2Icon {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc6Item2Titre
             bloc6Item2Texte
             bloc6Item3Icon {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc6Item3Texte
             bloc6Item3Titre
             bloc6Item4Icon {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc6Item4Titre
             bloc6Item4Texte
             bloc7Titre
             bloc7Texte
             bloc7Item1Image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc7Item1Titre
             bloc7Item1Texte
             bloc7Item1Icon1 {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc7Item1Icon2 {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc7Item2Image {
-              sourceUrl
-              altText
+             node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc7Item2Titre
             bloc7Item2Texte
             bloc7Item2Icon1 {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc7Item2Icon2 {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc7Item1Lien1
             bloc7Item2Lien1
@@ -727,8 +892,10 @@ exports.createPages = async ({
             bloc7Item2Description
             bloc8Visible
             imageRse {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             texteLienVersLaPageRse
             texteRse
@@ -743,7 +910,7 @@ exports.createPages = async ({
 
       project: allWpPage(
         filter: {
-          category: { name: { eq: "projets" } }
+          categoryRemovall: { name: { eq: "projets" } }
         }
       ) {
         nodes {
@@ -752,8 +919,10 @@ exports.createPages = async ({
             titreOngletDeLaPage
             description
             image {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             bloc1Titre
             bloc1Texte
@@ -770,7 +939,7 @@ exports.createPages = async ({
 
       resource: allWpPage(
         filter: {
-          category: { name: { eq: "ressources" } }
+          categoryRemovall: { name: { eq: "ressources" } }
         }
       ) {
         nodes {
@@ -802,7 +971,7 @@ exports.createPages = async ({
 
       conditionsOfUse: allWpPage(
         filter: {
-          category: {
+          categoryRemovall: {
             name: {
               eq: "conditions d’utilisations"
             }
@@ -815,8 +984,10 @@ exports.createPages = async ({
             titreOngletDeLaPage
             titre
             imageDeFond {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
           }
           slug
@@ -828,7 +999,7 @@ exports.createPages = async ({
 
       legalNotice: allWpPage(
         filter: {
-          category: {
+          categoryRemovall: {
             name: { eq: "mentions légales" }
           }
         }
@@ -839,8 +1010,10 @@ exports.createPages = async ({
             titreOngletDeLaPage
             titre
             imageDeFond {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
           }
           slug
@@ -852,7 +1025,7 @@ exports.createPages = async ({
 
       recruitment: allWpPage(
         filter: {
-          category: {
+          categoryRemovall: {
             name: { eq: "recrutement" }
           }
         }
@@ -869,17 +1042,24 @@ exports.createPages = async ({
             bloc3BoutonOuvrir
             bloc3BoutonOuvrirMobile
             bloc2Video {
+            node {
               title
               mediaItemUrl
+            }
             }
             bloc1Titre
             bloc1Texte
             imageDeFond {
-              sourceUrl
-              altText
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             miniatureVideo {
-              sourceUrl
+              node {
+                  altText
+                  sourceUrl
+                }
             }
             nomDuPremierFiltre
             nomDuDeuxiemeFiltre
@@ -895,11 +1075,15 @@ exports.createPages = async ({
             }
             rhSectionTexteCharteDeParite
             rhSectionFile {
+            node {
               mediaItemUrl
             }
+            }
             rhSectionVisuel {
+            node {
               title
               mediaItemUrl
+            }
             }
           }
           slug
@@ -951,7 +1135,7 @@ exports.createPages = async ({
 
       rse: allWpPage(
         filter: {
-          category: { name: { eq: "rse" } }
+          categoryRemovall: { name: { eq: "rse" } }
         }
       ) {
         nodes {
@@ -965,67 +1149,85 @@ exports.createPages = async ({
             titreBloc1
             titreBloc2
             imageHeaderPage {
+            node {
               altText
               mediaItemUrl
+            }
             }
             bloc1 {
               texte
               image {
+              node{
                 altText
                 mediaItemUrl
+              }
               }
             }
             bloc2 {
               texte
               image {
+              node {
                 altText
                 mediaItemUrl
+              }
               }
             }
             bloc3 {
               texte
               image {
+              node {
                 altText
                 mediaItemUrl
+              }
               }
             }
             bloc4 {
               texte
               image {
+              node {
                 altText
                 mediaItemUrl
+              }
               }
             }
             premierElement {
               description
               titre
               icon {
+              node {
                 altText
                 mediaItemUrl
+              }
               }
             }
             secondElement {
               description
               titre
               icon {
+              node {
                 altText
                 mediaItemUrl
+              }
               }
             }
             troisiemeElement {
               description
               titre
               icon {
+              node {
                 altText
                 mediaItemUrl
+              }
               }
             }
             quatriemeElement {
               description
               titre
               icon {
+              node {
                 altText
                 mediaItemUrl
+              }
               }
             }
           }
@@ -1043,44 +1245,61 @@ exports.createPages = async ({
               sousTitre
               duree
               photoMiseEnAvant {
-                altText
-                sourceUrl
+                node {
+                  altText
+                  sourceUrl
+                }
               }
               tags {
+              nodes {
                 name
               }
+              }
               auteur {
-                Auteur {
+              nodes {
+                auteur {
                   fonction
                   photo {
-                    altText
-                    sourceUrl
+                   node {
+                  altText
+                  sourceUrl
+                }
                   }
                 }
                 name
               }
+              }
               articlesSimilaires {
+              nodes {
                 ... on WpPost {
                   news {
                     image {
-                      altText
-                      sourceUrl
-                      date
+                     node {
+                  altText
+                  sourceUrl
+                  date
+                }
                     }
                     texteActualite
                     titre
                   }
                   articles {
                     auteur {
+                    nodes {
                       name
                     }
+                    }
                     photoMiseEnAvant {
-                      altText
-                      sourceUrl
+                     node {
+                  altText
+                  sourceUrl
+                }
                     }
                     titre
                     tags {
+                    nodes {
                       name
+                    }
                     }
                     sousTitre
                     duree
@@ -1088,6 +1307,7 @@ exports.createPages = async ({
                   slug
                   date
                 }
+              }
               }
               bloc1 {
                 ${BLOC_FIELDS}
@@ -1190,44 +1410,61 @@ exports.createPages = async ({
               sousTitre
               duree
               photoMiseEnAvant {
-                altText
-                sourceUrl
+               node {
+                  altText
+                  sourceUrl
+                }
               }
               tags {
+              nodes {
                 name
               }
+              }
               auteur {
-                Auteur {
+              nodes {
+                auteur {
                   fonction
                   photo {
-                    altText
-                    sourceUrl
+                   node {
+                  altText
+                  sourceUrl
+                }
                   }
                 }
                 name
               }
+              }
               articlesSimilaires {
+              nodes {
                 ... on WpPost {
                   news {
                     image {
-                      altText
-                      sourceUrl
-                      date
+                    node {
+                  altText
+                  sourceUrl
+                  date
+                }
                     }
                     texteActualite
                     titre
                   }
                   articles {
                     auteur {
+                    nodes {
                       name
                     }
+                    }
                     photoMiseEnAvant {
-                      altText
-                      sourceUrl
+                      node {
+                  altText
+                  sourceUrl
+                }
                     }
                     titre
                     tags {
+                    nodes {
                       name
+                    }
                     }
                     sousTitre
                     duree
@@ -1235,6 +1472,7 @@ exports.createPages = async ({
                   slug
                   date
                 }
+              }
               }
               bloc1 {
                 ${BLOC_FIELDS}

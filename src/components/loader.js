@@ -1,31 +1,40 @@
-import React from "react"
-import "../scss/components/loader.scss"
+import React from "react";
+import "../scss/components/loader.scss";
 import { graphql, useStaticQuery } from "gatsby";
 
 const query = graphql`
-	query{
-		menuFr : allWpMenu(filter: {name: {eq: "menu fr"}}) {
-			nodes {
-				logo {
-					logoTransparent {
-					  sourceUrl
-					  altText
-					}
-				}
-			}
-		}
-	}
+  query {
+    menuFr: allWpMenu(
+      filter: { name: { eq: "menu fr" } }
+    ) {
+      nodes {
+        logo {
+          logoTransparent {
+            node {
+              altText
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  }
 `;
 
-function Loader(){
+function Loader() {
+  const data = useStaticQuery(query);
 
-	const data = useStaticQuery(query);
-
-	return(
-		<main className="loader">
-			<img src={data.menuFr.nodes[0].logo.logoTransparent.sourceUrl} alt="logo"/>
-		</main>
-	)
+  return (
+    <main className="loader">
+      <img
+        src={
+          data.menuFr.nodes[0].logo
+            .logoTransparent.node.sourceUrl
+        }
+        alt="logo"
+      />
+    </main>
+  );
 }
 
 export default Loader;
