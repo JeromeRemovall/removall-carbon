@@ -15,7 +15,6 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "-": "0.0.1",
     "axios": "^0.28.0",
     "d3": "^3.5.17",
     "datamaps": "^0.5.9",
@@ -65,5 +64,8 @@
     "file-type": "^16.5.4",
     "axios": "0.28.0",
     "postcss": "8.4.31"
+  },
+  "devDependencies": {
+    "@netlify/plugin-gatsby": "^3.8.4"
   }
 }
