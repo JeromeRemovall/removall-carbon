@@ -100,7 +100,7 @@ const ArticlesPage = ({ pageContext }) => {
         return null;
     }
   };
-
+  console.log(pageContext.dataArticle.articles);
   const rendersBlocks = () => {
     const blocks = [];
     for (let i = 1; i < 21; i++) {
@@ -108,7 +108,7 @@ const ArticlesPage = ({ pageContext }) => {
         renderBlock(
           pageContext.dataArticle.articles[
             `typeBloc${i}`
-          ],
+          ][0],
           i,
           pageContext.dataArticle.articles[
             `bloc${i}`
@@ -116,6 +116,7 @@ const ArticlesPage = ({ pageContext }) => {
         )
       );
     }
+    console.log(blocks);
     return blocks;
   };
 
@@ -280,7 +281,8 @@ const ArticlesPage = ({ pageContext }) => {
             </ul>
           </div>
           {pageContext.dataArticle.articles
-            .articlesSimilaires?.length > 0 && (
+            .articlesSimilaires?.nodes.length >
+            0 && (
             <div className="related-articles">
               {metaLang == "fr" ? (
                 <h2>Articles similaires</h2>
@@ -288,9 +290,10 @@ const ArticlesPage = ({ pageContext }) => {
                 <h2>Related articles</h2>
               )}
               <div className="articles-container">
-                {pageContext.dataArticle.articles.articlesSimilaires.map(
+                {pageContext.dataArticle.articles.articlesSimilaires?.nodes.map(
                   (article, index) => {
-                    let news = article.news;
+                    let news = article.articles;
+                    console.log(news);
                     if (
                       article.articles
                         .photoMiseEnAvant !== null
