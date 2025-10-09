@@ -69,7 +69,6 @@ function Actuality({ pageContext }) {
   }, [data]);
 
   const merge = (oldData, newData) => {
-    console.log(oldData, newData);
     newData.map((item, index) => {
       const i = oldData.findIndex((element) => {
         return element.id === item.id;
@@ -219,6 +218,7 @@ const query = graphql`
       }
     }
     enNewNews: allWpPost(
+      sort: { date: DESC }
       filter: {
         categories: {
           nodes: {
@@ -264,6 +264,7 @@ const query = graphql`
       }
     }
     frNewNews: allWpPost(
+      sort: { date: DESC }
       filter: {
         categories: {
           nodes: {

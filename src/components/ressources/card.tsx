@@ -114,7 +114,7 @@ const Card: React.FC<CardProps> = ({
       ) : (
         <a
           className="link"
-          href={files?.node.mediaItemUrl}
+          href={files?.mediaItemUrl}
           target="_blank"
           download={files?.title}
         >
@@ -167,9 +167,7 @@ const Card: React.FC<CardProps> = ({
                 type == "ressource" && (
                   <a
                     className="link"
-                    href={
-                      files?.node.mediaItemUrl
-                    }
+                    href={files?.mediaItemUrl}
                     target="_blank"
                     download={files?.title}
                   >

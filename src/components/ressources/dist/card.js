@@ -25,7 +25,7 @@ var Card = function (_a) {
                 description && (react_1["default"].createElement("div", { className: "description", dangerouslySetInnerHTML: {
                         __html: description
                     } })),
-                linkText && (react_1["default"].createElement("a", { className: "link", href: files === null || files === void 0 ? void 0 : files.node.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title }, linkText)))))) : (react_1["default"].createElement("a", { className: "link", href: files === null || files === void 0 ? void 0 : files.node.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title },
+                linkText && (react_1["default"].createElement("a", { className: "link", href: files === null || files === void 0 ? void 0 : files.node.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title }, linkText)))))) : (react_1["default"].createElement("a", { className: "link", href: files === null || files === void 0 ? void 0 : files.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title },
         react_1["default"].createElement("div", { className: "card" },
             react_1["default"].createElement("div", { className: "image-container" },
                 react_1["default"].createElement("img", { src: image === null || image === void 0 ? void 0 : image.node.sourceUrl, alt: image === null || image === void 0 ? void 0 : image.node.altText })),
@@ -47,6 +47,6 @@ var Card = function (_a) {
                         __html: description
                     } }),
                 linkText &&
-                    type == "ressource" && (react_1["default"].createElement("a", { className: "link", href: files === null || files === void 0 ? void 0 : files.node.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title }, linkText))))))));
+                    type == "ressource" && (react_1["default"].createElement("a", { className: "link", href: files === null || files === void 0 ? void 0 : files.mediaItemUrl, target: "_blank", download: files === null || files === void 0 ? void 0 : files.title }, linkText))))))));
 };
 exports["default"] = Card;
