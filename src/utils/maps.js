@@ -12,6 +12,7 @@ class Maps {
     this.map = map;
     this.mapStyle = map?.querySelector("g");
     this.moveMap = this.moveMap.bind(this);
+    this._controlsInitialized = false;
     this.actualGeo = null;
     this.itemsImgList = null;
     this.itemImgLength = 0;
@@ -22,40 +23,53 @@ class Maps {
     this.intervalTime = 2000;
   }
 
+  setMapElement(element) {
+    this.map = element;
+    this.mapStyle = element?.querySelector("g");
+  }
+
+  resetHoverState() {
+    this.actualGeo = null;
+    this.itemsList = null;
+    clearInterval(this.interval);
+    this.interval = null;
+    this.itemLength = 0;
+    this.itemIndex = 0;
+  }
+
   initControls() {
-    this.map?.addEventListener(
+    if (!this.map || this._controlsInitialized) return;
+    this._controlsInitialized = true;
+
+    // Ne démarrer le drag que sur l'arrière-plan (océan), pas sur les pays.
+    // Sinon Chrome/Chromium ne déclenche jamais mouseover sur les paths.
+    const isOnCountry = (target) =>
+      target?.classList?.contains("datamaps-subunit") ||
+      target?.closest?.(".datamaps-subunit");
+
+    this.map.addEventListener(
       "mousedown",
       (_eventStart) => {
+        if (isOnCountry(_eventStart.target)) return;
         this.positionXTpm = _eventStart.clientX;
         this.positionYTpm = _eventStart.clientY;
-        this.map.addEventListener(
-          "mousemove",
-          this.moveMap
-        );
+        this.map.addEventListener("mousemove", this.moveMap);
       }
     );
 
-    this.map?.addEventListener(
-      "mouseup",
-      (_event) => {
-        this.positionXTpm = 0;
-        this.positionYTpm = 0;
-        this.map.removeEventListener(
-          "mousemove",
-          this.moveMap
-        );
-      }
-    );
+    this.map.addEventListener("mouseup", () => {
+      this.positionXTpm = 0;
+      this.positionYTpm = 0;
+      this.map.removeEventListener("mousemove", this.moveMap);
+    });
 
-    this.map?.addEventListener(
+    this.map.addEventListener(
       "touchstart",
       (_eventStart) => {
+        if (isOnCountry(_eventStart.target)) return;
         this.positionXTpm = _eventStart.clientX;
         this.positionYTpm = _eventStart.clientY;
-        this.map.addEventListener(
-          "touchend",
-          this.moveMap
-        );
+        this.map.addEventListener("touchend", this.moveMap);
       }
     );
   }
@@ -232,22 +246,16 @@ class Maps {
           document.querySelector(
             ".info_container p"
           );
-        infopContainer.style.display = "none";
-        infoContainer.innerHTML = result;
+        if (infopContainer) infopContainer.style.display = "none";
+        if (infoContainer) infoContainer.innerHTML = result;
       } else {
         return result;
       }
     } else {
-      const infoContainer =
-        document.querySelector(
-          ".info_container #maps_mobile"
-        );
-      const infopContainer =
-        document.querySelector(
-          ".info_container p"
-        );
-      infopContainer.style.display = "block";
-      infoContainer.innerHTML = "";
+      const infoContainer = document.querySelector(".info_container #maps_mobile");
+      const infopContainer = document.querySelector(".info_container p");
+      if (infopContainer) infopContainer.style.display = "block";
+      if (infoContainer) infoContainer.innerHTML = "";
     }
   }
 }

@@ -1,6 +1,7 @@
 import React, {
   useEffect,
   useState,
+  useRef,
 } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import "../scss/templates/project.scss";
@@ -179,21 +180,10 @@ function Project({ pageContext }) {
     useState("");
 
   const [metaLang, setMetaLang] = useState("");
-  let maps;
-  const zoomIn = () => {
-    maps.zoomIn();
-  };
+  const mapsRef = useRef(null);
 
-  const zoomOut = () => {
-    maps.zoomOut();
-  };
-
-  useEffect(() => {
-    maps = new Maps(
-      document.querySelector("#map svg")
-    );
-    maps.initControls();
-  });
+  const zoomIn = () => mapsRef.current?.zoomIn();
+  const zoomOut = () => mapsRef.current?.zoomOut();
 
   let projectionMobile = function (element) {
     var projection = geo
@@ -227,13 +217,9 @@ function Project({ pageContext }) {
       lang = "en";
     }
 
-    const asyncFn = async () => {
-      await maps.clearData(
-        projects.projectsMap.edges,
-        lang
-      );
-    };
-    asyncFn();
+    const maps = new Maps(null);
+    mapsRef.current = maps;
+    maps.clearData(projects.projectsMap.edges, lang);
 
     var map = new DataMap(
       {
@@ -247,23 +233,87 @@ function Project({ pageContext }) {
         responsive: true,
         geographyConfig: {
           borderWidth: 1,
-          highlightOnHover: true,
-          highlightFillColor: "#5F89F4",
+          highlightOnHover: false,
+          popupOnHover: false,
           borderOpacity: 1,
           borderColor: "#C6CFE7",
-          popupTemplate: (geo, data) =>
-            maps.templatePopIn(geo, data),
         },
       },
       []
     );
 
-    window.addEventListener(
-      "resize",
-      function () {
-        map.resize();
+    // Zoom + drag : initialiser Maps avec le SVG (après création du DataMap)
+    maps.setMapElement(document.querySelector("#map svg"));
+    maps.initControls();
+
+    // Tooltip custom indépendant de la logique interne de Datamaps
+    const mapElement = document.querySelector("#map");
+    if (!mapElement) {
+      return;
+    }
+
+    const tooltip = document.createElement("div");
+    tooltip.className = "map_custom_tooltip";
+    mapElement.appendChild(tooltip);
+
+    const paths = mapElement.querySelectorAll("svg .datamaps-subunit");
+
+    const updateTooltipPosition = (event) => {
+      const rect = mapElement.getBoundingClientRect();
+      tooltip.style.left = `${event.clientX - rect.left + 10}px`;
+      tooltip.style.top = `${event.clientY - rect.top + 10}px`;
+    };
+
+    const showTooltip = (event) => {
+      const path = event.currentTarget;
+      const dataInfo = path.getAttribute("data-info");
+      if (!dataInfo) return;
+
+      let data;
+      try {
+        data = JSON.parse(dataInfo);
+      } catch {
+        return;
       }
-    );
+
+      const classes = path.getAttribute("class")?.split(" ") || [];
+      const id = classes[1];
+
+      const html = maps.templatePopIn({ id }, data);
+      if (!html) return;
+
+      tooltip.innerHTML = html;
+      updateTooltipPosition(event);
+      tooltip.style.display = "block";
+    };
+
+    const hideTooltip = () => {
+      tooltip.style.display = "none";
+      maps.resetHoverState();
+    };
+
+    paths.forEach((path) => {
+      path.addEventListener("mouseenter", showTooltip);
+      path.addEventListener("mousemove", updateTooltipPosition);
+      path.addEventListener("mouseleave", hideTooltip);
+    });
+
+    const handleResize = () => {
+      map.resize();
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      paths.forEach((path) => {
+        path.removeEventListener("mouseenter", showTooltip);
+        path.removeEventListener("mousemove", updateTooltipPosition);
+        path.removeEventListener("mouseleave", hideTooltip);
+      });
+      if (tooltip.parentNode === mapElement) {
+        mapElement.removeChild(tooltip);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -328,14 +378,18 @@ function Project({ pageContext }) {
               <div className="map_container">
                 <div className="controls_container">
                   <button
+                    type="button"
                     className="btn_map minus_btn"
                     onClick={zoomIn}
-                  ></button>
-                  <div className="divider"></div>
+                    aria-label="Zoom avant"
+                  />
+                  <div className="divider" />
                   <button
+                    type="button"
                     className="btn_map plus_btn"
                     onClick={zoomOut}
-                  ></button>
+                    aria-label="Zoom arrière"
+                  />
                 </div>
                 <div id="map"></div>
               </div>

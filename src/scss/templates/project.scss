@@ -331,6 +331,21 @@ main.project {
         overflow: hidden;
       }
 
+      svg .datamaps-subunit {
+        cursor: pointer;
+        transition: fill 0.15s ease;
+      }
+
+      svg .datamaps-subunit:hover {
+        fill: #5F89F4 !important;
+      }
+
+      .map_custom_tooltip {
+        position: absolute;
+        z-index: 3;
+        pointer-events: none;
+      }
+
       .controls_container {
         position: absolute;
         top: 36px;
