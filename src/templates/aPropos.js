@@ -224,11 +224,11 @@ function APropos({ pageContext }) {
           icon2:
             dataA.bloc7Item1Icon2?.node.sourceUrl,
           link2: dataA.bloc7Item1Lien2,
-          alt: dataA.bloc7Item1Image.node.altText,
+          alt: dataA.bloc7Item1Image?.node.altText,
           altIcon1:
-            dataA.bloc7Item1Icon1.node.altText,
+            dataA.bloc7Item1Icon1?.node.altText,
           altIcon2:
-            dataA.bloc7Item1Icon2.node.altText,
+            dataA.bloc7Item1Icon2?.node.altText,
           description:
             dataA.bloc7Item1Description,
         });
@@ -244,11 +244,11 @@ function APropos({ pageContext }) {
           icon2:
             dataA.bloc7Item2Icon2?.node.sourceUrl,
           link2: dataA.bloc7Item2Lien2,
-          alt: dataA.bloc7Item1Image.node.altText,
+          alt: dataA.bloc7Item1Image?.node.altText,
           altIcon1:
-            dataA.bloc7Item2Icon1.node.altText,
+            dataA.bloc7Item2Icon1?.node.altText,
           altIcon2:
-            dataA.bloc7Item2Icon2.node.altText,
+            dataA.bloc7Item2Icon2?.node.altText,
           description:
             dataA.bloc7Item2Description,
         });
@@ -262,9 +262,9 @@ function APropos({ pageContext }) {
           link1: i.lien1,
           icon2: i.logo2?.node.sourceUrl,
           link2: i.lien2,
-          alt: i.image.node.altText,
-          altIcon1: i.logo1.node.altText,
-          altIcon2: i.logo2.node.altText,
+          alt: i.image?.node.altText,
+          altIcon1: i.logo1?.node.altText,
+          altIcon2: i.logo2?.node.altText,
           description: i.description,
         });
       }
@@ -314,7 +314,7 @@ function APropos({ pageContext }) {
             img={
               dataA.imageDeFond?.node.sourceUrl
             }
-            alt={dataA.imageDeFond.node.altText}
+            alt={dataA.imageDeFond?.node.altText}
           />
           <div className="navbar-container-secondary">
             <nav className="navbar-small">
@@ -394,7 +394,7 @@ function APropos({ pageContext }) {
                   dataA.bloc2Image?.node.sourceUrl
                 }
                 alt={
-                  dataA.bloc2Image.node.altText
+                  dataA.bloc2Image?.node.altText
                 }
               />
             </div>
@@ -423,7 +423,7 @@ function APropos({ pageContext }) {
                   dataA.bloc3Image?.node.sourceUrl
                 }
                 alt={
-                  dataA.bloc3Image.node.altText
+                  dataA.bloc3Image?.node.altText
                 }
               />
               <div className="bloc-3__background-mobile"></div>
@@ -456,7 +456,7 @@ function APropos({ pageContext }) {
                     .sourceUrl
                 }
                 alt={
-                  dataA.bloc4Item1Image.node
+                  dataA.bloc4Item1Image?.node
                     .altText
                 }
               />
@@ -468,7 +468,7 @@ function APropos({ pageContext }) {
                     .sourceUrl
                 }
                 alt={
-                  dataA.bloc4Item2Image.node
+                  dataA.bloc4Item2Image?.node
                     .altText
                 }
               />
@@ -480,7 +480,7 @@ function APropos({ pageContext }) {
                     .sourceUrl
                 }
                 alt={
-                  dataA.bloc4Item3Image.node
+                  dataA.bloc4Item3Image?.node
                     .altText
                 }
               />
@@ -531,7 +531,7 @@ function APropos({ pageContext }) {
                     .sourceUrl
                 }
                 alt={
-                  dataA.bloc6Item1Icon.node
+                  dataA.bloc6Item1Icon?.node
                     .altText
                 }
               />
@@ -543,7 +543,7 @@ function APropos({ pageContext }) {
                     .sourceUrl
                 }
                 alt={
-                  dataA.bloc6Item2Icon.node
+                  dataA.bloc6Item2Icon?.node
                     .altText
                 }
               />
@@ -555,7 +555,7 @@ function APropos({ pageContext }) {
                     .sourceUrl
                 }
                 alt={
-                  dataA.bloc6Item3Icon.node
+                  dataA.bloc6Item3Icon?.node
                     .altText
                 }
               />
@@ -567,7 +567,7 @@ function APropos({ pageContext }) {
                     .sourceUrl
                 }
                 alt={
-                  dataA.bloc6Item4Icon.node
+                  dataA.bloc6Item4Icon?.node
                     .altText
                 }
               />
@@ -603,7 +603,7 @@ function APropos({ pageContext }) {
                     dataA.imageRse?.node.sourceUrl
                   }
                   alt={
-                    dataA.imageRse.node.altText
+                    dataA.imageRse?.node.altText
                   }
                 />
               </div>
@@ -643,11 +643,11 @@ function APropos({ pageContext }) {
                     .altText
                 }
                 altIcon1={
-                  dataA.bloc7Item1Icon1.node
+                  dataA.bloc7Item1Icon1?.node
                     .altText
                 }
                 altIcon2={
-                  dataA.bloc7Item1Icon2.node
+                  dataA.bloc7Item1Icon2?.node
                     .altText
                 }
                 link1={dataA.bloc7Item1Lien1}
@@ -674,11 +674,11 @@ function APropos({ pageContext }) {
                     .altText
                 }
                 altIcon1={
-                  dataA.bloc7Item2Icon1.node
+                  dataA.bloc7Item2Icon1?.node
                     .altText
                 }
                 altIcon2={
-                  dataA.bloc7Item2Icon2.node
+                  dataA.bloc7Item2Icon2?.node
                     .altText
                 }
                 link1={dataA.bloc7Item2Lien1}
@@ -732,11 +732,11 @@ function APropos({ pageContext }) {
                               ?.node.altText
                           }
                           altIcon1={
-                            item.equipe.logo1.node
+                            item.equipe.logo1?.node
                               .altText
                           }
                           altIcon2={
-                            item.equipe.logo2.node
+                            item.equipe.logo2?.node
                               .altText
                           }
                           link1={

@@ -600,22 +600,22 @@ const Navbar = () => {
                 "navbar-transparent" ? (
                   <img
                     src={
-                      logo.logoTransparent.node
+                      logo.logoTransparent?.node
                         .sourceUrl
                     }
                     alt={
-                      logo.logoTransparent.node
+                      logo.logoTransparent?.node
                         .altText
                     }
                   />
                 ) : (
                   <img
                     src={
-                      logo.logoFondBlanc.node
+                      logo.logoFondBlanc?.node
                         .sourceUrl
                     }
                     alt={
-                      logo.logoFondBlanc.node
+                      logo.logoFondBlanc?.node
                         .altText
                     }
                   />
@@ -932,12 +932,10 @@ const Navbar = () => {
                 <Link to={`${path}/`}>
                   <img
                     src={
-                      logoHamburger.logoFondBlanc
-                        .node.sourceUrl
+                      logoHamburger.logoFondBlanc?.node.sourceUrl
                     }
                     alt={
-                      logoHamburger.logoFondBlanc
-                        .node.altText
+                      logoHamburger.logoFondBlanc?.node.altText
                     }
                   />
                 </Link>
@@ -973,22 +971,22 @@ const Navbar = () => {
                 "navbar-transparent" ? (
                   <img
                     src={
-                      logo.logoTransparent.node
+                      logo.logoTransparent?.node
                         .sourceUrl
                     }
                     alt={
-                      logo.logoTransparent.node
+                      logo.logoTransparent?.node
                         .altText
                     }
                   />
                 ) : (
                   <img
                     src={
-                      logo.logoFondBlanc.node
+                      logo.logoFondBlanc?.node
                         .sourceUrl
                     }
                     alt={
-                      logo.logoFondBlanc.node
+                      logo.logoFondBlanc?.node
                         .altText
                     }
                   />
@@ -1002,12 +1000,12 @@ const Navbar = () => {
                     <img
                       src={
                         logoHamburger
-                          .logoFondBlanc.node
+                          .logoFondBlanc?.node
                           .sourceUrl
                       }
                       alt={
                         logoHamburger
-                          .logoFondBlanc.node
+                          .logoFondBlanc?.node
                           .altText
                       }
                     />
@@ -1345,8 +1343,7 @@ const Navbar = () => {
                           <img
                             src={
                               dataHamburger
-                                .logo1ReseauxSociaux
-                                .node.sourceUrl
+                                .logo1ReseauxSociaux?.node.sourceUrl
                             }
                             alt={
                               dataHamburger
@@ -1365,13 +1362,12 @@ const Navbar = () => {
                           <img
                             src={
                               dataHamburger
-                                .logo2ReseauxSociaux
-                                .node.sourceUrl
+                                .logo2ReseauxSociaux?.node.sourceUrl
                             }
                             alt={
                               dataHamburger
                                 .logo2ReseauxSociaux
-                                .node.altText
+                                ?.node.altText
                             }
                           />
                         </a>
@@ -1385,13 +1381,11 @@ const Navbar = () => {
                           <img
                             src={
                               dataHamburger
-                                .logo3ReseauxSociaux
-                                .node.sourceUrl
+                                .logo3ReseauxSociaux?.node.sourceUrl
                             }
                             alt={
                               dataHamburger
-                                .logo3ReseauxSociaux
-                                .node.altText
+                                .logo3ReseauxSociaux?.node.altText
                             }
                           />
                         </a>
@@ -1405,13 +1399,11 @@ const Navbar = () => {
                           <img
                             src={
                               dataHamburger
-                                .logo4ReseauxSociaux
-                                .node.sourceUrl
+                                .logo4ReseauxSociaux?.node.sourceUrl
                             }
                             alt={
                               dataHamburger
-                                .logo4ReseauxSociaux
-                                .node.altText
+                                .logo4ReseauxSociaux?.node.altText
                             }
                           />
                         </a>
@@ -1425,13 +1417,11 @@ const Navbar = () => {
                           <img
                             src={
                               dataHamburger
-                                .logo5ReseauxSociaux
-                                .node.sourceUrl
+                                .logo5ReseauxSociaux?.node.sourceUrl
                             }
                             alt={
                               dataHamburger
-                                .logo5ReseauxSociaux
-                                .node.altText
+                                .logo5ReseauxSociaux?.node.altText
                             }
                           />
                         </a>
@@ -1473,12 +1463,12 @@ const Navbar = () => {
                     <img
                       src={
                         logoHamburger
-                          .logoFondBlanc.node
+                          .logoFondBlanc?.node
                           .sourceUrl
                       }
                       alt={
                         logoHamburger
-                          .logoFondBlanc.node
+                          .logoFondBlanc?.node
                           .altText
                       }
                     />
